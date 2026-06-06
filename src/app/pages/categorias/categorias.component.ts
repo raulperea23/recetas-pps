@@ -18,6 +18,14 @@ interface CategoriaItem {
   styleUrl: './categorias.component.css',
 })
 export class CategoriasComponent {
+  categoriasLabels = {
+    Desayuno: 'Desayunos',
+    Entrante: 'Entrantes',
+    'Plato principal': 'Platos principales',
+    'Segundo plato': 'Segundos platos',
+    Postre: 'Postres',
+  };
+
   categorias: CategoriaItem[] = CATEGORIAS.map((cat) => ({
     nombre: cat,
     imagen: `assets/images/categories/${cat.toLowerCase().replaceAll(' ', '-')}.jpg`,

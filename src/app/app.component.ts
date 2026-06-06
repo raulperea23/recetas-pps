@@ -18,7 +18,7 @@ export class AppComponent {
 
   @HostListener('window:scroll')
   onScroll(): void {
-    this.visible = window.scrollY > 10;
+    this.visible = window.scrollY > 500;
   }
 
   scrollToTop(): void {

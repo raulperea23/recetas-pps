@@ -25,7 +25,7 @@
 }
 
 .categoria {
-  color: #d153ed;
+  color: var(--primary-color);
   font-weight: 500;
   margin-bottom: 16px;
 }

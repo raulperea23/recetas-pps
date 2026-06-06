@@ -13,6 +13,14 @@ import { Title } from '@angular/platform-browser';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { CATEGORIAS, DIFICULTADES } from '../../shared/models/app.types';
 
+const ORDEN_CATEGORIAS: { [key: string]: number } = {
+  Desayuno: 1,
+  Entrante: 2,
+  'Plato principal': 3,
+  'Segundo plato': 4,
+  Postre: 5,
+};
+
 @Component({
   selector: 'app-recetas',
   standalone: true,
@@ -55,6 +63,16 @@ export class RecetasComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Recetas | Platos Para Siempre');
+
+    this.route.queryParams.subscribe((queryParams) => {
+      if (queryParams['categoria']) {
+        this.categoriaSeleccionada = queryParams['categoria'];
+      }
+      if (queryParams['dificultad']) {
+        this.dificultadSeleccionada = queryParams['dificultad'];
+      }
+    });
+
     this.route.params.subscribe((params) => {
       if (params['categoria']) {
         this.categoriaSeleccionada = params['categoria'];
@@ -103,7 +121,9 @@ export class RecetasComponent implements OnInit {
           comparacion = a.nombre.localeCompare(b.nombre);
           break;
         case 'categoria':
-          comparacion = a.categoria.localeCompare(b.categoria);
+          comparacion =
+            (ORDEN_CATEGORIAS[a.categoria] || 99) -
+            (ORDEN_CATEGORIAS[b.categoria] || 99);
           break;
         case 'fecha':
           comparacion =

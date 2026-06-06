@@ -181,6 +181,154 @@
   z-index: 1;
 }
 
+/* POSTRES REVISTA */
+.postres-revista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.postre-grande {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.postre-grande:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.postre-grande img {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.postres-pequeños {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  gap: 16px;
+}
+
+.postre-pequeño {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  height: 152px;
+}
+
+.postre-pequeño:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.postre-pequeño img {
+  width: 100%;
+  height: 152px;
+  object-fit: cover;
+  display: block;
+}
+
+.postre-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+}
+
+.postre-overlay h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin: 0 0 4px 0;
+}
+
+.postre-categoria {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+}
+
+.postre-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.ver-mas {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* TRUCOS */
+.trucos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.truco-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+  border-left: 4px solid var(--color-primary);
+}
+
+.truco-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.truco-icono {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.truco-nombre {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.truco-arrow {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .banner {
@@ -240,5 +388,17 @@
   .nombre-receta {
     font-size: 0.95rem;
     padding: 6px 14px;
+  }
+
+  .postres-revista {
+    grid-template-columns: 1fr;
+  }
+
+  .postre-grande img {
+    min-height: 240px;
+  }
+
+  .trucos-grid {
+    grid-template-columns: 1fr;
   }
 }

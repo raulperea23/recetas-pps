@@ -80,3 +80,78 @@
     ></app-card>
   </div>
 </section>
+
+<!-- Para los más dulceros -->
+<section class="seccion" *ngIf="postres.length > 0">
+  <div class="section-header">
+    <mat-icon class="section-icon">cake</mat-icon>
+    <span class="section-title">Para los más dulceros</span>
+  </div>
+
+  <div class="postres-revista">
+    <!-- Tarjeta grande -->
+    <div class="postre-grande" [routerLink]="['/recetas', postres[0].id]">
+      <img
+        [src]="postres[0].foto"
+        [alt]="postres[0].nombre"
+        (error)="onImageError($event)"
+      />
+      <div class="postre-overlay">
+        <p class="postre-categoria">{{ postres[0].categoria }}</p>
+        <h3>{{ postres[0].nombre }}</h3>
+        <p class="postre-meta">
+          <mat-icon>access_alarm</mat-icon> {{ postres[0].tiempoPreparacion }}
+          {{ postres[0].tiempoUnidad }} · <mat-icon>person_outline</mat-icon>
+          {{ postres[0].comensales }} personas
+        </p>
+      </div>
+    </div>
+
+    <!-- Tarjetas pequeñas -->
+    <div class="postres-pequeños">
+      <div
+        class="postre-pequeño"
+        *ngFor="let postre of postres.slice(1)"
+        [routerLink]="['/recetas', postre.id]"
+      >
+        <img
+          [src]="postre.foto"
+          [alt]="postre.nombre"
+          (error)="onImageError($event)"
+        />
+        <div class="postre-overlay">
+          <h3>{{ postre.nombre }}</h3>
+          <p class="postre-meta">
+            <mat-icon>access_alarm</mat-icon> {{ postre.tiempoPreparacion }}
+            {{ postre.tiempoUnidad }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ver-mas">
+    <button mat-stroked-button (click)="verPostres()">
+      Ver todos los postres
+    </button>
+  </div>
+</section>
+
+<!-- El truco del almendruco -->
+<section class="seccion">
+  <div class="section-header">
+    <mat-icon class="section-icon">tips_and_updates</mat-icon>
+    <span class="section-title">El truco del almendruco</span>
+  </div>
+  <div class="trucos-grid">
+    <div
+      class="truco-card"
+      *ngFor="let truco of trucos"
+      (click)="abrirModalDeTruco(truco)"
+    >
+      <span class="truco-icono">{{ truco.icono }}</span>
+      <h3 class="truco-nombre">{{ truco.nombre }}</h3>
+      <mat-icon class="truco-arrow">arrow_forward</mat-icon>
+    </div>
+  </div>
+</section>

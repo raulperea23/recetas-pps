@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { RecetasService } from '../../shared/services/recetas.service';
 import { Receta } from '../../shared/models/receta.model';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { TRUCOS, Truco } from './home.config';
 
 @Component({
   selector: 'app-home',
@@ -31,14 +32,17 @@ import { ModalComponent } from '../../shared/components/modal/modal.component';
 export class HomeComponent implements OnInit {
   destacadas: Receta[] = [];
   ultimas: Receta[] = [];
+  postres: Receta[] = [];
   sugerenciaAleatoria: Receta | null = null;
   recetaAleatoria: Receta | null = null;
   todasLasRecetas: Receta[] = [];
+  trucos: Truco[] = TRUCOS;
 
   constructor(
     private recetasService: RecetasService,
     private title: Title,
     private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +55,9 @@ export class HomeComponent implements OnInit {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.todasLasRecetas = recetas;
       this.ultimas = recetas.slice(0, 6);
+      this.postres = recetas
+        .filter((r) => r.categoria === 'Postre')
+        .slice(0, 6);
       this.cargarSugerenciaAleatoria();
       this.cargarRecetaAleatoria();
     });
@@ -93,5 +100,25 @@ export class HomeComponent implements OnInit {
         panelClass: 'modal-aleatoria',
       });
     }
+  }
+
+  abrirModalDeTruco(truco: Truco): void {
+    this.dialog.open(ModalComponent, {
+      data: { tipo: 'truco', ...truco },
+      maxWidth: '820px',
+      width: '100%',
+      panelClass: 'modal-truco',
+    });
+  }
+
+  verPostres(): void {
+    this.router.navigate(['/recetas'], {
+      queryParams: { categoria: 'Postre' },
+    });
+  }
+
+  onImageError(event: any): void {
+    event.target.onerror = null;
+    event.target.src = 'assets/images/placeholder.png';
   }
 }

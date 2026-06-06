@@ -1,15 +1,31 @@
 mat-toolbar {
   height: auto;
-  /* background-color: #d153ed; */
-  background: linear-gradient(105deg, #54afe8, #d153ed);
+  position: relative;
+  background: url("../../../../../public/assets/images/marmol-casa.jpg");
+  background-size: cover;
+  background-position: center;
   padding: 32px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  overflow: hidden;
+}
+
+mat-toolbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
 }
 
 .navbar-titulo {
+  position: relative;
+  z-index: 1;
   width: 100%;
   font-size: 32px;
   text-align: center;
@@ -21,10 +37,12 @@ mat-toolbar {
 }
 
 .inicial {
-  color: black;
+  color: var(--primary-color);
 }
 
 .navbar-menu {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: flex;
   flex-direction: row;

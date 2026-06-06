@@ -23,11 +23,11 @@ mat-card-content {
 }
 
 .tarjeta:hover .card-title {
-  color: #d153ed;
+  color: var(--primary-color);
 }
 
 .categoria {
-  color: #d153ed;
+  color: var(--primary-color);
   font-weight: 500;
   margin-bottom: 8px;
 }
