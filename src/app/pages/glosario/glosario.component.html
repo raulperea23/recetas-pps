@@ -1,0 +1,52 @@
+<div class="section-header">
+  <mat-icon class="section-icon">menu_book</mat-icon>
+  <span class="section-title">Glosario</span>
+</div>
+<p class="subtitle">Términos y técnicas culinarias explicados</p>
+
+<!-- Buscador -->
+<div class="buscador">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Buscar término</mat-label>
+    <input
+      matInput
+      [(ngModel)]="busqueda"
+      (ngModelChange)="filtrar()"
+      placeholder="Escribe un término o definición..."
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+
+<!-- Índice de letras -->
+<div class="indice" *ngIf="!busqueda">
+  <button
+    mat-button
+    *ngFor="let letra of abecedario"
+    (click)="scrollALetra(letra)"
+    class="btn-letra"
+  >
+    {{ letra }}
+  </button>
+</div>
+
+<!-- Contenido -->
+<section class="contenido">
+  <div
+    *ngFor="let grupo of letrasVisibles"
+    class="grupo-letra"
+    [id]="'letra-' + grupo.letra"
+  >
+    <h2 class="letra-titulo">{{ grupo.letra }}</h2>
+    <div class="terminos">
+      <div *ngFor="let item of grupo.terminos" class="termino">
+        <span class="termino-nombre">{{ item.termino }}</span>
+        <span class="termino-definicion">{{ item.definicion }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="sin-resultados" *ngIf="letrasVisibles.length === 0">
+  No se han encontrado términos.
+</p>

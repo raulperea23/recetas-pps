@@ -1,0 +1,92 @@
+<div *ngIf="receta; else cargando">
+  <button mat-button routerLink="/recetas">
+    <mat-icon style="width: 32px; height: 32px; font-size: 32px; color: black"
+      >keyboard_arrow_left</mat-icon
+    >
+    Volver a recetas
+  </button>
+
+  <div class="cabecera">
+    <div
+      class="foto-container"
+      [class.clickable]="tieneFoto()"
+      (click)="tieneFoto() && abrirFoto()"
+    >
+      <img
+        [src]="receta.foto || 'assets/images/placeholder.png'"
+        [alt]="receta.nombre"
+        class="foto"
+        (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+      />
+      <div class="foto-overlay" *ngIf="tieneFoto()">
+        <mat-icon>zoom_in</mat-icon>
+      </div>
+    </div>
+    <div class="info">
+      <h1>{{ receta.nombre }}</h1>
+      <p class="categoria">{{ receta.categoria }}</p>
+
+      <p class="origen">Origen: {{ receta.origen }}</p>
+
+      <div class="info-card">
+        <mat-icon>access_alarm</mat-icon>
+        <span>{{ receta.tiempoPreparacion }} {{ receta.tiempoUnidad }}</span>
+      </div>
+      <div class="info-card">
+        <mat-icon>person_outline</mat-icon>
+        <span>{{ receta.comensales }} personas</span>
+      </div>
+      <div class="info-card">
+        <mat-icon [class]="'icono-' + receta.dificultad.toLowerCase()"
+          >signal_cellular_alt</mat-icon
+        >
+        <span>{{ receta.dificultad }}</span>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="contenido">
+    <div class="ingredientes">
+      <h2>Ingredientes</h2>
+      <ul>
+        <li *ngFor="let ingrediente of receta.ingredientes">
+          {{ ingrediente }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="elaboracion">
+      <h2>Elaboración</h2>
+      <div [innerHTML]="elaboracionFormateada"></div>
+    </div>
+  </div>
+  <section class="relacionadas" *ngIf="recetasRelacionadas.length > 0">
+    <mat-divider></mat-divider>
+    <h2>Recetas relacionadas</h2>
+    <div class="grid-relacionadas">
+      <mat-card
+        *ngFor="let r of recetasRelacionadas"
+        [routerLink]="['/recetas', r.id]"
+        class="tarjeta-relacionada"
+      >
+        <img
+          mat-card-image
+          [src]="r.foto || 'assets/images/placeholder.png'"
+          [alt]="r.nombre"
+          (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+        />
+
+        <mat-card-content>
+          <h3 class="card-relacionada-title">{{ r.nombre }}</h3>
+          <p class="categoria">{{ r.categoria }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+</div>
+
+<ng-template #cargando>
+  <p class="cargando">Cargando receta...</p>
+</ng-template>

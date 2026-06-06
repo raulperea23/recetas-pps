@@ -1,0 +1,167 @@
+<div class="panel-cabecera">
+  <h1>Panel de administración</h1>
+  <button mat-button (click)="logout()">Cerrar sesión</button>
+</div>
+
+<!-- FORMULARIO -->
+<mat-card class="formulario-card">
+  <mat-card-title>{{
+    editandoId ? "Editar receta" : "Nueva receta"
+  }}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="formulario">
+      <div class="fila">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Origen</mat-label>
+          <input matInput formControlName="origen" />
+        </mat-form-field>
+      </div>
+
+      <div class="fila">
+        <mat-form-field appearance="outline">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="categoria">
+            <mat-option *ngFor="let cat of categorias" [value]="cat">{{
+              cat
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Dificultad</mat-label>
+          <mat-select formControlName="dificultad">
+            <mat-option *ngFor="let d of dificultades" [value]="d">{{
+              d
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tiempo</mat-label>
+          <input matInput type="number" formControlName="tiempoPreparacion" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Unidad</mat-label>
+          <mat-select formControlName="tiempoUnidad">
+            <mat-option value="minutos">Minutos</mat-option>
+            <mat-option value="horas">Horas</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Comensales</mat-label>
+          <input matInput type="number" formControlName="comensales" />
+        </mat-form-field>
+      </div>
+
+      <div class="foto-upload">
+        <button
+          mat-stroked-button
+          type="button"
+          onclick="document.getElementById('inputFoto').click()"
+        >
+          <mat-icon>upload</mat-icon> Subir foto
+        </button>
+        <input
+          id="inputFoto"
+          type="file"
+          accept="image/*"
+          hidden
+          (change)="onImagenSeleccionada($event)"
+        />
+        <img
+          *ngIf="previsualizacion"
+          [src]="previsualizacion"
+          class="previa"
+          alt="Previsualización"
+        />
+      </div>
+
+      <mat-progress-bar
+        *ngIf="subiendoImagen"
+        mode="indeterminate"
+      ></mat-progress-bar>
+
+      <mat-checkbox formControlName="destacada">Receta destacada</mat-checkbox>
+
+      <mat-divider></mat-divider>
+
+      <!-- Ingredientes -->
+      <h3>Ingredientes</h3>
+      <div
+        *ngFor="let ing of ingredientes.controls; let i = index"
+        class="lista-item"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Ingrediente {{ i + 1 }}</mat-label>
+          <input matInput [formControl]="$any(ing)" />
+        </mat-form-field>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="removeIngrediente(i)"
+          *ngIf="ingredientes.length > 1"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <button mat-button (click)="addIngrediente()">
+        + Añadir ingrediente
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <h3>Elaboración</h3>
+      <quill-editor
+        formControlName="elaboracion"
+        [styles]="{ height: '200px' }"
+      ></quill-editor>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="guardar()">
+      {{ editandoId ? "Guardar cambios" : "Añadir receta" }}
+    </button>
+    <button mat-button (click)="resetFormulario()" *ngIf="editandoId">
+      Cancelar
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<!-- LISTADO DE RECETAS -->
+<h2>Recetas guardadas</h2>
+<table mat-table [dataSource]="recetas" class="tabla">
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
+  </ng-container>
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef>Categoría</th>
+    <td mat-cell *matCellDef="let r">{{ r.categoria }}</td>
+  </ng-container>
+  <ng-container matColumnDef="dificultad">
+    <th mat-header-cell *matHeaderCellDef>Dificultad</th>
+    <td mat-cell *matCellDef="let r">{{ r.dificultad }}</td>
+  </ng-container>
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let r">
+      <button mat-icon-button (click)="editar(r)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="eliminar(r.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+</table>

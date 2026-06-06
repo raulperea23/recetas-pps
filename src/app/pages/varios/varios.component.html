@@ -1,0 +1,41 @@
+<div class="section-header">
+  <mat-icon class="section-icon">explore</mat-icon>
+  <span class="section-title">Varios</span>
+</div>
+<p class="subtitle">
+  Explora una variedad de información relacionada con el mundo de la cocina
+</p>
+
+<!-- Banner glosario -->
+<section class="glosario-banner" routerLink="/glosario">
+  <div class="glosario-banner-contenido">
+    <mat-icon class="glosario-icono">menu_book</mat-icon>
+    <div class="glosario-texto">
+      <h2>Glosario de cocina</h2>
+      <p>
+        Descubre el significado de los términos y técnicas culinarias más
+        utilizados
+      </p>
+    </div>
+  </div>
+  <button mat-raised-button class="glosario-btn">Explorar glosario</button>
+</section>
+
+<section class="seccion">
+  <div class="section-header">
+    <mat-icon class="section-icon">calendar_today</mat-icon>
+    <span class="section-title">Productos de temporada</span>
+  </div>
+  <div class="grid">
+    <div
+      *ngFor="let prod of productos"
+      class="categoria-card"
+      (click)="productoClick(prod)"
+      [style.backgroundImage]="'url(' + prod.imagen + ')'"
+    >
+      <div class="overlay">
+        <h2>{{ prod.nombre }} de temporada</h2>
+      </div>
+    </div>
+  </div>
+</section>

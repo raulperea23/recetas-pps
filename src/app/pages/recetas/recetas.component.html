@@ -1,0 +1,95 @@
+<section class="cabecera">
+  <h1>Todas las recetas</h1>
+</section>
+
+<!-- Filtros -->
+<section class="filtros">
+  <mat-form-field appearance="outline">
+    <mat-label>Buscar receta</mat-label>
+    <input
+      matInput
+      [(ngModel)]="busqueda"
+      (ngModelChange)="filtrar()"
+      placeholder="Nombre de la receta..."
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Categoría</mat-label>
+    <mat-select [(ngModel)]="categoriaSeleccionada" (ngModelChange)="filtrar()">
+      <mat-option value="">Todas</mat-option>
+      <mat-option *ngFor="let cat of categorias" [value]="cat">{{
+        cat
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Dificultad</mat-label>
+    <mat-select
+      [(ngModel)]="dificultadSeleccionada"
+      (ngModelChange)="filtrar()"
+    >
+      <mat-option value="">Todas</mat-option>
+      <mat-option *ngFor="let dif of dificultades" [value]="dif">{{
+        dif
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button (click)="limpiarFiltros()">Limpiar filtros</button>
+</section>
+
+<!-- Ordenación -->
+<div class="ordenacion">
+  <span>Ordenar por:</span>
+  <button
+    mat-button
+    [class.activo]="ordenActual === 'fecha'"
+    (click)="ordenar('fecha')"
+  >
+    Recientes
+    <span *ngIf="ordenActual === 'fecha'">{{
+      ordenAscendente ? "↑" : "↓"
+    }}</span>
+  </button>
+  <button
+    mat-button
+    [class.activo]="ordenActual === 'nombre'"
+    (click)="ordenar('nombre')"
+  >
+    A-Z
+    <span *ngIf="ordenActual === 'nombre'">{{
+      ordenAscendente ? "↑" : "↓"
+    }}</span>
+  </button>
+  <button
+    mat-button
+    [class.activo]="ordenActual === 'categoria'"
+    (click)="ordenar('categoria')"
+  >
+    Categoría
+    <span *ngIf="ordenActual === 'categoria'">{{
+      ordenAscendente ? "↑" : "↓"
+    }}</span>
+  </button>
+</div>
+
+<!-- Listado -->
+<section class="grid" *ngIf="recetasMostradas.length > 0; else sinResultados">
+  <app-card
+    *ngFor="let receta of recetasMostradas; let i = index"
+    [receta]="receta"
+    [delay]="i * 50"
+  ></app-card>
+</section>
+
+<div class="cargar-mas" *ngIf="hayMas">
+  <button mat-stroked-button color="primary" (click)="cargarMas()">
+    Cargar más recetas
+  </button>
+</div>
+
+<ng-template #sinResultados>
+  <p class="sin-resultados">No se han encontrado recetas.</p>
+</ng-template>

@@ -1,0 +1,42 @@
+<div @slideInUp class="modal-contenido">
+  <button mat-icon-button class="cerrar" (click)="dialogRef.close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <img
+    [src]="data.foto || 'assets/images/placeholder.png'"
+    [alt]="data.nombre"
+    class="foto"
+    (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+  />
+
+  <div class="info">
+    <p class="categoria">{{ data.categoria }}</p>
+    <h2>{{ data.nombre }}</h2>
+
+    <div class="meta">
+      <span
+        ><mat-icon>schedule</mat-icon> {{ data.tiempoPreparacion }}
+        {{ data.tiempoUnidad }}</span
+      >
+      <span><mat-icon>people</mat-icon> {{ data.comensales }} personas</span>
+      <span
+        ><mat-icon [class]="'icono-' + data.dificultad.toLowerCase()"
+          >signal_cellular_alt</mat-icon
+        >
+        {{ data.dificultad }}</span
+      >
+    </div>
+  </div>
+
+  <mat-dialog-actions align="center">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/recetas', data.id]"
+      (click)="dialogRef.close()"
+    >
+      Ver receta completa
+    </button>
+  </mat-dialog-actions>
+</div>

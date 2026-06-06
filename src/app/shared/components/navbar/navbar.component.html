@@ -1,0 +1,60 @@
+<mat-toolbar>
+  <!-- Título centrado -->
+  <div class="navbar-titulo">
+    <span class="app-text" routerLink="/" style="cursor: pointer">
+      <span class="inicial">P</span>latos <span class="inicial">P</span>ara
+      <span class="inicial">S</span>iempre
+    </span>
+  </div>
+
+  <!-- Segunda línea: menú con logo en el centro -->
+  <div class="navbar-menu">
+    <!-- Links izquierda -->
+    <div class="desktop-menu desktop-menu-left">
+      <button class="navbar-button" mat-button routerLink="/">Inicio</button>
+      <button class="navbar-button" mat-button routerLink="/recetas">
+        Recetas
+      </button>
+    </div>
+
+    <!-- Logo central -->
+    <div class="app-logo" routerLink="/">
+      <img src="favicon.png" class="app-img" />
+    </div>
+
+    <!-- Links derecha -->
+    <div class="desktop-menu desktop-menu-right">
+      <button class="navbar-button" mat-button routerLink="/categorias">
+        Categorías
+      </button>
+      <button class="navbar-button" mat-button routerLink="/varios">
+        Varios
+      </button>
+    </div>
+
+    <!-- Burger menu para mobile -->
+    <div class="mobile-menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon class="burger-icon">menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/">
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </button>
+        <button mat-menu-item routerLink="/recetas">
+          <mat-icon>restaurant_menu</mat-icon>
+          <span>Recetas</span>
+        </button>
+        <button mat-menu-item routerLink="/categorias">
+          <mat-icon>category</mat-icon>
+          <span>Categorías</span>
+        </button>
+        <button mat-menu-item routerLink="/varios">
+          <mat-icon>explore</mat-icon>
+          <span>Varios</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

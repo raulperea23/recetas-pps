@@ -1,0 +1,12 @@
+.foto-grande {
+  max-width: 80vw;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+}
+
+@media only screen and (max-width: 1024px) {
+  mat-dialog-actions {
+    display: none;
+  }
+}

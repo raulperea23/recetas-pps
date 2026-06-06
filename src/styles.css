@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Maiandra GD";
+  src: url("/assets/fonts/MaiandraGD.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  /* background: url("../public/assets/images/casa1.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: repeat; */
+  background-color: #f6e8de;
+  margin: 0;
+}
+
+* {
+  font-family: "Maiandra GD", sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Maiandra GD", sans-serif !important;
+}
+
+/* Estilos para Angular Material */
+
+button .mdc-button__label {
+  font-size: 18px !important;
+  color: black;
+}
+
+mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
+  font-size: 32px !important;
+  padding: 16px;
+}
+
+.snackbar-grande .mdc-snackbar__surface {
+  font-size: 1.1rem !important;
+  padding: 16px 24px !important;
+  min-width: 400px !important;
+}
+
+.snackbar-grande .mdc-snackbar__label {
+  font-size: 1.1rem !important;
+}
+
+.cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+app-navbar .navbar-button span.mdc-button__label,
+app-footer .navbar-button span.mdc-button__label {
+  color: white !important;
+}
+
+.modal-aleatoria .mat-mdc-dialog-container {
+  padding: 0 !important;
+}

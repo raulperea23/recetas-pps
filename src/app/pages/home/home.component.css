@@ -1,0 +1,244 @@
+.banner {
+  position: relative;
+  background: url("../../../../public/assets/images/kitchen-main.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 80px 24px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: white;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.section-header .section-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+.section-header .section-title {
+  font-size: 46px;
+  color: black;
+}
+
+.seccion {
+  margin-bottom: 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.comidas-del-dia-contenedor {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.seccion-aleatoria {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.banner-sugerencia-aleatoria {
+  position: relative;
+  background: url("../../../../public/assets/images/sugerencia-chef.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  padding: 48px 32px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.banner-sugerencia-aleatoria::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.banner-receta-aleatoria {
+  position: relative;
+  background: url("../../../../public/assets/images/receta-aleatoria.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  padding: 48px 32px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.banner-receta-aleatoria::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.banner-aleatoria:hover {
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.banner-aleatoria-contenido {
+  position: relative;
+  z-index: 1;
+}
+
+.banner-aleatoria-contenido h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.banner-aleatoria-contenido p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.nombre-receta {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 16px;
+  display: inline-block;
+}
+
+.btn-refrescar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .banner {
+    padding: 48px 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+
+  .banner h1 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .banner p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .section-header {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .section-header .section-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+  }
+
+  .section-header .section-title {
+    font-size: 28px;
+  }
+
+  .seccion {
+    margin-bottom: 32px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .comidas-del-dia-contenedor {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .banner-aleatoria-contenido h2 {
+    font-size: 1.4rem;
+  }
+
+  .banner-aleatoria-contenido p {
+    font-size: 0.95rem;
+  }
+
+  .nombre-receta {
+    font-size: 0.95rem;
+    padding: 6px 14px;
+  }
+}

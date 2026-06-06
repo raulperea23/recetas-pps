@@ -1,0 +1,82 @@
+<!-- Banner -->
+<section class="banner">
+  <div class="banner-content">
+    <h1>La teoría aquí, la práctica en la cocina</h1>
+    <p>Recetas caseras con mucho cariño</p>
+    <button mat-raised-button class="banner-btn" routerLink="/recetas">
+      Ver todas las recetas
+    </button>
+  </div>
+</section>
+
+<!-- Receta aleatoria -->
+<section class="comidas-del-dia-contenedor">
+  <section class="seccion-aleatoria" *ngIf="sugerenciaAleatoria">
+    <div class="banner-sugerencia-aleatoria" (click)="abrirModalDeSugerencia()">
+      <div class="banner-aleatoria-contenido">
+        <h2>Nuestro plato del día</h2>
+        <p>Confía en la sugerencia del chef</p>
+        <span class="nombre-receta"
+          >Hoy toca... {{ sugerenciaAleatoria.nombre }}</span
+        >
+      </div>
+    </div>
+    <button
+      mat-icon-button
+      class="btn-refrescar"
+      (click)="$event.stopPropagation(); cargarSugerenciaAleatoria()"
+      matTooltip="Otra receta"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </section>
+  <section class="seccion-aleatoria" *ngIf="recetaAleatoria">
+    <div class="banner-receta-aleatoria" (click)="abrirModalDeAleatoria()">
+      <div class="banner-aleatoria-contenido">
+        <h2>¿Qué hacemos hoy de comer?</h2>
+        <p>Déjate sorprender por una receta aleatoria</p>
+        <span class="nombre-receta"
+          >Hoy toca... {{ recetaAleatoria.nombre }}</span
+        >
+      </div>
+    </div>
+    <button
+      mat-icon-button
+      class="btn-refrescar"
+      (click)="$event.stopPropagation(); cargarRecetaAleatoria()"
+      matTooltip="Otra receta"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </section>
+</section>
+
+<!-- Recetas destacadas -->
+<section class="seccion" *ngIf="destacadas.length > 0">
+  <div class="section-header">
+    <mat-icon class="section-icon">favorite</mat-icon>
+    <span class="section-title">Nuestra selección</span>
+  </div>
+  <div class="grid">
+    <app-card
+      *ngFor="let receta of destacadas; let i = index"
+      [receta]="receta"
+      [delay]="i * 50"
+    ></app-card>
+  </div>
+</section>
+
+<!-- Últimas recetas -->
+<section class="seccion" *ngIf="ultimas.length > 0">
+  <div class="section-header">
+    <mat-icon class="section-icon">access_time</mat-icon>
+    <span class="section-title">Últimas recetas</span>
+  </div>
+  <div class="grid">
+    <app-card
+      *ngFor="let receta of ultimas; let i = index"
+      [receta]="receta"
+      [delay]="i * 50"
+    ></app-card>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      @for (column of tableConfig.columns; track $index) {
+        <th>{{ column }}</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (row of tableConfig.rows; track $index) {
+      <tr>
+        <td>{{ row.nombre }}</td>
+        <td>{{ row.ene }}</td>
+        <td>{{ row.feb }}</td>
+        <td>{{ row.mar }}</td>
+        <td>{{ row.abr }}</td>
+        <td>{{ row.may }}</td>
+        <td>{{ row.jun }}</td>
+        <td>{{ row.jul }}</td>
+        <td>{{ row.ago }}</td>
+        <td>{{ row.sep }}</td>
+        <td>{{ row.oct }}</td>
+        <td>{{ row.nov }}</td>
+        <td>{{ row.dic }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

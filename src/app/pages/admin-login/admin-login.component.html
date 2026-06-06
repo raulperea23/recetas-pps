@@ -1,0 +1,24 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-title>Acceso administración</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput [(ngModel)]="email" type="email" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [(ngModel)]="password" type="password" />
+      </mat-form-field>
+      <p class="error" *ngIf="error">{{ error }}</p>
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width"
+        (click)="login()"
+      >
+        Entrar
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

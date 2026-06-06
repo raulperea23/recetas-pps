@@ -1,0 +1,35 @@
+main {
+  padding: 24px;
+  max-width: 1750px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+/* Back To Top button */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  width: 56px !important;
+  height: 56px !important;
+  background-color: black !important;
+  color: white !important;
+  border-radius: 50% !important;
+  border: 2px solid #d153ed;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+}
+
+.back-to-top mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: white;
+}

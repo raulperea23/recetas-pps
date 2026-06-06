@@ -1,0 +1,15 @@
+[
+  {
+    "nombre": "",
+    "origen": "",
+    "categoria": "Plato principal",
+    "ingredientes": ["XXX", "YYY", "ZZZ"],
+    "elaboracion": "ABC",
+    "comensales": 1,
+    "dificultad": "Fácil",
+    "tiempoPreparacion": 50,
+    "tiempoUnidad": "minutos",
+    "destacada": false,
+    "foto": ""
+  }
+]
