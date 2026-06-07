@@ -24,8 +24,8 @@ footer {
 }
 
 .footer-img {
-  width: 60px;
-  height: 60px;
+  width: 85px;
+  height: 85px;
 }
 
 .app-text {
@@ -80,6 +80,9 @@ footer {
   font-size: 0.85rem;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 @media (max-width: 768px) {

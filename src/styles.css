@@ -34,6 +34,10 @@ h6 {
   font-family: "Maiandra GD", sans-serif !important;
 }
 
+a {
+  color: var(--primary-color);
+}
+
 ul {
   margin: 0;
   display: flex;
