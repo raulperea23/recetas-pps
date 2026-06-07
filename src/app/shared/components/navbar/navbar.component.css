@@ -29,6 +29,7 @@ mat-toolbar::before {
   width: 100%;
   font-size: 32px;
   text-align: center;
+  cursor: pointer;
 }
 
 .app-text {
