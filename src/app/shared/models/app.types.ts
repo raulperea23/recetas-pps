@@ -1,6 +1,5 @@
 export const CATEGORIAS = [
   'Panes y masas',
-  'Salsas y vinagretas',
   'Desayunos, meriendas y sandwiches',
   'Aperitivos y entrantes',
   'Guarniciones y acompañamientos',
@@ -25,6 +24,13 @@ export const TIPOS_DE_PLATO = [
   'Segundo plato',
   'Postre',
 ] as const;
+export const TIPOS_DE_PLATO_PLURALES = {
+  Desayuno: 'Desayunos',
+  Entrante: 'Entrantes',
+  'Plato principal': 'Platos principales',
+  'Segundo plato': 'Segundos platos',
+  Postre: 'Postres',
+} as const;
 
 export const DIFICULTADES = ['Fácil', 'Media', 'Difícil'] as const;
 

@@ -7,6 +7,7 @@ import {
   Categoria,
   TIPOS_DE_PLATO,
   TipoDePlato,
+  TIPOS_DE_PLATO_PLURALES,
 } from '../../shared/models/app.types';
 import { MatIcon } from '@angular/material/icon';
 
@@ -24,10 +25,11 @@ interface CategoriaItem {
 })
 export class CategoriasComponent {
   tiposDePlato = TIPOS_DE_PLATO;
+  tiposDePlatoPlurales = TIPOS_DE_PLATO_PLURALES;
 
   categorias: CategoriaItem[] = CATEGORIAS.map((cat) => ({
     nombre: cat,
-    imagen: `assets/images/categories/${cat.toLowerCase().replaceAll(' ', '-')}.jpg`,
+    imagen: `assets/images/categories/${cat.toLowerCase().replaceAll(',', '').replaceAll(' ', '-')}.jpg`,
   }));
 
   constructor(
