@@ -15,6 +15,16 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
+    <mat-label>Tipo de plato</mat-label>
+    <mat-select [(ngModel)]="tipoSeleccionado" (ngModelChange)="filtrar()">
+      <mat-option value="">Todos</mat-option>
+      <mat-option *ngFor="let cat of tiposDePlato" [value]="cat">{{
+        cat
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
     <mat-label>Categoría</mat-label>
     <mat-select [(ngModel)]="categoriaSeleccionada" (ngModelChange)="filtrar()">
       <mat-option value="">Todas</mat-option>
@@ -36,6 +46,14 @@
       }}</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-checkbox
+    [(ngModel)]="soloDestacadas"
+    (ngModelChange)="filtrar()"
+    class="checkbox-destacadas"
+  >
+    Solo destacadas
+  </mat-checkbox>
 
   <button mat-button (click)="limpiarFiltros()">Limpiar filtros</button>
 </section>

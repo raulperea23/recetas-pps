@@ -7,7 +7,7 @@
 
 .foto {
   width: 100%;
-  max-width: 480px;
+  max-width: 620px;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -22,6 +22,12 @@
   color: black;
   margin-bottom: 8px;
   font-weight: 700;
+}
+
+.tipo-de-plato {
+  color: var(--accent-color);
+  font-weight: 500;
+  margin-bottom: 16px;
 }
 
 .categoria {
@@ -114,7 +120,7 @@ mat-divider {
 
 .foto-container {
   position: relative;
-  max-width: 480px;
+  max-width: 620px;
 }
 
 .foto-container.clickable {

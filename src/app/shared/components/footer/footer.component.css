@@ -29,6 +29,10 @@ footer {
 }
 
 .app-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
   font-size: 28px;
   color: white;
 }

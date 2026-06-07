@@ -38,6 +38,43 @@
   margin-bottom: 24px;
 }
 
+.tipos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.tipo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 24px 16px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
+  border-color: var(--primary-color);
+}
+
+.tipo-card:hover {
+  background-color: rgba(84, 175, 232, 0.2);
+  box-shadow: 4px 4px 12px rgba(84, 175, 232, 0.2);
+  transform: translateY(-4px);
+}
+
+.tipo-nombre {
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

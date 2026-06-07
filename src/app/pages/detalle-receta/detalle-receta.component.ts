@@ -69,8 +69,10 @@ export class DetalleRecetaComponent implements OnInit {
   abrirFoto(): void {
     this.dialog.open(FotoDialogComponent, {
       data: { foto: this.receta?.foto, nombre: this.receta?.nombre },
-      maxWidth: '90vw',
-      maxHeight: '90vh',
+      // maxWidth: '40vw',
+      // maxHeight: '55vh',
+      width: '85vw',
+      panelClass: 'foto-dialog',
     });
   }
 

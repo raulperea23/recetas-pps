@@ -1,167 +1,405 @@
-<div class="panel-cabecera">
-  <h1>Panel de administración</h1>
-  <button mat-button (click)="logout()">Cerrar sesión</button>
+<!-- CABECERA -->
+<div class="admin-cabecera">
+  <div class="admin-cabecera-contenido">
+    <div class="admin-cabecera-titulo">
+      <mat-icon class="admin-icon">admin_panel_settings</mat-icon>
+      <h1>Panel de administración</h1>
+    </div>
+    <button mat-stroked-button class="btn-logout" (click)="logout()">
+      <mat-icon>logout</mat-icon> Cerrar sesión
+    </button>
+  </div>
 </div>
 
-<!-- FORMULARIO -->
-<mat-card class="formulario-card">
-  <mat-card-title>{{
-    editandoId ? "Editar receta" : "Nueva receta"
-  }}</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="formulario">
-      <div class="fila">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput formControlName="nombre" />
-        </mat-form-field>
+<mat-tab-group class="admin-tabs">
+  <!-- TAB RECETAS -->
+  <mat-tab label="Recetas">
+    <mat-card class="formulario-card">
+      <mat-card-title class="formulario-titulo">{{
+        editandoId ? "Editar receta" : "Nueva receta"
+      }}</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="formulario">
+          <div class="fila">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="nombre" />
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Origen</mat-label>
-          <input matInput formControlName="origen" />
-        </mat-form-field>
-      </div>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Origen</mat-label>
+              <input matInput formControlName="origen" />
+            </mat-form-field>
+          </div>
 
-      <div class="fila">
-        <mat-form-field appearance="outline">
-          <mat-label>Categoría</mat-label>
-          <mat-select formControlName="categoria">
-            <mat-option *ngFor="let cat of categorias" [value]="cat">{{
-              cat
-            }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <div class="fila">
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de plato</mat-label>
+              <mat-select formControlName="tipoDePlato">
+                <mat-option *ngFor="let tipo of tiposDePlato" [value]="tipo">{{
+                  tipo
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Dificultad</mat-label>
-          <mat-select formControlName="dificultad">
-            <mat-option *ngFor="let d of dificultades" [value]="d">{{
-              d
-            }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Categoría</mat-label>
+              <mat-select formControlName="categoria">
+                <mat-option *ngFor="let cat of categorias" [value]="cat">{{
+                  cat
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Tiempo</mat-label>
-          <input matInput type="number" formControlName="tiempoPreparacion" />
-        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Dificultad</mat-label>
+              <mat-select formControlName="dificultad">
+                <mat-option *ngFor="let d of dificultades" [value]="d">{{
+                  d
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Unidad</mat-label>
-          <mat-select formControlName="tiempoUnidad">
-            <mat-option value="minutos">Minutos</mat-option>
-            <mat-option value="horas">Horas</mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Tiempo</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="tiempoPreparacion"
+              />
+            </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Comensales</mat-label>
-          <input matInput type="number" formControlName="comensales" />
-        </mat-form-field>
-      </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Unidad</mat-label>
+              <mat-select formControlName="tiempoUnidad">
+                <mat-option value="minutos">Minutos</mat-option>
+                <mat-option value="horas">Horas</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      <div class="foto-upload">
+            <mat-form-field appearance="outline">
+              <mat-label>Comensales</mat-label>
+              <input matInput type="number" formControlName="comensales" />
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox formControlName="destacada" class="checkbox-destacada"
+            >Receta destacada</mat-checkbox
+          >
+
+          <div class="foto-upload">
+            <button
+              mat-stroked-button
+              class="btn-upload"
+              type="button"
+              onclick="document.getElementById('inputFoto').click()"
+            >
+              <mat-icon>upload</mat-icon> Subir foto
+            </button>
+            <input
+              id="inputFoto"
+              type="file"
+              accept="image/*"
+              hidden
+              (change)="onImagenSeleccionada($event)"
+            />
+            <img
+              *ngIf="previsualizacion"
+              [src]="previsualizacion"
+              class="previa"
+              alt="Previsualización"
+            />
+          </div>
+
+          <mat-progress-bar
+            *ngIf="subiendoImagen"
+            mode="indeterminate"
+            class="progress-bar"
+          ></mat-progress-bar>
+
+          <mat-divider></mat-divider>
+
+          <h3 class="seccion-titulo">Ingredientes</h3>
+          <div
+            *ngFor="let ing of ingredientes.controls; let i = index"
+            class="lista-item"
+          >
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Ingrediente {{ i + 1 }}</mat-label>
+              <input matInput [formControl]="$any(ing)" />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              (click)="removeIngrediente(i)"
+              *ngIf="ingredientes.length > 1"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <button mat-button class="btn-añadir" (click)="addIngrediente()">
+            <mat-icon>add</mat-icon> Añadir ingrediente
+          </button>
+
+          <mat-divider></mat-divider>
+
+          <h3 class="seccion-titulo">Elaboración</h3>
+          <quill-editor
+            formControlName="elaboracion"
+            [styles]="{ height: '200px' }"
+          ></quill-editor>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="formulario-acciones">
+        <button mat-raised-button class="btn-guardar" (click)="guardar()">
+          <mat-icon>{{ editandoId ? "save" : "add_circle" }}</mat-icon>
+          {{ editandoId ? "Guardar cambios" : "Añadir receta" }}
+        </button>
         <button
           mat-stroked-button
-          type="button"
-          onclick="document.getElementById('inputFoto').click()"
+          class="btn-cancelar"
+          (click)="resetFormulario()"
+          *ngIf="editandoId"
         >
-          <mat-icon>upload</mat-icon> Subir foto
+          <mat-icon>close</mat-icon> Cancelar
         </button>
-        <input
-          id="inputFoto"
-          type="file"
-          accept="image/*"
-          hidden
-          (change)="onImagenSeleccionada($event)"
-        />
-        <img
-          *ngIf="previsualizacion"
-          [src]="previsualizacion"
-          class="previa"
-          alt="Previsualización"
-        />
-      </div>
+      </mat-card-actions>
+    </mat-card>
 
-      <mat-progress-bar
-        *ngIf="subiendoImagen"
-        mode="indeterminate"
-      ></mat-progress-bar>
+    <mat-divider></mat-divider>
 
-      <mat-checkbox formControlName="destacada">Receta destacada</mat-checkbox>
+    <div class="tabla-cabecera">
+      <h2 class="tabla-titulo">Recetas guardadas</h2>
+      <span class="tabla-contador">{{ recetas.length }} recetas</span>
+    </div>
 
-      <mat-divider></mat-divider>
+    <div class="tabla-contenedor">
+      <table mat-table [dataSource]="recetas" class="tabla">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let r">
+            <div class="tabla-nombre">
+              <mat-icon *ngIf="r.destacada" class="tabla-estrella"
+                >star</mat-icon
+              >
+              {{ r.nombre }}
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef>Categoría</th>
+          <td mat-cell *matCellDef="let r">
+            <span class="tabla-badge">{{ r.categoria }}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dificultad">
+          <th mat-header-cell *matHeaderCellDef>Dificultad</th>
+          <td mat-cell *matCellDef="let r">{{ r.dificultad }}</td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let r">
+            <button mat-icon-button class="btn-editar" (click)="editar(r)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              (click)="eliminar(r.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: columnas"
+          class="tabla-fila"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
 
-      <!-- Ingredientes -->
-      <h3>Ingredientes</h3>
-      <div
-        *ngFor="let ing of ingredientes.controls; let i = index"
-        class="lista-item"
-      >
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Ingrediente {{ i + 1 }}</mat-label>
-          <input matInput [formControl]="$any(ing)" />
-        </mat-form-field>
+  <!-- TAB PREPARACIONES -->
+  <mat-tab label="Preparaciones">
+    <mat-card class="formulario-card">
+      <mat-card-title class="formulario-titulo">{{
+        editandoPreparacionId ? "Editar preparación" : "Nueva preparación"
+      }}</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="formularioPreparacion">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Icono (emoji)</mat-label>
+            <input matInput formControlName="icono" placeholder="🍳" />
+          </mat-form-field>
+
+          <h3 class="seccion-titulo">Descripción</h3>
+          <quill-editor
+            formControlName="descripcion"
+            [styles]="{ height: '200px' }"
+          ></quill-editor>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="formulario-acciones">
         <button
-          mat-icon-button
-          color="warn"
-          (click)="removeIngrediente(i)"
-          *ngIf="ingredientes.length > 1"
+          mat-raised-button
+          class="btn-guardar"
+          (click)="guardarPreparacion()"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon>{{
+            editandoPreparacionId ? "save" : "add_circle"
+          }}</mat-icon>
+          {{ editandoPreparacionId ? "Guardar cambios" : "Añadir preparación" }}
         </button>
-      </div>
-      <button mat-button (click)="addIngrediente()">
-        + Añadir ingrediente
-      </button>
+        <button
+          mat-stroked-button
+          class="btn-cancelar"
+          (click)="resetFormularioPreparacion()"
+          *ngIf="editandoPreparacionId"
+        >
+          <mat-icon>close</mat-icon> Cancelar
+        </button>
+      </mat-card-actions>
+    </mat-card>
 
-      <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-      <h3>Elaboración</h3>
-      <quill-editor
-        formControlName="elaboracion"
-        [styles]="{ height: '200px' }"
-      ></quill-editor>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="guardar()">
-      {{ editandoId ? "Guardar cambios" : "Añadir receta" }}
-    </button>
-    <button mat-button (click)="resetFormulario()" *ngIf="editandoId">
-      Cancelar
-    </button>
-  </mat-card-actions>
-</mat-card>
+    <div class="tabla-cabecera">
+      <h2 class="tabla-titulo">Preparaciones guardadas</h2>
+      <span class="tabla-contador"
+        >{{ preparaciones.length }} preparaciones</span
+      >
+    </div>
 
-<mat-divider></mat-divider>
+    <div class="tabla-contenedor">
+      <table mat-table [dataSource]="preparaciones" class="tabla">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let p">{{ p.nombre }}</td>
+        </ng-container>
+        <ng-container matColumnDef="icono">
+          <th mat-header-cell *matHeaderCellDef>Icono</th>
+          <td mat-cell *matCellDef="let p" class="tabla-icono">
+            {{ p.icono }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let p">
+            <button
+              mat-icon-button
+              class="btn-editar"
+              (click)="editarPreparacion(p)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              (click)="eliminarPreparacion(p.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnasPreparaciones"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: columnasPreparaciones"
+          class="tabla-fila"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
 
-<!-- LISTADO DE RECETAS -->
-<h2>Recetas guardadas</h2>
-<table mat-table [dataSource]="recetas" class="tabla">
-  <ng-container matColumnDef="nombre">
-    <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
-  </ng-container>
-  <ng-container matColumnDef="categoria">
-    <th mat-header-cell *matHeaderCellDef>Categoría</th>
-    <td mat-cell *matCellDef="let r">{{ r.categoria }}</td>
-  </ng-container>
-  <ng-container matColumnDef="dificultad">
-    <th mat-header-cell *matHeaderCellDef>Dificultad</th>
-    <td mat-cell *matCellDef="let r">{{ r.dificultad }}</td>
-  </ng-container>
-  <ng-container matColumnDef="acciones">
-    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let r">
-      <button mat-icon-button (click)="editar(r)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="eliminar(r.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnas"></tr>
-</table>
+  <!-- TAB TRUCOS -->
+  <mat-tab label="Trucos">
+    <mat-card class="formulario-card">
+      <mat-card-title class="formulario-titulo">{{
+        editandoTrucoId ? "Editar truco" : "Nuevo truco"
+      }}</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="formularioTruco">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Icono (emoji)</mat-label>
+            <input matInput formControlName="icono" placeholder="🍳" />
+          </mat-form-field>
+
+          <h3 class="seccion-titulo">Descripción</h3>
+          <quill-editor
+            formControlName="descripcion"
+            [styles]="{ height: '200px' }"
+          ></quill-editor>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="formulario-acciones">
+        <button mat-raised-button class="btn-guardar" (click)="guardarTruco()">
+          <mat-icon>{{ editandoTrucoId ? "save" : "add_circle" }}</mat-icon>
+          {{ editandoTrucoId ? "Guardar cambios" : "Añadir truco" }}
+        </button>
+        <button
+          mat-stroked-button
+          class="btn-cancelar"
+          (click)="resetFormularioTruco()"
+          *ngIf="editandoTrucoId"
+        >
+          <mat-icon>close</mat-icon> Cancelar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-divider></mat-divider>
+
+    <div class="tabla-cabecera">
+      <h2 class="tabla-titulo">Trucos guardados</h2>
+      <span class="tabla-contador">{{ trucos.length }} trucos</span>
+    </div>
+
+    <div class="tabla-contenedor">
+      <table mat-table [dataSource]="trucos" class="tabla">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let t">{{ t.nombre }}</td>
+        </ng-container>
+        <ng-container matColumnDef="icono">
+          <th mat-header-cell *matHeaderCellDef>Icono</th>
+          <td mat-cell *matCellDef="let t" class="tabla-icono">
+            {{ t.icono }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let t">
+            <button mat-icon-button class="btn-editar" (click)="editarTruco(t)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              (click)="eliminarTruco(t.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnasTrucos"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: columnasTrucos"
+          class="tabla-fila"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

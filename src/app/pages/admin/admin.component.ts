@@ -18,9 +18,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AuthService } from '../../shared/services/auth.service';
 import { RecetasService } from '../../shared/services/recetas.service';
 import { StorageService } from '../../shared/services/storage.service';
+import {
+  PreparacionesService,
+  Preparacion,
+} from '../../shared/services/preparaciones.service';
+import { TrucosService, Truco } from '../../shared/services/trucos.service';
 import { Receta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
@@ -28,6 +34,7 @@ import { QuillModule } from 'ngx-quill';
 import {
   CATEGORIAS,
   DIFICULTADES,
+  TIPOS_DE_PLATO,
   UNIDADES_TIEMPO,
 } from '../../shared/models/app.types';
 
@@ -49,6 +56,7 @@ import {
     MatDividerModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatTabsModule,
     QuillModule,
   ],
   templateUrl: './admin.component.html',
@@ -57,11 +65,13 @@ import {
 export class AdminComponent implements OnInit {
   usuario: any = null;
 
+  // RECETAS
   recetas: Receta[] = [];
   formulario: FormGroup;
   editandoId: string | null = null;
   columnas = ['nombre', 'categoria', 'dificultad', 'acciones'];
 
+  tiposDePlato = TIPOS_DE_PLATO;
   categorias = CATEGORIAS;
   dificultades = DIFICULTADES;
   unidadesTiempo = UNIDADES_TIEMPO;
@@ -70,10 +80,24 @@ export class AdminComponent implements OnInit {
   previsualizacion: string | null = null;
   subiendoImagen: boolean = false;
 
+  // PREPARACIONES
+  preparaciones: Preparacion[] = [];
+  formularioPreparacion: FormGroup;
+  editandoPreparacionId: string | null = null;
+  columnasPreparaciones = ['nombre', 'icono', 'acciones'];
+
+  // TRUCOS
+  trucos: Truco[] = [];
+  formularioTruco: FormGroup;
+  editandoTrucoId: string | null = null;
+  columnasTrucos = ['nombre', 'icono', 'acciones'];
+
   constructor(
     private authService: AuthService,
     private recetasService: RecetasService,
     private storageService: StorageService,
+    private preparacionesService: PreparacionesService,
+    private trucosService: TrucosService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private title: Title,
@@ -81,6 +105,7 @@ export class AdminComponent implements OnInit {
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       origen: [''],
+      tipoDePlato: ['', Validators.required],
       categoria: ['', Validators.required],
       foto: [''],
       ingredientes: this.fb.array([this.fb.control('')]),
@@ -91,17 +116,32 @@ export class AdminComponent implements OnInit {
       tiempoUnidad: ['minutos', Validators.required],
       destacada: [false],
     });
+
+    this.formularioPreparacion = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      icono: ['', Validators.required],
+    });
+
+    this.formularioTruco = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      icono: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
     this.title.setTitle('Administración');
     this.cargarRecetas();
+    this.cargarPreparaciones();
+    this.cargarTrucos();
   }
 
   logout(): void {
     this.authService.logout();
   }
 
+  // RECETAS
   cargarRecetas(): void {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.recetas = recetas;
@@ -134,21 +174,16 @@ export class AdminComponent implements OnInit {
 
   async guardar(): Promise<void> {
     if (this.formulario.invalid) return;
-
     this.subiendoImagen = true;
-
     let fotoUrl = this.formulario.value.foto;
-
     if (this.imagenSeleccionada) {
       fotoUrl = await this.storageService.subirImagen(this.imagenSeleccionada);
     }
-
     const receta: Receta = {
       ...this.formulario.value,
       foto: fotoUrl,
       fechaPublicacion: new Date(),
     };
-
     if (this.editandoId) {
       await this.recetasService.updateReceta(this.editandoId, receta);
       this.snackBar.open('Receta actualizada 🎉', 'Cerrar', {
@@ -166,7 +201,6 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     }
-
     this.subiendoImagen = false;
     this.resetFormulario();
   }
@@ -175,13 +209,12 @@ export class AdminComponent implements OnInit {
     this.editandoId = receta.id || null;
     this.formulario.patchValue(receta);
     this.previsualizacion = receta.foto || null;
-
     this.ingredientes.clear();
     receta.ingredientes.forEach((i: any) =>
       this.ingredientes.push(this.fb.control(i)),
     );
-
     this.formulario.patchValue({ elaboracion: receta.elaboracion });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   eliminar(id: string): void {
@@ -196,6 +229,7 @@ export class AdminComponent implements OnInit {
     this.previsualizacion = null;
     this.formulario.reset({
       comensales: 4,
+      tipoDePlato: '',
       dificultad: 'Fácil',
       tiempoPreparacion: 30,
       tiempoUnidad: 'minutos',
@@ -203,5 +237,102 @@ export class AdminComponent implements OnInit {
     });
     this.ingredientes.clear();
     this.ingredientes.push(this.fb.control(''));
+  }
+
+  // PREPARACIONES
+  cargarPreparaciones(): void {
+    this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
+      this.preparaciones = preparaciones;
+    });
+  }
+
+  async guardarPreparacion(): Promise<void> {
+    if (this.formularioPreparacion.invalid) return;
+    const preparacion: Preparacion = this.formularioPreparacion.value;
+    if (this.editandoPreparacionId) {
+      await this.preparacionesService.updatePreparacion(
+        this.editandoPreparacionId,
+        preparacion,
+      );
+      this.snackBar.open('Preparación actualizada 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    } else {
+      await this.preparacionesService.addPreparacion(preparacion);
+      this.snackBar.open('Preparación creada 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    }
+    this.resetFormularioPreparacion();
+  }
+
+  editarPreparacion(preparacion: Preparacion): void {
+    this.editandoPreparacionId = preparacion.id || null;
+    this.formularioPreparacion.patchValue(preparacion);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  eliminarPreparacion(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar esta preparación?')) {
+      this.preparacionesService.deletePreparacion(id);
+    }
+  }
+
+  resetFormularioPreparacion(): void {
+    this.editandoPreparacionId = null;
+    this.formularioPreparacion.reset();
+  }
+
+  // TRUCOS
+  cargarTrucos(): void {
+    this.trucosService.getTrucos().subscribe((trucos) => {
+      this.trucos = trucos;
+    });
+  }
+
+  async guardarTruco(): Promise<void> {
+    if (this.formularioTruco.invalid) return;
+    const truco: Truco = this.formularioTruco.value;
+    if (this.editandoTrucoId) {
+      await this.trucosService.updateTruco(this.editandoTrucoId, truco);
+      this.snackBar.open('Truco actualizado 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    } else {
+      await this.trucosService.addTruco(truco);
+      this.snackBar.open('Truco creado 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    }
+    this.resetFormularioTruco();
+  }
+
+  editarTruco(truco: Truco): void {
+    this.editandoTrucoId = truco.id || null;
+    this.formularioTruco.patchValue(truco);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  eliminarTruco(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar este truco?')) {
+      this.trucosService.deleteTruco(id);
+    }
+  }
+
+  resetFormularioTruco(): void {
+    this.editandoTrucoId = null;
+    this.formularioTruco.reset();
   }
 }

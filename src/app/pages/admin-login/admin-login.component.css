@@ -1,24 +1,116 @@
 .login-container {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
+  align-items: center;
+  min-height: 60vh;
+  padding: 24px;
 }
 
 .login-card {
   width: 100%;
-  max-width: 400px;
-  padding: 24px;
+  max-width: 460px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.12);
+  background: white;
 }
 
-.login-card mat-form-field {
-  margin-bottom: 16px;
+.login-header {
+  background: linear-gradient(135deg, var(--primary-color), #9c27b0);
+  padding: 40px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+
+.login-header h1 {
+  font-size: 1.6rem;
+  color: white;
+  margin: 0;
+}
+
+.login-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.login-form {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .full-width {
   width: 100%;
 }
 
+.error-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(229, 57, 53, 0.08);
+  border-radius: 8px;
+  padding: 10px 14px;
+  border-left: 4px solid #e53935;
+}
+
+.error-icon {
+  color: #e53935;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
 .error {
-  color: red;
-  margin-bottom: 16px;
+  color: #e53935;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.btn-login {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-radius: 24px !important;
+  padding: 8px 24px !important;
+  font-size: 1rem !important;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-login:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .login-header {
+    padding: 28px 20px;
+  }
+
+  .login-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .login-form {
+    padding: 20px;
+  }
 }

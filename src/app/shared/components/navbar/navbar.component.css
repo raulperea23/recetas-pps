@@ -19,7 +19,7 @@ mat-toolbar::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 0;
 }
 
@@ -32,7 +32,12 @@ mat-toolbar::before {
 }
 
 .app-text {
-  font-size: 42px;
+  display: block;
+  font-size: clamp(16px, 5vw, 24px);
+  font-size: 36px;
+  letter-spacing: 40px;
+  text-transform: uppercase;
+  white-space: nowrap;
   color: white;
 }
 
@@ -85,22 +90,81 @@ button.navbar-button span.mdc-button__label {
   display: none;
 }
 
+@media (max-width: 1200px) {
+  .app-text {
+    font-size: 32px;
+    letter-spacing: 12px;
+  }
+
+  .navbar-button {
+    font-size: 22px;
+  }
+
+  .navbar-menu {
+    gap: 12px;
+  }
+
+  .desktop-menu {
+    gap: 8px;
+  }
+
+  .app-img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-text {
+    font-size: 28px;
+    letter-spacing: 8px;
+  }
+
+  .navbar-button {
+    font-size: 18px;
+  }
+
+  .desktop-menu {
+    gap: 4px;
+  }
+
+  .navbar-menu {
+    gap: 8px;
+  }
+
+  .app-img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 @media (max-width: 768px) {
   mat-toolbar {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
+    padding: 12px 16px;
     gap: 0;
   }
 
   .navbar-titulo {
+    flex: 1;
+    min-width: 0;
     text-align: left;
-    width: auto;
+    margin-right: 12px;
   }
 
   .app-text {
-    font-size: 22px;
+    display: block;
+
+    font-size: clamp(16px, 5vw, 24px);
+    line-height: 1.2;
+
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    white-space: normal;
+    overflow-wrap: break-word;
   }
 
   .navbar-menu {
@@ -116,6 +180,13 @@ button.navbar-button span.mdc-button__label {
   }
 
   .mobile-menu {
-    display: block;
+    display: flex;
+    align-items: center;
+  }
+
+  .burger-icon {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
   }
 }

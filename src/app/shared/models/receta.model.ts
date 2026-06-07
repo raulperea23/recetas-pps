@@ -1,10 +1,11 @@
-import { Categoria, Dificultad, UnidadTiempo } from './app.types';
+import { Categoria, Dificultad, TipoDePlato, UnidadTiempo } from './app.types';
 
 export interface Receta {
   id?: string;
   nombre: string;
   origen: string;
   categoria: Categoria;
+  tipoDePlato: TipoDePlato;
   foto: string;
   ingredientes: string[];
   elaboracion: string;

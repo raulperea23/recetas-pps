@@ -4,8 +4,9 @@
     <div class="footer-titulo">
       <img src="favicon.png" class="footer-img" />
       <span class="app-text">
-        <span class="inicial">P</span>latos <span class="inicial">P</span>ara
-        <span class="inicial">S</span>iempre
+        <span><span class="inicial">P</span>araíso</span>
+        <span><span class="inicial">P</span>ara</span>
+        <span><span class="inicial">S</span>aborear</span>
       </span>
     </div>
 
@@ -16,16 +17,19 @@
         <a routerLink="/">Inicio</a>
         <a routerLink="/recetas">Recetas</a>
         <a routerLink="/categorias">Categorías</a>
-        <a routerLink="/glosario">Glosario</a>
+        <a [routerLink]="['/']" fragment="preparaciones">Preparaciones</a>
+        <a [routerLink]="['/']" fragment="salsas">Salsas</a>
       </div>
       <div class="columna">
         <h3>Más</h3>
         <a routerLink="/varios">Varios</a>
+        <a [routerLink]="['/']" fragment="trucos">Trucos</a>
+        <a routerLink="/glosario">Glosario</a>
         <a routerLink="/sobre-mi">Sobre mí</a>
       </div>
       <div class="columna">
         <h3>Admin</h3>
-        <a routerLink="/admin-login">Acceso administración</a>
+        <a routerLink="/admin-login">Administración</a>
       </div>
     </div>
   </div>
@@ -33,7 +37,7 @@
   <!-- Copyright -->
   <div class="footer-copyright">
     <span
-      >© {{ anio }} Platos Para Siempre. Todos los derechos reservados.</span
+      >© {{ anio }} Paraíso Para Saborear. Todos los derechos reservados.</span
     >
   </div>
 </footer>

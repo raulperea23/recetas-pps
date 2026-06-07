@@ -1,4 +1,43 @@
-<img [src]="data.foto" [alt]="data.nombre" class="foto-grande" />
-<mat-dialog-actions align="center">
-  <button mat-button mat-dialog-close>Cerrar</button>
-</mat-dialog-actions>
+<div class="foto-dialog-contenedor">
+  <div class="foto-wrapper">
+    <img
+      [src]="data.foto"
+      [alt]="data.nombre"
+      class="foto-grande"
+      [style.transform]="'scale(' + zoom + ')'"
+      (error)="$any($event.target).src = 'images/placeholder.png'"
+    />
+  </div>
+
+  <div class="controles">
+    <button
+      mat-icon-button
+      class="btn-zoom"
+      (click)="zoomOut()"
+      [disabled]="zoom <= zoomMin"
+      matTooltip="Alejar"
+    >
+      <mat-icon>zoom_out</mat-icon>
+    </button>
+    <button mat-button class="btn-reset" (click)="resetZoom()">
+      {{ (zoom * 100).toFixed(0) }}%
+    </button>
+    <button
+      mat-icon-button
+      class="btn-zoom"
+      (click)="zoomIn()"
+      [disabled]="zoom >= zoomMax"
+      matTooltip="Acercar"
+    >
+      <mat-icon>zoom_in</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      class="btn-cerrar"
+      matTooltip="Cerrar"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>

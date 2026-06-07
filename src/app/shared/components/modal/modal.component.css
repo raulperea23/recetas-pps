@@ -3,7 +3,8 @@
   max-width: 560px;
 }
 
-.modal-contenido.truco {
+.modal-contenido.truco,
+.modal-contenido.salsa {
   max-width: 820px;
 }
 
@@ -28,7 +29,7 @@
 }
 
 .categoria {
-  color: var(--color-primary);
+  color: var(--primary-color);
   font-weight: 600;
   margin-bottom: 4px;
   text-transform: uppercase;
@@ -61,14 +62,7 @@ mat-dialog-actions {
 }
 
 .btn-principal {
-  background-color: var(--color-primary) !important;
-  color: white !important;
-  padding: 8px 32px;
-  border-radius: 24px !important;
-}
-
-.btn-cerrar {
-  background-color: var(--color-primary) !important;
+  background-color: var(--primary-color) !important;
   color: white !important;
   padding: 8px 32px;
   border-radius: 24px !important;

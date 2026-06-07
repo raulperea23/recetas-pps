@@ -11,9 +11,14 @@ import { RecetasService } from '../../shared/services/recetas.service';
 import { Receta } from '../../shared/models/receta.model';
 import { Title } from '@angular/platform-browser';
 import { CardComponent } from '../../shared/components/card/card.component';
-import { CATEGORIAS, DIFICULTADES } from '../../shared/models/app.types';
+import {
+  CATEGORIAS,
+  TIPOS_DE_PLATO,
+  DIFICULTADES,
+} from '../../shared/models/app.types';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
-const ORDEN_CATEGORIAS: { [key: string]: number } = {
+const ORDEN_TIPOS: { [key: string]: number } = {
   Desayuno: 1,
   Entrante: 2,
   'Plato principal': 3,
@@ -34,6 +39,7 @@ const ORDEN_CATEGORIAS: { [key: string]: number } = {
     MatSelectModule,
     FormsModule,
     CardComponent,
+    MatCheckboxModule,
   ],
   templateUrl: './recetas.component.html',
   styleUrl: './recetas.component.css',
@@ -43,9 +49,11 @@ export class RecetasComponent implements OnInit {
   recetasFiltradas: Receta[] = [];
   busqueda: string = '';
   categoriaSeleccionada: string = '';
+  tipoSeleccionado: string = '';
   dificultadSeleccionada: string = '';
   todasLasRecetas: Receta[] = [];
   recetasMostradas: Receta[] = [];
+  soloDestacadas: boolean = false;
   pagina: number = 1;
   recetasPorPagina: number = 12;
   hayMas: boolean = false;
@@ -53,6 +61,7 @@ export class RecetasComponent implements OnInit {
   ordenAscendente: boolean = false;
 
   categorias = CATEGORIAS;
+  tiposDePlato = TIPOS_DE_PLATO;
   dificultades = DIFICULTADES;
 
   constructor(
@@ -62,14 +71,20 @@ export class RecetasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Recetas | Platos Para Siempre');
+    this.title.setTitle('Recetas | Paraíso Para Saborear');
 
     this.route.queryParams.subscribe((queryParams) => {
       if (queryParams['categoria']) {
         this.categoriaSeleccionada = queryParams['categoria'];
       }
+      if (queryParams['tipo']) {
+        this.tipoSeleccionado = queryParams['tipo'];
+      }
       if (queryParams['dificultad']) {
         this.dificultadSeleccionada = queryParams['dificultad'];
+      }
+      if (queryParams['destacadas']) {
+        this.soloDestacadas = true;
       }
     });
 
@@ -77,8 +92,14 @@ export class RecetasComponent implements OnInit {
       if (params['categoria']) {
         this.categoriaSeleccionada = params['categoria'];
       }
+      if (params['tipo']) {
+        this.tipoSeleccionado = params['tipo'];
+      }
       if (params['dificultad']) {
         this.dificultadSeleccionada = params['dificultad'];
+      }
+      if (params['destacadas']) {
+        this.soloDestacadas = true;
       }
       this.recetasService.getRecetas().subscribe((recetas) => {
         this.todasLasRecetas = recetas;
@@ -96,10 +117,22 @@ export class RecetasComponent implements OnInit {
       const coincideCategoria = this.categoriaSeleccionada
         ? receta.categoria === this.categoriaSeleccionada
         : true;
+      const coincideTipo = this.tipoSeleccionado
+        ? receta.tipoDePlato === this.tipoSeleccionado
+        : true;
       const coincideDificultad = this.dificultadSeleccionada
         ? receta.dificultad === this.dificultadSeleccionada
         : true;
-      return coincideNombre && coincideCategoria && coincideDificultad;
+      const coincideDestacada = this.soloDestacadas
+        ? receta.destacada === true
+        : true;
+      return (
+        coincideNombre &&
+        coincideCategoria &&
+        coincideTipo &&
+        coincideDificultad &&
+        coincideDestacada
+      );
     });
     this.recetasFiltradas = filtradas;
     this.recetasMostradas = filtradas.slice(0, this.recetasPorPagina);
@@ -122,8 +155,7 @@ export class RecetasComponent implements OnInit {
           break;
         case 'categoria':
           comparacion =
-            (ORDEN_CATEGORIAS[a.categoria] || 99) -
-            (ORDEN_CATEGORIAS[b.categoria] || 99);
+            (ORDEN_TIPOS[a.categoria] || 99) - (ORDEN_TIPOS[b.categoria] || 99);
           break;
         case 'fecha':
           comparacion =
@@ -145,7 +177,9 @@ export class RecetasComponent implements OnInit {
   limpiarFiltros(): void {
     this.busqueda = '';
     this.categoriaSeleccionada = '';
+    this.tipoSeleccionado = '';
     this.dificultadSeleccionada = '';
+    this.soloDestacadas = false;
     this.filtrar();
   }
 

@@ -1,24 +1,43 @@
 <div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-title>Acceso administración</mat-card-title>
-    <mat-card-content>
+  <div class="login-card">
+    <div class="login-header">
+      <mat-icon class="login-icon">admin_panel_settings</mat-icon>
+      <h1>Acceso administración</h1>
+      <p>Introduce tus credenciales para continuar</p>
+    </div>
+
+    <div class="login-form">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Correo electrónico</mat-label>
-        <input matInput [(ngModel)]="email" type="email" />
+        <mat-icon matPrefix>email</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="email"
+          type="email"
+          (keydown.enter)="login()"
+        />
       </mat-form-field>
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Contraseña</mat-label>
-        <input matInput [(ngModel)]="password" type="password" />
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="password"
+          type="password"
+          (keydown.enter)="login()"
+        />
       </mat-form-field>
-      <p class="error" *ngIf="error">{{ error }}</p>
-      <button
-        mat-raised-button
-        color="primary"
-        class="full-width"
-        (click)="login()"
-      >
+
+      <div class="error-container" *ngIf="error">
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        <p class="error">{{ error }}</p>
+      </div>
+
+      <button mat-raised-button class="btn-login full-width" (click)="login()">
+        <mat-icon>login</mat-icon>
         Entrar
       </button>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </div>

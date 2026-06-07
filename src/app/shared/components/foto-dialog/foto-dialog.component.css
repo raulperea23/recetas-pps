@@ -1,12 +1,56 @@
-.foto-grande {
-  max-width: 80vw;
-  max-height: 75vh;
-  object-fit: contain;
-  display: block;
+.foto-dialog-contenedor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
-@media only screen and (max-width: 1024px) {
-  mat-dialog-actions {
-    display: none;
-  }
+.foto-wrapper {
+  flex: 1;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foto-grande {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.2s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.btn-zoom {
+  color: var(--primary-color) !important;
+}
+
+.btn-zoom:disabled {
+  color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-reset {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  min-width: 60px;
+}
+
+.btn-cerrar {
+  color: #e53935 !important;
+  margin-left: 8px;
 }

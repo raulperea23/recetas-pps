@@ -54,7 +54,7 @@
 <!-- Recetas destacadas -->
 <section class="seccion" *ngIf="destacadas.length > 0">
   <div class="section-header">
-    <mat-icon class="section-icon">favorite</mat-icon>
+    <mat-icon class="section-icon">star</mat-icon>
     <span class="section-title">Nuestra selección</span>
   </div>
   <div class="grid">
@@ -64,10 +64,15 @@
       [delay]="i * 50"
     ></app-card>
   </div>
+  <div class="ver-mas">
+    <button mat-raised-button class="primary-btn" (click)="verDestacadas()">
+      Ver todos nuestros destacados
+    </button>
+  </div>
 </section>
 
 <!-- Últimas recetas -->
-<section class="seccion" *ngIf="ultimas.length > 0">
+<section style="display: none" class="seccion" *ngIf="ultimas.length > 0">
   <div class="section-header">
     <mat-icon class="section-icon">access_time</mat-icon>
     <span class="section-title">Últimas recetas</span>
@@ -82,7 +87,7 @@
 </section>
 
 <!-- Para los más dulceros -->
-<section class="seccion" *ngIf="postres.length > 0">
+<section class="seccion" *ngIf="postres.length > 4">
   <div class="section-header">
     <mat-icon class="section-icon">cake</mat-icon>
     <span class="section-title">Para los más dulceros</span>
@@ -90,19 +95,26 @@
 
   <div class="postres-revista">
     <!-- Tarjeta grande -->
-    <div class="postre-grande" [routerLink]="['/recetas', postres[0].id]">
+    <div
+      class="postre-grande"
+      [routerLink]="['/recetas', postresDestacados[0].id]"
+    >
+      <span class="postre-destacado"
+        ><mat-icon class="section-icon">star</mat-icon></span
+      >
       <img
-        [src]="postres[0].foto"
-        [alt]="postres[0].nombre"
+        [src]="postresDestacados[0].foto"
+        [alt]="postresDestacados[0].nombre"
         (error)="onImageError($event)"
       />
       <div class="postre-overlay">
-        <p class="postre-categoria">{{ postres[0].categoria }}</p>
-        <h3>{{ postres[0].nombre }}</h3>
+        <h3>{{ postresDestacados[0].nombre }}</h3>
         <p class="postre-meta">
-          <mat-icon>access_alarm</mat-icon> {{ postres[0].tiempoPreparacion }}
-          {{ postres[0].tiempoUnidad }} · <mat-icon>person_outline</mat-icon>
-          {{ postres[0].comensales }} personas
+          <mat-icon>access_alarm</mat-icon>
+          {{ postresDestacados[0].tiempoPreparacion }}
+          {{ postresDestacados[0].tiempoUnidad }} ·
+          <mat-icon>person_outline</mat-icon>
+          {{ postresDestacados[0].comensales }} personas
         </p>
       </div>
     </div>
@@ -131,14 +143,61 @@
   </div>
 
   <div class="ver-mas">
-    <button mat-stroked-button (click)="verPostres()">
+    <button mat-raised-button class="primary-btn" (click)="verPostres()">
       Ver todos los postres
     </button>
   </div>
 </section>
 
+<!-- Preparaciones curiosas -->
+<section id="preparaciones" class="seccion">
+  <div class="section-header">
+    <mat-icon class="section-icon">restaurant_menu</mat-icon>
+    <span class="section-title">Preparaciones curiosas</span>
+  </div>
+  <div class="preparacion-grid">
+    <div
+      class="preparacion-card"
+      *ngFor="let prep of preparaciones"
+      (click)="abrirModalDeInfo(prep)"
+    >
+      <span class="preparacion-icono">{{ prep.icono }}</span>
+      <h3 class="preparacion-nombre">{{ prep.nombre }}</h3>
+      <mat-icon class="preparacion-arrow">arrow_forward</mat-icon>
+    </div>
+  </div>
+</section>
+
+<!-- Estantería de salsas -->
+<section id="salsas" class="seccion">
+  <div class="section-header">
+    <mat-icon class="section-icon">water_drop</mat-icon>
+    <span class="section-title">Mis salsas</span>
+  </div>
+
+  <div class="shelf">
+    <div
+      class="jar {{ salsa.tipoSalsa }}"
+      *ngFor="let salsa of salsas"
+      (click)="verSalsa(salsa)"
+    >
+      <div class="jar-visual">
+        <div class="jar-lid"></div>
+
+        <div class="jar-glass">
+          <div class="jar-liquid">
+            <div class="jar-label">
+              <span class="salsa-nombre">{{ salsa.nombre }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- El truco del almendruco -->
-<section class="seccion">
+<section id="trucos" class="seccion">
   <div class="section-header">
     <mat-icon class="section-icon">tips_and_updates</mat-icon>
     <span class="section-title">El truco del almendruco</span>
@@ -147,11 +206,10 @@
     <div
       class="truco-card"
       *ngFor="let truco of trucos"
-      (click)="abrirModalDeTruco(truco)"
+      (click)="abrirModalDeInfo(truco)"
     >
       <span class="truco-icono">{{ truco.icono }}</span>
       <h3 class="truco-nombre">{{ truco.nombre }}</h3>
-      <mat-icon class="truco-arrow">arrow_forward</mat-icon>
     </div>
   </div>
 </section>

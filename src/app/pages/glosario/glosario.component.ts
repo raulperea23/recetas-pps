@@ -39,7 +39,7 @@ export class GlosarioComponent implements OnInit {
   busqueda: string = '';
 
   constructor(private title: Title) {
-    this.title.setTitle('Glosario | Platos Para Siempre');
+    this.title.setTitle('Glosario | Paraíso Para Saborear');
   }
 
   ngOnInit(): void {

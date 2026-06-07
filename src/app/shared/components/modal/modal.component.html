@@ -1,31 +1,20 @@
-<div @slideInUp class="modal-contenido" [class.truco]="data.tipo === 'truco'">
+<div
+  @slideInUp
+  class="modal-contenido"
+  [class.truco]="data.tipo === 'truco'"
+  [class.salsa]="data.tipo === 'salsa'"
+>
   <button mat-icon-button class="cerrar" (click)="dialogRef.close()">
     <mat-icon>close</mat-icon>
   </button>
 
-  <!-- MODO TRUCO -->
-  <ng-container *ngIf="data.tipo === 'truco'">
-    <div class="truco-header">
-      <span class="truco-icono">{{ data.icono }}</span>
-    </div>
-    <div class="info">
-      <h2>{{ data.nombre }}</h2>
-      <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
-    </div>
-    <mat-dialog-actions align="center">
-      <button mat-raised-button class="btn-cerrar" (click)="dialogRef.close()">
-        Cerrar
-      </button>
-    </mat-dialog-actions>
-  </ng-container>
-
   <!-- MODO RECETA -->
-  <ng-container *ngIf="data.tipo !== 'truco'">
+  <ng-container *ngIf="data.tipo !== 'truco' && data.tipo !== 'salsa'">
     <img
-      [src]="data.foto || 'images/placeholder.png'"
+      [src]="data.foto || 'assets/images/placeholder.png'"
       [alt]="data.nombre"
       class="foto"
-      (error)="$any($event.target).src = 'images/placeholder.png'"
+      (error)="$any($event.target).src = 'assets/images/placeholder.png'"
     />
     <div class="info">
       <p class="categoria">{{ data.categoria }}</p>
@@ -52,6 +41,35 @@
         (click)="dialogRef.close()"
       >
         Ver receta completa
+      </button>
+    </mat-dialog-actions>
+  </ng-container>
+
+  <!-- MODO TRUCO -->
+  <ng-container *ngIf="data.tipo === 'truco'">
+    <div class="truco-header">
+      <span class="truco-icono">{{ data.icono }}</span>
+    </div>
+    <div class="info">
+      <h2>{{ data.nombre }}</h2>
+      <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
+    </div>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button class="primary-btn" (click)="dialogRef.close()">
+        Cerrar
+      </button>
+    </mat-dialog-actions>
+  </ng-container>
+
+  <!-- MODO SALSA -->
+  <ng-container *ngIf="data.tipo === 'salsa'">
+    <div class="info">
+      <h2>{{ data.nombre }}</h2>
+      <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
+    </div>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button class="primary-btn" (click)="dialogRef.close()">
+        Cerrar
       </button>
     </mat-dialog-actions>
   </ng-container>

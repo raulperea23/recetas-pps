@@ -39,3 +39,16 @@
     </div>
   </div>
 </section>
+
+<!-- Alimentos de temporada por meses -->
+<section class="seccion">
+  <div class="section-header">
+    <mat-icon class="section-icon">event</mat-icon>
+    <span class="section-title">Alimentos de Temporada por meses</span>
+  </div>
+  <div class="meses-grid">
+    <div *ngFor="let mes of meses" class="mes-card" (click)="abrirFotoMes(mes)">
+      <span class="mes-nombre">{{ mes.nombre }}</span>
+    </div>
+  </div>
+</section>

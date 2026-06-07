@@ -46,6 +46,7 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 32px;
+  padding: 16px 0;
 }
 
 .section-header .section-icon {
@@ -200,6 +201,19 @@
     box-shadow 0.2s;
 }
 
+.postre-destacado {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  padding: 6px;
+  z-index: 10;
+}
+
 .postre-grande:hover {
   transform: translateY(-4px);
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
@@ -228,7 +242,7 @@
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  height: 152px;
+  height: 145px;
 }
 
 .postre-pequeño:hover {
@@ -238,7 +252,7 @@
 
 .postre-pequeño img {
   width: 100%;
-  height: 152px;
+  height: 145px;
   object-fit: cover;
   display: block;
 }
@@ -254,16 +268,8 @@
 
 .postre-overlay h3 {
   color: white;
-  font-size: 1.1rem;
+  font-size: 20px;
   margin: 0 0 4px 0;
-}
-
-.postre-categoria {
-  color: var(--color-primary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin: 0 0 4px 0;
-  text-transform: uppercase;
 }
 
 .postre-meta {
@@ -282,14 +288,14 @@
   margin-top: 24px;
 }
 
-/* TRUCOS */
-.trucos-grid {
+/* PREPARACIONES */
+.preparacion-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
-.truco-card {
+.preparacion-card {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -302,13 +308,60 @@
     transform 0.2s,
     box-shadow 0.2s,
     background 0.2s;
-  border-left: 4px solid var(--color-primary);
+  border-left: 4px solid var(--primary-color);
+}
+
+.preparacion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.preparacion-icono {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.preparacion-nombre {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.preparacion-arrow {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* TRUCOS */
+.trucos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.truco-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  border: 1px solid #d5d5d5;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
 }
 
 .truco-card:hover {
   transform: translateY(-4px);
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.12);
-  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .truco-icono {
@@ -322,10 +375,11 @@
   color: #333;
   margin: 0;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .truco-arrow {
-  color: var(--color-primary);
+  color: var(--primary-color);
   flex-shrink: 0;
 }
 
@@ -400,5 +454,323 @@
 
   .trucos-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* SALSAS */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 26px;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* BALDAS (efecto estantería moderno) */
+/* .shelf::before,
+.shelf::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #d6b38a, #b3875a);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+  z-index: 0;
+} */
+
+/* .shelf::before {
+  top: 209px;
+}
+
+.shelf::after {
+  bottom: 103px;
+} */
+
+/* =========================
+   JAR CONTAINER
+========================= */
+
+.jar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  padding: 6px;
+}
+
+/* IMPORTANTE: solo mueve el visual, NO el contenedor */
+.jar-visual {
+  position: relative;
+  width: 100%;
+  height: 190px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: transform 0.25s ease;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
+}
+
+/* sombra sin mover layout */
+.jar:hover {
+  z-index: 10;
+}
+
+/* =========================
+   TAPÓN
+========================= */
+
+.jar-lid {
+  width: 70%;
+  height: 18px;
+  background: linear-gradient(180deg, #666, #333);
+  border-radius: 6px;
+  z-index: 3;
+}
+
+/* =========================
+   CRISTAL
+========================= */
+
+.jar-glass {
+  position: relative;
+  width: 80%;
+  height: 150px;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.25),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* reflejo vidrio */
+.jar-glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18%;
+  width: 18%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-15deg);
+}
+
+/* =========================
+   LÍQUIDO
+========================= */
+
+.jar-liquid {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.95;
+  transition: height 0.3s ease;
+}
+
+.jar-liquid::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 100%;
+  height: 16px;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(1px);
+}
+
+.jar:hover .jar-liquid {
+  height: 99%;
+}
+
+.jar-abrir {
+  display: none;
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+}
+
+.jar:hover .jar-abrir {
+  display: block;
+}
+
+/* =========================
+   LABEL
+========================= */
+
+.jar-label {
+  text-align: center;
+  width: 100%;
+}
+
+.salsa-nombre {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a3a3a;
+  background-color: white;
+  padding: 6px;
+}
+
+/* =========================
+   COLORES (SIN CAMBIOS)
+========================= */
+
+.agridulce .jar-liquid {
+  background: linear-gradient(180deg, #ffb347, #ff7e5f);
+}
+.alioli .jar-liquid {
+  background: linear-gradient(180deg, #fff8c6, #f1c40f);
+}
+.fruta .jar-liquid {
+  background: linear-gradient(180deg, #ff6b81, #c44569);
+}
+.crema .jar-liquid {
+  background: linear-gradient(180deg, #fffaf0, #f5e6cc);
+}
+.bilbaina .jar-liquid {
+  background: linear-gradient(180deg, #ffcc66, #ff7f50);
+}
+.brava .jar-liquid {
+  background: linear-gradient(180deg, #ff4d4d, #d63031);
+}
+.vino .jar-liquid {
+  background: linear-gradient(180deg, #8e44ad, #6c3483);
+}
+.foie .jar-liquid {
+  background: linear-gradient(180deg, #d2b48c, #a67c52);
+}
+.pimientos .jar-liquid {
+  background: linear-gradient(180deg, #ff7675, #d63031);
+}
+.rosa .jar-liquid {
+  background: linear-gradient(180deg, #ff9ff3, #f368e0);
+}
+.tomate .jar-liquid {
+  background: linear-gradient(180deg, #ff6348, #c0392b);
+}
+.vinagreta .jar-liquid {
+  background: linear-gradient(180deg, #7bed9f, #2ecc71);
+}
+.citrico .jar-liquid {
+  background: linear-gradient(180deg, #ffeaa7, #fdcb6e);
+}
+
+@media (min-width: 2000px) {
+  .shelf {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 28px;
+    padding: 30px 80px;
+  }
+
+  .jar-visual {
+    height: 210px;
+  }
+
+  .jar-glass {
+    height: 165px;
+  }
+
+  .salsa-nombre {
+    font-size: 17px;
+  }
+
+  .section-title {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .shelf {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .jar-visual {
+    height: 170px;
+  }
+
+  .jar-glass {
+    height: 135px;
+  }
+
+  .jar-lid {
+    width: 75%;
+    height: 16px;
+  }
+
+  .salsa-nombre {
+    font-size: 14px;
+  }
+
+  /* hover menos agresivo (importante en trackpads) */
+  .jar:hover .jar-visual {
+    transform: translateY(-6px);
+  }
+
+  .jar-liquid {
+    transition: height 0.2s ease;
+  }
+}
+
+@media (max-width: 768px) {
+  .shelf {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .jar {
+    gap: 4px;
+  }
+
+  .jar-visual {
+    height: 140px;
+  }
+
+  .jar-glass {
+    height: 110px;
+    border-radius: 16px;
+  }
+
+  .jar-lid {
+    width: 80%;
+    height: 14px;
+  }
+
+  .jar-liquid {
+    height: 90%;
+  }
+
+  .jar:hover .jar-visual {
+    transform: translateY(-4px);
+  }
+
+  /* texto más legible */
+  .salsa-nombre {
+    font-size: 12px;
+    color: #2f2f2f;
+  }
+
+  /* eliminar "Abrir salsa" en móvil */
+  .jar-abrir {
+    display: none !important;
   }
 }

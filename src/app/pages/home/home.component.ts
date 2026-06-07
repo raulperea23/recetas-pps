@@ -8,10 +8,15 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Title } from '@angular/platform-browser';
 import { RecetasService } from '../../shared/services/recetas.service';
+import {
+  PreparacionesService,
+  Preparacion,
+} from '../../shared/services/preparaciones.service';
+import { TrucosService, Truco } from '../../shared/services/trucos.service';
 import { Receta } from '../../shared/models/receta.model';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
-import { TRUCOS, Truco } from './home.config';
+import { SALSAS, Salsa } from './home.salsas';
 
 @Component({
   selector: 'app-home',
@@ -32,21 +37,27 @@ import { TRUCOS, Truco } from './home.config';
 export class HomeComponent implements OnInit {
   destacadas: Receta[] = [];
   ultimas: Receta[] = [];
+  postresDestacados: Receta[] = [];
   postres: Receta[] = [];
   sugerenciaAleatoria: Receta | null = null;
   recetaAleatoria: Receta | null = null;
   todasLasRecetas: Receta[] = [];
-  trucos: Truco[] = TRUCOS;
+
+  trucos: Truco[] = [];
+  salsas = SALSAS;
+  preparaciones: Preparacion[] = [];
 
   constructor(
     private recetasService: RecetasService,
+    private preparacionesService: PreparacionesService,
+    private trucosService: TrucosService,
     private title: Title,
     private dialog: MatDialog,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Inicio');
+    this.title.setTitle('Paraíso Para Saborear');
 
     this.recetasService.getRecetasDestacadas().subscribe((recetas: any) => {
       this.destacadas = recetas;
@@ -55,11 +66,22 @@ export class HomeComponent implements OnInit {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.todasLasRecetas = recetas;
       this.ultimas = recetas.slice(0, 6);
+      this.postresDestacados = recetas
+        .filter((r) => r.tipoDePlato === 'Postre' && r.destacada === true)
+        .slice(0, 3);
       this.postres = recetas
-        .filter((r) => r.categoria === 'Postre')
-        .slice(0, 6);
+        .filter((r) => r.tipoDePlato === 'Postre')
+        .slice(0, 5);
       this.cargarSugerenciaAleatoria();
       this.cargarRecetaAleatoria();
+    });
+
+    this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
+      this.preparaciones = preparaciones;
+    });
+
+    this.trucosService.getTrucos().subscribe((trucos) => {
+      this.trucos = trucos;
     });
   }
 
@@ -102,19 +124,30 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  abrirModalDeTruco(truco: Truco): void {
+  verDestacadas(): void {
+    this.router.navigate(['/recetas'], { queryParams: { destacadas: true } });
+  }
+
+  abrirModalDeInfo(item: Truco | Preparacion): void {
     this.dialog.open(ModalComponent, {
-      data: { tipo: 'truco', ...truco },
+      data: { tipo: 'truco', ...item },
       maxWidth: '820px',
       width: '100%',
       panelClass: 'modal-truco',
     });
   }
 
-  verPostres(): void {
-    this.router.navigate(['/recetas'], {
-      queryParams: { categoria: 'Postre' },
+  verSalsa(salsa: Salsa): void {
+    this.dialog.open(ModalComponent, {
+      data: { tipo: 'salsa', ...salsa },
+      maxWidth: '820px',
+      width: '100%',
+      panelClass: 'modal-salsa',
     });
+  }
+
+  verPostres(): void {
+    this.router.navigate(['/recetas'], { queryParams: { tipo: 'Postre' } });
   }
 
   onImageError(event: any): void {

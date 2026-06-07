@@ -1,4 +1,7 @@
 <mat-card [@fadeInUp] [routerLink]="['/recetas', receta.id]" class="tarjeta">
+  @if (receta.destacada === true) {
+    <span class="destacada-icon"><mat-icon>star</mat-icon></span>
+  }
   <img
     mat-card-image
     [src]="receta.foto || 'assets/images/placeholder.png'"
@@ -7,6 +10,7 @@
   />
   <mat-card-content>
     <h3 class="card-title">{{ receta.nombre }}</h3>
+    <p class="tipo-de-plato">{{ receta.tipoDePlato }}</p>
     <p class="categoria">{{ receta.categoria }}</p>
     <div class="info-card">
       <mat-icon>access_alarm</mat-icon>
