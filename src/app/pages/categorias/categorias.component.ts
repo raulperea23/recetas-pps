@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import {
   CATEGORIAS,
   Categoria,
+  CATEGORIAS_NOMBRES_IMGS,
   TIPOS_DE_PLATO,
   TipoDePlato,
   TIPOS_DE_PLATO_PLURALES,
@@ -27,9 +28,10 @@ export class CategoriasComponent {
   tiposDePlato = TIPOS_DE_PLATO;
   tiposDePlatoPlurales = TIPOS_DE_PLATO_PLURALES;
 
+  nombresCategoriasParaImagenes = CATEGORIAS_NOMBRES_IMGS;
   categorias: CategoriaItem[] = CATEGORIAS.map((cat) => ({
     nombre: cat,
-    imagen: `assets/images/categories/${cat.toLowerCase().replaceAll(',', '').replaceAll(' ', '-')}.jpg`,
+    imagen: `assets/images/categories/${this.nombresCategoriasParaImagenes[cat]}.jpg`,
   }));
 
   constructor(

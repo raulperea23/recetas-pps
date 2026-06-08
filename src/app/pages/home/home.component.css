@@ -360,7 +360,7 @@
 }
 
 .truco-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -599,17 +599,6 @@
   height: 99%;
 }
 
-.jar-abrir {
-  display: none;
-  font-size: 16px;
-  color: black;
-  font-weight: 600;
-}
-
-.jar:hover .jar-abrir {
-  display: block;
-}
-
 /* =========================
    LABEL
 ========================= */
@@ -626,6 +615,8 @@
   color: #3a3a3a;
   background-color: white;
   padding: 6px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
 
 /* =========================
@@ -767,10 +758,5 @@
   .salsa-nombre {
     font-size: 12px;
     color: #2f2f2f;
-  }
-
-  /* eliminar "Abrir salsa" en móvil */
-  .jar-abrir {
-    display: none !important;
   }
 }

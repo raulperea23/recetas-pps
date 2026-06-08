@@ -17,6 +17,25 @@ export const CATEGORIAS = [
   'Mermeladas, limonadas, batidos y licores',
 ] as const;
 
+export const CATEGORIAS_NOMBRES_IMGS = {
+  'Panes y masas': 'panes-y-masas',
+  'Desayunos, meriendas y sandwiches': 'desayunos-meriendas-y-sandwiches',
+  'Aperitivos y entrantes': 'aperitivos-y-entrantes',
+  'Guarniciones y acompañamientos': 'guarniciones',
+  'Sopas, consomés y cremas': 'sopas',
+  Ensaladas: 'ensaladas',
+  Huevos: 'huevos',
+  'Hortalizas y verduras': 'hortalizas-y-verduras',
+  'Arroces y cereales': 'arroces',
+  Legumbres: 'legumbres',
+  Pastas: 'pastas',
+  'Pollo, pavo y otras aves': 'pollo',
+  Carnes: 'carnes',
+  'Pescados y mariscos': 'pescados-y-mariscos',
+  'Postres y helados': 'postres-y-helados',
+  'Mermeladas, limonadas, batidos y licores': 'brebajes',
+} as const;
+
 export const TIPOS_DE_PLATO = [
   'Desayuno',
   'Entrante',

@@ -54,6 +54,15 @@ ul {
   color: white !important;
 }
 
+.secondary-btn {
+  border: 2px solid var(--primary-color) !important;
+  padding: 8px 32px;
+  border-radius: 24px !important;
+}
+.secondary-btn .mdc-button__label {
+  color: black !important;
+}
+
 /* Estilos para Angular Material */
 
 button .mdc-button__label {
