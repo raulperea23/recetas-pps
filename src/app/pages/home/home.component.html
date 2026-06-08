@@ -177,8 +177,8 @@
 
   <div class="shelf">
     <div
+      *ngFor="let salsa of salsas; let i = index"
       class="jar {{ salsa.tipoSalsa }}"
-      *ngFor="let salsa of salsas"
       (click)="verSalsa(salsa)"
     >
       <div class="jar-visual">
@@ -192,6 +192,7 @@
           </div>
         </div>
       </div>
+      <div class="jar-shelf"></div>
     </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 .banner {
   position: relative;
-  background: url("../../../../public/assets/images/kitchen-main.jpg");
+  background: url("../../../../public/assets/images/kitchen-casa.jpeg");
   background-size: cover;
   background-position: center;
   padding: 80px 24px;
@@ -517,6 +517,19 @@
 
   transition: transform 0.25s ease;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
+  z-index: 2;
+}
+
+.jar-shelf {
+  position: absolute;
+  width: 120%;
+  height: 15px;
+  background: url("../../../../public/assets/images/madera.jpg");
+  background-size: cover;
+  background-position: center;
+  /* top: 186px; */
+  bottom: 25px;
+  z-index: 1;
 }
 
 /* sombra sin mover layout */
@@ -554,6 +567,7 @@
   box-shadow:
     inset 0 0 0 2px rgba(255, 255, 255, 0.25),
     inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
 /* reflejo vidrio */
@@ -604,8 +618,10 @@
 ========================= */
 
 .jar-label {
-  text-align: center;
   width: 100%;
+  text-align: center;
+  background-color: white;
+  padding: 5px;
 }
 
 .salsa-nombre {
@@ -613,7 +629,6 @@
   font-size: 14px;
   font-weight: 600;
   color: #3a3a3a;
-  background-color: white;
   padding: 6px;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
@@ -674,6 +689,17 @@
     height: 210px;
   }
 
+  .jar-shelf {
+    position: absolute;
+    width: 120%;
+    height: 15px;
+    background: url("../../../../public/assets/images/madera.jpg");
+    background-size: cover;
+    background-position: center;
+    bottom: 25px;
+    z-index: 1;
+  }
+
   .jar-glass {
     height: 165px;
   }
@@ -696,6 +722,10 @@
 
   .jar-visual {
     height: 170px;
+  }
+
+  .jar-shelf {
+    bottom: 15px;
   }
 
   .jar-glass {
@@ -736,6 +766,11 @@
     height: 140px;
   }
 
+  .jar-shelf {
+    height: 12px;
+    bottom: 12px;
+  }
+
   .jar-glass {
     height: 110px;
     border-radius: 16px;
@@ -747,7 +782,7 @@
   }
 
   .jar-liquid {
-    height: 90%;
+    height: 100%;
   }
 
   .jar:hover .jar-visual {
@@ -756,7 +791,8 @@
 
   /* texto más legible */
   .salsa-nombre {
-    font-size: 12px;
+    font-size: 10px;
     color: #2f2f2f;
+    padding: 2px;
   }
 }
