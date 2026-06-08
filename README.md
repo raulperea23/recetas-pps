@@ -26,9 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-## PARA SUBIR RECETAS
+## PARA SUBIR RECETAS, PREPARACIONES Y TRUCOS
 
-Use admin dashboard
+Use admin dashboard (acceso desde el footer o en /admin)
 
 ## PARA SUBIR RECETAS DE FORMA MASIVA:
 
@@ -36,10 +36,21 @@ Add records to => scripts/recetas.json
 Execute => node scripts/importar-recetas.mjs
 Records should be displayed in the app automatically
 
+## PARA SUBIR PREPARACIONES O TRUCOS DE FORMA MASIVA:
+
+Add records to objects
+Execute => node scripts/importar-preparaciones-trucos.mjs
+Records should be displayed in the app automatically
+
 ## COLORES
 
-3f51b5 reemplazar por 54afe8
+en styles.css
 
 ## ICONOS
 
-https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/
+ANGULAR: https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/
+FLATICON: https://www.flaticon.com/free-icons/feast
+
+# IMAGENES SIN COPYRIGHT
+
+PEXELS: https://www.pexels.com/es-es/

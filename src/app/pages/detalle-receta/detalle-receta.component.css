@@ -93,6 +93,7 @@ mat-divider {
 .elaboracion ol {
   padding-left: 20px;
   line-height: 2;
+  color: #555;
 }
 
 .cargando {
@@ -109,6 +110,7 @@ mat-divider {
 
 .elaboracion {
   max-width: 100%;
+  color: #555;
 }
 
 .elaboracion p {

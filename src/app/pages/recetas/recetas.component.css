@@ -1,11 +1,22 @@
-.cabecera {
-  margin-bottom: 24px;
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 16px 0;
 }
 
-.cabecera h1 {
+.section-header .section-icon {
+  width: 40px;
+  height: 40px;
   font-size: 40px;
+}
+
+.section-header .section-title {
+  font-size: 46px;
   color: black;
-  font-weight: 700;
 }
 
 .filtros {
@@ -63,7 +74,18 @@
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .cabecera h1 {
+  .section-header {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .section-header .section-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+  }
+
+  .section-header .section-title {
     font-size: 28px;
   }
 
