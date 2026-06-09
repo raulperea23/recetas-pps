@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { OnlyFooterLayoutComponent } from './layouts/only-footer-layout/only-footer-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { DetalleRecetaComponent } from './pages/detalle-receta/detalle-receta.component';
@@ -12,15 +14,25 @@ import { SobreMiComponent } from './pages/sobre-mi/sobre-mi.component';
 import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'recetas', component: RecetasComponent },
-  { path: 'recetas/:id', component: DetalleRecetaComponent },
-  { path: 'categorias', component: CategoriasComponent },
-  { path: 'categorias/:categoria', component: RecetasComponent },
-  { path: 'varios', component: VariosComponent },
-  { path: 'admin-login', component: AdminLoginComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
-  { path: 'glosario', component: GlosarioComponent },
-  { path: 'sobre-mi', component: SobreMiComponent },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'recetas', component: RecetasComponent },
+      { path: 'recetas/:id', component: DetalleRecetaComponent },
+      { path: 'categorias', component: CategoriasComponent },
+      { path: 'categorias/:categoria', component: RecetasComponent },
+      { path: 'varios', component: VariosComponent },
+      { path: 'admin-login', component: AdminLoginComponent },
+      { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
+      { path: 'glosario', component: GlosarioComponent },
+    ],
+  },
+  {
+    path: '',
+    component: OnlyFooterLayoutComponent,
+    children: [{ path: 'sobre-mi', component: SobreMiComponent }],
+  },
   { path: '**', component: NotFoundComponent },
 ];

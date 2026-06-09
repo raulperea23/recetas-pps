@@ -66,9 +66,8 @@ export class VariosComponent {
   abrirFotoMes(mes: MesItem): void {
     this.dialog.open(FotoDialogComponent, {
       data: { foto: mes.imagen, nombre: mes.nombre },
+      width: '75vw',
       maxWidth: '75vw',
-      // maxHeight: '95vh',
-      width: '55vw',
       panelClass: 'foto-dialog',
     });
   }

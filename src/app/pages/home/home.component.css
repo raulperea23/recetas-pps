@@ -527,8 +527,7 @@
   background: url("../../../../public/assets/images/madera.jpg");
   background-size: cover;
   background-position: center;
-  /* top: 186px; */
-  bottom: 25px;
+  bottom: 20px;
   z-index: 1;
 }
 
@@ -547,6 +546,12 @@
   background: linear-gradient(180deg, #666, #333);
   border-radius: 6px;
   z-index: 3;
+  transform-origin: right center;
+  transition: transform 0.45s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+.jar:hover .jar-lid {
+  transform: rotate(12deg);
 }
 
 /* =========================
@@ -678,7 +683,7 @@
   background: linear-gradient(180deg, #ffeaa7, #fdcb6e);
 }
 
-@media (min-width: 2000px) {
+@media (max-width: 2000px) {
   .shelf {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 28px;
@@ -690,14 +695,7 @@
   }
 
   .jar-shelf {
-    position: absolute;
-    width: 120%;
-    height: 15px;
-    background: url("../../../../public/assets/images/madera.jpg");
-    background-size: cover;
-    background-position: center;
-    bottom: 25px;
-    z-index: 1;
+    bottom: 20px;
   }
 
   .jar-glass {

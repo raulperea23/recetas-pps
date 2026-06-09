@@ -1,6 +1,94 @@
-<p>Sobre mí...</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-contenido" @fadeIn>
+    <h1 class="hero-nombre">
+      {{ typewriterText
+      }}<span class="cursor" [class.oculto]="typewriterDone">|</span>
+    </h1>
+    <p class="hero-titular">Bienvenido a mi mundo de sabores</p>
+    <button
+      mat-raised-button
+      class="hero-btn primary-btn"
+      (click)="scrollAContenido()"
+    >
+      <mat-icon>expand_more</mat-icon>
+      Conoce mi historia
+    </button>
+  </div>
+  <div class="hero-scroll-indicator">
+    <mat-icon class="scroll-icon">keyboard_arrow_down</mat-icon>
+  </div>
+</section>
 
-<div>
-  Icons made from <a href="https://www.onlinewebfonts.com/icon">svg icons</a> is
-  licensed by CC BY 4.0
-</div>
+<main>
+  <!-- MI HISTORIA -->
+  <section id="historia" class="seccion historia-seccion">
+    <div class="historia-contenido" *ngIf="historiaVisible" @fadeInUp>
+      <div class="historia-texto">
+        <div class="section-header">
+          <mat-icon class="section-icon">auto_stories</mat-icon>
+          <span class="section-title">Mi historia</span>
+        </div>
+        <p class="historia-descripcion">placeholder_descripcion</p>
+      </div>
+      <div class="historia-foto">
+        <img
+          src="assets/images/banner-sobre-mi.jpg"
+          alt="placeholder_nombre"
+          (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- MI COCINA -->
+  <section id="valores" class="seccion valores-seccion">
+    <div class="section-header">
+      <mat-icon class="section-icon">favorite</mat-icon>
+      <span class="section-title">Mi cocina</span>
+    </div>
+    <div class="valores-grid" *ngIf="valoresVisible" @staggerIn>
+      <div class="valor-card" *ngFor="let valor of valoresCocina">
+        <span class="valor-icono">{{ valor.icono }}</span>
+        <p class="valor-frase">{{ valor.frase }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIS NÚMEROS -->
+  <section id="numeros" class="seccion numeros-seccion">
+    <div class="section-header">
+      <mat-icon class="section-icon">bar_chart</mat-icon>
+      <span class="section-title">Mis números</span>
+    </div>
+
+    <div class="numeros-grid" *ngIf="numerosVisible" @fadeInUp>
+      <div class="numero-card" *ngFor="let num of numeros">
+        <span class="numero-icono">{{ num.icono }}</span>
+        <span class="numero-valor">{{ num.animado }}</span>
+        <span class="numero-etiqueta">{{ num.etiqueta }}</span>
+      </div>
+    </div>
+
+    <div class="categorias-grid" *ngIf="numerosVisible" @fadeInUp>
+      <div class="categoria-numero" *ngFor="let cat of recetasPorCategoria">
+        <span class="cat-nombre">{{ cat.categoria }}</span>
+        <span class="cat-total">{{ cat.total }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER CIERRE -->
+  <section class="banner-cierre">
+    <h2>Dejémonos de sentimentalismos... ¡¡y a cocinar!!</h2>
+    <div class="banner-cierre-buttons">
+      <button mat-raised-button class="btn-cierre" routerLink="/">
+        Ir a Inicio
+      </button>
+      <button mat-raised-button class="btn-cierre" routerLink="/recetas">
+        Ver todas las recetas
+      </button>
+    </div>
+  </section>
+</main>
