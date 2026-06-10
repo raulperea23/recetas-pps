@@ -1,0 +1,131 @@
+<div class="section-header">
+  <mat-icon class="section-icon">soup_kitchen</mat-icon>
+  <span class="section-title">¿Qué cocinamos hoy?</span>
+</div>
+<p class="subtitle">
+  Selecciona los ingredientes que tienes disponibles y te mostraremos las
+  recetas que puedes preparar
+</p>
+
+<div class="cocina-layout">
+  <!-- PANEL DE INGREDIENTES -->
+  <div class="panel-ingredientes">
+    <h3 class="panel-titulo">
+      <mat-icon>kitchen</mat-icon>
+      Ingredientes disponibles
+    </h3>
+
+    <div *ngIf="cargando" class="cargando">Cargando ingredientes...</div>
+
+    <div *ngFor="let cat of categorias" class="categoria-grupo">
+      <button class="categoria-header" (click)="toggleCategoria(cat)">
+        <span>{{ cat.nombre }}</span>
+        <mat-icon>{{ cat.abierta ? "expand_less" : "expand_more" }}</mat-icon>
+      </button>
+      <div class="categoria-ingredientes" *ngIf="cat.abierta">
+        <div
+          *ngFor="let ing of cat.ingredientes"
+          class="ingrediente-chip"
+          [class.seleccionado]="estaSeleccionado(ing)"
+          (click)="onTapIngrediente(ing)"
+        >
+          <span class="ing-emoji">{{ ing.emoji }}</span>
+          <span class="ing-nombre">{{ ing.nombre }}</span>
+          <mat-icon class="ing-check" *ngIf="estaSeleccionado(ing)"
+            >check</mat-icon
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INGREDIENTES SELECCIONADOS -->
+  <div class="panel-seleccionados">
+    <div class="seleccionados-header">
+      <h3 class="panel-titulo">
+        <mat-icon>check_circle</mat-icon>
+        Lo que voy a usar
+      </h3>
+      <button
+        mat-button
+        class="btn-limpiar"
+        (click)="limpiarSeleccion()"
+        *ngIf="ingredientesSeleccionados.length > 0"
+      >
+        <mat-icon>delete_sweep</mat-icon>
+        Limpiar
+      </button>
+    </div>
+
+    <div
+      class="seleccionados-vacio"
+      *ngIf="ingredientesSeleccionados.length === 0"
+    >
+      <span>🧑‍🍳</span>
+      <p>Selecciona ingredientes del panel izquierdo</p>
+    </div>
+
+    <div
+      class="seleccionados-grid"
+      *ngIf="ingredientesSeleccionados.length > 0"
+    >
+      <div
+        *ngFor="let ing of ingredientesSeleccionados"
+        class="seleccionado-chip"
+        @fadeInUp
+        (click)="quitarIngrediente(ing)"
+      >
+        <span class="ing-emoji">{{ ing.emoji }}</span>
+        <span class="ing-nombre">{{ ing.nombre }}</span>
+        <mat-icon class="ing-quitar">close</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="seleccionados-contador"
+      *ngIf="ingredientesSeleccionados.length > 0"
+    >
+      <span
+        >{{ ingredientesSeleccionados.length }} ingrediente{{
+          ingredientesSeleccionados.length > 1 ? "s" : ""
+        }}
+        seleccionado{{ ingredientesSeleccionados.length > 1 ? "s" : "" }}</span
+      >
+    </div>
+  </div>
+</div>
+
+<!-- RECETAS COMPATIBLES -->
+<section class="recetas-section" *ngIf="ingredientesSeleccionados.length > 0">
+  <div class="section-header recetas-header">
+    <mat-icon class="section-icon">restaurant_menu</mat-icon>
+    <span class="section-title-recetas">
+      {{
+        recetasFiltradas.length > 0
+          ? "Recetas que puedes preparar"
+          : "Sin recetas compatibles"
+      }}
+    </span>
+  </div>
+
+  <p class="recetas-subtitulo" *ngIf="recetasFiltradas.length > 0">
+    Hemos encontrado {{ recetasFiltradas.length }} receta{{
+      recetasFiltradas.length > 1 ? "s" : ""
+    }}
+    con los ingredientes seleccionados
+  </p>
+
+  <div class="recetas-grid" *ngIf="recetasFiltradas.length > 0" @fadeInUp>
+    <app-card
+      *ngFor="let receta of recetasFiltradas; let i = index"
+      [receta]="receta"
+      [delay]="i * 50"
+    ></app-card>
+  </div>
+
+  <div class="sin-recetas" *ngIf="recetasFiltradas.length === 0">
+    <span>😔</span>
+    <p>No hay recetas que usen todos esos ingredientes a la vez</p>
+    <p class="sin-recetas-sub">Prueba a quitar algún ingrediente</p>
+  </div>
+</section>

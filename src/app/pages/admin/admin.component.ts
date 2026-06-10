@@ -27,6 +27,14 @@ import {
   Preparacion,
 } from '../../shared/services/preparaciones.service';
 import { TrucosService, Truco } from '../../shared/services/trucos.service';
+import {
+  IngredientesService,
+  Ingrediente,
+} from '../../shared/services/ingredientes.service';
+import {
+  CategoriasIngredientesService,
+  CategoriaIngrediente,
+} from '../../shared/services/categorias-ingredientes.service';
 import { Receta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
@@ -70,12 +78,10 @@ export class AdminComponent implements OnInit {
   formulario: FormGroup;
   editandoId: string | null = null;
   columnas = ['nombre', 'categoria', 'dificultad', 'acciones'];
-
   tiposDePlato = TIPOS_DE_PLATO;
   categorias = CATEGORIAS;
   dificultades = DIFICULTADES;
   unidadesTiempo = UNIDADES_TIEMPO;
-
   imagenSeleccionada: File | null = null;
   previsualizacion: string | null = null;
   subiendoImagen: boolean = false;
@@ -92,12 +98,27 @@ export class AdminComponent implements OnInit {
   editandoTrucoId: string | null = null;
   columnasTrucos = ['nombre', 'icono', 'acciones'];
 
+  // INGREDIENTES
+  ingredientesLista: Ingrediente[] = [];
+  formularioIngrediente: FormGroup;
+  editandoIngredienteId: string | null = null;
+  columnasIngredientes = ['nombre', 'emoji', 'categoria', 'acciones'];
+  categoriasIngredientes: CategoriaIngrediente[] = [];
+
+  // CATEGORÍAS INGREDIENTES
+  categoriasIngredientesLista: CategoriaIngrediente[] = [];
+  formularioCategoriaIngrediente: FormGroup;
+  editandoCategoriaIngredienteId: string | null = null;
+  columnasCategorias = ['orden', 'nombre', 'acciones'];
+
   constructor(
     private authService: AuthService,
     private recetasService: RecetasService,
     private storageService: StorageService,
     private preparacionesService: PreparacionesService,
     private trucosService: TrucosService,
+    private ingredientesService: IngredientesService,
+    private categoriasIngredientesService: CategoriasIngredientesService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private title: Title,
@@ -128,6 +149,16 @@ export class AdminComponent implements OnInit {
       descripcion: ['', Validators.required],
       icono: ['', Validators.required],
     });
+
+    this.formularioIngrediente = this.fb.group({
+      nombre: ['', Validators.required],
+      emoji: ['', Validators.required],
+      categoria: ['', Validators.required],
+    });
+
+    this.formularioCategoriaIngrediente = this.fb.group({
+      nombre: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
@@ -135,6 +166,8 @@ export class AdminComponent implements OnInit {
     this.cargarRecetas();
     this.cargarPreparaciones();
     this.cargarTrucos();
+    this.cargarIngredientes();
+    this.cargarCategoriasIngredientes();
   }
 
   logout(): void {
@@ -334,5 +367,144 @@ export class AdminComponent implements OnInit {
   resetFormularioTruco(): void {
     this.editandoTrucoId = null;
     this.formularioTruco.reset();
+  }
+
+  // INGREDIENTES
+  cargarIngredientes(): void {
+    this.ingredientesService.getIngredientes().subscribe((ingredientes) => {
+      this.ingredientesLista = ingredientes;
+    });
+  }
+
+  async guardarIngrediente(): Promise<void> {
+    if (this.formularioIngrediente.invalid) return;
+    const ingrediente: Ingrediente = this.formularioIngrediente.value;
+    if (this.editandoIngredienteId) {
+      await this.ingredientesService.updateIngrediente(
+        this.editandoIngredienteId,
+        ingrediente,
+      );
+      this.snackBar.open('Ingrediente actualizado 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    } else {
+      await this.ingredientesService.addIngrediente(ingrediente);
+      this.snackBar.open('Ingrediente creado 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    }
+    this.resetFormularioIngrediente();
+  }
+
+  editarIngrediente(ingrediente: Ingrediente): void {
+    this.editandoIngredienteId = ingrediente.id || null;
+    this.formularioIngrediente.patchValue(ingrediente);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  eliminarIngrediente(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar este ingrediente?')) {
+      this.ingredientesService.deleteIngrediente(id);
+    }
+  }
+
+  resetFormularioIngrediente(): void {
+    this.editandoIngredienteId = null;
+    this.formularioIngrediente.reset();
+  }
+
+  // CATEGORÍAS INGREDIENTES
+  cargarCategoriasIngredientes(): void {
+    this.categoriasIngredientesService
+      .getCategorias()
+      .subscribe((categorias) => {
+        this.categoriasIngredientesLista = categorias;
+        this.categoriasIngredientes = categorias;
+      });
+  }
+
+  async guardarCategoriaIngrediente(): Promise<void> {
+    if (this.formularioCategoriaIngrediente.invalid) return;
+    const orden = this.categoriasIngredientesLista.length + 1;
+    const categoria: CategoriaIngrediente = {
+      ...this.formularioCategoriaIngrediente.value,
+      orden: this.editandoCategoriaIngredienteId
+        ? (this.categoriasIngredientesLista.find(
+            (c) => c.id === this.editandoCategoriaIngredienteId,
+          )?.orden ?? orden)
+        : orden,
+    };
+    if (this.editandoCategoriaIngredienteId) {
+      await this.categoriasIngredientesService.updateCategoria(
+        this.editandoCategoriaIngredienteId,
+        categoria,
+      );
+      this.snackBar.open('Categoría actualizada 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    } else {
+      await this.categoriasIngredientesService.addCategoria(categoria);
+      this.snackBar.open('Categoría creada 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: 'snackbar-grande',
+      });
+    }
+    this.resetFormularioCategoriaIngrediente();
+  }
+
+  editarCategoriaIngrediente(categoria: CategoriaIngrediente): void {
+    this.editandoCategoriaIngredienteId = categoria.id || null;
+    this.formularioCategoriaIngrediente.patchValue(categoria);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  eliminarCategoriaIngrediente(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar esta categoría?')) {
+      this.categoriasIngredientesService.deleteCategoria(id);
+    }
+  }
+
+  resetFormularioCategoriaIngrediente(): void {
+    this.editandoCategoriaIngredienteId = null;
+    this.formularioCategoriaIngrediente.reset();
+  }
+
+  async subirCategoria(categoria: CategoriaIngrediente): Promise<void> {
+    const index = this.categoriasIngredientesLista.findIndex(
+      (c) => c.id === categoria.id,
+    );
+    if (index <= 0) return;
+    const anterior = this.categoriasIngredientesLista[index - 1];
+    await this.categoriasIngredientesService.updateCategoria(categoria.id!, {
+      orden: anterior.orden,
+    });
+    await this.categoriasIngredientesService.updateCategoria(anterior.id!, {
+      orden: categoria.orden,
+    });
+  }
+
+  async bajarCategoria(categoria: CategoriaIngrediente): Promise<void> {
+    const index = this.categoriasIngredientesLista.findIndex(
+      (c) => c.id === categoria.id,
+    );
+    if (index >= this.categoriasIngredientesLista.length - 1) return;
+    const siguiente = this.categoriasIngredientesLista[index + 1];
+    await this.categoriasIngredientesService.updateCategoria(categoria.id!, {
+      orden: siguiente.orden,
+    });
+    await this.categoriasIngredientesService.updateCategoria(siguiente.id!, {
+      orden: categoria.orden,
+    });
   }
 }

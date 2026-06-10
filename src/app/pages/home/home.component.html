@@ -51,6 +51,21 @@
   </section>
 </section>
 
+<!-- Banner Constructor de Recetas -->
+<section class="banner-constructor" routerLink="/constructor-recetas">
+  <div class="banner-constructor-contenido">
+    <mat-icon class="constructor-icono">soup_kitchen</mat-icon>
+    <div class="constructor-texto">
+      <h3>¿Qué tienes en casa?</h3>
+      <p>
+        Dinos los ingredientes que tienes disponibles y te sugerimos recetas que
+        puedes preparar ahora mismo
+      </p>
+    </div>
+    <mat-icon class="constructor-flecha">arrow_forward</mat-icon>
+  </div>
+</section>
+
 <!-- Recetas destacadas -->
 <section class="seccion" *ngIf="destacadas.length > 0">
   <div class="section-header">
@@ -92,9 +107,7 @@
     <mat-icon class="section-icon">cake</mat-icon>
     <span class="section-title">Para los más dulceros</span>
   </div>
-
   <div class="postres-revista">
-    <!-- Tarjeta grande -->
     <div
       class="postre-grande"
       [routerLink]="['/recetas', postresDestacados[0].id]"
@@ -118,8 +131,6 @@
         </p>
       </div>
     </div>
-
-    <!-- Tarjetas pequeñas -->
     <div class="postres-pequeños">
       <div
         class="postre-pequeño"
@@ -141,7 +152,6 @@
       </div>
     </div>
   </div>
-
   <div class="ver-mas">
     <button mat-raised-button class="primary-btn" (click)="verPostres()">
       Ver todos los postres
@@ -174,7 +184,6 @@
     <mat-icon class="section-icon">water_drop</mat-icon>
     <span class="section-title">Mis salsas</span>
   </div>
-
   <div class="shelf">
     <div
       *ngFor="let salsa of salsas; let i = index"
@@ -183,7 +192,6 @@
     >
       <div class="jar-visual">
         <div class="jar-lid"></div>
-
         <div class="jar-glass">
           <div class="jar-liquid">
             <div class="jar-label">

@@ -76,7 +76,7 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .seccion-aleatoria {
@@ -180,6 +180,66 @@
   color: white;
   background: rgba(255, 255, 255, 0.2);
   z-index: 1;
+}
+
+/* BANNER CONSTRUCTOR */
+.banner-constructor {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(84, 175, 232, 0.3);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.banner-constructor:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 12px rgba(84, 175, 232, 0.15);
+  background: rgba(84, 175, 232, 0.2);
+}
+
+.banner-constructor-contenido {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.constructor-icono {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.constructor-texto {
+  flex: 1;
+}
+
+.constructor-texto h3 {
+  font-size: 1.3rem;
+  color: black;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+}
+
+.constructor-texto p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.constructor-flecha {
+  color: var(--primary-color);
+  flex-shrink: 0;
 }
 
 /* POSTRES REVISTA */
@@ -428,7 +488,7 @@
   .comidas-del-dia-contenedor {
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 
   .banner-aleatoria-contenido h2 {
@@ -442,6 +502,25 @@
   .nombre-receta {
     font-size: 0.95rem;
     padding: 6px 14px;
+  }
+
+  .banner-constructor {
+    padding: 16px;
+    margin-bottom: 32px;
+  }
+
+  .constructor-icono {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .constructor-texto h3 {
+    font-size: 1.1rem;
+  }
+
+  .constructor-texto p {
+    font-size: 0.85rem;
   }
 
   .postres-revista {
@@ -467,32 +546,6 @@
   position: relative;
 }
 
-/* BALDAS (efecto estantería moderno) */
-/* .shelf::before,
-.shelf::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  height: 10px;
-  border-radius: 6px;
-  background: linear-gradient(to bottom, #d6b38a, #b3875a);
-  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
-  z-index: 0;
-} */
-
-/* .shelf::before {
-  top: 209px;
-}
-
-.shelf::after {
-  bottom: 103px;
-} */
-
-/* =========================
-   JAR CONTAINER
-========================= */
-
 .jar {
   display: flex;
   flex-direction: column;
@@ -505,16 +558,13 @@
   padding: 6px;
 }
 
-/* IMPORTANTE: solo mueve el visual, NO el contenedor */
 .jar-visual {
   position: relative;
   width: 100%;
   height: 190px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   transition: transform 0.25s ease;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
   z-index: 2;
@@ -531,14 +581,9 @@
   z-index: 1;
 }
 
-/* sombra sin mover layout */
 .jar:hover {
   z-index: 10;
 }
-
-/* =========================
-   TAPÓN
-========================= */
 
 .jar-lid {
   width: 70%;
@@ -554,28 +599,17 @@
   transform: rotate(12deg);
 }
 
-/* =========================
-   CRISTAL
-========================= */
-
 .jar-glass {
   position: relative;
   width: 80%;
   height: 150px;
-
   border-radius: 20px;
   overflow: hidden;
-
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(255, 255, 255, 0.4);
-
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.25),
-    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
   box-shadow: 0 12px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
-/* reflejo vidrio */
 .jar-glass::before {
   content: "";
   position: absolute;
@@ -586,10 +620,6 @@
   background: rgba(255, 255, 255, 0.25);
   transform: skewX(-15deg);
 }
-
-/* =========================
-   LÍQUIDO
-========================= */
 
 .jar-liquid {
   position: absolute;
@@ -618,10 +648,6 @@
   height: 99%;
 }
 
-/* =========================
-   LABEL
-========================= */
-
 .jar-label {
   width: 100%;
   text-align: center;
@@ -638,10 +664,6 @@
   border-bottom: 1px solid black;
   border-top: 1px solid black;
 }
-
-/* =========================
-   COLORES (SIN CAMBIOS)
-========================= */
 
 .agridulce .jar-liquid {
   background: linear-gradient(180deg, #ffb347, #ff7e5f);
@@ -689,23 +711,18 @@
     gap: 28px;
     padding: 30px 80px;
   }
-
   .jar-visual {
     height: 210px;
   }
-
   .jar-shelf {
     bottom: 20px;
   }
-
   .jar-glass {
     height: 165px;
   }
-
   .salsa-nombre {
     font-size: 17px;
   }
-
   .section-title {
     font-size: 34px;
   }
@@ -717,33 +734,25 @@
     gap: 18px;
     padding: 16px;
   }
-
   .jar-visual {
     height: 170px;
   }
-
   .jar-shelf {
     bottom: 15px;
   }
-
   .jar-glass {
     height: 135px;
   }
-
   .jar-lid {
     width: 75%;
     height: 16px;
   }
-
   .salsa-nombre {
     font-size: 14px;
   }
-
-  /* hover menos agresivo (importante en trackpads) */
   .jar:hover .jar-visual {
     transform: translateY(-6px);
   }
-
   .jar-liquid {
     transition: height 0.2s ease;
   }
@@ -755,39 +764,30 @@
     gap: 14px;
     padding: 12px;
   }
-
   .jar {
     gap: 4px;
   }
-
   .jar-visual {
     height: 140px;
   }
-
   .jar-shelf {
     height: 12px;
     bottom: 12px;
   }
-
   .jar-glass {
     height: 110px;
     border-radius: 16px;
   }
-
   .jar-lid {
     width: 80%;
     height: 14px;
   }
-
   .jar-liquid {
     height: 100%;
   }
-
   .jar:hover .jar-visual {
     transform: translateY(-4px);
   }
-
-  /* texto más legible */
   .salsa-nombre {
     font-size: 10px;
     color: #2f2f2f;
