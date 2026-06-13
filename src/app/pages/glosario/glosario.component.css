@@ -102,7 +102,66 @@
   margin-top: 48px;
 }
 
+/* RESPONSIVE */
+@media (max-width: 2000px) {
+  .section-title {
+    font-size: 46px;
+  }
+
+  .section-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 46px;
+  }
+
+  .letra-titulo {
+    font-size: 3rem;
+  }
+
+  .termino-nombre {
+    font-size: 1.2rem;
+  }
+
+  .termino-definicion {
+    font-size: 1.05rem;
+  }
+
+  .termino {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 36px;
+  }
+
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
+  }
+
+  .letra-titulo {
+    font-size: 2.2rem;
+  }
+
+  .indice {
+    gap: 6px;
+    padding: 12px;
+  }
+
+  .btn-letra {
+    font-size: 1rem;
+    min-width: 32px;
+  }
+}
+
 @media (max-width: 768px) {
+  .section-header {
+    gap: 8px;
+  }
+
   .section-title {
     font-size: 28px;
   }
@@ -111,14 +170,47 @@
     width: 28px;
     height: 28px;
     font-size: 28px;
+    flex-shrink: 0;
   }
 
-  .letra-titulo {
-    font-size: 2rem;
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
 
   .indice {
-    justify-content: normal;
+    justify-content: flex-start;
     gap: 4px;
+    padding: 10px;
+    margin-bottom: 28px;
+  }
+
+  .btn-letra {
+    font-size: 0.9rem;
+    min-width: 28px;
+  }
+
+  .letra-titulo {
+    font-size: 1.8rem;
+  }
+
+  .termino {
+    padding: 12px;
+  }
+
+  .termino-nombre {
+    font-size: 1rem;
+  }
+
+  .termino-definicion {
+    font-size: 0.9rem;
+  }
+
+  .grupo-letra {
+    margin-bottom: 32px;
+  }
+
+  .sin-resultados {
+    font-size: 1rem;
   }
 }

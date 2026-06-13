@@ -15,9 +15,38 @@
       Ingredientes disponibles
     </h3>
 
+    <!-- Buscador -->
+    <div class="buscador-ingredientes">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Buscar ingrediente</mat-label>
+        <input
+          matInput
+          [(ngModel)]="busqueda"
+          (ngModelChange)="buscarIngrediente()"
+          placeholder="Ej: tomate, pollo..."
+        />
+        <mat-icon matSuffix *ngIf="!busqueda">search</mat-icon>
+        <mat-icon
+          matSuffix
+          *ngIf="busqueda"
+          class="btn-limpiar-busqueda"
+          (click)="limpiarBusqueda()"
+          >close</mat-icon
+        >
+      </mat-form-field>
+    </div>
+
     <div *ngIf="cargando" class="cargando">Cargando ingredientes...</div>
 
-    <div *ngFor="let cat of categorias" class="categoria-grupo">
+    <div
+      class="sin-resultados-busqueda"
+      *ngIf="!cargando && categoriasFiltradas.length === 0"
+    >
+      <mat-icon>search_off</mat-icon>
+      <p>No se encontraron ingredientes</p>
+    </div>
+
+    <div *ngFor="let cat of categoriasFiltradas" class="categoria-grupo">
       <button class="categoria-header" (click)="toggleCategoria(cat)">
         <span>{{ cat.nombre }}</span>
         <mat-icon>{{ cat.abierta ? "expand_less" : "expand_more" }}</mat-icon>

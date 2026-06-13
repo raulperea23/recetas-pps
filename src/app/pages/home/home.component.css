@@ -443,99 +443,6 @@
   flex-shrink: 0;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .banner {
-    padding: 48px 16px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-  }
-
-  .banner h1 {
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-  }
-
-  .banner p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-
-  .section-header {
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .section-header .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
-  }
-
-  .section-header .section-title {
-    font-size: 28px;
-  }
-
-  .seccion {
-    margin-bottom: 32px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .comidas-del-dia-contenedor {
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .banner-aleatoria-contenido h2 {
-    font-size: 1.4rem;
-  }
-
-  .banner-aleatoria-contenido p {
-    font-size: 0.95rem;
-  }
-
-  .nombre-receta {
-    font-size: 0.95rem;
-    padding: 6px 14px;
-  }
-
-  .banner-constructor {
-    padding: 16px;
-    margin-bottom: 32px;
-  }
-
-  .constructor-icono {
-    font-size: 2rem;
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .constructor-texto h3 {
-    font-size: 1.1rem;
-  }
-
-  .constructor-texto p {
-    font-size: 0.85rem;
-  }
-
-  .postres-revista {
-    grid-template-columns: 1fr;
-  }
-
-  .postre-grande img {
-    min-height: 240px;
-  }
-
-  .trucos-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* SALSAS */
 .shelf {
   display: grid;
@@ -705,12 +612,36 @@
   background: linear-gradient(180deg, #ffeaa7, #fdcb6e);
 }
 
+/* RESPONSIVE */
 @media (max-width: 2000px) {
+  .banner h1 {
+    font-size: 3rem;
+  }
+
+  .section-header .section-title {
+    font-size: 46px;
+  }
+
+  .section-header .section-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 46px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+
+  .banner-aleatoria-contenido h2 {
+    font-size: 2.2rem;
+  }
+
   .shelf {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 28px;
     padding: 30px 80px;
   }
+
   .jar-visual {
     height: 210px;
   }
@@ -723,17 +654,83 @@
   .salsa-nombre {
     font-size: 17px;
   }
-  .section-title {
-    font-size: 34px;
-  }
 }
 
 @media (max-width: 1024px) {
+  .banner {
+    padding: 60px 24px;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
+  .section-header .section-title {
+    font-size: 36px;
+  }
+
+  .section-header .section-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
+  }
+
+  .comidas-del-dia-contenedor {
+    gap: 16px;
+  }
+
+  .banner-sugerencia-aleatoria,
+  .banner-receta-aleatoria {
+    padding: 36px 24px;
+  }
+
+  .banner-aleatoria-contenido h2 {
+    font-size: 1.6rem;
+  }
+
+  .banner-aleatoria-contenido p {
+    font-size: 1rem;
+  }
+
+  .banner-constructor {
+    padding: 18px 20px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .postres-revista {
+    gap: 12px;
+  }
+
+  .postre-grande img {
+    min-height: 320px;
+  }
+
+  .postre-pequeño {
+    height: 120px;
+  }
+
+  .postre-pequeño img {
+    height: 120px;
+  }
+
+  .preparacion-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .trucos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
   .shelf {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 18px;
     padding: 16px;
   }
+
   .jar-visual {
     height: 170px;
   }
@@ -759,11 +756,111 @@
 }
 
 @media (max-width: 768px) {
+  .banner {
+    padding: 48px 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+
+  .banner h1 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .banner p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .section-header {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .section-header .section-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+  }
+
+  .section-header .section-title {
+    font-size: 28px;
+  }
+
+  .seccion {
+    margin-bottom: 32px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .comidas-del-dia-contenedor {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .banner-sugerencia-aleatoria,
+  .banner-receta-aleatoria {
+    padding: 32px 20px;
+  }
+
+  .banner-aleatoria-contenido h2 {
+    font-size: 1.4rem;
+  }
+
+  .banner-aleatoria-contenido p {
+    font-size: 0.95rem;
+  }
+
+  .nombre-receta {
+    font-size: 0.95rem;
+    padding: 6px 14px;
+  }
+
+  .banner-constructor {
+    padding: 16px;
+    margin-bottom: 32px;
+  }
+
+  .constructor-icono {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .constructor-texto h3 {
+    font-size: 1.1rem;
+  }
+
+  .constructor-texto p {
+    font-size: 0.85rem;
+  }
+
+  .postres-revista {
+    grid-template-columns: 1fr;
+  }
+
+  .postre-grande img {
+    min-height: 240px;
+  }
+
+  .preparacion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trucos-grid {
+    grid-template-columns: 1fr;
+  }
+
   .shelf {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 14px;
     padding: 12px;
   }
+
   .jar {
     gap: 4px;
   }

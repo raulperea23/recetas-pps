@@ -179,7 +179,7 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 2px solid rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--primary-color);
   border-radius: 12px;
   padding: 24px 16px;
   cursor: pointer;
@@ -188,7 +188,6 @@
     transform 0.2s,
     box-shadow 0.2s;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
-  border-color: var(--primary-color);
 }
 
 .mes-card:hover {
@@ -205,6 +204,98 @@
 }
 
 /* RESPONSIVE */
+@media (max-width: 2000px) {
+  .section-header .section-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 46px;
+  }
+
+  .section-header .section-title {
+    font-size: 52px;
+  }
+
+  .categoria-card {
+    height: 280px;
+  }
+
+  .overlay h2 {
+    font-size: 1.8rem;
+  }
+
+  .glosario-banner {
+    padding: 48px;
+  }
+
+  .glosario-texto h2 {
+    font-size: 2.2rem;
+  }
+
+  .glosario-texto p {
+    font-size: 1.1rem;
+  }
+
+  .glosario-icono {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .meses-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  .mes-card {
+    padding: 28px 20px;
+  }
+
+  .mes-nombre {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-header .section-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
+  }
+
+  .section-header .section-title {
+    font-size: 38px;
+  }
+
+  .categoria-card {
+    height: 200px;
+  }
+
+  .overlay h2 {
+    font-size: 1.2rem;
+  }
+
+  .glosario-banner {
+    padding: 28px;
+  }
+
+  .glosario-texto h2 {
+    font-size: 1.5rem;
+  }
+
+  .meses-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .mes-card {
+    padding: 20px 12px;
+  }
+
+  .mes-nombre {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .section-header {
     gap: 8px;

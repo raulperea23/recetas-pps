@@ -52,6 +52,46 @@
   margin-top: 0;
 }
 
+/* BUSCADOR */
+.buscador-ingredientes {
+  margin-bottom: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn-limpiar-busqueda {
+  cursor: pointer;
+  color: #888;
+}
+
+.btn-limpiar-busqueda:hover {
+  color: #e53935;
+}
+
+.sin-resultados-busqueda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  color: #aaa;
+  text-align: center;
+}
+
+.sin-resultados-busqueda mat-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.sin-resultados-busqueda p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* CATEGORÍAS */
 .categoria-grupo {
   margin-bottom: 8px;
 }
@@ -262,10 +302,39 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 1024px) {
+@media (max-width: 2000px) {
   .cocina-layout {
     grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .panel-ingredientes {
+    max-height: 640px;
+  }
+
+  .recetas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .cocina-layout {
+    grid-template-columns: 3fr 2fr;
     gap: 16px;
+  }
+
+  .panel-ingredientes {
+    max-height: 520px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
   }
 }
 
@@ -280,16 +349,31 @@
     font-size: 28px;
   }
 
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
   .cocina-layout {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .panel-ingredientes {
     max-height: 350px;
   }
 
+  .panel-seleccionados {
+    min-height: 200px;
+  }
+
+  .seleccionados-vacio {
+    padding: 24px 16px;
+  }
+
   .recetas-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .section-title-recetas {

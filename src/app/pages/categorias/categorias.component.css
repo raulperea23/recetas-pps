@@ -122,6 +122,25 @@
   margin: 0;
 }
 
+/* 2000px */
+@media (max-width: 2000px) {
+  .section-header .section-title {
+    font-size: 46px;
+  }
+
+  .tipos-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .categoria-card {
+    height: 260px;
+  }
+
+  .overlay h2 {
+    font-size: 32px;
+  }
+}
+
 /* 1200px */
 @media (max-width: 1200px) {
   .section-header .section-title {

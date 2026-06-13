@@ -54,7 +54,6 @@ mat-toolbar .franja::after {
 
 .app-text {
   display: block;
-  font-size: clamp(16px, 5vw, 24px);
   font-size: 40px;
   letter-spacing: 40px;
   text-transform: uppercase;
@@ -110,6 +109,36 @@ button.navbar-button span.mdc-button__label {
 
 .mobile-menu {
   display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 2000px) {
+  .app-text {
+    font-size: 52px;
+    letter-spacing: 52px;
+  }
+
+  .navbar-button {
+    font-size: 36px;
+  }
+
+  .app-img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .navbar-menu {
+    gap: 32px;
+  }
+
+  .desktop-menu {
+    gap: 24px;
+  }
+
+  mat-toolbar {
+    padding: 40px 24px;
+    gap: 32px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -190,13 +219,10 @@ button.navbar-button span.mdc-button__label {
 
   .app-text {
     display: block;
-
     font-size: clamp(16px, 5vw, 24px);
     line-height: 1.2;
-
     letter-spacing: 3px;
     text-transform: uppercase;
-
     white-space: normal;
     overflow-wrap: break-word;
   }

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +39,10 @@ import { QuillModule } from 'ngx-quill';
 export class DetalleRecetaComponent implements OnInit {
   receta: Receta | null = null;
   recetasRelacionadas: Receta[] = [];
+  menuCompartirAbierto: boolean = false;
+  enlaceCopiado: boolean = false;
+
+  @ViewChild('compartirRef') compartirRef!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -77,5 +87,38 @@ export class DetalleRecetaComponent implements OnInit {
 
   tieneFoto(): boolean {
     return !!this.receta?.foto && this.receta.foto.trim() !== '';
+  }
+
+  toggleMenuCompartir(): void {
+    this.menuCompartirAbierto = !this.menuCompartirAbierto;
+    this.enlaceCopiado = false;
+  }
+
+  @HostListener('document:mousedown', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    if (
+      this.menuCompartirAbierto &&
+      this.compartirRef &&
+      !this.compartirRef.nativeElement.contains(event.target)
+    ) {
+      this.menuCompartirAbierto = false;
+    }
+  }
+
+  compartirWhatsApp(): void {
+    const texto = `Mira esta receta: ${this.receta?.nombre} 😋\n${window.location.href}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+    this.menuCompartirAbierto = false;
+  }
+
+  copiarEnlace(): void {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      this.enlaceCopiado = true;
+      setTimeout(() => {
+        this.enlaceCopiado = false;
+        this.menuCompartirAbierto = false;
+      }, 1500);
+    });
   }
 }

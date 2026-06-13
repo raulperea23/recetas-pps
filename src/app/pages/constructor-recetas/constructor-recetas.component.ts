@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Title } from '@angular/platform-browser';
 import { trigger, transition, style, animate } from '@angular/animations';
 import {
@@ -26,8 +29,11 @@ interface CategoriaConIngredientes {
   imports: [
     CommonModule,
     RouterLink,
+    FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
     CardComponent,
   ],
   templateUrl: './constructor-recetas.component.html',
@@ -46,10 +52,12 @@ interface CategoriaConIngredientes {
 })
 export class ConstructorRecetasComponent implements OnInit {
   categorias: CategoriaConIngredientes[] = [];
+  categoriasFiltradas: CategoriaConIngredientes[] = [];
   ingredientesSeleccionados: Ingrediente[] = [];
   todasLasRecetas: Receta[] = [];
   recetasFiltradas: Receta[] = [];
   cargando: boolean = true;
+  busqueda: string = '';
 
   constructor(
     private title: Title,
@@ -74,6 +82,7 @@ export class ConstructorRecetasComponent implements OnInit {
               abierta: false,
             }))
             .filter((c) => c.ingredientes.length > 0);
+          this.categoriasFiltradas = this.categorias;
           this.cargando = false;
         });
       });
@@ -81,6 +90,28 @@ export class ConstructorRecetasComponent implements OnInit {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.todasLasRecetas = recetas;
     });
+  }
+
+  buscarIngrediente(): void {
+    const busq = this.busqueda.toLowerCase().trim();
+    if (!busq) {
+      this.categoriasFiltradas = this.categorias;
+      return;
+    }
+    this.categoriasFiltradas = this.categorias
+      .map((cat) => ({
+        ...cat,
+        ingredientes: cat.ingredientes.filter((i) =>
+          i.nombre.toLowerCase().includes(busq),
+        ),
+        abierta: true,
+      }))
+      .filter((cat) => cat.ingredientes.length > 0);
+  }
+
+  limpiarBusqueda(): void {
+    this.busqueda = '';
+    this.categoriasFiltradas = this.categorias;
   }
 
   toggleCategoria(categoria: CategoriaConIngredientes): void {

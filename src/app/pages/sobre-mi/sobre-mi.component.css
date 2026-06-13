@@ -299,13 +299,95 @@ main {
 }
 
 /* RESPONSIVE */
+@media (max-width: 2000px) {
+  .hero-nombre {
+    font-size: 5rem;
+  }
+
+  .hero-titular {
+    font-size: 1.6rem;
+    max-width: 800px;
+  }
+
+  .section-title {
+    font-size: 48px;
+  }
+
+  .section-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+  }
+
+  .historia-descripcion {
+    font-size: 1.2rem;
+  }
+
+  .historia-foto img {
+    max-height: 600px;
+  }
+
+  .numeros-grid {
+    gap: 28px;
+  }
+
+  .numero-valor {
+    font-size: 3rem;
+  }
+
+  .categorias-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .banner-cierre {
+    padding: 80px 48px;
+  }
+
+  .banner-cierre h2 {
+    font-size: 2.4rem;
+  }
+}
+
 @media (max-width: 1024px) {
+  .seccion {
+    padding: 60px 0;
+  }
+
+  .historia-contenido {
+    gap: 32px;
+  }
+
   .numeros-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
 
   .valores-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .valores-seccion {
+    padding: 36px 28px;
+  }
+
+  .section-title {
+    font-size: 34px;
+  }
+
+  .section-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 34px;
+  }
+
+  .banner-cierre {
+    padding: 48px 24px;
+  }
+
+  .banner-cierre h2 {
+    font-size: 1.6rem;
   }
 }
 
@@ -316,10 +398,20 @@ main {
 
   .hero-nombre {
     font-size: 2.5rem;
+    min-height: 60px;
   }
 
   .hero-titular {
     font-size: 1.1rem;
+  }
+
+  .hero-btn {
+    padding: 6px 24px !important;
+    font-size: 0.9rem;
+  }
+
+  .seccion {
+    padding: 48px 0;
   }
 
   .section-title {
@@ -334,15 +426,23 @@ main {
 
   .historia-contenido {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
   }
 
   .historia-foto {
     order: -1;
   }
 
+  .historia-foto img {
+    max-height: 300px;
+  }
+
+  .historia-descripcion {
+    font-size: 1rem;
+  }
+
   .valores-seccion {
-    padding: 32px 16px;
+    padding: 24px 16px;
   }
 
   .valores-grid {
@@ -350,17 +450,40 @@ main {
     gap: 16px;
   }
 
+  .valor-card {
+    padding: 20px 12px;
+  }
+
   .numeros-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .numero-valor {
+    font-size: 2rem;
+  }
+
+  .categorias-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
   }
 
   .banner-cierre {
-    padding: 40px 20px;
+    padding: 32px 16px;
+    margin-top: 32px;
   }
 
   .banner-cierre h2 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .banner-cierre-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-cierre {
+    width: 100%;
   }
 }
 

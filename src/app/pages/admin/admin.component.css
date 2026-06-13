@@ -157,8 +157,9 @@ mat-divider {
 
 .tabla-contenedor {
   border-radius: 12px;
-  overflow: hidden;
+  overflow-x: auto;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08);
+  -webkit-overflow-scrolling: touch;
 }
 
 .tabla {
@@ -185,6 +186,7 @@ mat-divider {
   border-radius: 24px;
   font-size: 16px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .tabla-fila {
@@ -203,33 +205,6 @@ mat-divider {
 .btn-eliminar {
   font-size: 16px;
   color: #e53935 !important;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .admin-cabecera {
-    padding: 20px;
-  }
-
-  .admin-cabecera h1 {
-    font-size: 1.4rem;
-  }
-
-  .admin-icon {
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
-  }
-
-  .fila {
-    flex-direction: column;
-  }
-
-  .tabla-cabecera {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
 }
 
 .admin-tabs {
@@ -258,6 +233,7 @@ mat-divider {
   background-color: var(--primary-color);
   padding: 3px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .btn-orden {
@@ -275,4 +251,92 @@ mat-divider {
 
 .btn-orden:disabled {
   color: #ccc !important;
+}
+
+/* RESPONSIVE */
+
+/* 2000px */
+@media (max-width: 2000px) {
+  .tabla {
+    min-width: 600px;
+  }
+}
+
+/* 1024px */
+@media (max-width: 1024px) {
+  .admin-cabecera {
+    padding: 24px;
+  }
+
+  .admin-cabecera h1 {
+    font-size: 1.7rem;
+  }
+
+  .fila mat-form-field {
+    min-width: 160px;
+    flex: 1 1 200px;
+  }
+
+  ::ng-deep .mat-mdc-tab-label-container {
+    overflow-x: auto;
+  }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+  .admin-cabecera {
+    padding: 20px;
+  }
+
+  .admin-cabecera-contenido {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-cabecera h1 {
+    font-size: 1.4rem;
+  }
+
+  .admin-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .fila {
+    flex-direction: column;
+  }
+
+  .fila mat-form-field {
+    width: 100%;
+  }
+
+  .tabla-cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .tabla {
+    min-width: 480px;
+  }
+
+  .formulario-acciones {
+    flex-direction: column;
+  }
+
+  .btn-guardar,
+  .btn-cancelar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .previa {
+    max-width: 100%;
+  }
 }

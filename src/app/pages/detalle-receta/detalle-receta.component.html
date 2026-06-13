@@ -1,10 +1,35 @@
 <div *ngIf="receta; else cargando">
-  <button mat-raised-button class="secondary-btn" routerLink="/recetas">
-    <mat-icon style="width: 32px; height: 32px; font-size: 32px; color: black"
-      >keyboard_arrow_left</mat-icon
-    >
-    Volver a recetas
-  </button>
+  <div class="acciones-superiores">
+    <button mat-raised-button class="secondary-btn" routerLink="/recetas">
+      <mat-icon style="width: 32px; height: 32px; font-size: 32px; color: black"
+        >keyboard_arrow_left</mat-icon
+      >
+      Volver a recetas
+    </button>
+
+    <div class="compartir-contenedor" #compartirRef>
+      <button
+        mat-stroked-button
+        class="btn-compartir"
+        (click)="toggleMenuCompartir()"
+      >
+        <mat-icon>share</mat-icon>
+        Compartir
+      </button>
+      <div class="menu-compartir" *ngIf="menuCompartirAbierto">
+        <button class="opcion-compartir" (click)="compartirWhatsApp()">
+          <mat-icon class="icono-whatsapp">chat</mat-icon>
+          WhatsApp
+        </button>
+        <button class="opcion-compartir" (click)="copiarEnlace()">
+          <mat-icon class="icono-enlace">{{
+            enlaceCopiado ? "check" : "link"
+          }}</mat-icon>
+          {{ enlaceCopiado ? "Enlace copiado" : "Copiar enlace" }}
+        </button>
+      </div>
+    </div>
+  </div>
 
   <div class="cabecera">
     <div
