@@ -75,13 +75,27 @@ mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
 }
 
 .snackbar-grande .mdc-snackbar__surface {
-  font-size: 1.1rem !important;
+  background: var(--primary-color) !important;
+  border-radius: 12px !important;
   padding: 16px 24px !important;
-  min-width: 400px !important;
+  min-width: 340px !important;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2) !important;
 }
 
 .snackbar-grande .mdc-snackbar__label {
-  font-size: 1.1rem !important;
+  font-size: 20px !important;
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+.snackbar-grande .mdc-snackbar__actions button {
+  color: white !important;
+  font-weight: 600 !important;
+  opacity: 0.85;
+}
+
+.snackbar-grande .mdc-snackbar__actions button:hover {
+  opacity: 1;
 }
 
 .cdk-overlay-backdrop {
