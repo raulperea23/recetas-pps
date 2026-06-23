@@ -92,6 +92,26 @@
       ordenAscendente ? "↑" : "↓"
     }}</span>
   </button>
+  <button
+    mat-button
+    [class.activo]="ordenActual === 'tiempo'"
+    (click)="ordenar('tiempo')"
+  >
+    Tiempo
+    <span *ngIf="ordenActual === 'tiempo'">{{
+      ordenAscendente ? "↑" : "↓"
+    }}</span>
+  </button>
+  <button
+    mat-button
+    [class.activo]="ordenActual === 'dificultad'"
+    (click)="ordenar('dificultad')"
+  >
+    Dificultad
+    <span *ngIf="ordenActual === 'dificultad'">{{
+      ordenAscendente ? "↑" : "↓"
+    }}</span>
+  </button>
 </div>
 
 <!-- Listado -->
@@ -104,7 +124,7 @@
 </section>
 
 <div class="cargar-mas" *ngIf="hayMas">
-  <button mat-stroked-button color="primary" (click)="cargarMas()">
+  <button mat-raised-button class="primary-btn" (click)="cargarMas()">
     Cargar más recetas
   </button>
 </div>

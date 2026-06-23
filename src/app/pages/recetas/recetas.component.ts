@@ -27,6 +27,12 @@ const ORDEN_TIPOS: { [key: string]: number } = {
   Postre: 5,
 };
 
+const ORDEN_DIFICULTADES: { [key: string]: number } = {
+  Fácil: 1,
+  Media: 2,
+  Difícil: 3,
+};
+
 @Component({
   selector: 'app-recetas',
   standalone: true,
@@ -109,6 +115,12 @@ export class RecetasComponent implements OnInit {
     });
   }
 
+  private tiempoEnMinutos(receta: Receta): number {
+    const tiempo = receta.tiempoPreparacion ?? 0;
+    const unidad = receta.tiempoUnidad ?? 'minutos';
+    return unidad === 'horas' ? tiempo * 60 : tiempo;
+  }
+
   filtrar(): void {
     this.pagina = 1;
     const filtradas = this.todasLasRecetas.filter((receta) => {
@@ -160,8 +172,16 @@ export class RecetasComponent implements OnInit {
           break;
         case 'fecha':
           comparacion =
-            new Date(a.fechaPublicacion).getTime() -
-            new Date(b.fechaPublicacion).getTime();
+            new Date(a.fechaPublicacion as any).getTime() -
+            new Date(b.fechaPublicacion as any).getTime();
+          break;
+        case 'tiempo':
+          comparacion = this.tiempoEnMinutos(a) - this.tiempoEnMinutos(b);
+          break;
+        case 'dificultad':
+          comparacion =
+            (ORDEN_DIFICULTADES[a.dificultad] || 99) -
+            (ORDEN_DIFICULTADES[b.dificultad] || 99);
           break;
       }
       return this.ordenAscendente ? comparacion : -comparacion;

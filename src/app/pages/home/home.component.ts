@@ -65,7 +65,26 @@ export class HomeComponent implements OnInit {
 
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.todasLasRecetas = recetas;
-      this.ultimas = recetas.slice(0, 6);
+      const haceUnMes = new Date();
+      haceUnMes.setMonth(haceUnMes.getMonth() - 1);
+
+      this.ultimas = recetas
+        .sort((a, b) => {
+          const fechaA = (a.fechaPublicacion as any)?.toDate
+            ? (a.fechaPublicacion as any).toDate().getTime()
+            : new Date(a.fechaPublicacion as any).getTime();
+          const fechaB = (b.fechaPublicacion as any)?.toDate
+            ? (b.fechaPublicacion as any).toDate().getTime()
+            : new Date(b.fechaPublicacion as any).getTime();
+          return fechaB - fechaA;
+        })
+        .filter((r) => {
+          const fecha = (r.fechaPublicacion as any)?.toDate
+            ? (r.fechaPublicacion as any).toDate()
+            : new Date(r.fechaPublicacion as any);
+          return fecha >= haceUnMes;
+        })
+        .slice(0, 4);
       this.postresDestacados = recetas
         .filter((r) => r.tipoDePlato === 'Postre' && r.destacada === true)
         .slice(0, 3);
