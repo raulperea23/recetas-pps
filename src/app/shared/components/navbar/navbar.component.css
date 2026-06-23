@@ -25,7 +25,7 @@ mat-toolbar::before {
 
 mat-toolbar .franja {
   width: 100%;
-  height: 6px;
+  height: 10px;
   position: absolute;
   left: 0;
   bottom: 10px;
@@ -35,12 +35,12 @@ mat-toolbar .franja {
   align-items: center;
 }
 
-mat-toolbar .franja::after {
+/* mat-toolbar .franja::after {
   content: "";
   width: 100%;
   height: 1px;
   background-color: black;
-}
+} */
 
 .navbar-titulo {
   position: relative;
@@ -114,8 +114,8 @@ button.navbar-button span.mdc-button__label {
 /* RESPONSIVE */
 @media (max-width: 2000px) {
   .app-text {
-    font-size: 52px;
-    letter-spacing: 52px;
+    font-size: 46px;
+    letter-spacing: 46px;
   }
 
   .navbar-button {
