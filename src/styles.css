@@ -14,6 +14,10 @@
   font-style: normal;
 }
 
+html {
+  zoom: 0.8;
+}
+
 body {
   background-color: var(--bg-color);
   margin: 0;
