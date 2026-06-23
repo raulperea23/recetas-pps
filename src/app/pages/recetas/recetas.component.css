@@ -3,66 +3,66 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-  padding: 16px 0;
+  gap: 10px;
+  margin-bottom: 26px;
+  padding: 13px 0;
 }
 
 .section-header .section-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 .section-header .section-title {
-  font-size: 46px;
+  font-size: 37px;
   color: black;
 }
 
 .filtros {
   display: flex;
-  gap: 16px;
+  gap: 13px;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 }
 
 .filtros mat-form-field {
-  min-width: 220px;
+  min-width: 176px;
   flex: 1;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 19px;
   align-items: stretch;
 }
 
 .sin-resultados {
   text-align: center;
   color: #999;
-  font-size: 1.2rem;
-  margin-top: 48px;
+  font-size: 1rem;
+  margin-top: 38px;
 }
 
 .cargar-mas {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 32px;
 }
 
 .ordenacion {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: 6px;
+  margin-bottom: 26px;
   flex-wrap: wrap;
 }
 
 .ordenacion span {
   color: #555;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .ordenacion button.activo {
@@ -77,81 +77,56 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 2000px) {
-  .section-header .section-title {
-    font-size: 52px;
-  }
-
-  .section-header .section-icon {
-    width: 52px;
-    height: 52px;
-    font-size: 52px;
-  }
-
-  .filtros mat-form-field {
-    min-width: 260px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 28px;
-  }
-
-  .ordenacion span {
-    font-size: 20px;
-  }
-}
-
 @media (max-width: 1024px) {
   .section-header .section-title {
-    font-size: 36px;
+    font-size: 29px;
   }
 
   .section-header .section-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 36px;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
   }
 
   .filtros {
-    gap: 12px;
+    gap: 10px;
   }
 
   .filtros mat-form-field {
-    min-width: 180px;
+    min-width: 144px;
   }
 
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
+    gap: 16px;
   }
 
   .ordenacion span {
-    font-size: 16px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 768px) {
   .section-header {
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-bottom: 16px;
   }
 
   .section-header .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
   }
 
   .section-header .section-title {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .filtros {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-bottom: 16px;
   }
 
   .filtros mat-form-field {
@@ -164,34 +139,34 @@
   }
 
   .ordenacion {
-    gap: 4px;
-    margin-bottom: 20px;
+    gap: 3px;
+    margin-bottom: 16px;
   }
 
   .ordenacion span {
-    font-size: 14px;
+    font-size: 11px;
     width: 100%;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .ordenacion button {
-    font-size: 13px;
-    padding: 0 8px;
+    font-size: 10px;
+    padding: 0 6px;
   }
 
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .cargar-mas {
-    margin-top: 24px;
+    margin-top: 19px;
   }
 }
 
 @media (max-width: 480px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 }

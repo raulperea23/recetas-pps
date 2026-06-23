@@ -2,30 +2,30 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .section-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 .section-title {
-  font-size: 40px;
+  font-size: 32px;
   color: black;
   font-weight: 700;
 }
 
 .subtitle {
   color: #888;
-  font-size: 1.1rem;
-  margin-bottom: 32px;
+  font-size: 0.9rem;
+  margin-bottom: 26px;
 }
 
 .buscador {
-  margin-bottom: 24px;
+  margin-bottom: 19px;
 }
 
 .full-width {
@@ -36,18 +36,18 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 40px;
-  padding: 16px;
+  gap: 6px;
+  margin-bottom: 32px;
+  padding: 13px;
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .btn-letra {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--primary-color);
-  min-width: 36px;
+  min-width: 29px;
 }
 
 .btn-letra:hover {
@@ -55,162 +55,135 @@
 }
 
 .grupo-letra {
-  margin-bottom: 48px;
-  scroll-margin-top: 80px;
+  margin-bottom: 38px;
+  scroll-margin-top: 64px;
 }
 
 .letra-titulo {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--primary-color);
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
   border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .terminos {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 13px;
 }
 
 .termino {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 16px;
+  gap: 3px;
+  padding: 13px;
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.08);
 }
 
 .termino-nombre {
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: black;
 }
 
 .termino-definicion {
   color: #555;
   line-height: 1.6;
+  font-size: 0.85rem;
 }
 
 .sin-resultados {
   text-align: center;
   color: #999;
-  font-size: 1.2rem;
-  margin-top: 48px;
+  font-size: 1rem;
+  margin-top: 38px;
 }
 
 /* RESPONSIVE */
-@media (max-width: 2000px) {
-  .section-title {
-    font-size: 46px;
-  }
-
-  .section-icon {
-    width: 46px;
-    height: 46px;
-    font-size: 46px;
-  }
-
-  .letra-titulo {
-    font-size: 3rem;
-  }
-
-  .termino-nombre {
-    font-size: 1.2rem;
-  }
-
-  .termino-definicion {
-    font-size: 1.05rem;
-  }
-
-  .termino {
-    padding: 20px;
-  }
-}
-
 @media (max-width: 1024px) {
   .section-title {
-    font-size: 36px;
+    font-size: 29px;
   }
 
   .section-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 36px;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
   }
 
   .letra-titulo {
-    font-size: 2.2rem;
+    font-size: 1.76rem;
   }
 
   .indice {
-    gap: 6px;
-    padding: 12px;
+    gap: 5px;
+    padding: 10px;
   }
 
   .btn-letra {
-    font-size: 1rem;
-    min-width: 32px;
+    font-size: 0.85rem;
+    min-width: 26px;
   }
 }
 
 @media (max-width: 768px) {
   .section-header {
-    gap: 8px;
+    gap: 6px;
   }
 
   .section-title {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
     flex-shrink: 0;
   }
 
   .subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 16px;
   }
 
   .indice {
     justify-content: flex-start;
-    gap: 4px;
-    padding: 10px;
-    margin-bottom: 28px;
+    gap: 3px;
+    padding: 8px;
+    margin-bottom: 22px;
   }
 
   .btn-letra {
-    font-size: 0.9rem;
-    min-width: 28px;
+    font-size: 0.75rem;
+    min-width: 22px;
   }
 
   .letra-titulo {
-    font-size: 1.8rem;
+    font-size: 1.44rem;
   }
 
   .termino {
-    padding: 12px;
+    padding: 10px;
   }
 
   .termino-nombre {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .termino-definicion {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 
   .grupo-letra {
-    margin-bottom: 32px;
+    margin-bottom: 26px;
   }
 
   .sin-resultados {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 }

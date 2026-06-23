@@ -4,7 +4,6 @@
   --bg-color: #eadace;
   --black-color: #000000;
   --white-color: #ffffff;
-  /* --text-color: #333333; */
 }
 
 @font-face {
@@ -12,10 +11,6 @@
   src: url("/assets/fonts/MaiandraGD.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-
-html {
-  zoom: 0.8;
 }
 
 body {
@@ -45,13 +40,13 @@ ul {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .primary-btn {
   background-color: var(--primary-color) !important;
-  padding: 8px 32px;
-  border-radius: 24px !important;
+  padding: 6px 26px;
+  border-radius: 19px !important;
 }
 .primary-btn .mdc-button__label {
   color: white !important;
@@ -59,35 +54,34 @@ ul {
 
 .secondary-btn {
   border: 2px solid var(--primary-color) !important;
-  padding: 8px 32px;
-  border-radius: 24px !important;
+  padding: 6px 26px;
+  border-radius: 19px !important;
 }
 .secondary-btn .mdc-button__label {
   color: black !important;
 }
 
 /* Estilos para Angular Material */
-
 button .mdc-button__label {
-  font-size: 20px !important;
+  font-size: 16px !important;
   color: black;
 }
 
 mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
-  font-size: 32px !important;
-  padding: 16px;
+  font-size: 26px !important;
+  padding: 13px;
 }
 
 .snackbar-grande .mdc-snackbar__surface {
   background: var(--primary-color) !important;
-  border-radius: 12px !important;
-  padding: 16px 24px !important;
-  min-width: 340px !important;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 13px 19px !important;
+  min-width: 272px !important;
+  box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.2) !important;
 }
 
 .snackbar-grande .mdc-snackbar__label {
-  font-size: 20px !important;
+  font-size: 16px !important;
   color: white !important;
   font-weight: 500 !important;
 }
@@ -115,26 +109,7 @@ app-footer .navbar-button span.mdc-button__label {
   padding: 0 !important;
 }
 
-/* Estilos globales para mat-select */
-.mat-mdc-select-panel {
-  border-radius: 8px !important;
-  border: 1px solid var(--primary-color) !important;
-}
-
-.mat-mdc-option:hover {
-  background: rgba(84, 175, 232, 0.1) !important;
-}
-
-.mat-mdc-option.mdc-list-item--selected {
-  background: rgba(84, 175, 232, 0.15) !important;
-  color: var(--primary-color) !important;
-}
-
-.mat-mdc-option.mdc-list-item--selected span {
-  color: var(--primary-color) !important;
-}
-
-/* Estilos globales para mat-form-field */
+/* Estilos globales para mat-form-field — solo colores */
 .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
 .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
 .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
@@ -154,6 +129,25 @@ app-footer .navbar-button span.mdc-button__label {
   border-right: none !important;
 }
 
+/* Estilos globales para mat-select */
+.mat-mdc-select-panel {
+  border-radius: 6px !important;
+  border: 1px solid var(--primary-color) !important;
+}
+
+.mat-mdc-option:hover {
+  background: rgba(84, 175, 232, 0.1) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  background: rgba(84, 175, 232, 0.15) !important;
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected span {
+  color: var(--primary-color) !important;
+}
+
 .modal-truco .mat-mdc-dialog-container,
 .modal-salsa .mat-mdc-dialog-container {
   padding: 0 !important;
@@ -161,8 +155,9 @@ app-footer .navbar-button span.mdc-button__label {
 
 /* Checkbox */
 .mat-mdc-checkbox label.mdc-label {
-  font-size: 16px;
+  font-size: 13px;
 }
+
 .mat-mdc-checkbox .mdc-checkbox__background {
   border-color: var(--primary-color) !important;
 }
@@ -191,7 +186,7 @@ app-footer .navbar-button span.mdc-button__label {
   max-width: 70vw !important;
   max-height: 80vh !important;
   overflow: hidden !important;
-  border-radius: 12px !important;
+  border-radius: 10px !important;
 }
 
 @media (max-width: 768px) {
@@ -208,9 +203,9 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
 }
 
 thead {
@@ -220,15 +215,15 @@ thead {
 
 th,
 td {
-  font-size: 18px;
-  padding: 14px 18px;
+  font-size: 14px;
+  padding: 11px 14px;
   text-align: center;
 }
 
 th {
-  width: 80px;
+  width: 64px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   letter-spacing: 0.5px;
 }
 
@@ -253,8 +248,9 @@ td {
 .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
   color: var(--primary-color) !important;
 }
+
 .mat-mdc-tab .mdc-tab__text-label {
-  font-size: 20px !important;
+  font-size: 16px !important;
   color: var(--primary-color) !important;
 }
 

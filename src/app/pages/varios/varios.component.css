@@ -3,46 +3,46 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 26px;
 }
 
 .section-header .section-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 .section-header .section-title {
-  font-size: 46px;
+  font-size: 37px;
   color: black;
 }
 
 .seccion {
-  margin-top: 48px;
+  margin-top: 38px;
 }
 
 .subtitle {
   color: #888;
-  margin-bottom: 24px;
+  margin-bottom: 19px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 19px;
 }
 
 .categoria-card {
-  height: 220px;
-  border-radius: 12px;
+  height: 176px;
+  border-radius: 10px;
   background-size: cover;
   background-position: center;
   background-color: #ccc;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
   transition:
     transform 0.2s,
     box-shadow 0.2s;
@@ -61,8 +61,8 @@
 }
 
 .categoria-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .categoria-card:hover::before {
@@ -74,7 +74,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 16px 20px;
+  padding: 13px 16px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   transition: background 0.3s;
   z-index: 1;
@@ -86,7 +86,7 @@
 
 .overlay h2 {
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   margin: 0;
 }
 
@@ -96,15 +96,15 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 19px;
   background: url("../../../../public/assets/images/glosario.jpg");
   background-size: cover;
   background-position: center;
-  border-radius: 12px;
-  padding: 32px;
-  margin-top: 48px;
+  border-radius: 10px;
+  padding: 26px;
+  margin-top: 38px;
   cursor: pointer;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
   transition:
     transform 0.2s,
     box-shadow 0.2s;
@@ -119,39 +119,39 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.45);
-  border-radius: 12px;
+  border-radius: 10px;
   z-index: 0;
 }
 
 .glosario-banner:hover {
-  transform: translateY(-4px);
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .glosario-banner-contenido {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   z-index: 1;
 }
 
 .glosario-icono {
-  font-size: 48px;
-  width: 48px;
-  height: 48px;
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
   color: white;
 }
 
 .glosario-texto h2 {
-  font-size: 1.8rem;
+  font-size: 1.44rem;
   color: white;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 .glosario-texto p {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
+  font-size: 0.85rem;
   margin: 0;
 }
 
@@ -160,18 +160,18 @@
   z-index: 1;
   color: white !important;
   border-color: white !important;
-  font-size: 1rem;
-  padding: 8px 24px;
+  font-size: 0.85rem;
+  padding: 6px 19px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 /* MESES */
 .meses-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 13px;
 }
 
 .mes-card {
@@ -180,176 +180,125 @@
   justify-content: center;
   background: transparent;
   border: 2px solid var(--primary-color);
-  border-radius: 12px;
-  padding: 24px 16px;
+  border-radius: 10px;
+  padding: 19px 13px;
   cursor: pointer;
   transition:
     border-color 0.2s,
     transform 0.2s,
     box-shadow 0.2s;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.06);
 }
 
 .mes-card:hover {
   background-color: rgba(84, 175, 232, 0.2);
-  box-shadow: 4px 4px 12px rgba(84, 175, 232, 0.2);
-  transform: translateY(-4px);
+  box-shadow: 3px 3px 10px rgba(84, 175, 232, 0.2);
+  transform: translateY(-3px);
 }
 
 .mes-nombre {
   color: black;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
 }
 
 /* RESPONSIVE */
-@media (max-width: 2000px) {
-  .section-header .section-icon {
-    width: 46px;
-    height: 46px;
-    font-size: 46px;
-  }
-
-  .section-header .section-title {
-    font-size: 52px;
-  }
-
-  .categoria-card {
-    height: 280px;
-  }
-
-  .overlay h2 {
-    font-size: 1.8rem;
-  }
-
-  .glosario-banner {
-    padding: 48px;
-  }
-
-  .glosario-texto h2 {
-    font-size: 2.2rem;
-  }
-
-  .glosario-texto p {
-    font-size: 1.1rem;
-  }
-
-  .glosario-icono {
-    font-size: 64px;
-    width: 64px;
-    height: 64px;
-  }
-
-  .meses-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
-  }
-
-  .mes-card {
-    padding: 28px 20px;
-  }
-
-  .mes-nombre {
-    font-size: 1.2rem;
-  }
-}
-
 @media (max-width: 1024px) {
   .section-header .section-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 36px;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
   }
 
   .section-header .section-title {
-    font-size: 38px;
+    font-size: 30px;
   }
 
   .categoria-card {
-    height: 200px;
+    height: 160px;
   }
 
   .overlay h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .glosario-banner {
-    padding: 28px;
+    padding: 22px;
   }
 
   .glosario-texto h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .meses-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .mes-card {
-    padding: 20px 12px;
+    padding: 16px 10px;
   }
 
   .mes-nombre {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 768px) {
   .section-header {
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-bottom: 16px;
   }
 
   .section-header .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
     flex-shrink: 0;
   }
 
   .section-header .section-title {
-    font-size: 26px;
+    font-size: 21px;
     line-height: 1.2;
   }
 
   .seccion {
-    margin-top: 32px;
+    margin-top: 26px;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 13px;
   }
 
   .categoria-card {
-    height: 180px;
+    height: 144px;
   }
 
   .overlay h2 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   .glosario-banner {
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
-    gap: 16px;
+    padding: 16px;
+    gap: 13px;
   }
 
   .glosario-icono {
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
   }
 
   .glosario-texto h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .glosario-texto p {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 
   .glosario-btn {
@@ -359,33 +308,33 @@
 
   .meses-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 8px;
   }
 
   .mes-card {
-    padding: 16px 8px;
+    padding: 13px 6px;
   }
 
   .mes-nombre {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
   .section-header .section-title {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .meses-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
 
   .mes-card {
-    padding: 14px 8px;
+    padding: 11px 6px;
   }
 
   .mes-nombre {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
   }
 }

@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .compartir-contenedor {
@@ -15,34 +15,34 @@
   border-color: var(--primary-color) !important;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .menu-compartir {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 6px);
   right: 0;
   background: white;
-  border-radius: 12px;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.15);
-  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.15);
+  padding: 6px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   z-index: 10;
-  min-width: 180px;
+  min-width: 144px;
 }
 
 .opcion-compartir {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
+  gap: 8px;
+  padding: 8px 10px;
   border: none;
   background: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: #333;
   transition: background 0.2s;
   text-align: left;
@@ -63,46 +63,46 @@
 
 .cabecera {
   display: flex;
-  gap: 32px;
-  margin: 24px 0;
+  gap: 26px;
+  margin: 19px 0;
   flex-wrap: wrap;
 }
 
 .foto {
   width: 100%;
-  max-width: 620px;
-  border-radius: 8px;
+  max-width: 496px;
+  border-radius: 6px;
   object-fit: cover;
 }
 
 .info {
   flex: 1;
-  min-width: 280px;
+  min-width: 224px;
 }
 
 .info h1 {
-  font-size: 40px;
+  font-size: 32px;
   color: black;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-weight: 700;
 }
 
 .tipo-de-plato {
   color: var(--accent-color);
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 .categoria {
   color: var(--primary-color);
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 .origen {
   color: #888;
   font-style: italic;
-  margin-bottom: 14px;
+  margin-bottom: 11px;
 }
 
 .info-card {
@@ -110,13 +110,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .info-card span {
   color: #555;
-  font-size: 16px;
+  font-size: 13px;
   margin-bottom: 0;
 }
 
@@ -135,26 +135,26 @@
 }
 
 mat-divider {
-  margin: 24px 0;
+  margin: 19px 0;
 }
 
 .contenido {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 48px;
+  gap: 38px;
 }
 
 .ingredientes h2,
 .elaboracion h2 {
-  font-size: 30px;
+  font-size: 24px;
   color: black;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
   font-weight: 600;
 }
 
 .ingredientes ul,
 .elaboracion ol {
-  padding-left: 20px;
+  padding-left: 16px;
   line-height: 2;
   color: #555;
 }
@@ -162,7 +162,7 @@ mat-divider {
 .cargando {
   text-align: center;
   color: #999;
-  margin-top: 48px;
+  margin-top: 38px;
 }
 
 .elaboracion {
@@ -174,12 +174,12 @@ mat-divider {
   text-align: justify;
   word-break: normal;
   overflow-wrap: break-word;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 .foto-container {
   position: relative;
-  max-width: 620px;
+  max-width: 496px;
 }
 
 .foto-container.clickable {
@@ -196,15 +196,15 @@ mat-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: background 0.3s ease;
 }
 
 .foto-overlay mat-icon {
   color: white;
-  font-size: 48px;
-  width: 48px;
-  height: 48px;
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -222,26 +222,26 @@ mat-divider {
 }
 
 .relacionadas {
-  margin-top: 48px;
+  margin-top: 38px;
 }
 
 .relacionadas h2 {
-  font-size: 36px;
+  font-size: 29px;
   color: black;
-  margin: 24px 0;
+  margin: 19px 0;
   font-weight: 600;
 }
 
 .card-relacionada-title {
-  font-size: 30px;
+  font-size: 24px;
   flex: 1;
-  padding-top: 16px;
+  padding-top: 13px;
 }
 
 .grid-relacionadas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+  gap: 19px;
 }
 
 .tarjeta-relacionada {
@@ -250,50 +250,19 @@ mat-divider {
 }
 
 .tarjeta-relacionada:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .tarjeta-relacionada img {
   width: 100%;
-  height: 200px;
+  height: 160px;
   object-fit: cover;
 }
 
 /* RESPONSIVE */
-@media (max-width: 2000px) {
-  .foto {
-    max-width: 700px;
-  }
-
-  .foto-container {
-    max-width: 700px;
-  }
-
-  .info h1 {
-    font-size: 48px;
-  }
-
-  .ingredientes h2,
-  .elaboracion h2 {
-    font-size: 34px;
-  }
-
-  .relacionadas h2 {
-    font-size: 40px;
-  }
-
-  .card-relacionada-title {
-    font-size: 22px;
-  }
-
-  .grid-relacionadas {
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  }
-}
-
 @media (max-width: 1024px) {
   .cabecera {
-    gap: 24px;
+    gap: 19px;
   }
 
   .foto {
@@ -306,34 +275,34 @@ mat-divider {
   }
 
   .info {
-    min-width: 240px;
+    min-width: 192px;
   }
 
   .info h1 {
-    font-size: 32px;
+    font-size: 26px;
   }
 
   .contenido {
     grid-template-columns: 1fr 2fr;
-    gap: 32px;
+    gap: 26px;
   }
 
   .ingredientes h2,
   .elaboracion h2 {
-    font-size: 26px;
+    font-size: 21px;
   }
 
   .relacionadas h2 {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .card-relacionada-title {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .grid-relacionadas {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+    gap: 13px;
   }
 }
 
@@ -360,8 +329,8 @@ mat-divider {
 
   .cabecera {
     flex-direction: column;
-    gap: 16px;
-    margin: 16px 0;
+    gap: 13px;
+    margin: 13px 0;
   }
 
   .foto {
@@ -379,39 +348,39 @@ mat-divider {
   }
 
   .info h1 {
-    font-size: 26px;
+    font-size: 21px;
   }
 
   .contenido {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 19px;
   }
 
   .ingredientes h2,
   .elaboracion h2 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .relacionadas {
-    margin-top: 32px;
+    margin-top: 26px;
   }
 
   .relacionadas h2 {
-    font-size: 24px;
-    margin: 16px 0;
+    font-size: 19px;
+    margin: 13px 0;
   }
 
   .card-relacionada-title {
-    font-size: 16px;
-    padding-top: 8px;
+    font-size: 13px;
+    padding-top: 6px;
   }
 
   .grid-relacionadas {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 13px;
   }
 
   .tarjeta-relacionada img {
-    height: 160px;
+    height: 128px;
   }
 }

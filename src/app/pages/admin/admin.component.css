@@ -1,9 +1,9 @@
 /* CABECERA */
 .admin-cabecera {
   background: linear-gradient(135deg, var(--primary-color), #9c27b0);
-  border-radius: 12px;
-  padding: 32px;
-  margin-bottom: 32px;
+  border-radius: 10px;
+  padding: 26px;
+  margin-bottom: 26px;
 }
 
 .admin-cabecera-contenido {
@@ -11,24 +11,24 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 13px;
 }
 
 .admin-cabecera-titulo {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 13px;
 }
 
 .admin-icon {
-  font-size: 40px;
-  width: 40px;
-  height: 40px;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
   color: white;
 }
 
 .admin-cabecera h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: white;
   margin: 0;
 }
@@ -40,22 +40,22 @@
 
 /* FORMULARIO */
 .formulario-card {
-  margin-bottom: 32px;
-  padding: 16px;
-  border-radius: 12px !important;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08) !important;
+  margin-bottom: 26px;
+  padding: 13px;
+  border-radius: 10px !important;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08) !important;
 }
 
 .formulario-titulo {
-  font-size: 1.4rem !important;
+  font-size: 1.1rem !important;
   color: var(--primary-color) !important;
-  margin-bottom: 24px !important;
-  padding: 16px 16px 0 !important;
+  margin-bottom: 19px !important;
+  padding: 13px 13px 0 !important;
 }
 
 .fila {
   display: flex;
-  gap: 16px;
+  gap: 13px;
   flex-wrap: wrap;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .foto-upload {
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 .btn-upload {
@@ -73,64 +73,64 @@
 }
 
 .previa {
-  margin-top: 12px;
-  max-width: 200px;
-  border-radius: 8px;
+  margin-top: 10px;
+  max-width: 160px;
+  border-radius: 6px;
   display: block;
 }
 
 .progress-bar {
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 .checkbox-destacada {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 mat-divider {
-  margin: 24px 0;
+  margin: 19px 0;
 }
 
 .seccion-titulo {
   color: var(--primary-color);
-  margin-bottom: 16px;
-  font-size: 1.1rem;
+  margin-bottom: 13px;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
 .lista-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .btn-añadir {
   color: var(--primary-color) !important;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .formulario-acciones {
-  padding: 16px !important;
-  gap: 12px;
+  padding: 13px !important;
+  gap: 10px;
   display: flex;
 }
 
 .btn-guardar {
   background-color: var(--primary-color) !important;
   color: white !important;
-  border-radius: 24px !important;
-  padding: 0 24px !important;
+  border-radius: 19px !important;
+  padding: 0 19px !important;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .btn-cancelar {
   color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
-  border-radius: 24px !important;
-  padding: 0 24px !important;
+  border-radius: 19px !important;
+  padding: 0 19px !important;
 }
 
 /* TABLA */
@@ -138,11 +138,11 @@ mat-divider {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 32px 0 16px;
+  margin: 26px 0 13px;
 }
 
 .tabla-titulo {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: black;
   margin: 0;
 }
@@ -150,15 +150,15 @@ mat-divider {
 .tabla-contador {
   background: var(--primary-color);
   color: white;
-  padding: 4px 12px;
-  border-radius: 24px;
-  font-size: 0.9rem;
+  padding: 3px 10px;
+  border-radius: 19px;
+  font-size: 0.75rem;
 }
 
 .tabla-contenedor {
-  border-radius: 12px;
+  border-radius: 10px;
   overflow-x: auto;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -169,22 +169,22 @@ mat-divider {
 .tabla-nombre {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .tabla-estrella {
   color: var(--accent-color);
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
 }
 
 .tabla-badge {
   background: rgba(84, 175, 232, 0.1);
   color: var(--primary-color);
-  padding: 4px 10px;
-  border-radius: 24px;
-  font-size: 16px;
+  padding: 3px 8px;
+  border-radius: 19px;
+  font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -198,55 +198,55 @@ mat-divider {
 }
 
 .btn-editar {
-  font-size: 16px;
+  font-size: 13px;
   color: var(--primary-color) !important;
 }
 
 .btn-eliminar {
-  font-size: 16px;
+  font-size: 13px;
   color: #e53935 !important;
 }
 
 .admin-tabs {
-  margin-top: 24px;
+  margin-top: 19px;
 }
 
 .tabla-icono {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .orden-acciones {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: 3px;
   align-items: center;
 }
 
 .cat-orden {
-  width: 24px;
-  height: 24px;
+  width: 19px;
+  height: 19px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   background-color: var(--primary-color);
-  padding: 3px;
+  padding: 2px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .btn-orden {
   color: var(--primary-color) !important;
-  width: 36px !important;
-  height: 36px !important;
-  line-height: 36px !important;
+  width: 29px !important;
+  height: 29px !important;
+  line-height: 29px !important;
 }
 
 .btn-orden mat-icon {
-  font-size: 22px;
-  width: 22px;
-  height: 22px;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .btn-orden:disabled {
@@ -254,27 +254,24 @@ mat-divider {
 }
 
 /* RESPONSIVE */
-
-/* 2000px */
 @media (max-width: 2000px) {
   .tabla {
-    min-width: 600px;
+    min-width: 480px;
   }
 }
 
-/* 1024px */
 @media (max-width: 1024px) {
   .admin-cabecera {
-    padding: 24px;
+    padding: 19px;
   }
 
   .admin-cabecera h1 {
-    font-size: 1.7rem;
+    font-size: 1.36rem;
   }
 
   .fila mat-form-field {
-    min-width: 160px;
-    flex: 1 1 200px;
+    min-width: 128px;
+    flex: 1 1 160px;
   }
 
   ::ng-deep .mat-mdc-tab-label-container {
@@ -282,10 +279,9 @@ mat-divider {
   }
 }
 
-/* 768px */
 @media (max-width: 768px) {
   .admin-cabecera {
-    padding: 20px;
+    padding: 16px;
   }
 
   .admin-cabecera-contenido {
@@ -299,13 +295,13 @@ mat-divider {
   }
 
   .admin-cabecera h1 {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   .admin-icon {
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
   }
 
   .fila {
@@ -319,11 +315,11 @@ mat-divider {
   .tabla-cabecera {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
   }
 
   .tabla {
-    min-width: 480px;
+    min-width: 384px;
   }
 
   .formulario-acciones {

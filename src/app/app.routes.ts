@@ -29,6 +29,7 @@ export const routes: Routes = [
       { path: 'admin-login', component: AdminLoginComponent },
       { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
       { path: 'glosario', component: GlosarioComponent },
+      { path: '**', component: NotFoundComponent },
     ],
   },
   {
@@ -36,5 +37,4 @@ export const routes: Routes = [
     component: OnlyFooterLayoutComponent,
     children: [{ path: 'sobre-mi', component: SobreMiComponent }],
   },
-  { path: '**', component: NotFoundComponent },
 ];

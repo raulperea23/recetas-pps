@@ -2,14 +2,14 @@
 .hero {
   position: relative;
   height: 103vh;
-  min-height: 600px;
+  min-height: 480px;
   background: url("../../../../public/assets/images/kitchen-casa.jpeg") center
     center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: -24px -24px 0 -24px;
+  margin: -19px -19px 0 -19px;
 }
 
 .hero-overlay {
@@ -25,15 +25,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 24px;
+  gap: 16px;
+  padding: 19px;
 }
 
 .hero-nombre {
-  font-size: 4rem;
+  font-size: 3.2rem;
   color: white;
   margin: 0;
-  min-height: 80px;
+  min-height: 64px;
 }
 
 .cursor {
@@ -56,27 +56,27 @@
 }
 
 .hero-titular {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
+  max-width: 480px;
   margin: 0;
 }
 
 .hero-btn {
   color: white !important;
   border-color: white !important;
-  border-radius: 24px !important;
-  padding: 8px 32px !important;
-  font-size: 1rem;
+  border-radius: 19px !important;
+  padding: 6px 26px !important;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .hero-scroll-indicator {
   position: absolute;
-  bottom: 32px;
+  bottom: 26px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
@@ -85,9 +85,9 @@
 
 .scroll-icon {
   color: white;
-  font-size: 40px;
-  width: 40px;
-  height: 40px;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 @keyframes botar {
@@ -96,37 +96,37 @@
     transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(8px);
   }
 }
 
 main {
-  padding: 24px;
-  max-width: 1750px;
+  padding: 19px;
+  max-width: 1400px;
   margin: 0 auto;
   flex: 1;
 }
 
 /* SECCIONES */
 .seccion {
-  padding: 80px 0;
+  padding: 64px 0;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 10px;
+  margin-bottom: 32px;
 }
 
 .section-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 .section-title {
-  font-size: 40px;
+  font-size: 32px;
   color: black;
   font-weight: 700;
 }
@@ -135,35 +135,35 @@ main {
 .historia-contenido {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 38px;
   align-items: center;
 }
 
 .historia-descripcion {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   line-height: 1.9;
   color: #444;
 }
 
 .historia-foto img {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 13px;
   object-fit: cover;
-  max-height: 500px;
-  box-shadow: 8px 8px 24px rgba(0, 0, 0, 0.15);
+  max-height: 400px;
+  box-shadow: 6px 6px 19px rgba(0, 0, 0, 0.15);
 }
 
 /* VALORES */
 .valores-seccion {
   background: rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
-  padding: 48px;
+  border-radius: 13px;
+  padding: 38px;
 }
 
 .valores-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 19px;
 }
 
 .valor-card {
@@ -171,28 +171,28 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
-  padding: 32px 20px;
+  gap: 13px;
+  padding: 26px 16px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 13px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  border-bottom: 4px solid var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
 }
 
 .valor-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.12);
 }
 
 .valor-icono {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .valor-frase {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #444;
   line-height: 1.6;
   margin: 0;
@@ -203,8 +203,8 @@ main {
 .numeros-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  margin-bottom: 32px;
+  gap: 16px;
+  margin-bottom: 26px;
 }
 
 .numero-card {
@@ -212,56 +212,56 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
-  padding: 20px 16px 28px 16px;
+  gap: 13px;
+  padding: 16px 13px 22px 13px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.08);
-  border-top: 4px solid var(--primary-color);
+  border-radius: 13px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
+  border-top: 3px solid var(--primary-color);
 }
 
 .numero-icono {
-  font-size: 2rem;
+  font-size: 1.6rem;
   align-self: flex-start;
 }
 
 .numero-valor {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--primary-color);
 }
 
 .numero-etiqueta {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #666;
   text-align: center;
 }
 
 .categorias-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 13px;
 }
 
 .categoria-numero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 20px;
+  gap: 5px;
+  padding: 16px;
   background: rgba(84, 175, 232, 0.1);
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid rgba(84, 175, 232, 0.1);
 }
 
 .cat-total {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--primary-color);
 }
 
 .cat-nombre {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #666;
   text-align: center;
   flex: 1;
@@ -270,16 +270,16 @@ main {
 /* BANNER CIERRE */
 .banner-cierre {
   background: linear-gradient(135deg, var(--primary-color), #9c27b0);
-  border-radius: 16px;
-  padding: 64px 32px;
+  border-radius: 13px;
+  padding: 51px 26px;
   text-align: center;
-  margin-top: 48px;
+  margin-top: 38px;
 }
 
 .banner-cierre h2 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: white;
-  margin: 0 0 24px 0;
+  margin: 0 0 19px 0;
 }
 
 .banner-cierre-buttons {
@@ -287,146 +287,96 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
 .btn-cierre {
   background: white !important;
   color: var(--primary-color) !important;
-  border-radius: 24px !important;
-  padding: 8px 32px !important;
-  font-size: 1rem !important;
+  border-radius: 19px !important;
+  padding: 6px 26px !important;
+  font-size: 0.85rem !important;
 }
 
 /* RESPONSIVE */
-@media (max-width: 2000px) {
-  .hero-nombre {
-    font-size: 5rem;
-  }
-
-  .hero-titular {
-    font-size: 1.6rem;
-    max-width: 800px;
-  }
-
-  .section-title {
-    font-size: 48px;
-  }
-
-  .section-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 48px;
-  }
-
-  .historia-descripcion {
-    font-size: 1.2rem;
-  }
-
-  .historia-foto img {
-    max-height: 600px;
-  }
-
-  .numeros-grid {
-    gap: 28px;
-  }
-
-  .numero-valor {
-    font-size: 3rem;
-  }
-
-  .categorias-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-
-  .banner-cierre {
-    padding: 80px 48px;
-  }
-
-  .banner-cierre h2 {
-    font-size: 2.4rem;
-  }
-}
-
 @media (max-width: 1024px) {
   .seccion {
-    padding: 60px 0;
+    padding: 48px 0;
   }
 
   .historia-contenido {
-    gap: 32px;
+    gap: 26px;
   }
 
   .numeros-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 13px;
   }
 
   .valores-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 16px;
   }
 
   .valores-seccion {
-    padding: 36px 28px;
+    padding: 29px 22px;
   }
 
   .section-title {
-    font-size: 34px;
+    font-size: 27px;
   }
 
   .section-icon {
-    width: 34px;
-    height: 34px;
-    font-size: 34px;
+    width: 27px;
+    height: 27px;
+    font-size: 27px;
   }
 
   .banner-cierre {
-    padding: 48px 24px;
+    padding: 38px 19px;
   }
 
   .banner-cierre h2 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    margin: -24px -16px 0 -16px;
+    margin: -19px -13px 0 -13px;
   }
 
   .hero-nombre {
-    font-size: 2.5rem;
-    min-height: 60px;
+    font-size: 2rem;
+    min-height: 48px;
   }
 
   .hero-titular {
-    font-size: 1.1rem;
-  }
-
-  .hero-btn {
-    padding: 6px 24px !important;
     font-size: 0.9rem;
   }
 
+  .hero-btn {
+    padding: 5px 19px !important;
+    font-size: 0.75rem;
+  }
+
   .seccion {
-    padding: 48px 0;
+    padding: 38px 0;
   }
 
   .section-title {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
   }
 
   .historia-contenido {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 19px;
   }
 
   .historia-foto {
@@ -434,52 +384,52 @@ main {
   }
 
   .historia-foto img {
-    max-height: 300px;
+    max-height: 240px;
   }
 
   .historia-descripcion {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .valores-seccion {
-    padding: 24px 16px;
+    padding: 19px 13px;
   }
 
   .valores-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 13px;
   }
 
   .valor-card {
-    padding: 20px 12px;
+    padding: 16px 10px;
   }
 
   .numeros-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .numero-valor {
-    font-size: 2rem;
-  }
-
-  .categorias-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 10px;
   }
 
+  .numero-valor {
+    font-size: 1.6rem;
+  }
+
+  .categorias-grid {
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    gap: 8px;
+  }
+
   .banner-cierre {
-    padding: 32px 16px;
-    margin-top: 32px;
+    padding: 26px 13px;
+    margin-top: 26px;
   }
 
   .banner-cierre h2 {
-    font-size: 1.3rem;
+    font-size: 1.05rem;
   }
 
   .banner-cierre-buttons {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .btn-cierre {
@@ -489,7 +439,7 @@ main {
 
 @media (max-width: 480px) {
   .hero-nombre {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .valores-grid {

@@ -1,15 +1,15 @@
 :host {
   display: block;
-  padding: 24px;
+  padding: 19px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
 }
 
 thead {
@@ -19,15 +19,15 @@ thead {
 
 th,
 td {
-  font-size: 18px;
-  padding: 14px 18px;
+  font-size: 14px;
+  padding: 11px 14px;
   text-align: center;
 }
 
 th {
-  width: 80px;
+  width: 64px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   letter-spacing: 0.5px;
 }
 
@@ -49,11 +49,11 @@ td {
 }
 
 mat-dialog-actions {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 button[mat-button] {
-  min-width: 120px;
+  min-width: 96px;
 }
 
 @media only screen and (max-width: 1024px) {

@@ -3,31 +3,31 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 26px;
 }
 
 .section-header .section-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 .section-header .section-title {
-  font-size: 46px;
+  font-size: 37px;
   color: black;
 }
 
 .subtitle {
   color: #888;
-  margin-bottom: 24px;
+  margin-bottom: 19px;
 }
 
 .tipos-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 13px;
+  margin-bottom: 26px;
 }
 
 .tipo-card {
@@ -36,25 +36,25 @@
   justify-content: center;
   background: transparent;
   border: 2px solid var(--primary-color);
-  border-radius: 12px;
-  padding: 24px 16px;
+  border-radius: 10px;
+  padding: 19px 13px;
   cursor: pointer;
   transition:
     border-color 0.2s,
     transform 0.2s,
     box-shadow 0.2s;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.06);
 }
 
 .tipo-card:hover {
   background-color: rgba(84, 175, 232, 0.2);
-  box-shadow: 4px 4px 12px rgba(84, 175, 232, 0.2);
-  transform: translateY(-4px);
+  box-shadow: 3px 3px 10px rgba(84, 175, 232, 0.2);
+  transform: translateY(-3px);
 }
 
 .tipo-nombre {
   color: black;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
 }
@@ -62,19 +62,19 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 19px;
 }
 
 .categoria-card {
-  height: 220px;
-  border-radius: 12px;
+  height: 176px;
+  border-radius: 10px;
   background-size: cover;
   background-position: center;
   background-color: #ccc;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
   transition:
     transform 0.2s,
     box-shadow 0.2s;
@@ -93,8 +93,8 @@
 }
 
 .categoria-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .categoria-card:hover::before {
@@ -106,7 +106,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 16px 20px;
+  padding: 13px 16px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   transition: background 0.3s;
   z-index: 1;
@@ -118,144 +118,101 @@
 
 .overlay h2 {
   color: white;
-  font-size: 28px;
+  font-size: 22px;
   margin: 0;
-}
-
-/* 2000px */
-@media (max-width: 2000px) {
-  .section-header .section-title {
-    font-size: 46px;
-  }
-
-  .tipos-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .categoria-card {
-    height: 260px;
-  }
-
-  .overlay h2 {
-    font-size: 32px;
-  }
-}
-
-/* 1200px */
-@media (max-width: 1200px) {
-  .section-header .section-title {
-    font-size: 40px;
-  }
-
-  .tipos-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .categoria-card {
-    height: 200px;
-  }
-
-  .overlay h2 {
-    font-size: 24px;
-  }
 }
 
 /* 1024px */
 @media (max-width: 1024px) {
   .section-header .section-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 36px;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
   }
 
   .section-header .section-title {
-    font-size: 36px;
+    font-size: 29px;
   }
 
   .tipos-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .tipo-card {
-    padding: 20px 12px;
+    padding: 16px 10px;
   }
 
   .tipo-nombre {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 13px;
   }
 
   .categoria-card {
-    height: 180px;
+    height: 144px;
   }
 
   .overlay h2 {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 
 /* 768px */
 @media (max-width: 768px) {
   .section-header {
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-bottom: 16px;
   }
 
   .section-header .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
     flex-shrink: 0;
   }
 
   .section-header .section-title {
-    font-size: 26px;
+    font-size: 21px;
     line-height: 1.2;
   }
 
   .subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 16px;
+    font-size: 0.8rem;
+    margin-bottom: 13px;
   }
 
   .tipos-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 24px;
+    gap: 8px;
+    margin-bottom: 19px;
   }
 
   .tipo-card {
-    padding: 16px 8px;
+    padding: 13px 6px;
   }
 
   .tipo-nombre {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
   .categoria-card {
-    height: 160px;
+    height: 128px;
   }
 
   .overlay {
-    padding: 12px 16px;
+    padding: 10px 13px;
   }
 
   .overlay h2 {
-    font-size: 18px;
+    font-size: 14px;
   }
 }

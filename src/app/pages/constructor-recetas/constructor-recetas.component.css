@@ -1,60 +1,60 @@
 .section-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 11px;
+  margin-bottom: 19px;
 }
 
 .section-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 .section-title {
-  font-size: 46px;
+  font-size: 37px;
   color: black;
   font-weight: 700;
 }
 
 .subtitle {
   color: #888;
-  margin-bottom: 32px;
-  font-size: 1rem;
+  margin-bottom: 26px;
+  font-size: 0.85rem;
 }
 
 /* LAYOUT */
 .cocina-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 48px;
+  gap: 19px;
+  margin-bottom: 38px;
 }
 
 /* PANEL INGREDIENTES */
 .panel-ingredientes {
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.08);
-  max-height: 560px;
+  border-radius: 13px;
+  padding: 16px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
+  max-height: 448px;
   overflow-y: auto;
 }
 
 .panel-titulo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: var(--primary-color);
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
   margin-top: 0;
 }
 
 /* BUSCADOR */
 .buscador-ingredientes {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .full-width {
@@ -74,26 +74,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 24px;
+  gap: 6px;
+  padding: 19px;
   color: #aaa;
   text-align: center;
 }
 
 .sin-resultados-busqueda mat-icon {
-  font-size: 2rem;
-  width: 2rem;
-  height: 2rem;
+  font-size: 1.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .sin-resultados-busqueda p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 
 /* CATEGORÍAS */
 .categoria-grupo {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .categoria-header {
@@ -101,12 +101,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
+  padding: 8px 10px;
   background: rgba(84, 175, 232, 0.08);
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #333;
   transition: background 0.2s;
@@ -117,18 +117,18 @@
 }
 
 .categoria-ingredientes {
-  padding: 8px 4px;
+  padding: 6px 3px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .ingrediente-chip {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 8px;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
   transition:
     background 0.2s,
@@ -140,7 +140,7 @@
 
 .ingrediente-chip:hover {
   background: rgba(84, 175, 232, 0.08);
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 .ingrediente-chip.seleccionado {
@@ -149,38 +149,38 @@
 }
 
 .ing-emoji {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .ing-nombre {
   flex: 1;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #333;
 }
 
 .ing-check {
   color: var(--primary-color);
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
 }
 
 .cargando {
   color: #888;
   text-align: center;
-  padding: 24px;
+  padding: 19px;
 }
 
 /* PANEL SELECCIONADOS */
 .panel-seleccionados {
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 13px;
+  padding: 16px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
   border: 2px solid rgba(84, 175, 232, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 13px;
 }
 
 .seleccionados-header {
@@ -191,7 +191,7 @@
 
 .btn-limpiar {
   color: #e53935 !important;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
 .seleccionados-vacio {
@@ -202,33 +202,33 @@
   justify-content: center;
   text-align: center;
   color: #aaa;
-  padding: 40px 16px;
-  gap: 12px;
+  padding: 32px 13px;
+  gap: 10px;
 }
 
 .seleccionados-vacio span {
-  font-size: 3rem;
+  font-size: 2.4rem;
 }
 
 .seleccionados-vacio p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 .seleccionados-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .seleccionado-chip {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
+  gap: 5px;
+  padding: 6px 10px;
   background: rgba(84, 175, 232, 0.1);
   border: 1px solid var(--primary-color);
-  border-radius: 24px;
+  border-radius: 19px;
   cursor: pointer;
   transition: background 0.2s;
   user-select: none;
@@ -240,143 +240,128 @@
 
 .ing-quitar {
   color: var(--primary-color);
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
+  font-size: 13px;
+  width: 13px;
+  height: 13px;
 }
 
 .seleccionados-contador {
   color: var(--primary-color);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   text-align: center;
 }
 
 /* RECETAS */
 .recetas-section {
-  margin-top: 16px;
+  margin-top: 13px;
 }
 
 .recetas-header {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .section-title-recetas {
-  font-size: 1.8rem;
+  font-size: 1.44rem;
   color: black;
   font-weight: 700;
 }
 
 .recetas-subtitulo {
   color: #888;
-  margin-bottom: 24px;
-  font-size: 0.95rem;
+  margin-bottom: 19px;
+  font-size: 0.8rem;
 }
 
 .recetas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+  gap: 19px;
   align-items: stretch;
 }
 
 .sin-recetas {
   text-align: center;
-  padding: 48px 24px;
+  padding: 38px 19px;
   color: #888;
 }
 
 .sin-recetas span {
-  font-size: 3rem;
+  font-size: 2.4rem;
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 .sin-recetas p {
-  margin: 4px 0;
+  margin: 3px 0;
 }
 
 .sin-recetas-sub {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: #aaa;
 }
 
 /* RESPONSIVE */
-@media (max-width: 2000px) {
-  .cocina-layout {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-
-  .panel-ingredientes {
-    max-height: 640px;
-  }
-
-  .recetas-grid {
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  }
-}
-
 @media (max-width: 1024px) {
   .cocina-layout {
     grid-template-columns: 3fr 2fr;
-    gap: 16px;
+    gap: 13px;
   }
 
   .panel-ingredientes {
-    max-height: 520px;
+    max-height: 416px;
   }
 
   .section-title {
-    font-size: 36px;
+    font-size: 29px;
   }
 
   .section-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 36px;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
   }
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
   }
 
   .subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 24px;
+    font-size: 0.75rem;
+    margin-bottom: 19px;
   }
 
   .cocina-layout {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 13px;
   }
 
   .panel-ingredientes {
-    max-height: 350px;
+    max-height: 280px;
   }
 
   .panel-seleccionados {
-    min-height: 200px;
+    min-height: 160px;
   }
 
   .seleccionados-vacio {
-    padding: 24px 16px;
+    padding: 19px 13px;
   }
 
   .recetas-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 13px;
   }
 
   .section-title-recetas {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 }
