@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  private cloudName = 'dfyaatkd5';
-  private uploadPreset = 'recetas_pps';
+  private cloudName = environment.cloudinary.cloudName;
+  private uploadPreset = environment.cloudinary.uploadPreset;
 
   constructor(private http: HttpClient) {}
 

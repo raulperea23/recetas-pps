@@ -1,6 +1,6 @@
-// Firebase config
+// Firebase prod config
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     apiKey: 'AIzaSyBC6IV7SVSl0kbfjcL-jR3_Tf3hqqp3ebI',
     authDomain: 'recetas-pps.firebaseapp.com',
