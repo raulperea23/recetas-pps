@@ -1,6 +1,39 @@
+:host {
+  position: relative;
+}
+
 main {
   padding: 19px;
   max-width: 1400px;
   margin: 0 auto;
   flex: 1;
+}
+
+.franja-izq {
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 5px;
+  height: 100%;
+  z-index: 1;
+  background-color: black;
+  pointer-events: none;
+}
+
+.franja-der {
+  position: absolute;
+  top: 0;
+  right: 7px;
+  width: 5px;
+  height: 100%;
+  z-index: 1;
+  background-color: black;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+  .franja-izq,
+  .franja-der {
+    display: none;
+  }
 }

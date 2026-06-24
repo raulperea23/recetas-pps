@@ -221,6 +221,20 @@ mat-divider {
   opacity: 1;
 }
 
+.banner-cierre {
+  background: linear-gradient(135deg, var(--primary-color), #9c27b0);
+  border-radius: 13px;
+  padding: 20px 14px;
+  text-align: center;
+  margin-top: 38px;
+}
+
+.banner-cierre h2 {
+  font-size: 1.8rem;
+  color: white;
+  margin: 0;
+}
+
 .relacionadas {
   margin-top: 38px;
 }
@@ -292,6 +306,14 @@ mat-divider {
     font-size: 21px;
   }
 
+  .banner-cierre {
+    padding: 20px 14px;
+  }
+
+  .banner-cierre h2 {
+    font-size: 1.6rem;
+  }
+
   .relacionadas h2 {
     font-size: 22px;
   }
@@ -359,6 +381,14 @@ mat-divider {
   .ingredientes h2,
   .elaboracion h2 {
     font-size: 18px;
+  }
+
+  .banner-cierre {
+    padding: 18px 12px;
+  }
+
+  .banner-cierre h2 {
+    font-size: 1.6rem;
   }
 
   .relacionadas {
