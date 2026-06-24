@@ -1,6 +1,6 @@
 .banner {
   position: relative;
-  background: url("../../../../public/assets/images/kitchen-casa.jpeg");
+  background: url("../../../../public/assets/images/kitchen-casa.webp");
   background-size: cover;
   background-position: center;
   padding: 64px 19px;
@@ -87,7 +87,7 @@
 
 .banner-sugerencia-aleatoria {
   position: relative;
-  background: url("../../../../public/assets/images/sugerencia-chef.jpg");
+  background: url("../../../../public/assets/images/sugerencia-chef.webp");
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -115,7 +115,7 @@
 
 .banner-receta-aleatoria {
   position: relative;
-  background: url("../../../../public/assets/images/receta-aleatoria.jpg");
+  background: url("../../../../public/assets/images/receta-aleatoria.webp");
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -476,7 +476,7 @@
   position: absolute;
   width: 120%;
   height: 12px;
-  background: url("../../../../public/assets/images/madera.jpg");
+  background: url("../../../../public/assets/images/madera.webp");
   background-size: cover;
   background-position: center;
   bottom: 16px;

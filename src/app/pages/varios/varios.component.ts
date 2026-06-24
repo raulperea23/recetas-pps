@@ -29,22 +29,22 @@ interface MesItem {
 export class VariosComponent {
   productos: ProductoItem[] = PRODUCTOS.map((prod) => ({
     nombre: prod,
-    imagen: `assets/images/products/${prod.toLowerCase().replaceAll(' ', '-')}.jpg`,
+    imagen: `assets/images/products/${prod.toLowerCase().replaceAll(' ', '-')}.webp`,
   }));
 
   meses: MesItem[] = [
-    { nombre: 'Enero', imagen: 'assets/images/months/enero.png' },
-    { nombre: 'Febrero', imagen: 'assets/images/months/febrero.png' },
-    { nombre: 'Marzo', imagen: 'assets/images/months/marzo.png' },
-    { nombre: 'Abril', imagen: 'assets/images/months/abril.png' },
-    { nombre: 'Mayo', imagen: 'assets/images/months/mayo.png' },
-    { nombre: 'Junio', imagen: 'assets/images/months/junio.png' },
-    { nombre: 'Julio', imagen: 'assets/images/months/julio.png' },
-    { nombre: 'Agosto', imagen: 'assets/images/months/agosto.png' },
-    { nombre: 'Septiembre', imagen: 'assets/images/months/septiembre.png' },
-    { nombre: 'Octubre', imagen: 'assets/images/months/octubre.png' },
-    { nombre: 'Noviembre', imagen: 'assets/images/months/noviembre.png' },
-    { nombre: 'Diciembre', imagen: 'assets/images/months/diciembre.png' },
+    { nombre: 'Enero', imagen: 'assets/images/months/enero.webp' },
+    { nombre: 'Febrero', imagen: 'assets/images/months/febrero.webp' },
+    { nombre: 'Marzo', imagen: 'assets/images/months/marzo.webp' },
+    { nombre: 'Abril', imagen: 'assets/images/months/abril.webp' },
+    { nombre: 'Mayo', imagen: 'assets/images/months/mayo.webp' },
+    { nombre: 'Junio', imagen: 'assets/images/months/junio.webp' },
+    { nombre: 'Julio', imagen: 'assets/images/months/julio.webp' },
+    { nombre: 'Agosto', imagen: 'assets/images/months/agosto.webp' },
+    { nombre: 'Septiembre', imagen: 'assets/images/months/septiembre.webp' },
+    { nombre: 'Octubre', imagen: 'assets/images/months/octubre.webp' },
+    { nombre: 'Noviembre', imagen: 'assets/images/months/noviembre.webp' },
+    { nombre: 'Diciembre', imagen: 'assets/images/months/diciembre.webp' },
   ];
 
   constructor(

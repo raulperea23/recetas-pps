@@ -171,6 +171,6 @@ export class HomeComponent implements OnInit {
 
   onImageError(event: any): void {
     event.target.onerror = null;
-    event.target.src = 'assets/images/placeholder.png';
+    event.target.src = 'assets/images/placeholder.webp';
   }
 }

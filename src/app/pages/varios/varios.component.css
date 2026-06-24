@@ -97,7 +97,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 19px;
-  background: url("../../../../public/assets/images/glosario.jpg");
+  background: url("../../../../public/assets/images/glosario.webp");
   background-size: cover;
   background-position: center;
   border-radius: 10px;

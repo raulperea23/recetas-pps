@@ -4,9 +4,9 @@
   }
   <img
     mat-card-image
-    [src]="receta.foto || 'assets/images/placeholder.png'"
+    [src]="receta.foto || 'assets/images/placeholder.webp'"
     [alt]="receta.nombre"
-    (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+    (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
   />
   <mat-card-content>
     <h3 class="card-title">{{ receta.nombre }}</h3>

@@ -38,10 +38,10 @@
       (click)="tieneFoto() && abrirFoto()"
     >
       <img
-        [src]="receta.foto || 'assets/images/placeholder.png'"
+        [src]="receta.foto || 'assets/images/placeholder.webp'"
         [alt]="receta.nombre"
         class="foto"
-        (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+        (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
       />
       <div class="foto-overlay" *ngIf="tieneFoto()">
         <mat-icon>zoom_in</mat-icon>
@@ -105,9 +105,9 @@
       >
         <img
           mat-card-image
-          [src]="r.foto || 'assets/images/placeholder.png'"
+          [src]="r.foto || 'assets/images/placeholder.webp'"
           [alt]="r.nombre"
-          (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+          (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
         />
 
         <mat-card-content>

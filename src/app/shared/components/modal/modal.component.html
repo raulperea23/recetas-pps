@@ -11,10 +11,10 @@
   <!-- MODO RECETA -->
   <ng-container *ngIf="data.tipo !== 'truco' && data.tipo !== 'salsa'">
     <img
-      [src]="data.foto || 'assets/images/placeholder.png'"
+      [src]="data.foto || 'assets/images/placeholder.webp'"
       [alt]="data.nombre"
       class="foto"
-      (error)="$any($event.target).src = 'assets/images/placeholder.png'"
+      (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
     />
     <div class="info">
       <p class="categoria">{{ data.categoria }}</p>
