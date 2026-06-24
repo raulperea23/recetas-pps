@@ -117,7 +117,7 @@ export class SobreMiComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Sobre mí | Platos Para Saborear');
+    this.title.setTitle('Sobre mí | Paraíso Para Saborear');
     this.iniciarTypewriter();
     this.cargarNumeros();
     this.observarSecciones();

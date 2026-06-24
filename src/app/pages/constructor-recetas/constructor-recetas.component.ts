@@ -67,7 +67,7 @@ export class ConstructorRecetasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle('¿Qué cocinamos hoy? | Platos Para Siempre');
+    this.title.setTitle('¿Qué cocinamos hoy? | Paraíso Para Saborear');
 
     this.categoriasIngredientesService
       .getCategorias()

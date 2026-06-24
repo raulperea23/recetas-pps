@@ -60,7 +60,7 @@ export class DetalleRecetaComponent implements OnInit {
 
         this.recetasService.getRecetaPorId(id).subscribe((receta) => {
           this.receta = receta;
-          this.title.setTitle(`${receta.nombre} | PPS Recetas`);
+          this.title.setTitle(`${receta.nombre} | Paraíso Para Saborear`);
 
           this.recetasService
             .getRecetasPorCategoria(receta.categoria, id)

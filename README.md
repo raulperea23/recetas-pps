@@ -54,3 +54,8 @@ FLATICON: https://www.flaticon.com/free-icons/feast
 # IMAGENES SIN COPYRIGHT
 
 PEXELS: https://www.pexels.com/es-es/
+
+# PARA SUBIR CAMBIOS
+
+ng build
+firebase deploy
