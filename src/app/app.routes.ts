@@ -29,12 +29,16 @@ export const routes: Routes = [
       { path: 'admin-login', component: AdminLoginComponent },
       { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
       { path: 'glosario', component: GlosarioComponent },
-      { path: '**', component: NotFoundComponent },
     ],
   },
   {
     path: '',
     component: OnlyFooterLayoutComponent,
     children: [{ path: 'sobre-mi', component: SobreMiComponent }],
+  },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [{ path: '**', component: NotFoundComponent }],
   },
 ];

@@ -35,6 +35,18 @@ mat-toolbar .franja {
   align-items: center;
 }
 
+mat-toolbar .esquina-decorativa {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+  border-top: 7px solid var(--bg-color);
+  border-left: 7px solid var(--bg-color);
+  pointer-events: none;
+}
+
 .navbar-titulo {
   position: relative;
   z-index: 1;
@@ -117,7 +129,8 @@ button.navbar-button span.mdc-button__label {
 
 /* RESPONSIVE */
 @media (max-width: 1200px) {
-  mat-toolbar .franja {
+  mat-toolbar .franja,
+  mat-toolbar .esquina-decorativa {
     display: none;
   }
 
@@ -145,7 +158,8 @@ button.navbar-button span.mdc-button__label {
 }
 
 @media (max-width: 1024px) {
-  mat-toolbar .franja {
+  mat-toolbar .franja,
+  mat-toolbar .esquina-decorativa {
     display: none;
   }
 
