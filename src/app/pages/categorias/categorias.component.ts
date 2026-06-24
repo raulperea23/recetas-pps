@@ -31,7 +31,7 @@ export class CategoriasComponent {
   nombresCategoriasParaImagenes = CATEGORIAS_NOMBRES_IMGS;
   categorias: CategoriaItem[] = CATEGORIAS.map((cat) => ({
     nombre: cat,
-    imagen: `assets/images/categories/${this.nombresCategoriasParaImagenes[cat]}.jpg`,
+    imagen: `assets/images/categories/${this.nombresCategoriasParaImagenes[cat]}.webp`,
   }));
 
   constructor(
