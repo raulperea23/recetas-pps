@@ -17,7 +17,6 @@ import { Receta } from '../../shared/models/receta.model';
 import { Title } from '@angular/platform-browser';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FotoDialogComponent } from '../../shared/components/foto-dialog/foto-dialog.component';
-import { QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-detalle-receta',
@@ -30,7 +29,6 @@ import { QuillModule } from 'ngx-quill';
     MatDividerModule,
     MatIconModule,
     MatDialogModule,
-    QuillModule,
     MatCardModule,
   ],
   templateUrl: './detalle-receta.component.html',

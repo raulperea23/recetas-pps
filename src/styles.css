@@ -257,3 +257,8 @@ td {
 .mat-mdc-tab-indicator__content--underline {
   border-color: var(--primary-color) !important;
 }
+
+/* Titap editor */
+.tiptap-content .ProseMirror {
+  outline: none;
+}

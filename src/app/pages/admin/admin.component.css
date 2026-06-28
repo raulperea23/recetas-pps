@@ -238,9 +238,9 @@ mat-divider {
 
 .btn-orden {
   color: var(--primary-color) !important;
-  width: 29px !important;
+  /* width: 29px !important;
   height: 29px !important;
-  line-height: 29px !important;
+  line-height: 29px !important; */
 }
 
 .btn-orden mat-icon {

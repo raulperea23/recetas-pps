@@ -38,7 +38,7 @@ import {
 import { Receta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
-import { QuillModule } from 'ngx-quill';
+import { TiptapEditorComponent } from '../../shared/components/tiptap-editor/tiptap-editor.component';
 import {
   CATEGORIAS,
   DIFICULTADES,
@@ -65,7 +65,7 @@ import {
     MatProgressBarModule,
     MatSnackBarModule,
     MatTabsModule,
-    QuillModule,
+    TiptapEditorComponent,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',

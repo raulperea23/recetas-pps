@@ -1,0 +1,79 @@
+<div class="tiptap-wrapper">
+  <div class="tiptap-toolbar">
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Negrita"
+      [class.activo]="isActive('bold')"
+      (click)="toggle('bold')"
+    >
+      <mat-icon>format_bold</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Cursiva"
+      [class.activo]="isActive('italic')"
+      (click)="toggle('italic')"
+    >
+      <mat-icon>format_italic</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Subrayado"
+      [class.activo]="isActive('underline')"
+      (click)="toggle('underline')"
+    >
+      <mat-icon>format_underlined</mat-icon>
+    </button>
+    <div class="tiptap-separador"></div>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Lista"
+      [class.activo]="isActive('bulletList')"
+      (click)="toggle('bulletList')"
+    >
+      <mat-icon>format_list_bulleted</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Lista numerada"
+      [class.activo]="isActive('orderedList')"
+      (click)="toggle('orderedList')"
+    >
+      <mat-icon>format_list_numbered</mat-icon>
+    </button>
+    <div class="tiptap-separador"></div>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Alinear izquierda"
+      [class.activo]="isActive('left')"
+      (click)="toggle('left')"
+    >
+      <mat-icon>format_align_left</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Centrar"
+      [class.activo]="isActive('center')"
+      (click)="toggle('center')"
+    >
+      <mat-icon>format_align_center</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Alinear derecha"
+      [class.activo]="isActive('right')"
+      (click)="toggle('right')"
+    >
+      <mat-icon>format_align_right</mat-icon>
+    </button>
+  </div>
+  <div #editorEl class="tiptap-content"></div>
+</div>
