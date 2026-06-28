@@ -228,6 +228,9 @@ button.navbar-button span.mdc-button__label {
     text-transform: uppercase;
     white-space: normal;
     overflow-wrap: break-word;
+    margin-bottom: 0;
+    text-align: left;
+    padding-left: 10px;
   }
 
   .navbar-menu {

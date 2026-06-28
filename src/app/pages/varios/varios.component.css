@@ -212,7 +212,7 @@
   }
 
   .section-header .section-title {
-    font-size: 30px;
+    font-size: 34px;
   }
 
   .categoria-card {
@@ -259,7 +259,7 @@
   }
 
   .section-header .section-title {
-    font-size: 21px;
+    font-size: 30px;
     line-height: 1.2;
   }
 
@@ -322,7 +322,7 @@
 
 @media (max-width: 480px) {
   .section-header .section-title {
-    font-size: 18px;
+    font-size: 26px;
   }
 
   .meses-grid {

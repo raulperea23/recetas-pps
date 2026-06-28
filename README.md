@@ -55,6 +55,10 @@ FLATICON: https://www.flaticon.com/free-icons/feast
 
 PEXELS: https://www.pexels.com/es-es/
 
+# OPTIMIZACION DE IMAGENES (webp)
+
+SQUOOSH: https://squoosh.app/
+
 # PARA SUBIR CAMBIOS
 
 ng build

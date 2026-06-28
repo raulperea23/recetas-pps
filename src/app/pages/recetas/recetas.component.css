@@ -79,7 +79,7 @@
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .section-header .section-title {
-    font-size: 29px;
+    font-size: 34px;
   }
 
   .section-header .section-icon {
@@ -119,7 +119,7 @@
   }
 
   .section-header .section-title {
-    font-size: 22px;
+    font-size: 30px;
   }
 
   .filtros {

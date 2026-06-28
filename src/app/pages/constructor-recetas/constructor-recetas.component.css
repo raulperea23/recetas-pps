@@ -313,7 +313,7 @@
   }
 
   .section-title {
-    font-size: 29px;
+    font-size: 34px;
   }
 
   .section-icon {
@@ -325,7 +325,7 @@
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 22px;
+    font-size: 30px;
   }
 
   .section-icon {
