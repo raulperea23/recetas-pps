@@ -259,7 +259,7 @@
   }
 
   .section-header .section-title {
-    font-size: 30px;
+    font-size: 32px;
     line-height: 1.2;
   }
 
@@ -322,7 +322,7 @@
 
 @media (max-width: 480px) {
   .section-header .section-title {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .meses-grid {

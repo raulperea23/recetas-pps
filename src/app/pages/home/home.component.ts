@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -47,6 +47,46 @@ export class HomeComponent implements OnInit {
   salsas = SALSAS;
   preparaciones: Preparacion[] = [];
 
+  readonly LIMITE_MOBILE = 4;
+  isMobile = false;
+  limitPreparaciones = 4;
+  limitTrucos = 4;
+
+  get preparacionesVisibles(): Preparacion[] {
+    if (this.isMobile) {
+      return this.preparaciones.slice(0, this.limitPreparaciones);
+    }
+    return this.preparaciones;
+  }
+
+  get trucosVisibles(): Truco[] {
+    if (this.isMobile) {
+      return this.trucos.slice(0, this.limitTrucos);
+    }
+    return this.trucos;
+  }
+
+  get hayMasPreparaciones(): boolean {
+    return this.isMobile && this.limitPreparaciones < this.preparaciones.length;
+  }
+
+  get hayMasTrucos(): boolean {
+    return this.isMobile && this.limitTrucos < this.trucos.length;
+  }
+
+  verMasPreparaciones(): void {
+    this.limitPreparaciones += this.LIMITE_MOBILE;
+  }
+
+  verMasTrucos(): void {
+    this.limitTrucos += this.LIMITE_MOBILE;
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
   constructor(
     private recetasService: RecetasService,
     private preparacionesService: PreparacionesService,
@@ -57,6 +97,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isMobile = window.innerWidth <= 768;
     this.title.setTitle('Paraíso Para Saborear');
 
     this.recetasService.getRecetasDestacadas().subscribe((recetas: any) => {

@@ -16,9 +16,7 @@
       <div class="banner-aleatoria-contenido">
         <h2>La sugerencia de la chef</h2>
         <p>Confía en nuestro plato del día</p>
-        <span class="nombre-receta"
-          >Hoy toca... {{ sugerenciaAleatoria.nombre }}</span
-        >
+        <span class="nombre-receta">{{ sugerenciaAleatoria.nombre }}</span>
       </div>
     </div>
     <button
@@ -36,7 +34,7 @@
         <h2>¿Qué hacemos hoy de comer?</h2>
         <p>Déjate sorprender por una receta aleatoria</p>
         <span class="nombre-receta"
-          >Hoy toca... {{ recetaAleatoria.nombre }}</span
+          >Hoy toca: {{ recetaAleatoria.nombre }}</span
         >
       </div>
     </div>
@@ -168,13 +166,22 @@
   <div class="preparacion-grid">
     <div
       class="preparacion-card"
-      *ngFor="let prep of preparaciones"
+      *ngFor="let prep of preparacionesVisibles"
       (click)="abrirModalDeInfo(prep)"
     >
       <span class="preparacion-icono">{{ prep.icono }}</span>
       <h3 class="preparacion-nombre">{{ prep.nombre }}</h3>
       <mat-icon class="preparacion-arrow">arrow_forward</mat-icon>
     </div>
+  </div>
+  <div class="ver-mas" *ngIf="hayMasPreparaciones">
+    <button
+      mat-raised-button
+      class="primary-btn"
+      (click)="verMasPreparaciones()"
+    >
+      Ver más
+    </button>
   </div>
 </section>
 
@@ -214,11 +221,16 @@
   <div class="trucos-grid">
     <div
       class="truco-card"
-      *ngFor="let truco of trucos"
+      *ngFor="let truco of trucosVisibles"
       (click)="abrirModalDeInfo(truco)"
     >
       <span class="truco-icono">{{ truco.icono }}</span>
       <h3 class="truco-nombre">{{ truco.nombre }}</h3>
     </div>
+  </div>
+  <div class="ver-mas" *ngIf="hayMasTrucos">
+    <button mat-raised-button class="primary-btn" (click)="verMasTrucos()">
+      Ver más
+    </button>
   </div>
 </section>
