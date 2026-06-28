@@ -36,7 +36,15 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="cargando" class="cargando">Cargando ingredientes...</div>
+    <!-- SKELETON -->
+    <div *ngIf="cargando" class="skeleton-contenedor">
+      <div *ngFor="let i of skeletonItems" class="skeleton-categoria">
+        <div class="skeleton skeleton-header"></div>
+        <div class="skeleton skeleton-chip"></div>
+        <div class="skeleton skeleton-chip skeleton-chip-corto"></div>
+        <div class="skeleton skeleton-chip"></div>
+      </div>
+    </div>
 
     <div
       class="sin-resultados-busqueda"

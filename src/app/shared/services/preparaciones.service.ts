@@ -7,6 +7,8 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  query,
+  orderBy,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -15,6 +17,7 @@ export interface Preparacion {
   nombre: string;
   descripcion: string;
   icono: string;
+  orden?: number;
 }
 
 @Injectable({
@@ -27,7 +30,8 @@ export class PreparacionesService {
 
   getPreparaciones(): Observable<Preparacion[]> {
     const ref = collection(this.firestore, this.coleccion);
-    return collectionData(ref, { idField: 'id' }) as Observable<Preparacion[]>;
+    const q = query(ref, orderBy('orden', 'asc'));
+    return collectionData(q, { idField: 'id' }) as Observable<Preparacion[]>;
   }
 
   addPreparacion(preparacion: Preparacion): Promise<any> {

@@ -24,6 +24,6 @@ export class StorageService {
       ),
     );
 
-    return respuesta.secure_url;
+    return respuesta.secure_url.replace('/upload/', '/upload/f_auto/');
   }
 }

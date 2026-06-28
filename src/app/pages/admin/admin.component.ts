@@ -90,13 +90,13 @@ export class AdminComponent implements OnInit {
   preparaciones: Preparacion[] = [];
   formularioPreparacion: FormGroup;
   editandoPreparacionId: string | null = null;
-  columnasPreparaciones = ['nombre', 'icono', 'acciones'];
+  columnasPreparaciones = ['orden', 'nombre', 'icono', 'acciones'];
 
   // TRUCOS
   trucos: Truco[] = [];
   formularioTruco: FormGroup;
   editandoTrucoId: string | null = null;
-  columnasTrucos = ['nombre', 'icono', 'acciones'];
+  columnasTrucos = ['orden', 'nombre', 'icono', 'acciones'];
 
   // INGREDIENTES
   ingredientesLista: Ingrediente[] = [];
@@ -281,7 +281,14 @@ export class AdminComponent implements OnInit {
 
   async guardarPreparacion(): Promise<void> {
     if (this.formularioPreparacion.invalid) return;
-    const preparacion: Preparacion = this.formularioPreparacion.value;
+    const orden = this.preparaciones.length + 1;
+    const preparacion: Preparacion = {
+      ...this.formularioPreparacion.value,
+      orden: this.editandoPreparacionId
+        ? (this.preparaciones.find((p) => p.id === this.editandoPreparacionId)
+            ?.orden ?? orden)
+        : orden,
+    };
     if (this.editandoPreparacionId) {
       await this.preparacionesService.updatePreparacion(
         this.editandoPreparacionId,
@@ -322,6 +329,30 @@ export class AdminComponent implements OnInit {
     this.formularioPreparacion.reset();
   }
 
+  async subirPreparacion(preparacion: Preparacion): Promise<void> {
+    const index = this.preparaciones.findIndex((p) => p.id === preparacion.id);
+    if (index <= 0) return;
+    const anterior = this.preparaciones[index - 1];
+    await this.preparacionesService.updatePreparacion(preparacion.id!, {
+      orden: anterior.orden,
+    });
+    await this.preparacionesService.updatePreparacion(anterior.id!, {
+      orden: preparacion.orden,
+    });
+  }
+
+  async bajarPreparacion(preparacion: Preparacion): Promise<void> {
+    const index = this.preparaciones.findIndex((p) => p.id === preparacion.id);
+    if (index >= this.preparaciones.length - 1) return;
+    const siguiente = this.preparaciones[index + 1];
+    await this.preparacionesService.updatePreparacion(preparacion.id!, {
+      orden: siguiente.orden,
+    });
+    await this.preparacionesService.updatePreparacion(siguiente.id!, {
+      orden: preparacion.orden,
+    });
+  }
+
   // TRUCOS
   cargarTrucos(): void {
     this.trucosService.getTrucos().subscribe((trucos) => {
@@ -331,7 +362,14 @@ export class AdminComponent implements OnInit {
 
   async guardarTruco(): Promise<void> {
     if (this.formularioTruco.invalid) return;
-    const truco: Truco = this.formularioTruco.value;
+    const orden = this.trucos.length + 1;
+    const truco: Truco = {
+      ...this.formularioTruco.value,
+      orden: this.editandoTrucoId
+        ? (this.trucos.find((t) => t.id === this.editandoTrucoId)?.orden ??
+          orden)
+        : orden,
+    };
     if (this.editandoTrucoId) {
       await this.trucosService.updateTruco(this.editandoTrucoId, truco);
       this.snackBar.open('Truco actualizado 🎉', 'Cerrar', {
@@ -367,6 +405,22 @@ export class AdminComponent implements OnInit {
   resetFormularioTruco(): void {
     this.editandoTrucoId = null;
     this.formularioTruco.reset();
+  }
+
+  async subirTruco(truco: Truco): Promise<void> {
+    const index = this.trucos.findIndex((t) => t.id === truco.id);
+    if (index <= 0) return;
+    const anterior = this.trucos[index - 1];
+    await this.trucosService.updateTruco(truco.id!, { orden: anterior.orden });
+    await this.trucosService.updateTruco(anterior.id!, { orden: truco.orden });
+  }
+
+  async bajarTruco(truco: Truco): Promise<void> {
+    const index = this.trucos.findIndex((t) => t.id === truco.id);
+    if (index >= this.trucos.length - 1) return;
+    const siguiente = this.trucos[index + 1];
+    await this.trucosService.updateTruco(truco.id!, { orden: siguiente.orden });
+    await this.trucosService.updateTruco(siguiente.id!, { orden: truco.orden });
   }
 
   // INGREDIENTES

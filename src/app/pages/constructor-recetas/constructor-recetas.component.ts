@@ -58,6 +58,7 @@ export class ConstructorRecetasComponent implements OnInit {
   recetasFiltradas: Receta[] = [];
   cargando: boolean = true;
   busqueda: string = '';
+  skeletonItems = Array(5).fill(0);
 
   constructor(
     private title: Title,

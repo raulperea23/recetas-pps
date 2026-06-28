@@ -261,6 +261,32 @@
     </div>
     <div class="tabla-contenedor">
       <table mat-table [dataSource]="preparaciones" class="tabla">
+        <ng-container matColumnDef="orden">
+          <th mat-header-cell *matHeaderCellDef>Orden</th>
+          <td mat-cell *matCellDef="let p">
+            <div class="orden-acciones">
+              <span class="cat-orden">{{ p.orden }}</span>
+              <button
+                mat-icon-button
+                class="btn-orden"
+                (click)="subirPreparacion(p)"
+                [disabled]="preparaciones.indexOf(p) === 0"
+              >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                class="btn-orden"
+                (click)="bajarPreparacion(p)"
+                [disabled]="
+                  preparaciones.indexOf(p) === preparaciones.length - 1
+                "
+              >
+                <mat-icon>arrow_downward</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
         <ng-container matColumnDef="nombre">
           <th mat-header-cell *matHeaderCellDef>Nombre</th>
           <td mat-cell *matCellDef="let p">{{ p.nombre }}</td>
@@ -345,6 +371,30 @@
     </div>
     <div class="tabla-contenedor">
       <table mat-table [dataSource]="trucos" class="tabla">
+        <ng-container matColumnDef="orden">
+          <th mat-header-cell *matHeaderCellDef>Orden</th>
+          <td mat-cell *matCellDef="let t">
+            <div class="orden-acciones">
+              <span class="cat-orden">{{ t.orden }}</span>
+              <button
+                mat-icon-button
+                class="btn-orden"
+                (click)="subirTruco(t)"
+                [disabled]="trucos.indexOf(t) === 0"
+              >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                class="btn-orden"
+                (click)="bajarTruco(t)"
+                [disabled]="trucos.indexOf(t) === trucos.length - 1"
+              >
+                <mat-icon>arrow_downward</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
         <ng-container matColumnDef="nombre">
           <th mat-header-cell *matHeaderCellDef>Nombre</th>
           <td mat-cell *matCellDef="let t">{{ t.nombre }}</td>
