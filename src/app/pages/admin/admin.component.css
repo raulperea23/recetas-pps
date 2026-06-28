@@ -253,6 +253,20 @@ mat-divider {
   color: #ccc !important;
 }
 
+/* BUSCADOR TABLA */
+.buscador-tabla {
+  margin-bottom: 13px;
+}
+
+.btn-limpiar-busqueda {
+  cursor: pointer;
+  color: #888;
+}
+
+.btn-limpiar-busqueda:hover {
+  color: #e53935;
+}
+
 /* RESPONSIVE */
 @media (max-width: 2000px) {
   .tabla {

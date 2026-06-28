@@ -75,6 +75,8 @@ export class AdminComponent implements OnInit {
 
   // RECETAS
   recetas: Receta[] = [];
+  recetasFiltradas: Receta[] = [];
+  busquedaRecetas: string = '';
   formulario: FormGroup;
   editandoId: string | null = null;
   columnas = ['nombre', 'categoria', 'dificultad', 'acciones'];
@@ -88,18 +90,24 @@ export class AdminComponent implements OnInit {
 
   // PREPARACIONES
   preparaciones: Preparacion[] = [];
+  preparacionesFiltradas: Preparacion[] = [];
+  busquedaPreparaciones: string = '';
   formularioPreparacion: FormGroup;
   editandoPreparacionId: string | null = null;
   columnasPreparaciones = ['orden', 'nombre', 'icono', 'acciones'];
 
   // TRUCOS
   trucos: Truco[] = [];
+  trucosFiltrados: Truco[] = [];
+  busquedaTrucos: string = '';
   formularioTruco: FormGroup;
   editandoTrucoId: string | null = null;
   columnasTrucos = ['orden', 'nombre', 'icono', 'acciones'];
 
   // INGREDIENTES
   ingredientesLista: Ingrediente[] = [];
+  ingredientesFiltrados: Ingrediente[] = [];
+  busquedaIngredientes: string = '';
   formularioIngrediente: FormGroup;
   editandoIngredienteId: string | null = null;
   columnasIngredientes = ['nombre', 'emoji', 'categoria', 'acciones'];
@@ -107,6 +115,8 @@ export class AdminComponent implements OnInit {
 
   // CATEGORÍAS INGREDIENTES
   categoriasIngredientesLista: CategoriaIngrediente[] = [];
+  categoriasFiltradas: CategoriaIngrediente[] = [];
+  busquedaCategorias: string = '';
   formularioCategoriaIngrediente: FormGroup;
   editandoCategoriaIngredienteId: string | null = null;
   columnasCategorias = ['orden', 'nombre', 'acciones'];
@@ -178,7 +188,15 @@ export class AdminComponent implements OnInit {
   cargarRecetas(): void {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.recetas = recetas;
+      this.filtrarRecetas();
     });
+  }
+
+  filtrarRecetas(): void {
+    const busq = this.busquedaRecetas.toLowerCase().trim();
+    this.recetasFiltradas = busq
+      ? this.recetas.filter((r) => r.nombre.toLowerCase().includes(busq))
+      : this.recetas;
   }
 
   get ingredientes(): FormArray {
@@ -276,7 +294,15 @@ export class AdminComponent implements OnInit {
   cargarPreparaciones(): void {
     this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
       this.preparaciones = preparaciones;
+      this.filtrarPreparaciones();
     });
+  }
+
+  filtrarPreparaciones(): void {
+    const busq = this.busquedaPreparaciones.toLowerCase().trim();
+    this.preparacionesFiltradas = busq
+      ? this.preparaciones.filter((p) => p.nombre.toLowerCase().includes(busq))
+      : this.preparaciones;
   }
 
   async guardarPreparacion(): Promise<void> {
@@ -357,7 +383,15 @@ export class AdminComponent implements OnInit {
   cargarTrucos(): void {
     this.trucosService.getTrucos().subscribe((trucos) => {
       this.trucos = trucos;
+      this.filtrarTrucos();
     });
+  }
+
+  filtrarTrucos(): void {
+    const busq = this.busquedaTrucos.toLowerCase().trim();
+    this.trucosFiltrados = busq
+      ? this.trucos.filter((t) => t.nombre.toLowerCase().includes(busq))
+      : this.trucos;
   }
 
   async guardarTruco(): Promise<void> {
@@ -427,7 +461,17 @@ export class AdminComponent implements OnInit {
   cargarIngredientes(): void {
     this.ingredientesService.getIngredientes().subscribe((ingredientes) => {
       this.ingredientesLista = ingredientes;
+      this.filtrarIngredientes();
     });
+  }
+
+  filtrarIngredientes(): void {
+    const busq = this.busquedaIngredientes.toLowerCase().trim();
+    this.ingredientesFiltrados = busq
+      ? this.ingredientesLista.filter((i) =>
+          i.nombre.toLowerCase().includes(busq),
+        )
+      : this.ingredientesLista;
   }
 
   async guardarIngrediente(): Promise<void> {
@@ -480,7 +524,17 @@ export class AdminComponent implements OnInit {
       .subscribe((categorias) => {
         this.categoriasIngredientesLista = categorias;
         this.categoriasIngredientes = categorias;
+        this.filtrarCategorias();
       });
+  }
+
+  filtrarCategorias(): void {
+    const busq = this.busquedaCategorias.toLowerCase().trim();
+    this.categoriasFiltradas = busq
+      ? this.categoriasIngredientesLista.filter((c) =>
+          c.nombre.toLowerCase().includes(busq),
+        )
+      : this.categoriasIngredientesLista;
   }
 
   async guardarCategoriaIngrediente(): Promise<void> {
