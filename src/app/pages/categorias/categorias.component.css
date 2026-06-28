@@ -40,15 +40,13 @@
   padding: 19px 13px;
   cursor: pointer;
   transition:
-    border-color 0.2s,
     transform 0.2s,
-    box-shadow 0.2s;
+    opacity 0.2s;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.06);
 }
 
 .tipo-card:hover {
   background-color: rgba(84, 175, 232, 0.2);
-  box-shadow: 3px 3px 10px rgba(84, 175, 232, 0.2);
   transform: translateY(-3px);
 }
 
@@ -75,9 +73,7 @@
   position: relative;
   overflow: hidden;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
 }
 
 .categoria-card::before {
@@ -89,16 +85,15 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.35);
   z-index: 0;
-  transition: background 0.3s;
+  transition: opacity 0.3s;
 }
 
 .categoria-card:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .categoria-card:hover::before {
-  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.7;
 }
 
 .overlay {
@@ -108,12 +103,7 @@
   width: 100%;
   padding: 13px 16px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  transition: background 0.3s;
   z-index: 1;
-}
-
-.categoria-card:hover .overlay {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
 }
 
 .overlay h2 {
@@ -122,7 +112,81 @@
   margin: 0;
 }
 
-/* 1024px */
+.glosario-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 19px;
+  background: url("../../../../public/assets/images/glosario.webp");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 26px;
+  margin-top: 38px;
+  cursor: pointer;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+  overflow: hidden;
+}
+
+.glosario-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.glosario-banner:hover {
+  transform: translateY(-3px);
+}
+
+.glosario-banner-contenido {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.glosario-icono {
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
+  color: white;
+}
+
+.glosario-texto h2 {
+  font-size: 1.44rem;
+  color: white;
+  margin: 0 0 6px 0;
+}
+
+.glosario-texto p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.glosario-btn {
+  position: relative;
+  z-index: 1;
+  color: white !important;
+  border-color: white !important;
+  font-size: 0.85rem;
+  padding: 6px 19px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .section-header .section-icon {
     width: 29px;
@@ -161,7 +225,6 @@
   }
 }
 
-/* 768px */
 @media (max-width: 768px) {
   .section-header {
     gap: 6px;
@@ -214,5 +277,31 @@
 
   .overlay h2 {
     font-size: 14px;
+  }
+
+  .glosario-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 13px;
+  }
+
+  .glosario-icono {
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .glosario-texto h2 {
+    font-size: 1rem;
+  }
+
+  .glosario-texto p {
+    font-size: 0.75rem;
+  }
+
+  .glosario-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

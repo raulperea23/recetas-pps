@@ -43,9 +43,7 @@
   position: relative;
   overflow: hidden;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
 }
 
 .categoria-card::before {
@@ -57,16 +55,15 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.35);
   z-index: 0;
-  transition: background 0.3s;
+  transition: opacity 0.3s;
 }
 
 .categoria-card:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .categoria-card:hover::before {
-  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.7;
 }
 
 .overlay {
@@ -76,12 +73,7 @@
   width: 100%;
   padding: 13px 16px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  transition: background 0.3s;
   z-index: 1;
-}
-
-.categoria-card:hover .overlay {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
 }
 
 .overlay h2 {
@@ -105,9 +97,7 @@
   margin-top: 38px;
   cursor: pointer;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
   overflow: hidden;
 }
 
@@ -125,7 +115,6 @@
 
 .glosario-banner:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .glosario-banner-contenido {
@@ -183,16 +172,12 @@
   border-radius: 10px;
   padding: 19px 13px;
   cursor: pointer;
-  transition:
-    border-color 0.2s,
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.06);
 }
 
 .mes-card:hover {
   background-color: rgba(84, 175, 232, 0.2);
-  box-shadow: 3px 3px 10px rgba(84, 175, 232, 0.2);
   transform: translateY(-3px);
 }
 

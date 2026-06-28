@@ -184,7 +184,6 @@ main {
 
 .valor-card:hover {
   transform: translateY(-5px);
-  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.12);
 }
 
 .valor-icono {

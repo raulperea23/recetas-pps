@@ -94,9 +94,7 @@
   padding: 38px 26px;
   cursor: pointer;
   text-align: center;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
@@ -122,9 +120,7 @@
   padding: 38px 26px;
   cursor: pointer;
   text-align: center;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
@@ -139,10 +135,6 @@
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   z-index: 0;
-}
-
-.banner-aleatoria:hover {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .banner-aleatoria-contenido {
@@ -194,14 +186,12 @@
   cursor: pointer;
   transition:
     transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+    opacity 0.2s;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08);
 }
 
 .banner-constructor:hover {
   transform: translateY(-2px);
-  box-shadow: 5px 5px 10px rgba(84, 175, 232, 0.15);
   background: rgba(84, 175, 232, 0.2);
 }
 
@@ -256,9 +246,7 @@
   overflow: hidden;
   cursor: pointer;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
 }
 
 .postre-destacado {
@@ -276,7 +264,6 @@
 
 .postre-grande:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .postre-grande img {
@@ -299,15 +286,12 @@
   overflow: hidden;
   cursor: pointer;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s;
   height: 116px;
 }
 
 .postre-pequeño:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .postre-pequeño img {
@@ -366,14 +350,12 @@
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08);
   transition:
     transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+    opacity 0.2s;
   border-left: 3px solid var(--primary-color);
 }
 
 .preparacion-card:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.12);
   background: rgba(255, 255, 255, 0.9);
 }
 
@@ -415,13 +397,12 @@
   cursor: pointer;
   transition:
     transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+    opacity 0.2s;
 }
 
 .truco-card:hover {
   transform: translateY(-2px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
 }
 
 .truco-icono {

@@ -6,14 +6,11 @@
   position: relative;
   box-shadow: 2px 2px 3px gray !important;
   overflow: visible !important;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .tarjeta:hover {
   transform: translateY(-3px);
-  box-shadow: 3px 3px 6px gray !important;
 }
 
 .destacada-icon {
