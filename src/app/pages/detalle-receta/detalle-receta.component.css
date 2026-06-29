@@ -222,17 +222,32 @@ mat-divider {
 }
 
 .banner-cierre {
-  background: linear-gradient(135deg, var(--primary-color), #9c27b0);
-  border-radius: 13px;
-  padding: 20px 14px;
-  text-align: center;
-  margin-top: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 19px 26px;
+  margin: 38px 0;
+  background: rgba(84, 175, 232, 0.08);
+  border-radius: 10px;
+  border-left: 4px solid var(--primary-color);
+  border-right: 4px solid var(--primary-color);
 }
 
-.banner-cierre h2 {
-  font-size: 1.8rem;
-  color: white;
+.banner-cierre-icono {
+  color: var(--primary-color);
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.banner-cierre-texto {
+  font-size: 1.4rem;
+  color: var(--primary-color);
   margin: 0;
+  font-weight: 600;
 }
 
 .relacionadas {
@@ -306,14 +321,6 @@ mat-divider {
     font-size: 21px;
   }
 
-  .banner-cierre {
-    padding: 20px 14px;
-  }
-
-  .banner-cierre h2 {
-    font-size: 1.6rem;
-  }
-
   .relacionadas h2 {
     font-size: 22px;
   }
@@ -383,14 +390,6 @@ mat-divider {
     font-size: 18px;
   }
 
-  .banner-cierre {
-    padding: 18px 12px;
-  }
-
-  .banner-cierre h2 {
-    font-size: 1.6rem;
-  }
-
   .relacionadas {
     margin-top: 26px;
   }
@@ -406,11 +405,18 @@ mat-divider {
   }
 
   .grid-relacionadas {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 13px;
   }
 
   .tarjeta-relacionada img {
     height: 128px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-relacionadas {
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
   }
 }
