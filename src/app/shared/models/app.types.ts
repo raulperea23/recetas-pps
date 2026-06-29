@@ -39,14 +39,16 @@ export const CATEGORIAS_NOMBRES_IMGS = {
 export const TIPOS_DE_PLATO = [
   'Desayuno',
   'Entrante',
-  'Plato principal',
+  'Guarnición',
+  'Primer plato',
   'Segundo plato',
   'Postre',
 ] as const;
 export const TIPOS_DE_PLATO_PLURALES = {
   Desayuno: 'Desayunos',
   Entrante: 'Entrantes',
-  'Plato principal': 'Platos principales',
+  Guarnición: 'Guarniciones',
+  'Primer plato': 'Primeros platos',
   'Segundo plato': 'Segundos platos',
   Postre: 'Postres',
 } as const;

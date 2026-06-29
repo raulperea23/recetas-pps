@@ -33,6 +33,24 @@ Use admin dashboard (acceso desde el footer o en /admin)
 ## PARA SUBIR RECETAS DE FORMA MASIVA:
 
 Add records to => scripts/recetas.json
+
+{
+"id?": "",
+"nombre": "",
+"origen": "",
+"categoria": "",
+"tipoDePlato": "",
+"foto": "",
+"ingredientes": [],
+"elaboracion": "",
+"comensales": 0,
+"dificultad": "",
+"tiempoPreparacion": 0,
+"tiempoUnidad": "",
+"destacada": false,
+"fechaPublicacion": "2026-06-29"
+}
+
 Execute => node scripts/importar-recetas.mjs
 Records should be displayed in the app automatically
 
