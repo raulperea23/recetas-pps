@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,14 +53,14 @@ export class HomeComponent implements OnInit {
   limitTrucos = 4;
 
   get preparacionesVisibles(): Preparacion[] {
-    if (this.isMobile) {
+    if (this.isMobile && !this.mostrarTodasPreparaciones) {
       return this.preparaciones.slice(0, this.limitPreparaciones);
     }
     return this.preparaciones;
   }
 
   get trucosVisibles(): Truco[] {
-    if (this.isMobile) {
+    if (this.isMobile && !this.mostrarTodosTrucos) {
       return this.trucos.slice(0, this.limitTrucos);
     }
     return this.trucos;
@@ -73,6 +73,9 @@ export class HomeComponent implements OnInit {
   get hayMasTrucos(): boolean {
     return this.isMobile && this.limitTrucos < this.trucos.length;
   }
+
+  mostrarTodasPreparaciones = false;
+  mostrarTodosTrucos = false;
 
   verMasPreparaciones(): void {
     this.limitPreparaciones += this.LIMITE_MOBILE;
@@ -94,6 +97,7 @@ export class HomeComponent implements OnInit {
     private title: Title,
     private dialog: MatDialog,
     private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -142,6 +146,20 @@ export class HomeComponent implements OnInit {
 
     this.trucosService.getTrucos().subscribe((trucos) => {
       this.trucos = trucos;
+      this.scrollAlFragment();
+    });
+  }
+
+  private scrollAlFragment(): void {
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        setTimeout(() => {
+          const el = document.getElementById(fragment);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      }
     });
   }
 
