@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
     this.title.setTitle('Paraíso Para Saborear');
 
     this.recetasService.getRecetasDestacadas().subscribe((recetas: any) => {
-      this.destacadas = recetas;
+      this.destacadas = recetas.slice(0, 4);
     });
 
     this.recetasService.getRecetas().subscribe((recetas) => {
