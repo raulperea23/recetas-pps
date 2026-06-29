@@ -65,7 +65,7 @@ footer {
 .columna a {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 1rem;
   transition: color 0.2s;
   cursor: pointer;
 }
@@ -113,17 +113,17 @@ footer {
   }
 
   .columna h3 {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 
   .columna a {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 768px) {
   footer {
-    padding: 26px 16px 0;
+    padding: 26px 22px 0;
     margin-top: 38px;
   }
 
@@ -138,8 +138,16 @@ footer {
     width: 100%;
   }
 
+  .columna h3 {
+    font-size: 1rem;
+  }
+
+  .columna a {
+    font-size: 0.9rem;
+  }
+
   .app-text {
-    font-size: 18px;
+    font-size: 26px;
   }
 
   .footer-img {
