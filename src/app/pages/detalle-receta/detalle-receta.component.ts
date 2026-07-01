@@ -13,7 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { RecetasService } from '../../shared/services/recetas.service';
-import { Receta } from '../../shared/models/receta.model';
+import { Receta, FotoReceta } from '../../shared/models/receta.model';
 import { Title } from '@angular/platform-browser';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FotoDialogComponent } from '../../shared/components/foto-dialog/foto-dialog.component';
@@ -39,6 +39,7 @@ export class DetalleRecetaComponent implements OnInit {
   recetasRelacionadas: Receta[] = [];
   menuCompartirAbierto: boolean = false;
   enlaceCopiado: boolean = false;
+  fotoActual: string = '';
 
   @ViewChild('compartirRef') compartirRef!: ElementRef;
 
@@ -55,9 +56,11 @@ export class DetalleRecetaComponent implements OnInit {
       if (id) {
         this.receta = null;
         this.recetasRelacionadas = [];
+        this.fotoActual = '';
 
         this.recetasService.getRecetaPorId(id).subscribe((receta) => {
           this.receta = receta;
+          this.fotoActual = this.fotoPrincipal;
           this.title.setTitle(`${receta.nombre} | Paraíso Para Saborear`);
 
           this.recetasService
@@ -70,13 +73,40 @@ export class DetalleRecetaComponent implements OnInit {
     });
   }
 
+  // ── Galería ──────────────────────────────────────────────────────────────
+
+  get fotosOrdenadas(): FotoReceta[] {
+    return (this.receta?.fotos ?? []).slice().sort((a, b) => a.orden - b.orden);
+  }
+
+  get fotoPrincipal(): string {
+    if (this.receta?.fotos && this.receta.fotos.length > 0) {
+      return this.fotosOrdenadas[0].url;
+    }
+    return this.receta?.foto || '';
+  }
+
+  get fotosSecundarias(): FotoReceta[] {
+    return this.fotosOrdenadas.slice(1);
+  }
+
+  get tieneGaleria(): boolean {
+    return !!this.receta?.fotos && this.receta.fotos.length > 1;
+  }
+
+  seleccionarFoto(url: string): void {
+    this.fotoActual = url;
+  }
+
+  // ── Resto de métodos ─────────────────────────────────────────────────────
+
   get elaboracionFormateada(): string {
     return this.receta?.elaboracion?.replace(/&nbsp;/g, ' ') || '';
   }
 
   abrirFoto(): void {
     this.dialog.open(FotoDialogComponent, {
-      data: { foto: this.receta?.foto, nombre: this.receta?.nombre },
+      data: { foto: this.fotoActual, nombre: this.receta?.nombre },
       width: '85vw',
       maxWidth: '85vw',
       panelClass: 'foto-dialog',
@@ -84,7 +114,7 @@ export class DetalleRecetaComponent implements OnInit {
   }
 
   tieneFoto(): boolean {
-    return !!this.receta?.foto && this.receta.foto.trim() !== '';
+    return !!this.fotoActual && this.fotoActual.trim() !== '';
   }
 
   toggleMenuCompartir(): void {

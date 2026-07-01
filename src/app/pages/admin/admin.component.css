@@ -63,6 +63,74 @@
   width: 100%;
 }
 
+/* SLOTS DE FOTOS */
+.slots-fotos {
+  display: flex;
+  flex-direction: row;
+  gap: 19px;
+  flex-wrap: wrap;
+  margin-bottom: 13px;
+}
+
+.slot-foto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 160px;
+  max-width: 220px;
+}
+
+.slot-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.slot-preview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  position: relative;
+}
+
+.slot-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slot-preview.vacio {
+  border-color: #ddd;
+}
+
+.slot-placeholder-icon {
+  color: #ccc;
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
+}
+
+.slot-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.slot-acciones {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* FOTO UPLOAD (legado, se mantiene por si acaso) */
 .foto-upload {
   margin-bottom: 13px;
 }
@@ -238,9 +306,6 @@ mat-divider {
 
 .btn-orden {
   color: var(--primary-color) !important;
-  /* width: 29px !important;
-  height: 29px !important;
-  line-height: 29px !important; */
 }
 
 .btn-orden mat-icon {
@@ -347,6 +412,14 @@ mat-divider {
   }
 
   .previa {
+    max-width: 100%;
+  }
+
+  .slots-fotos {
+    flex-direction: column;
+  }
+
+  .slot-foto {
     max-width: 100%;
   }
 }

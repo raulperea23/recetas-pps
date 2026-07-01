@@ -78,34 +78,67 @@
           <mat-checkbox formControlName="destacada" class="checkbox-destacada"
             >Receta destacada</mat-checkbox
           >
-          <div class="foto-upload">
-            <button
-              mat-stroked-button
-              class="btn-upload"
-              type="button"
-              onclick="document.getElementById('inputFoto').click()"
-            >
-              <mat-icon>upload</mat-icon> Subir foto
-            </button>
-            <input
-              id="inputFoto"
-              type="file"
-              accept="image/*"
-              hidden
-              (change)="onImagenSeleccionada($event)"
-            />
-            <img
-              *ngIf="previsualizacion"
-              [src]="previsualizacion"
-              class="previa"
-              alt="Previsualización"
-            />
+
+          <!-- SLOTS DE FOTOS -->
+          <mat-divider></mat-divider>
+          <h3 class="seccion-titulo">Fotos</h3>
+          <div class="slots-fotos">
+            <div *ngFor="let slot of slots; let i = index" class="slot-foto">
+              <span class="slot-label">{{
+                i === 0 ? "Principal" : "Secundaria " + i
+              }}</span>
+
+              <!-- Previsualización -->
+              <div class="slot-preview" [class.vacio]="!slot.previsualizacion">
+                <img
+                  *ngIf="slot.previsualizacion"
+                  [src]="slot.previsualizacion"
+                  alt="Foto {{ i + 1 }}"
+                />
+                <mat-icon
+                  *ngIf="!slot.previsualizacion"
+                  class="slot-placeholder-icon"
+                  >add_photo_alternate</mat-icon
+                >
+                <mat-progress-bar
+                  *ngIf="slot.subiendo"
+                  mode="indeterminate"
+                  class="slot-progress"
+                ></mat-progress-bar>
+              </div>
+
+              <!-- Acciones del slot -->
+              <div class="slot-acciones">
+                <button
+                  mat-stroked-button
+                  class="btn-upload"
+                  type="button"
+                  (click)="fileInput.click()"
+                >
+                  <mat-icon>upload</mat-icon>
+                  {{ slot.previsualizacion ? "Cambiar" : "Subir" }}
+                </button>
+                <input
+                  #fileInput
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  (change)="onImagenSeleccionada($event, i)"
+                />
+                <button
+                  mat-icon-button
+                  class="btn-eliminar"
+                  type="button"
+                  *ngIf="slot.previsualizacion"
+                  (click)="eliminarSlot(i)"
+                  matTooltip="Eliminar foto"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
           </div>
-          <mat-progress-bar
-            *ngIf="subiendoImagen"
-            mode="indeterminate"
-            class="progress-bar"
-          ></mat-progress-bar>
+
           <mat-divider></mat-divider>
           <h3 class="seccion-titulo">Ingredientes</h3>
           <div
@@ -141,7 +174,12 @@
         </form>
       </mat-card-content>
       <mat-card-actions class="formulario-acciones">
-        <button mat-raised-button class="btn-guardar" (click)="guardar()">
+        <button
+          mat-raised-button
+          class="btn-guardar"
+          (click)="guardar()"
+          [disabled]="subiendoAlgunaImagen"
+        >
           <mat-icon>{{ editandoId ? "save" : "add_circle" }}</mat-icon>
           {{ editandoId ? "Guardar cambios" : "Añadir receta" }}
         </button>

@@ -68,12 +68,106 @@
   flex-wrap: wrap;
 }
 
+/* ── Visor de fotos ─────────────────────────────────────────────────── */
+
+.foto-wrapper {
+  display: flex;
+  gap: 10px;
+  max-width: 496px;
+  width: 100%;
+}
+
+.foto-container {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+  height: 360px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.foto-container.clickable {
+  cursor: pointer;
+}
+
 .foto {
   width: 100%;
-  max-width: 496px;
-  border-radius: 6px;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  border-radius: 6px;
 }
+
+.foto-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.foto-overlay mat-icon {
+  color: white;
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.foto-container:hover .foto-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.foto-container:hover .foto-overlay mat-icon {
+  opacity: 1;
+}
+
+/* Miniaturas laterales */
+.miniaturas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.miniatura {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+  opacity: 0.65;
+}
+
+.miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.miniatura:hover {
+  opacity: 0.9;
+}
+
+.miniatura.activa {
+  border-color: var(--primary-color);
+  opacity: 1;
+}
+
+/* ── Resto ──────────────────────────────────────────────────────────── */
 
 .info {
   flex: 1;
@@ -178,50 +272,6 @@ mat-divider {
   margin: 0 0 6px 0;
 }
 
-.foto-container {
-  position: relative;
-  max-width: 496px;
-}
-
-.foto-container.clickable {
-  cursor: pointer;
-}
-
-.foto-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-.foto-overlay mat-icon {
-  color: white;
-  font-size: 38px;
-  width: 38px;
-  height: 38px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.foto-container img {
-  display: block;
-}
-
-.foto-container:hover .foto-overlay {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.foto-container:hover .foto-overlay mat-icon {
-  opacity: 1;
-}
-
 .banner-cierre {
   display: flex;
   flex-direction: row;
@@ -295,13 +345,13 @@ mat-divider {
     gap: 19px;
   }
 
-  .foto {
+  .foto-wrapper {
     max-width: 100%;
+    width: 100%;
   }
 
   .foto-container {
-    max-width: 100%;
-    width: 100%;
+    height: 300px;
   }
 
   .info {
@@ -363,13 +413,28 @@ mat-divider {
     margin: 13px 0;
   }
 
-  .foto {
+  .foto-wrapper {
     max-width: 100%;
+    width: 100%;
+    flex-direction: column;
   }
 
   .foto-container {
-    max-width: 100%;
+    height: 260px;
+  }
+
+  /* En móvil las miniaturas van debajo en horizontal */
+  .miniaturas {
+    flex-direction: row;
     width: 100%;
+    height: auto;
+    overflow-x: auto;
+  }
+
+  .miniatura {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
   }
 
   .info {

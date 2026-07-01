@@ -1,5 +1,10 @@
 import { Categoria, Dificultad, TipoDePlato, UnidadTiempo } from './app.types';
 
+export interface FotoReceta {
+  url: string;
+  orden: number;
+}
+
 export interface Receta {
   id?: string;
   nombre: string;
@@ -7,6 +12,7 @@ export interface Receta {
   categoria: Categoria;
   tipoDePlato: TipoDePlato;
   foto: string;
+  fotos?: FotoReceta[];
   ingredientes: string[];
   elaboracion: string;
   comensales: number;

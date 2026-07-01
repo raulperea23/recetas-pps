@@ -112,6 +112,9 @@
       ordenAscendente ? "↑" : "↓"
     }}</span>
   </button>
+  <div class="count-resultados" *ngIf="recetasFiltradas.length > 0">
+    Total: {{ recetasFiltradas.length }}
+  </div>
 </div>
 
 <!-- Listado -->

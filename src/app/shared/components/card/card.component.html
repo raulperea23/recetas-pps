@@ -2,6 +2,9 @@
   @if (receta.destacada === true) {
     <span class="destacada-icon"><mat-icon>star</mat-icon></span>
   }
+  @if (receta.fotos && receta.fotos.length > 1) {
+    <span class="galeria-icon"><mat-icon>photo_library</mat-icon></span>
+  }
   <img
     mat-card-image
     [src]="receta.foto || 'assets/images/placeholder.webp'"

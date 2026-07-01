@@ -32,21 +32,55 @@
   </div>
 
   <div class="cabecera">
-    <div
-      class="foto-container"
-      [class.clickable]="tieneFoto()"
-      (click)="tieneFoto() && abrirFoto()"
-    >
-      <img
-        [src]="receta.foto || 'assets/images/placeholder.webp'"
-        [alt]="receta.nombre"
-        class="foto"
-        (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
-      />
-      <div class="foto-overlay" *ngIf="tieneFoto()">
-        <mat-icon>zoom_in</mat-icon>
+    <!-- VISOR DE FOTO(S) -->
+    <div class="foto-wrapper">
+      <!-- Imagen principal -->
+      <div
+        class="foto-container"
+        [class.clickable]="tieneFoto()"
+        (click)="tieneFoto() && abrirFoto()"
+      >
+        <img
+          [src]="fotoActual || 'assets/images/placeholder.webp'"
+          [alt]="receta.nombre"
+          class="foto"
+          (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
+        />
+        <div class="foto-overlay" *ngIf="tieneFoto()">
+          <mat-icon>zoom_in</mat-icon>
+        </div>
+      </div>
+
+      <!-- Miniaturas secundarias (solo si hay galería) -->
+      <div class="miniaturas" *ngIf="tieneGaleria">
+        <!-- Miniatura de la foto principal para poder volver a ella -->
+        <div
+          class="miniatura"
+          [class.activa]="fotoActual === fotoPrincipal"
+          (click)="seleccionarFoto(fotoPrincipal)"
+        >
+          <img
+            [src]="fotoPrincipal"
+            [alt]="receta.nombre"
+            (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
+          />
+        </div>
+        <!-- Miniaturas secundarias -->
+        <div
+          *ngFor="let foto of fotosSecundarias"
+          class="miniatura"
+          [class.activa]="fotoActual === foto.url"
+          (click)="seleccionarFoto(foto.url)"
+        >
+          <img
+            [src]="foto.url"
+            [alt]="receta.nombre"
+            (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
+          />
+        </div>
       </div>
     </div>
+
     <div class="info">
       <h1>{{ receta.nombre }}</h1>
 

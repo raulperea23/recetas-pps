@@ -35,7 +35,7 @@ import {
   CategoriasIngredientesService,
   CategoriaIngrediente,
 } from '../../shared/services/categorias-ingredientes.service';
-import { Receta } from '../../shared/models/receta.model';
+import { Receta, FotoReceta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { TiptapEditorComponent } from '../../shared/components/tiptap-editor/tiptap-editor.component';
@@ -45,6 +45,13 @@ import {
   TIPOS_DE_PLATO,
   UNIDADES_TIEMPO,
 } from '../../shared/models/app.types';
+
+interface SlotFoto {
+  previsualizacion: string | null;
+  archivo: File | null;
+  urlActual: string | null;
+  subiendo: boolean;
+}
 
 @Component({
   selector: 'app-admin',
@@ -84,9 +91,16 @@ export class AdminComponent implements OnInit {
   categorias = CATEGORIAS;
   dificultades = DIFICULTADES;
   unidadesTiempo = UNIDADES_TIEMPO;
-  imagenSeleccionada: File | null = null;
-  previsualizacion: string | null = null;
-  subiendoImagen: boolean = false;
+
+  // Slots de fotos
+  slots: SlotFoto[] = [
+    { previsualizacion: null, archivo: null, urlActual: null, subiendo: false },
+    { previsualizacion: null, archivo: null, urlActual: null, subiendo: false },
+    { previsualizacion: null, archivo: null, urlActual: null, subiendo: false },
+  ];
+  get subiendoAlgunaImagen(): boolean {
+    return this.slots.some((s) => s.subiendo);
+  }
 
   // PREPARACIONES
   preparaciones: Preparacion[] = [];
@@ -184,7 +198,97 @@ export class AdminComponent implements OnInit {
     this.authService.logout();
   }
 
-  // RECETAS
+  // ── SLOTS DE FOTOS ────────────────────────────────────────────────────────
+
+  onImagenSeleccionada(event: any, index: number): void {
+    const archivo = event.target.files[0];
+    if (!archivo) return;
+    this.slots[index].archivo = archivo;
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.slots[index].previsualizacion = e.target.result;
+    };
+    reader.readAsDataURL(archivo);
+    // Limpiar el input para permitir seleccionar el mismo archivo otra vez
+    event.target.value = '';
+  }
+
+  eliminarSlot(index: number): void {
+    this.slots[index] = {
+      previsualizacion: null,
+      archivo: null,
+      urlActual: null,
+      subiendo: false,
+    };
+  }
+
+  private resetSlots(): void {
+    this.slots = [
+      {
+        previsualizacion: null,
+        archivo: null,
+        urlActual: null,
+        subiendo: false,
+      },
+      {
+        previsualizacion: null,
+        archivo: null,
+        urlActual: null,
+        subiendo: false,
+      },
+      {
+        previsualizacion: null,
+        archivo: null,
+        urlActual: null,
+        subiendo: false,
+      },
+    ];
+  }
+
+  private cargarSlotsDesdeReceta(receta: Receta): void {
+    this.resetSlots();
+    if (receta.fotos && receta.fotos.length > 0) {
+      const fotosOrdenadas = [...receta.fotos].sort(
+        (a, b) => a.orden - b.orden,
+      );
+      fotosOrdenadas.forEach((f, i) => {
+        if (i < 3) {
+          this.slots[i].urlActual = f.url;
+          this.slots[i].previsualizacion = f.url;
+        }
+      });
+    } else if (receta.foto) {
+      // Receta con foto antigua (campo foto sin galería)
+      this.slots[0].urlActual = receta.foto;
+      this.slots[0].previsualizacion = receta.foto;
+    }
+  }
+
+  private async subirFotosYObtenerArray(): Promise<FotoReceta[]> {
+    const fotos: FotoReceta[] = [];
+    for (let i = 0; i < this.slots.length; i++) {
+      const slot = this.slots[i];
+      if (slot.archivo) {
+        // Hay un archivo nuevo que subir
+        slot.subiendo = true;
+        try {
+          const url = await this.storageService.subirImagen(slot.archivo);
+          fotos.push({ url, orden: i + 1 });
+          slot.urlActual = url;
+        } finally {
+          slot.subiendo = false;
+        }
+      } else if (slot.urlActual) {
+        // Mantener URL existente
+        fotos.push({ url: slot.urlActual, orden: i + 1 });
+      }
+      // Si el slot está vacío, no se añade nada (foto eliminada)
+    }
+    return fotos;
+  }
+
+  // ── RECETAS ───────────────────────────────────────────────────────────────
+
   cargarRecetas(): void {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.recetas = recetas;
@@ -211,30 +315,20 @@ export class AdminComponent implements OnInit {
     this.ingredientes.removeAt(i);
   }
 
-  onImagenSeleccionada(event: any): void {
-    const archivo = event.target.files[0];
-    if (archivo) {
-      this.imagenSeleccionada = archivo;
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.previsualizacion = e.target.result;
-      };
-      reader.readAsDataURL(archivo);
-    }
-  }
-
   async guardar(): Promise<void> {
     if (this.formulario.invalid) return;
-    this.subiendoImagen = true;
-    let fotoUrl = this.formulario.value.foto;
-    if (this.imagenSeleccionada) {
-      fotoUrl = await this.storageService.subirImagen(this.imagenSeleccionada);
-    }
+
+    const fotos = await this.subirFotosYObtenerArray();
+    const fotoPrincipal =
+      fotos.length > 0 ? fotos[0].url : this.formulario.value.foto || '';
+
     const receta: Receta = {
       ...this.formulario.value,
-      foto: fotoUrl,
+      foto: fotoPrincipal,
+      fotos: fotos.length > 0 ? fotos : undefined,
       fechaPublicacion: new Date(),
     };
+
     if (this.editandoId) {
       await this.recetasService.updateReceta(this.editandoId, receta);
       this.snackBar.open('Receta actualizada 🎉', 'Cerrar', {
@@ -252,14 +346,13 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     }
-    this.subiendoImagen = false;
     this.resetFormulario();
   }
 
   editar(receta: Receta): void {
     this.editandoId = receta.id || null;
     this.formulario.patchValue(receta);
-    this.previsualizacion = receta.foto || null;
+    this.cargarSlotsDesdeReceta(receta);
     this.ingredientes.clear();
     receta.ingredientes.forEach((i: any) =>
       this.ingredientes.push(this.fb.control(i)),
@@ -276,8 +369,7 @@ export class AdminComponent implements OnInit {
 
   resetFormulario(): void {
     this.editandoId = null;
-    this.imagenSeleccionada = null;
-    this.previsualizacion = null;
+    this.resetSlots();
     this.formulario.reset({
       comensales: 4,
       tipoDePlato: '',
@@ -290,7 +382,8 @@ export class AdminComponent implements OnInit {
     this.ingredientes.push(this.fb.control(''));
   }
 
-  // PREPARACIONES
+  // ── PREPARACIONES ─────────────────────────────────────────────────────────
+
   cargarPreparaciones(): void {
     this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
       this.preparaciones = preparaciones;
@@ -379,7 +472,8 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  // TRUCOS
+  // ── TRUCOS ────────────────────────────────────────────────────────────────
+
   cargarTrucos(): void {
     this.trucosService.getTrucos().subscribe((trucos) => {
       this.trucos = trucos;
@@ -457,7 +551,8 @@ export class AdminComponent implements OnInit {
     await this.trucosService.updateTruco(siguiente.id!, { orden: truco.orden });
   }
 
-  // INGREDIENTES
+  // ── INGREDIENTES ──────────────────────────────────────────────────────────
+
   cargarIngredientes(): void {
     this.ingredientesService.getIngredientes().subscribe((ingredientes) => {
       this.ingredientesLista = ingredientes;
@@ -517,7 +612,8 @@ export class AdminComponent implements OnInit {
     this.formularioIngrediente.reset();
   }
 
-  // CATEGORÍAS INGREDIENTES
+  // ── CATEGORÍAS INGREDIENTES ───────────────────────────────────────────────
+
   cargarCategoriasIngredientes(): void {
     this.categoriasIngredientesService
       .getCategorias()
