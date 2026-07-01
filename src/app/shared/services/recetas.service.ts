@@ -41,12 +41,17 @@ export class RecetasService {
     return docData(ref) as Observable<Receta>;
   }
 
-  getRecetasPorCategoria(
+  getRecetasRelacionadas(
     categoria: string,
+    tipoDePlato: string,
     excludeId: string,
   ): Observable<Receta[]> {
     const ref = collection(this.firestore, this.coleccion);
-    const q = query(ref, where('categoria', '==', categoria));
+    const q = query(
+      ref,
+      where('categoria', '==', categoria),
+      where('tipoDePlato', '==', tipoDePlato),
+    );
     return collectionData(q, { idField: 'id' }).pipe(
       map((recetas: any[]) => recetas.filter((r) => r.id !== excludeId)),
     ) as Observable<Receta[]>;

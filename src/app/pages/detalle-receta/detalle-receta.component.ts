@@ -61,9 +61,9 @@ export class DetalleRecetaComponent implements OnInit {
           this.title.setTitle(`${receta.nombre} | Paraíso Para Saborear`);
 
           this.recetasService
-            .getRecetasPorCategoria(receta.categoria, id)
+            .getRecetasRelacionadas(receta.categoria, receta.tipoDePlato, id)
             .subscribe((relacionadas) => {
-              this.recetasRelacionadas = relacionadas.slice(0, 3);
+              this.recetasRelacionadas = relacionadas.slice(0, 12);
             });
         });
       }
