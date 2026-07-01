@@ -1,0 +1,8 @@
+imports/
+node_modules/
+.env
+serviceAccountKey.json
+matches.json
+package-lock.json
+package.json
+upload-fotos.js
