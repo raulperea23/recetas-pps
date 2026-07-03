@@ -322,12 +322,15 @@ export class AdminComponent implements OnInit {
     const fotoPrincipal =
       fotos.length > 0 ? fotos[0].url : this.formulario.value.foto || '';
 
-    const receta: Receta = {
+    const receta: any = {
       ...this.formulario.value,
       foto: fotoPrincipal,
-      fotos: fotos.length > 0 ? fotos : undefined,
       fechaPublicacion: new Date(),
     };
+
+    if (fotos.length > 0) {
+      receta.fotos = fotos;
+    }
 
     if (this.editandoId) {
       await this.recetasService.updateReceta(this.editandoId, receta);
