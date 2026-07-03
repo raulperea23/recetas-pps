@@ -5,7 +5,7 @@
 
 <!-- Filtros -->
 <section class="filtros">
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" class="filtro-busqueda">
     <mat-label>Buscar receta</mat-label>
     <input
       matInput
@@ -15,109 +15,119 @@
     />
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Tipo de plato</mat-label>
-    <mat-select [(ngModel)]="tipoSeleccionado" (ngModelChange)="filtrar()">
-      <mat-option value="">Todos</mat-option>
-      <mat-option *ngFor="let cat of tiposDePlato" [value]="cat">{{
-        cat
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="filtros-fila">
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de plato</mat-label>
+      <mat-select [(ngModel)]="tipoSeleccionado" (ngModelChange)="filtrar()">
+        <mat-option value="">Todos</mat-option>
+        <mat-option *ngFor="let cat of tiposDePlato" [value]="cat">{{
+          cat
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Categoría</mat-label>
-    <mat-select [(ngModel)]="categoriaSeleccionada" (ngModelChange)="filtrar()">
-      <mat-option value="">Todas</mat-option>
-      <mat-option *ngFor="let cat of categorias" [value]="cat">{{
-        cat
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Categoría</mat-label>
+      <mat-select
+        [(ngModel)]="categoriaSeleccionada"
+        (ngModelChange)="filtrar()"
+      >
+        <mat-option value="">Todas</mat-option>
+        <mat-option *ngFor="let cat of categorias" [value]="cat">{{
+          cat
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Dificultad</mat-label>
-    <mat-select
-      [(ngModel)]="dificultadSeleccionada"
+    <mat-form-field appearance="outline">
+      <mat-label>Dificultad</mat-label>
+      <mat-select
+        [(ngModel)]="dificultadSeleccionada"
+        (ngModelChange)="filtrar()"
+      >
+        <mat-option value="">Todas</mat-option>
+        <mat-option *ngFor="let dif of dificultades" [value]="dif">{{
+          dif
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="filtros-extras">
+    <mat-checkbox
+      [(ngModel)]="soloDestacadas"
       (ngModelChange)="filtrar()"
+      class="checkbox-destacadas"
     >
-      <mat-option value="">Todas</mat-option>
-      <mat-option *ngFor="let dif of dificultades" [value]="dif">{{
-        dif
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-checkbox
-    [(ngModel)]="soloDestacadas"
-    (ngModelChange)="filtrar()"
-    class="checkbox-destacadas"
-  >
-    Solo destacadas
-  </mat-checkbox>
-
-  <button mat-button (click)="limpiarFiltros()">Limpiar filtros</button>
+      Solo destacadas
+    </mat-checkbox>
+    <button mat-button (click)="limpiarFiltros()" class="btn-limpiar">
+      Limpiar filtros
+    </button>
+  </div>
 </section>
 
 <!-- Ordenación -->
 <div class="ordenacion">
-  <span>Ordenar por:</span>
-  <button
-    mat-button
-    [class.activo]="ordenActual === 'fecha'"
-    (click)="ordenar('fecha')"
-  >
-    Recientes
-    <span *ngIf="ordenActual === 'fecha'">{{
-      ordenAscendente ? "↑" : "↓"
-    }}</span>
-  </button>
-  <button
-    mat-button
-    [class.activo]="ordenActual === 'nombre'"
-    (click)="ordenar('nombre')"
-  >
-    A-Z
-    <span *ngIf="ordenActual === 'nombre'">{{
-      ordenAscendente ? "↑" : "↓"
-    }}</span>
-  </button>
-  <button
-    mat-button
-    [class.activo]="ordenActual === 'categoria'"
-    (click)="ordenar('categoria')"
-  >
-    Categoría
-    <span *ngIf="ordenActual === 'categoria'">{{
-      ordenAscendente ? "↑" : "↓"
-    }}</span>
-  </button>
-  <button
-    mat-button
-    [class.activo]="ordenActual === 'tiempo'"
-    (click)="ordenar('tiempo')"
-  >
-    Tiempo
-    <span *ngIf="ordenActual === 'tiempo'">{{
-      ordenAscendente ? "↑" : "↓"
-    }}</span>
-  </button>
-  <button
-    mat-button
-    [class.activo]="ordenActual === 'dificultad'"
-    (click)="ordenar('dificultad')"
-  >
-    Dificultad
-    <span *ngIf="ordenActual === 'dificultad'">{{
-      ordenAscendente ? "↑" : "↓"
-    }}</span>
-  </button>
-  <div class="count-resultados" *ngIf="recetasFiltradas.length > 0">
-    Total: {{ recetasFiltradas.length }}
+  <span class="ordenacion-label">Ordenar por:</span>
+  <div class="ordenacion-botones">
+    <button
+      mat-button
+      [class.activo]="ordenActual === 'fecha'"
+      (click)="ordenar('fecha')"
+    >
+      Recientes
+      <span *ngIf="ordenActual === 'fecha'">{{
+        ordenAscendente ? "↑" : "↓"
+      }}</span>
+    </button>
+    <button
+      mat-button
+      [class.activo]="ordenActual === 'nombre'"
+      (click)="ordenar('nombre')"
+    >
+      A-Z
+      <span *ngIf="ordenActual === 'nombre'">{{
+        ordenAscendente ? "↑" : "↓"
+      }}</span>
+    </button>
+    <button
+      mat-button
+      [class.activo]="ordenActual === 'categoria'"
+      (click)="ordenar('categoria')"
+    >
+      Categoría
+      <span *ngIf="ordenActual === 'categoria'">{{
+        ordenAscendente ? "↑" : "↓"
+      }}</span>
+    </button>
+    <button
+      mat-button
+      [class.activo]="ordenActual === 'tiempo'"
+      (click)="ordenar('tiempo')"
+    >
+      Tiempo
+      <span *ngIf="ordenActual === 'tiempo'">{{
+        ordenAscendente ? "↑" : "↓"
+      }}</span>
+    </button>
+    <button
+      mat-button
+      [class.activo]="ordenActual === 'dificultad'"
+      (click)="ordenar('dificultad')"
+    >
+      Dificultad
+      <span *ngIf="ordenActual === 'dificultad'">{{
+        ordenAscendente ? "↑" : "↓"
+      }}</span>
+    </button>
   </div>
 </div>
 
 <!-- Listado -->
+<div class="count-resultados" *ngIf="recetasFiltradas.length > 0">
+  {{ recetasFiltradas.length }} recetas
+</div>
 <section class="grid" *ngIf="recetasMostradas.length > 0; else sinResultados">
   <app-card
     *ngFor="let receta of recetasMostradas; let i = index"

@@ -19,18 +19,84 @@
   color: black;
 }
 
+/* ── Filtros ─────────────────────────────────────────────────────────── */
+
 .filtros {
   display: flex;
-  gap: 13px;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 26px;
 }
 
-.filtros mat-form-field {
+.filtro-busqueda {
+  width: 100%;
+}
+
+.filtros-fila {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.filtros-fila mat-form-field {
   min-width: 176px;
   flex: 1;
 }
+
+.filtros-extras {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.btn-limpiar {
+  color: #888;
+}
+
+.checkbox-destacadas {
+  white-space: nowrap;
+}
+
+/* ── Ordenación ──────────────────────────────────────────────────────── */
+
+.ordenacion {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+}
+
+.ordenacion-label {
+  color: #555;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.ordenacion-botones {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.ordenacion button.activo {
+  color: var(--primary-color);
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-color);
+  border-radius: 0;
+}
+
+.count-resultados {
+  text-align: center;
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────── */
 
 .grid {
   display: grid;
@@ -52,39 +118,8 @@
   margin-top: 32px;
 }
 
-.ordenacion {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 26px;
-  flex-wrap: wrap;
-}
+/* ── Responsive ──────────────────────────────────────────────────────── */
 
-.ordenacion span {
-  color: #555;
-  font-size: 14px;
-}
-
-.ordenacion .count-resultados {
-  background-color: var(--primary-color);
-  color: white;
-  font-size: 14px;
-  border-radius: 20px;
-  padding: 8px 12px;
-}
-
-.ordenacion button.activo {
-  color: var(--primary-color);
-  font-weight: 600;
-  border-bottom: 2px solid var(--primary-color);
-  border-radius: 0;
-}
-
-.checkbox-destacadas {
-  white-space: nowrap;
-}
-
-/* RESPONSIVE */
 @media (max-width: 1024px) {
   .section-header .section-title {
     font-size: 34px;
@@ -96,11 +131,7 @@
     font-size: 29px;
   }
 
-  .filtros {
-    gap: 10px;
-  }
-
-  .filtros mat-form-field {
+  .filtros-fila mat-form-field {
     min-width: 144px;
   }
 
@@ -108,16 +139,13 @@
     grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
     gap: 16px;
   }
-
-  .ordenacion span {
-    font-size: 13px;
-  }
 }
 
 @media (max-width: 768px) {
   .section-header {
     gap: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 13px;
+    padding: 6px 0;
   }
 
   .section-header .section-icon {
@@ -127,39 +155,63 @@
   }
 
   .section-header .section-title {
-    font-size: 32px;
+    font-size: 26px;
   }
 
   .filtros {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 13px;
   }
 
-  .filtros mat-form-field {
-    min-width: unset;
-    width: 100%;
+  .filtros-fila {
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
-  .filtros button {
-    width: 100%;
+  .filtros-fila mat-form-field {
+    min-width: calc(50% - 4px);
+    flex: 1 1 calc(50% - 4px);
   }
 
+  .filtros-extras {
+    gap: 10px;
+  }
+
+  .btn-limpiar {
+    margin-left: auto;
+  }
+
+  /* Ordenación en scroll horizontal */
   .ordenacion {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     gap: 3px;
-    margin-bottom: 16px;
+    margin-bottom: 13px;
+    padding-bottom: 4px;
   }
 
-  .ordenacion span {
-    font-size: 11px;
-    width: 100%;
-    margin-bottom: 3px;
+  .ordenacion-botones {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ordenacion-label {
+    font-size: 12px;
+    flex-shrink: 0;
   }
 
   .ordenacion button {
-    font-size: 10px;
+    font-size: 11px;
     padding: 0 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .count-resultados {
+    font-size: 14px;
+    padding: 3px 10px;
+    flex-shrink: 0;
   }
 
   .grid {
@@ -173,8 +225,13 @@
 }
 
 @media (max-width: 480px) {
+  .filtros-fila mat-form-field {
+    min-width: 100%;
+    flex: 1 1 100%;
+  }
+
   .grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 }
