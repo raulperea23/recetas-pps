@@ -16,20 +16,20 @@
       <div class="banner-aleatoria-contenido">
         <h2>La sugerencia de la chef</h2>
         <p>Confía en nuestro plato del día</p>
-        <span class="nombre-receta">{{ sugerenciaAleatoria.nombre }}</span>
+        <!-- <span class="nombre-receta">{{ sugerenciaAleatoria.nombre }}</span> -->
       </div>
     </div>
-    <button
+    <!-- <button
       mat-icon-button
       class="btn-refrescar"
       (click)="$event.stopPropagation(); cargarSugerenciaAleatoria()"
       matTooltip="Otra receta"
     >
       <mat-icon>refresh</mat-icon>
-    </button>
+    </button> -->
   </section>
   <section class="seccion-aleatoria" *ngIf="recetaAleatoria">
-    <div class="banner-receta-aleatoria" (click)="abrirModalDeAleatoria()">
+    <!-- <div class="banner-receta-aleatoria" (click)="abrirModalDeAleatoria()">
       <div class="banner-aleatoria-contenido">
         <h2>¿Qué hacemos hoy de comer?</h2>
         <p>Déjate sorprender por una receta aleatoria</p>
@@ -45,7 +45,13 @@
       matTooltip="Otra receta"
     >
       <mat-icon>refresh</mat-icon>
-    </button>
+    </button> -->
+    <div class="banner-receta-aleatoria" [routerLink]="['/categorias']">
+      <div class="banner-aleatoria-contenido">
+        <h2>Nuestras categorías</h2>
+        <p>Explora las categorías de las recetas disponibles</p>
+      </div>
+    </div>
   </section>
 </section>
 
