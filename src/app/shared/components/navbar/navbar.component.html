@@ -35,8 +35,12 @@
       </button>
     </div>
 
-    <!-- Burger menu para mobile -->
+    <!-- Mobile: logo + título + burger -->
     <div class="mobile-menu">
+      <div class="mobile-logo" routerLink="/">
+        <img src="logo.png" class="app-img-mobile" />
+      </div>
+      <span class="mobile-titulo" routerLink="/">Paraíso Para Saborear</span>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon class="burger-icon">menu</mat-icon>
       </button>

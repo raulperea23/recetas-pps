@@ -134,7 +134,11 @@ export class HomeComponent implements OnInit {
         .filter((r) => r.tipoDePlato === 'Postre' && r.destacada === true)
         .slice(0, 3);
       this.postres = recetas
-        .filter((r) => r.tipoDePlato === 'Postre')
+        .filter(
+          (r) =>
+            r.tipoDePlato === 'Postre' &&
+            r.categoria !== 'Mermeladas, limonadas, batidos y licores',
+        )
         .slice(0, 5);
       this.cargarSugerenciaAleatoria();
       this.cargarRecetaAleatoria();

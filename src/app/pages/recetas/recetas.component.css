@@ -32,6 +32,15 @@
   width: 100%;
 }
 
+.btn-limpiar-busqueda {
+  cursor: pointer;
+  color: #888;
+}
+
+.btn-limpiar-busqueda:hover {
+  color: #e53935;
+}
+
 .filtros-fila {
   display: flex;
   gap: 13px;

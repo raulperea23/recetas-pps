@@ -115,6 +115,14 @@ export class RecetasComponent implements OnInit {
     });
   }
 
+  // Elimina tildes y pasa a minúsculas para comparaciones
+  private normalizar(texto: string): string {
+    return texto
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
   private tiempoEnMinutos(receta: Receta): number {
     const tiempo = receta.tiempoPreparacion ?? 0;
     const unidad = receta.tiempoUnidad ?? 'minutos';
@@ -123,10 +131,12 @@ export class RecetasComponent implements OnInit {
 
   filtrar(): void {
     this.pagina = 1;
+    const busquedaNorm = this.normalizar(this.busqueda);
+
     const filtradas = this.todasLasRecetas.filter((receta) => {
-      const coincideNombre = receta.nombre
-        .toLowerCase()
-        .includes(this.busqueda.toLowerCase());
+      const coincideNombre = this.normalizar(receta.nombre).includes(
+        busquedaNorm,
+      );
       const coincideCategoria = this.categoriaSeleccionada
         ? receta.categoria === this.categoriaSeleccionada
         : true;

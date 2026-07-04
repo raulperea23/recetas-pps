@@ -13,6 +13,14 @@
       (ngModelChange)="filtrar()"
       placeholder="Nombre de la receta..."
     />
+    <mat-icon matSuffix *ngIf="!busqueda">search</mat-icon>
+    <mat-icon
+      matSuffix
+      *ngIf="busqueda"
+      class="btn-limpiar-busqueda"
+      (click)="busqueda = ''; filtrar()"
+      >close</mat-icon
+    >
   </mat-form-field>
 
   <div class="filtros-fila">
