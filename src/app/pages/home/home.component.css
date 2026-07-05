@@ -809,30 +809,45 @@
   .jar {
     gap: 3px;
   }
+
   .jar-visual {
     height: 112px;
   }
+
   .jar-shelf {
     height: 10px;
     bottom: 10px;
   }
+
   .jar-glass {
     height: 88px;
     border-radius: 13px;
   }
+
   .jar-lid {
     width: 80%;
     height: 11px;
   }
+
   .jar-liquid {
     height: 100%;
   }
+
   .jar:hover .jar-visual {
     transform: translateY(-3px);
   }
+
   .salsa-nombre {
-    font-size: 8px;
+    font-size: 10px;
     color: #2f2f2f;
     padding: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shelf {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 11px;
+    padding: 10px;
   }
 }
