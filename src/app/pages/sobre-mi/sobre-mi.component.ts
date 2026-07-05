@@ -91,11 +91,11 @@ export class SobreMiComponent implements OnInit, OnDestroy {
       icono: '❤️',
       frase: 'Todas las recetas están escritas y cocinadas con mucho amor',
     },
-    { icono: '🌿', frase: 'Porque lo que más nos gusta en mi casa es comer' },
+    { icono: '😋', frase: 'Porque lo que más nos gusta en mi casa es comer' },
     { icono: '👨‍👩‍👧‍👦', frase: 'Para la gente que más quiero' },
     {
       icono: '✨',
-      frase: 'Porque estas recetas tienes un valor especial para mi',
+      frase: 'Porque estas recetas tienen un valor especial para mí',
     },
   ];
 

@@ -145,6 +145,13 @@ main {
   color: #444;
 }
 
+.cita-descripcion {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
 .historia-foto img {
   width: 100%;
   border-radius: 13px;

@@ -133,13 +133,22 @@ export class HomeComponent implements OnInit {
       this.postresDestacados = recetas
         .filter((r) => r.tipoDePlato === 'Postre' && r.destacada === true)
         .slice(0, 3);
-      this.postres = recetas
-        .filter(
-          (r) =>
-            r.tipoDePlato === 'Postre' &&
-            r.categoria !== 'Mermeladas, limonadas, batidos y licores',
-        )
-        .slice(0, 5);
+
+      const idPostresDestacados = new Set(
+        this.postresDestacados.map((r) => r.id),
+      );
+
+      const postresPool = recetas.filter(
+        (r) =>
+          r.tipoDePlato === 'Postre' &&
+          r.categoria !== 'Mermeladas, limonadas, batidos y licores' &&
+          !idPostresDestacados.has(r.id),
+      );
+
+      // Selección aleatoria de 4 sin repetición
+      const shuffled = [...postresPool].sort(() => Math.random() - 0.5);
+      this.postres = shuffled.slice(0, 5);
+
       this.cargarSugerenciaAleatoria();
       this.cargarRecetaAleatoria();
     });
