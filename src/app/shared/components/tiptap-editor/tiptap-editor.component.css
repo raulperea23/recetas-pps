@@ -17,14 +17,16 @@
 
 .tiptap-toolbar button {
   color: #555;
-  /* width: 32px;
-  height: 32px; */
 }
 
 .tiptap-toolbar button.activo {
   color: var(--primary-color);
   background: rgba(84, 175, 232, 0.08);
   border-radius: 4px;
+}
+
+.btn-eliminar-tabla {
+  color: #e53935 !important;
 }
 
 .tiptap-separador {
@@ -74,6 +76,43 @@
 }
 :host ::ng-deep .tiptap-content u {
   text-decoration: underline;
+}
+
+/* Tabla en el editor */
+:host ::ng-deep .tiptap-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+:host ::ng-deep .tiptap-content th,
+:host ::ng-deep .tiptap-content td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+  min-width: 80px;
+}
+
+:host ::ng-deep .tiptap-content th {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+:host ::ng-deep .tiptap-content td {
+  background: white;
+}
+
+:host ::ng-deep .tiptap-content tr:nth-child(even) td {
+  background: #f9f9f9;
+}
+
+/* Celda seleccionada */
+:host ::ng-deep .tiptap-content .selectedCell {
+  background: rgba(84, 175, 232, 0.15) !important;
 }
 
 /* Placeholder */

@@ -74,6 +74,80 @@
     >
       <mat-icon>format_align_right</mat-icon>
     </button>
+    <div class="tiptap-separador"></div>
+
+    <!-- Botones de tabla -->
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Insertar tabla"
+      (click)="insertTable()"
+    >
+      <mat-icon>table_chart</mat-icon>
+    </button>
+
+    <!-- Controles de tabla: solo visibles cuando el cursor está dentro de una tabla -->
+    <ng-container *ngIf="isTableActive()">
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Añadir columna antes"
+        (click)="addColumnBefore()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Añadir columna después"
+        (click)="addColumnAfter()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Eliminar columna"
+        (click)="deleteColumn()"
+      >
+        <mat-icon>remove</mat-icon>
+      </button>
+      <div class="tiptap-separador"></div>
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Añadir fila antes"
+        (click)="addRowBefore()"
+      >
+        <mat-icon>keyboard_arrow_up</mat-icon>
+      </button>
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Añadir fila después"
+        (click)="addRowAfter()"
+      >
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Eliminar fila"
+        (click)="deleteRow()"
+      >
+        <mat-icon>remove</mat-icon>
+      </button>
+      <div class="tiptap-separador"></div>
+      <button
+        type="button"
+        mat-icon-button
+        matTooltip="Eliminar tabla"
+        class="btn-eliminar-tabla"
+        (click)="deleteTable()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </ng-container>
   </div>
   <div #editorEl class="tiptap-content"></div>
 </div>

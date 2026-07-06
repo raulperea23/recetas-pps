@@ -2,11 +2,6 @@
   position: relative;
 }
 
-/* .modal-contenido.truco,
-.modal-contenido.salsa {
-  max-width: 656px;
-} */
-
 .cerrar {
   position: absolute;
   top: 6px;
@@ -84,8 +79,8 @@ mat-dialog-actions {
   color: #555;
   line-height: 1.7;
   font-size: 0.85rem;
-  white-space: pre-line;
   overflow-y: auto;
+  overflow-x: auto;
   max-height: 60vh;
 }
 

@@ -133,14 +133,14 @@
 }
 
 .glosario-texto h2 {
-  font-size: 1.44rem;
+  font-size: 1.6rem;
   color: white;
   margin: 0 0 6px 0;
 }
 
 .glosario-texto p {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.85rem;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -213,7 +213,7 @@
   }
 
   .glosario-texto h2 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   .meses-grid {
@@ -279,11 +279,11 @@
   }
 
   .glosario-texto h2 {
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
 
   .glosario-texto p {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 
   .glosario-btn {

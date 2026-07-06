@@ -1,6 +1,24 @@
 :host {
   display: block;
   padding: 19px;
+  /* Necesario para que el wrapper pueda usar height */
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  gap: 0;
+}
+
+.tabla-scroll {
+  overflow: auto;
+  flex: 1;
+  min-height: 0; /* importante para que flex + overflow funcione */
+  border-radius: 10px;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
 }
 
 table {
@@ -9,12 +27,17 @@ table {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
+  /* min-width para forzar scroll horizontal en mobile */
+  min-width: 700px;
 }
 
 thead {
   background: var(--primary-color);
   color: white;
+  /* sticky header para que se vea al hacer scroll vertical */
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 th,
@@ -48,16 +71,12 @@ td {
   color: #444;
 }
 
-mat-dialog-actions {
-  margin-top: 16px;
+.dialog-actions {
+  flex-shrink: 0;
+  padding-top: 16px;
+  margin: 0;
 }
 
 button[mat-button] {
   min-width: 96px;
-}
-
-@media only screen and (max-width: 1024px) {
-  mat-dialog-actions {
-    display: none;
-  }
 }

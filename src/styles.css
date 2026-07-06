@@ -244,6 +244,60 @@ td {
   color: #444;
 }
 
+/* Extra styles para tabla en modal */
+/* Tablas dentro de innerHTML (trucos, preparaciones) */
+.truco-descripcion table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
+  margin: 13px 0;
+}
+
+.truco-descripcion thead {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.truco-descripcion th,
+.truco-descripcion td {
+  font-size: 14px;
+  padding: 11px 14px;
+  text-align: center;
+}
+
+.truco-descripcion th {
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.5px !important;
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.truco-descripcion tbody tr {
+  border-bottom: 1px solid #eaeaea;
+  transition: background-color 0.2s ease;
+}
+
+.truco-descripcion tbody tr:last-child {
+  border-bottom: none;
+}
+
+.truco-descripcion tbody tr:hover {
+  background-color: #f5f7ff;
+}
+
+.truco-descripcion td {
+  color: #444;
+}
+
+/* Scroll horizontal en tablas anchas */
+.truco-descripcion {
+  overflow-x: auto;
+}
+
 /* Tabs */
 .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
   color: var(--primary-color) !important;

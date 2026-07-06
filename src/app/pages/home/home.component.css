@@ -309,24 +309,47 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 13px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  padding: 10px 13px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
 .postre-overlay h3 {
   color: white;
   font-size: 16px;
-  margin: 0 0 3px 0;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+/* Título más visible en postres pequeños */
+.postre-pequeño .postre-overlay h3 {
+  font-size: 15px;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .postre-meta {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.75rem;
+  flex-wrap: wrap;
+  gap: 8px;
   margin: 0;
+}
+
+.postre-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.postre-meta-item mat-icon {
+  font-size: 15px;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
 }
 
 .ver-mas {
@@ -596,7 +619,6 @@
   .banner {
     padding: 48px 19px;
   }
-
   .banner h1 {
     font-size: 2rem;
   }
@@ -604,7 +626,6 @@
   .section-header .section-title {
     font-size: 34px;
   }
-
   .section-header .section-icon {
     width: 29px;
     height: 29px;
@@ -619,11 +640,9 @@
   .banner-receta-aleatoria {
     padding: 29px 19px;
   }
-
   .banner-aleatoria-contenido h2 {
     font-size: 1.9rem;
   }
-
   .banner-aleatoria-contenido p {
     font-size: 1rem;
   }
@@ -640,11 +659,9 @@
   .postres-revista {
     gap: 10px;
   }
-
   .postre-grande img {
     min-height: 256px;
   }
-
   .postre-pequeño {
     min-height: 120px;
   }
@@ -652,7 +669,6 @@
   .preparacion-grid {
     grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
   }
-
   .trucos-grid {
     grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
   }
@@ -662,7 +678,6 @@
     gap: 14px;
     padding: 13px;
   }
-
   .jar-visual {
     height: 136px;
   }
@@ -693,12 +708,10 @@
     border-radius: 8px;
     margin-bottom: 19px;
   }
-
   .banner h1 {
     font-size: 1.9rem;
     margin-bottom: 10px;
   }
-
   .banner p {
     font-size: 1rem;
     margin-bottom: 16px;
@@ -708,13 +721,11 @@
     gap: 6px;
     margin-bottom: 16px;
   }
-
   .section-header .section-icon {
     width: 22px;
     height: 22px;
     font-size: 22px;
   }
-
   .section-header .section-title {
     font-size: 32px;
   }
@@ -738,15 +749,12 @@
   .banner-receta-aleatoria {
     padding: 26px 16px;
   }
-
   .banner-aleatoria-contenido h2 {
     font-size: 1.8rem;
   }
-
   .banner-aleatoria-contenido p {
     font-size: 1rem;
   }
-
   .nombre-receta {
     font-size: 0.9rem;
     padding: 5px 11px;
@@ -756,28 +764,22 @@
     padding: 13px;
     margin-bottom: 26px;
   }
-
   .constructor-icono {
     font-size: 1.6rem;
     width: 1.6rem;
     height: 1.6rem;
   }
-
   .constructor-texto h3 {
     font-size: 1.2rem;
   }
-
   .constructor-texto p {
     font-size: 0.8rem;
   }
 
-  /* En mobile el postre grande ocupa el ancho completo
-     y los pequeños van en grid 2x2 debajo */
   .postres-revista {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-
   .postre-grande img {
     min-height: 220px;
   }
@@ -792,10 +794,34 @@
     min-height: 130px;
   }
 
+  .postre-overlay {
+    padding: 10px 12px;
+  }
+
+  /* En mobile el título más grande y la meta en columna */
+  .postre-pequeño .postre-overlay h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .postre-pequeño .postre-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .postre-meta-item {
+    font-size: 0.78rem;
+  }
+  .postre-meta-item mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+
   .preparacion-grid {
     grid-template-columns: 1fr;
   }
-
   .trucos-grid {
     grid-template-columns: 1fr;
   }
@@ -805,38 +831,30 @@
     gap: 11px;
     padding: 10px;
   }
-
   .jar {
     gap: 3px;
   }
-
   .jar-visual {
     height: 112px;
   }
-
   .jar-shelf {
     height: 10px;
     bottom: 10px;
   }
-
   .jar-glass {
     height: 88px;
     border-radius: 13px;
   }
-
   .jar-lid {
     width: 80%;
     height: 11px;
   }
-
   .jar-liquid {
     height: 100%;
   }
-
   .jar:hover .jar-visual {
     transform: translateY(-3px);
   }
-
   .salsa-nombre {
     font-size: 10px;
     color: #2f2f2f;

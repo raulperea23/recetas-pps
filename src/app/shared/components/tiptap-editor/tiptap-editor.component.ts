@@ -3,8 +3,6 @@ import {
   OnInit,
   OnDestroy,
   Input,
-  Output,
-  EventEmitter,
   ElementRef,
   ViewChild,
   forwardRef,
@@ -19,6 +17,10 @@ import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Placeholder from '@tiptap/extension-placeholder';
+import { Table } from '@tiptap/extension-table';
+import TableRow from '@tiptap/extension-table-row';
+import TableHeader from '@tiptap/extension-table-header';
+import TableCell from '@tiptap/extension-table-cell';
 
 @Component({
   selector: 'app-tiptap-editor',
@@ -52,6 +54,10 @@ export class TiptapEditorComponent
         Underline,
         TextAlign.configure({ types: ['heading', 'paragraph'] }),
         Placeholder.configure({ placeholder: this.placeholder }),
+        Table,
+        TableRow,
+        TableHeader,
+        TableCell,
       ],
       content: '',
       onUpdate: ({ editor }) => {
@@ -121,5 +127,45 @@ export class TiptapEditorComponent
         this.editor.chain().focus().setTextAlign('right').run();
         break;
     }
+  }
+
+  insertTable(): void {
+    this.editor
+      .chain()
+      .focus()
+      .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+      .run();
+  }
+
+  addColumnBefore(): void {
+    this.editor.chain().focus().addColumnBefore().run();
+  }
+
+  addColumnAfter(): void {
+    this.editor.chain().focus().addColumnAfter().run();
+  }
+
+  deleteColumn(): void {
+    this.editor.chain().focus().deleteColumn().run();
+  }
+
+  addRowBefore(): void {
+    this.editor.chain().focus().addRowBefore().run();
+  }
+
+  addRowAfter(): void {
+    this.editor.chain().focus().addRowAfter().run();
+  }
+
+  deleteRow(): void {
+    this.editor.chain().focus().deleteRow().run();
+  }
+
+  deleteTable(): void {
+    this.editor.chain().focus().deleteTable().run();
+  }
+
+  isTableActive(): boolean {
+    return this.editor?.isActive('table') ?? false;
   }
 }

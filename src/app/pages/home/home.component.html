@@ -16,36 +16,10 @@
       <div class="banner-aleatoria-contenido">
         <h2>La sugerencia de la chef</h2>
         <p>Confía en nuestro plato del día</p>
-        <!-- <span class="nombre-receta">{{ sugerenciaAleatoria.nombre }}</span> -->
       </div>
     </div>
-    <!-- <button
-      mat-icon-button
-      class="btn-refrescar"
-      (click)="$event.stopPropagation(); cargarSugerenciaAleatoria()"
-      matTooltip="Otra receta"
-    >
-      <mat-icon>refresh</mat-icon>
-    </button> -->
   </section>
   <section class="seccion-aleatoria" *ngIf="recetaAleatoria">
-    <!-- <div class="banner-receta-aleatoria" (click)="abrirModalDeAleatoria()">
-      <div class="banner-aleatoria-contenido">
-        <h2>¿Qué hacemos hoy de comer?</h2>
-        <p>Déjate sorprender por una receta aleatoria</p>
-        <span class="nombre-receta"
-          >Hoy toca: {{ recetaAleatoria.nombre }}</span
-        >
-      </div>
-    </div>
-    <button
-      mat-icon-button
-      class="btn-refrescar"
-      (click)="$event.stopPropagation(); cargarRecetaAleatoria()"
-      matTooltip="Otra receta"
-    >
-      <mat-icon>refresh</mat-icon>
-    </button> -->
     <div class="banner-receta-aleatoria" [routerLink]="['/categorias']">
       <div class="banner-aleatoria-contenido">
         <h2>Nuestras categorías</h2>
@@ -127,11 +101,15 @@
       <div class="postre-overlay">
         <h3>{{ postresDestacados[0].nombre }}</h3>
         <p class="postre-meta">
-          <mat-icon>access_alarm</mat-icon>
-          {{ postresDestacados[0].tiempoPreparacion }}
-          {{ postresDestacados[0].tiempoUnidad }} ·
-          <mat-icon>person_outline</mat-icon>
-          {{ postresDestacados[0].comensales }} personas
+          <span class="postre-meta-item">
+            <mat-icon>access_alarm</mat-icon>
+            {{ postresDestacados[0].tiempoPreparacion }}
+            {{ postresDestacados[0].tiempoUnidad }}
+          </span>
+          <span class="postre-meta-item">
+            <mat-icon>person_outline</mat-icon>
+            {{ postresDestacados[0].comensales }} personas
+          </span>
         </p>
       </div>
     </div>
@@ -149,10 +127,14 @@
         <div class="postre-overlay">
           <h3>{{ postre.nombre }}</h3>
           <p class="postre-meta">
-            <mat-icon>access_alarm</mat-icon> {{ postre.tiempoPreparacion }}
-            {{ postre.tiempoUnidad }}
-            <mat-icon>person_outline</mat-icon>
-            {{ postre.comensales }} personas
+            <span class="postre-meta-item">
+              <mat-icon>access_alarm</mat-icon>
+              {{ postre.tiempoPreparacion }} {{ postre.tiempoUnidad }}
+            </span>
+            <span class="postre-meta-item">
+              <mat-icon>person_outline</mat-icon>
+              {{ postre.comensales }} personas
+            </span>
           </p>
         </div>
       </div>
