@@ -9,7 +9,7 @@
 .foto-wrapper {
   flex: 1;
   overflow: auto;
-  background: white;
+  background: var(--white-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +33,7 @@
   justify-content: center;
   gap: 6px;
   padding: 10px 13px;
-  background: white;
+  background: var(--white-color);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
   height: 45px;

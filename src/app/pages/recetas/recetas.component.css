@@ -16,7 +16,7 @@
 
 .section-header .section-title {
   font-size: 37px;
-  color: black;
+  color: var(--black-color);
 }
 
 /* ── Filtros ─────────────────────────────────────────────────────────── */

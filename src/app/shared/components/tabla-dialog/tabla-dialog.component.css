@@ -33,7 +33,7 @@ table {
 
 thead {
   background: var(--primary-color);
-  color: white;
+  color: var(--white-color);
   /* sticky header para que se vea al hacer scroll vertical */
   position: sticky;
   top: 0;

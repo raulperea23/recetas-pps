@@ -10,7 +10,7 @@
 
 h1 {
   font-size: 6rem;
-  color: black;
+  color: var(--black-color);
   margin: 0;
 }
 

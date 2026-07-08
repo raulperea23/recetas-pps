@@ -24,18 +24,18 @@
   font-size: 32px;
   width: 32px;
   height: 32px;
-  color: white;
+  color: var(--white-color);
 }
 
 .admin-cabecera h1 {
   font-size: 1.6rem;
-  color: white;
+  color: var(--white-color);
   margin: 0;
 }
 
 .btn-logout {
-  color: white !important;
-  border-color: white !important;
+  color: var(--white-color) !important;
+  border-color: var(--white-color) !important;
 }
 
 /* FORMULARIO */
@@ -186,7 +186,7 @@ mat-divider {
 
 .btn-guardar {
   background-color: var(--primary-color) !important;
-  color: white !important;
+  color: var(--white-color) !important;
   border-radius: 19px !important;
   padding: 0 19px !important;
   display: flex;
@@ -211,13 +211,13 @@ mat-divider {
 
 .tabla-titulo {
   font-size: 1.1rem;
-  color: black;
+  color: var(--black-color);
   margin: 0;
 }
 
 .tabla-contador {
   background: var(--primary-color);
-  color: white;
+  color: var(--white-color);
   padding: 3px 10px;
   border-radius: 19px;
   font-size: 0.75rem;
@@ -241,14 +241,14 @@ mat-divider {
 }
 
 .tabla-estrella {
-  color: var(--accent-color);
+  color: var(--secondary-color);
   font-size: 14px;
   width: 14px;
   height: 14px;
 }
 
 .tabla-badge {
-  background: rgba(84, 175, 232, 0.1);
+  background: rgba(var(--accent-color), 0.1);
   color: var(--primary-color);
   padding: 3px 8px;
   border-radius: 19px;
@@ -262,7 +262,7 @@ mat-divider {
 }
 
 .tabla-fila:hover {
-  background: rgba(84, 175, 232, 0.05);
+  background: rgba(var(--accent-color), 0.05);
 }
 
 .btn-editar {
@@ -297,7 +297,7 @@ mat-divider {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--white-color);
   background-color: var(--primary-color);
   padding: 2px;
   border-radius: 50%;

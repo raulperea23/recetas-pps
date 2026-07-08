@@ -1,9 +1,14 @@
 :root {
   --primary-color: #54afe8;
-  --accent-color: #d153ed;
+  --secondary-color: #d153ed;
+  --accent-color: 84, 175, 232;
   --bg-color: #eadace;
   --black-color: #000000;
   --white-color: #ffffff;
+
+  --gray-color-1: #f5f5f5;
+  --gray-color-2: #e0e0e0;
+  --gray-color-3: #bdbdbd;
 }
 
 @font-face {
@@ -49,7 +54,7 @@ ul {
   border-radius: 19px !important;
 }
 .primary-btn .mdc-button__label {
-  color: white !important;
+  color: var(--white-color) !important;
 }
 
 .secondary-btn {
@@ -58,13 +63,13 @@ ul {
   border-radius: 19px !important;
 }
 .secondary-btn .mdc-button__label {
-  color: black !important;
+  color: var(--black-color) !important;
 }
 
 /* Estilos para Angular Material */
 button .mdc-button__label {
   font-size: 16px !important;
-  color: black;
+  color: var(--black-color);
 }
 
 mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
@@ -82,12 +87,12 @@ mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
 
 .snackbar-grande .mdc-snackbar__label {
   font-size: 16px !important;
-  color: white !important;
+  color: var(--white-color) !important;
   font-weight: 500 !important;
 }
 
 .snackbar-grande .mdc-snackbar__actions button {
-  color: white !important;
+  color: var(--white-color) !important;
   font-weight: 600 !important;
   opacity: 0.85;
 }
@@ -102,7 +107,7 @@ mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
 
 app-navbar .navbar-button span.mdc-button__label,
 app-footer .navbar-button span.mdc-button__label {
-  color: white !important;
+  color: var(--white-color) !important;
 }
 
 .modal-aleatoria .mat-mdc-dialog-container {
@@ -136,11 +141,11 @@ app-footer .navbar-button span.mdc-button__label {
 }
 
 .mat-mdc-option:hover {
-  background: rgba(84, 175, 232, 0.1) !important;
+  background: rgba(var(--accent-color), 0.1) !important;
 }
 
 .mat-mdc-option.mdc-list-item--selected {
-  background: rgba(84, 175, 232, 0.15) !important;
+  background: rgba(var(--accent-color), 0.15) !important;
   color: var(--primary-color) !important;
 }
 
@@ -210,7 +215,7 @@ table {
 
 thead {
   background: var(--primary-color);
-  color: white;
+  color: var(--white-color);
 }
 
 th,
@@ -258,7 +263,7 @@ td {
 
 .truco-descripcion thead {
   background: var(--primary-color) !important;
-  color: white !important;
+  color: var(--white-color) !important;
 }
 
 .truco-descripcion th,
@@ -273,7 +278,7 @@ td {
   font-size: 0.8rem !important;
   letter-spacing: 0.5px !important;
   background: var(--primary-color) !important;
-  color: white !important;
+  color: var(--white-color) !important;
 }
 
 .truco-descripcion tbody tr {

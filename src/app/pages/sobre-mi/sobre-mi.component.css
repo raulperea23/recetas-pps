@@ -31,7 +31,7 @@
 
 .hero-nombre {
   font-size: 3.2rem;
-  color: white;
+  color: var(--white-color);
   margin: 0 15%;
   min-height: 64px;
 }
@@ -63,8 +63,8 @@
 }
 
 .hero-btn {
-  color: white !important;
-  border-color: white !important;
+  color: var(--white-color) !important;
+  border-color: var(--white-color) !important;
   border-radius: 19px !important;
   padding: 6px 26px !important;
   font-size: 0.85rem;
@@ -84,7 +84,7 @@
 }
 
 .scroll-icon {
-  color: white;
+  color: var(--white-color);
   font-size: 32px;
   width: 32px;
   height: 32px;
@@ -127,7 +127,7 @@ main {
 
 .section-title {
   font-size: 32px;
-  color: black;
+  color: var(--black-color);
   font-weight: 700;
 }
 
@@ -180,7 +180,7 @@ main {
   text-align: center;
   gap: 13px;
   padding: 26px 16px;
-  background: white;
+  background: var(--white-color);
   border-radius: 13px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
   transition:
@@ -220,7 +220,7 @@ main {
   text-align: center;
   gap: 13px;
   padding: 16px 13px 22px 13px;
-  background: white;
+  background: var(--white-color);
   border-radius: 13px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
   border-top: 3px solid var(--primary-color);
@@ -255,9 +255,9 @@ main {
   align-items: center;
   gap: 5px;
   padding: 16px;
-  background: rgba(84, 175, 232, 0.1);
+  background: rgba(var(--accent-color), 0.1);
   border-radius: 10px;
-  border: 1px solid rgba(84, 175, 232, 0.1);
+  border: 1px solid rgba(var(--accent-color), 0.1);
 }
 
 .cat-total {
@@ -284,7 +284,7 @@ main {
 
 .banner-cierre h2 {
   font-size: 1.6rem;
-  color: white;
+  color: var(--white-color);
   margin: 0 0 19px 0;
 }
 
@@ -297,7 +297,7 @@ main {
 }
 
 .btn-cierre {
-  background: white !important;
+  background: var(--white-color) !important;
   color: var(--primary-color) !important;
   border-radius: 19px !important;
   padding: 6px 26px !important;

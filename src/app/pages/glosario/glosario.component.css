@@ -14,7 +14,7 @@
 
 .section-title {
   font-size: 37px;
-  color: black;
+  color: var(--black-color);
   font-weight: 700;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .btn-letra:hover {
-  background: rgba(84, 175, 232, 0.1);
+  background: rgba(var(--accent-color), 0.1);
 }
 
 .grupo-letra {
@@ -87,7 +87,7 @@
 .termino-nombre {
   font-weight: 900;
   font-size: 0.9rem;
-  color: black;
+  color: var(--black-color);
 }
 
 .termino-definicion {

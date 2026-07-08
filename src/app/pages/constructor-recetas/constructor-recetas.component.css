@@ -13,7 +13,7 @@
 
 .section-title {
   font-size: 37px;
-  color: black;
+  color: var(--black-color);
   font-weight: 700;
 }
 
@@ -102,7 +102,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 10px;
-  background: rgba(84, 175, 232, 0.08);
+  background: rgba(var(--accent-color), 0.08);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -113,7 +113,7 @@
 }
 
 .categoria-header:hover {
-  background: rgba(84, 175, 232, 0.15);
+  background: rgba(var(--accent-color), 0.15);
 }
 
 .categoria-ingredientes {
@@ -134,17 +134,17 @@
     background 0.2s,
     transform 0.2s;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background: white;
+  background: var(--white-color);
   user-select: none;
 }
 
 .ingrediente-chip:hover {
-  background: rgba(84, 175, 232, 0.08);
+  background: rgba(var(--accent-color), 0.08);
   transform: translateX(3px);
 }
 
 .ingrediente-chip.seleccionado {
-  background: rgba(84, 175, 232, 0.15);
+  background: rgba(var(--accent-color), 0.15);
   border-color: var(--primary-color);
 }
 
@@ -177,7 +177,7 @@
   border-radius: 13px;
   padding: 16px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
-  border: 2px solid rgba(84, 175, 232, 0.2);
+  border: 2px solid rgba(var(--accent-color), 0.2);
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -226,7 +226,7 @@
   align-items: center;
   gap: 5px;
   padding: 6px 10px;
-  background: rgba(84, 175, 232, 0.1);
+  background: rgba(var(--accent-color), 0.1);
   border: 1px solid var(--primary-color);
   border-radius: 19px;
   cursor: pointer;
@@ -235,7 +235,7 @@
 }
 
 .seleccionado-chip:hover {
-  background: rgba(84, 175, 232, 0.2);
+  background: rgba(var(--accent-color), 0.2);
 }
 
 .ing-quitar {
@@ -263,7 +263,7 @@
 
 .section-title-recetas {
   font-size: 1.44rem;
-  color: black;
+  color: var(--black-color);
   font-weight: 700;
 }
 

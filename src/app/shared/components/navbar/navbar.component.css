@@ -73,7 +73,7 @@ mat-toolbar .esquina-decorativa-der {
   text-transform: uppercase;
   white-space: nowrap;
   text-align: center;
-  color: white;
+  color: var(--white-color);
   padding: 10px 0;
 }
 
@@ -107,7 +107,7 @@ mat-toolbar .esquina-decorativa-der {
 }
 
 button.navbar-button span.mdc-button__label {
-  color: white !important;
+  color: var(--white-color) !important;
 }
 
 .app-logo {
@@ -122,7 +122,7 @@ button.navbar-button span.mdc-button__label {
 }
 
 .burger-icon {
-  color: white;
+  color: var(--white-color);
   font-size: 26px;
   width: 26px;
   height: 26px;
@@ -239,7 +239,7 @@ button.navbar-button span.mdc-button__label {
   }
 
   .mobile-titulo {
-    color: white;
+    color: var(--white-color);
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 2px;

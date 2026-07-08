@@ -15,7 +15,7 @@
 
 .section-header .section-title {
   font-size: 37px;
-  color: black;
+  color: var(--black-color);
 }
 
 .subtitle {
@@ -46,12 +46,12 @@
 }
 
 .tipo-card:hover {
-  background-color: rgba(84, 175, 232, 0.2);
+  background-color: rgba(var(--accent-color), 0.2);
   transform: translateY(-3px);
 }
 
 .tipo-nombre {
-  color: black;
+  color: var(--black-color);
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -107,7 +107,7 @@
 }
 
 .overlay h2 {
-  color: white;
+  color: var(--white-color);
   font-size: 22px;
   margin: 0;
 }
@@ -159,12 +159,12 @@
   font-size: 38px;
   width: 38px;
   height: 38px;
-  color: white;
+  color: var(--white-color);
 }
 
 .glosario-texto h2 {
   font-size: 1.44rem;
-  color: white;
+  color: var(--white-color);
   margin: 0 0 6px 0;
 }
 
@@ -177,8 +177,8 @@
 .glosario-btn {
   position: relative;
   z-index: 1;
-  color: white !important;
-  border-color: white !important;
+  color: var(--white-color) !important;
+  border-color: var(--white-color) !important;
   font-size: 0.85rem;
   padding: 6px 19px;
   display: flex;

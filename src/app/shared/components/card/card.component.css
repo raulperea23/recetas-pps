@@ -17,8 +17,8 @@
   position: absolute;
   top: 6px;
   left: 6px;
-  background-color: var(--accent-color);
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
   display: flex;
   align-items: center;
   border-radius: 50%;
@@ -31,7 +31,7 @@
   top: 6px;
   right: 6px;
   background-color: rgba(0, 0, 0, 0.45);
-  color: white;
+  color: var(--white-color);
   display: flex;
   align-items: center;
   border-radius: 50%;
@@ -58,7 +58,7 @@ mat-card-content {
 }
 
 .tipo-de-plato {
-  color: var(--accent-color);
+  color: var(--secondary-color);
   font-weight: 500;
   margin-bottom: 6px;
 }

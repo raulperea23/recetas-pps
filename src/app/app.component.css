@@ -6,8 +6,8 @@
   z-index: 999;
   width: 56px !important;
   height: 56px !important;
-  background-color: black !important;
-  color: white !important;
+  background-color: var(--black-color) !important;
+  color: var(--white-color) !important;
   border-radius: 50% !important;
   border: 2px solid var(--primary-color);
   transition:
@@ -24,5 +24,5 @@
   font-size: 32px;
   width: 32px;
   height: 32px;
-  color: white;
+  color: var(--white-color);
 }

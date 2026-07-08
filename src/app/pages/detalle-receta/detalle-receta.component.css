@@ -22,7 +22,7 @@
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
-  background: white;
+  background: var(--white-color);
   border-radius: 10px;
   box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.15);
   padding: 6px;
@@ -50,7 +50,7 @@
 }
 
 .opcion-compartir:hover {
-  background: rgba(84, 175, 232, 0.08);
+  background: rgba(var(--accent-color), 0.08);
 }
 
 .icono-whatsapp {
@@ -113,7 +113,7 @@
 }
 
 .foto-overlay mat-icon {
-  color: white;
+  color: var(--white-color);
   font-size: 38px;
   width: 38px;
   height: 38px;
@@ -176,13 +176,13 @@
 
 .info h1 {
   font-size: 32px;
-  color: black;
+  color: var(--black-color);
   margin-bottom: 6px;
   font-weight: 700;
 }
 
 .tipo-de-plato {
-  color: var(--accent-color);
+  color: var(--secondary-color);
   font-weight: 500;
   margin-bottom: 13px;
 }
@@ -242,7 +242,7 @@ mat-divider {
 .ingredientes h2,
 .elaboracion h2 {
   font-size: 24px;
-  color: black;
+  color: var(--black-color);
   margin-bottom: 13px;
   font-weight: 600;
 }
@@ -280,7 +280,7 @@ mat-divider {
   gap: 13px;
   padding: 19px 26px;
   margin: 38px 0;
-  background: rgba(84, 175, 232, 0.08);
+  background: rgba(var(--accent-color), 0.08);
   border-radius: 10px;
   border-left: 4px solid var(--primary-color);
   border-right: 4px solid var(--primary-color);
@@ -307,7 +307,7 @@ mat-divider {
 
 .relacionadas h2 {
   font-size: 29px;
-  color: black;
+  color: var(--black-color);
   margin: 19px 0;
   font-weight: 600;
 }
