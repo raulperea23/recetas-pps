@@ -50,7 +50,7 @@
 }
 
 .opcion-compartir:hover {
-  background: rgba(var(--accent-color-rgb), 0.08);
+  background: rgba(var(--primary-color-rgb), 0.08);
 }
 
 .icono-whatsapp {
@@ -280,7 +280,7 @@ mat-divider {
   gap: 13px;
   padding: 19px 26px;
   margin: 38px 0;
-  background: rgba(var(--accent-color-rgb), 0.08);
+  background: rgba(var(--primary-color-rgb), 0.08);
   border-radius: 10px;
   border-left: 4px solid var(--primary-color);
   border-right: 4px solid var(--primary-color);

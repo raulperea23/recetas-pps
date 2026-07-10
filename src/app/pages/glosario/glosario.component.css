@@ -51,7 +51,7 @@
 }
 
 .btn-letra:hover {
-  background: rgba(var(--accent-color-rgb), 0.1);
+  background: rgba(var(--primary-color-rgb), 0.2);
 }
 
 .grupo-letra {

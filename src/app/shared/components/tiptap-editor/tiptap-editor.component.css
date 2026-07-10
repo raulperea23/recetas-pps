@@ -21,7 +21,7 @@
 
 .tiptap-toolbar button.activo {
   color: var(--primary-color);
-  background: rgba(var(--accent-color-rgb), 0.08);
+  background: rgba(var(--primary-color-rgb), 0.08);
   border-radius: 4px;
 }
 
@@ -114,7 +114,7 @@
 
 /* Celda seleccionada */
 :host ::ng-deep .tiptap-content .selectedCell {
-  background: rgba(var(--accent-color-rgb), 0.15) !important;
+  background: rgba(var(--primary-color-rgb), 0.15) !important;
 }
 
 /* Placeholder */

@@ -254,7 +254,7 @@ mat-divider {
 }
 
 .tabla-badge {
-  background: rgba(var(--accent-color-rgb), 0.1);
+  background: rgba(var(--primary-color-rgb), 0.1);
   color: var(--primary-color);
   padding: 3px 8px;
   border-radius: 19px;
@@ -268,7 +268,7 @@ mat-divider {
 }
 
 .tabla-fila:hover {
-  background: rgba(var(--accent-color-rgb), 0.05);
+  background: rgba(var(--primary-color-rgb), 0.05);
 }
 
 .btn-editar {
