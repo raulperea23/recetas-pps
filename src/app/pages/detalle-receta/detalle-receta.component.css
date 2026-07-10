@@ -407,11 +407,8 @@ mat-divider {
 
 @media (max-width: 768px) {
   .acciones-superiores {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .compartir-contenedor {
-    width: 100%;
+    flex-direction: row;
+    align-items: center;
   }
   .btn-compartir {
     width: 100%;
@@ -428,12 +425,14 @@ mat-divider {
     margin: 13px 0;
   }
   .foto-wrapper {
-    max-width: 100%;
+    max-width: 480px;
     width: 100%;
     flex-direction: column;
+    margin: 0 auto;
   }
+
   .foto-container {
-    height: 260px;
+    height: 280px;
   }
   .miniaturas {
     flex-direction: row;
@@ -486,6 +485,13 @@ mat-divider {
 }
 
 @media (max-width: 480px) {
+  .acciones-superiores {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .compartir-contenedor {
+    width: 100%;
+  }
   .card-relacionada-title {
     font-size: 18px;
     padding-top: 6px;
