@@ -1,6 +1,11 @@
-<mat-card [@fadeInUp] [routerLink]="['/recetas', receta.id]" class="tarjeta">
+<mat-card
+  [@fadeInUp]
+  [routerLink]="['/recetas', receta.id]"
+  class="tarjeta"
+  [class.destacada]="receta.destacada"
+>
   @if (receta.destacada === true) {
-    <span class="destacada-icon"><mat-icon>star</mat-icon></span>
+    <div class="ribbon"><mat-icon>star</mat-icon>Destacada</div>
   }
   @if (receta.fotos && receta.fotos.length > 1) {
     <span class="galeria-icon"><mat-icon>photo_library</mat-icon></span>
