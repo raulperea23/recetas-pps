@@ -31,7 +31,7 @@
 
 .hero-nombre {
   font-size: 3.2rem;
-  color: var(--white-color);
+  color: white;
   margin: 0 15%;
   min-height: 64px;
 }
@@ -63,8 +63,8 @@
 }
 
 .hero-btn {
-  color: var(--white-color) !important;
-  border-color: var(--white-color) !important;
+  color: white !important;
+  border-color: white !important;
   border-radius: 19px !important;
   padding: 6px 26px !important;
   font-size: 0.85rem;
@@ -84,7 +84,7 @@
 }
 
 .scroll-icon {
-  color: var(--white-color);
+  color: white;
   font-size: 32px;
   width: 32px;
   height: 32px;
@@ -127,7 +127,7 @@ main {
 
 .section-title {
   font-size: 32px;
-  color: var(--black-color);
+  color: var(--text-color);
   font-weight: 700;
 }
 
@@ -142,7 +142,7 @@ main {
 .historia-descripcion {
   font-size: 0.9rem;
   line-height: 1.9;
-  color: #444;
+  color: var(--text-secondary-color);
 }
 
 .cita-descripcion {
@@ -157,12 +157,12 @@ main {
   border-radius: 13px;
   object-fit: cover;
   max-height: 400px;
-  box-shadow: 6px 6px 19px rgba(0, 0, 0, 0.15);
+  box-shadow: 6px 6px 19px var(--shadow-color);
 }
 
 /* VALORES */
 .valores-seccion {
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--surface-color);
   border-radius: 13px;
   padding: 38px;
 }
@@ -180,9 +180,9 @@ main {
   text-align: center;
   gap: 13px;
   padding: 26px 16px;
-  background: var(--white-color);
+  background: var(--card-bg);
   border-radius: 13px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 3px 3px 10px var(--shadow-color);
   transition:
     transform 0.2s,
     box-shadow 0.2s;
@@ -199,7 +199,7 @@ main {
 
 .valor-frase {
   font-size: 0.85rem;
-  color: #444;
+  color: var(--text-secondary-color);
   line-height: 1.6;
   margin: 0;
   font-style: italic;
@@ -220,9 +220,9 @@ main {
   text-align: center;
   gap: 13px;
   padding: 16px 13px 22px 13px;
-  background: var(--white-color);
+  background: var(--card-bg);
   border-radius: 13px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 3px 3px 10px var(--shadow-color);
   border-top: 3px solid var(--primary-color);
 }
 
@@ -239,7 +239,7 @@ main {
 
 .numero-etiqueta {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--text-secondary-color);
   text-align: center;
 }
 
@@ -255,9 +255,9 @@ main {
   align-items: center;
   gap: 5px;
   padding: 16px;
-  background: rgba(var(--accent-color), 0.1);
+  background: rgba(var(--accent-color-rgb), 0.1);
   border-radius: 10px;
-  border: 1px solid rgba(var(--accent-color), 0.1);
+  border: 1px solid rgba(var(--accent-color-rgb), 0.1);
 }
 
 .cat-total {
@@ -268,14 +268,18 @@ main {
 
 .cat-nombre {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--text-secondary-color);
   text-align: center;
   flex: 1;
 }
 
 /* BANNER CIERRE */
 .banner-cierre {
-  background: linear-gradient(135deg, var(--primary-color), #9c27b0);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--accent-color)
+  );
   border-radius: 13px;
   padding: 51px 26px;
   text-align: center;
@@ -284,7 +288,7 @@ main {
 
 .banner-cierre h2 {
   font-size: 1.6rem;
-  color: var(--white-color);
+  color: white;
   margin: 0 0 19px 0;
 }
 
@@ -297,7 +301,7 @@ main {
 }
 
 .btn-cierre {
-  background: var(--white-color) !important;
+  background: white !important;
   color: var(--primary-color) !important;
   border-radius: 19px !important;
   padding: 6px 26px !important;
@@ -309,39 +313,31 @@ main {
   .seccion {
     padding: 48px 0;
   }
-
   .historia-contenido {
     gap: 26px;
   }
-
   .numeros-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 13px;
   }
-
   .valores-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-
   .valores-seccion {
     padding: 29px 22px;
   }
-
   .section-title {
     font-size: 27px;
   }
-
   .section-icon {
     width: 27px;
     height: 27px;
     font-size: 27px;
   }
-
   .banner-cierre {
     padding: 38px 19px;
   }
-
   .banner-cierre h2 {
     font-size: 1.3rem;
   }
@@ -351,93 +347,73 @@ main {
   .hero {
     margin: -19px -13px 0 -13px;
   }
-
   .hero-nombre {
     font-size: 2rem;
     min-height: 48px;
   }
-
   .hero-titular {
     font-size: 0.9rem;
   }
-
   .hero-btn {
     padding: 5px 19px !important;
     font-size: 0.75rem;
   }
-
   .seccion {
     padding: 38px 0;
   }
-
   .section-title {
     font-size: 22px;
   }
-
   .section-icon {
     width: 22px;
     height: 22px;
     font-size: 22px;
   }
-
   .historia-contenido {
     grid-template-columns: 1fr;
     gap: 19px;
   }
-
   .historia-foto {
     order: -1;
   }
-
   .historia-foto img {
     max-height: 240px;
   }
-
   .historia-descripcion {
     font-size: 0.85rem;
   }
-
   .valores-seccion {
     padding: 19px 13px;
   }
-
   .valores-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 13px;
   }
-
   .valor-card {
     padding: 16px 10px;
   }
-
   .numeros-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-
   .numero-valor {
     font-size: 1.6rem;
   }
-
   .categorias-grid {
     grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
     gap: 8px;
   }
-
   .banner-cierre {
     padding: 26px 13px;
     margin-top: 26px;
   }
-
   .banner-cierre h2 {
     font-size: 1.05rem;
   }
-
   .banner-cierre-buttons {
     flex-direction: column;
     gap: 10px;
   }
-
   .btn-cierre {
     width: 100%;
   }
@@ -447,11 +423,9 @@ main {
   .hero-nombre {
     font-size: 1.6rem;
   }
-
   .valores-grid {
     grid-template-columns: 1fr;
   }
-
   .numeros-grid {
     grid-template-columns: repeat(2, 1fr);
   }

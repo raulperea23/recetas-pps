@@ -29,7 +29,7 @@ mat-toolbar .franja {
   position: absolute;
   left: 0;
   top: 7px;
-  background-color: var(--bg-color);
+  background-color: #eadace;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,7 @@ mat-toolbar .esquina-decorativa-izq {
   width: 40px;
   height: 100%;
   z-index: 2;
-  border-left: 5px solid var(--bg-color);
+  border-left: 5px solid #eadace;
   pointer-events: none;
 }
 
@@ -53,7 +53,7 @@ mat-toolbar .esquina-decorativa-der {
   width: 40px;
   height: 100%;
   z-index: 2;
-  border-right: 5px solid var(--bg-color);
+  border-right: 5px solid #eadace;
   pointer-events: none;
 }
 
@@ -73,7 +73,7 @@ mat-toolbar .esquina-decorativa-der {
   text-transform: uppercase;
   white-space: nowrap;
   text-align: center;
-  color: var(--white-color);
+  color: white;
   padding: 10px 0;
 }
 
@@ -107,7 +107,7 @@ mat-toolbar .esquina-decorativa-der {
 }
 
 button.navbar-button span.mdc-button__label {
-  color: var(--white-color) !important;
+  color: white !important;
 }
 
 .app-logo {
@@ -122,7 +122,7 @@ button.navbar-button span.mdc-button__label {
 }
 
 .burger-icon {
-  color: var(--white-color);
+  color: white;
   font-size: 26px;
   width: 26px;
   height: 26px;
@@ -239,7 +239,7 @@ button.navbar-button span.mdc-button__label {
   }
 
   .mobile-titulo {
-    color: var(--white-color);
+    color: white;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 2px;

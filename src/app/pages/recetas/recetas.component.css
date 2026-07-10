@@ -16,7 +16,7 @@
 
 .section-header .section-title {
   font-size: 37px;
-  color: var(--black-color);
+  color: var(--text-color);
 }
 
 /* ── Filtros ─────────────────────────────────────────────────────────── */
@@ -34,11 +34,11 @@
 
 .btn-limpiar-busqueda {
   cursor: pointer;
-  color: #888;
+  color: var(--text-muted-color);
 }
 
 .btn-limpiar-busqueda:hover {
-  color: #e53935;
+  color: var(--danger-color);
 }
 
 .filtros-fila {
@@ -60,7 +60,7 @@
 }
 
 .btn-limpiar {
-  color: #888;
+  color: var(--text-muted-color);
 }
 
 .checkbox-destacadas {
@@ -78,7 +78,7 @@
 }
 
 .ordenacion-label {
-  color: #555;
+  color: var(--text-secondary-color);
   font-size: 14px;
   white-space: nowrap;
 }
@@ -99,9 +99,10 @@
 
 .count-resultados {
   text-align: center;
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
   color: var(--primary-color);
   font-size: 16px;
+  padding-bottom: 4px;
   margin-bottom: 12px;
 }
 
@@ -116,7 +117,7 @@
 
 .sin-resultados {
   text-align: center;
-  color: #999;
+  color: var(--text-muted-color);
   font-size: 1rem;
   margin-top: 38px;
 }

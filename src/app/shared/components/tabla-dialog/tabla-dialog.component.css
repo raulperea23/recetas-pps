@@ -1,7 +1,6 @@
 :host {
   display: block;
   padding: 19px;
-  /* Necesario para que el wrapper pueda usar height */
   height: 100%;
   box-sizing: border-box;
 }
@@ -16,25 +15,23 @@
 .tabla-scroll {
   overflow: auto;
   flex: 1;
-  min-height: 0; /* importante para que flex + overflow funcione */
+  min-height: 0;
   border-radius: 10px;
-  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 13px var(--shadow-color);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   overflow: hidden;
-  /* min-width para forzar scroll horizontal en mobile */
   min-width: 700px;
 }
 
 thead {
   background: var(--primary-color);
-  color: var(--white-color);
-  /* sticky header para que se vea al hacer scroll vertical */
+  color: white;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -55,7 +52,7 @@ th {
 }
 
 tbody tr {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-color);
   transition: background-color 0.2s ease;
 }
 
@@ -64,11 +61,11 @@ tbody tr:last-child {
 }
 
 tbody tr:hover {
-  background-color: #f5f7ff;
+  background-color: rgba(var(--accent-color-rgb), 0.05);
 }
 
 td {
-  color: #444;
+  color: var(--text-secondary-color);
 }
 
 .dialog-actions {

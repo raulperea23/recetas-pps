@@ -30,13 +30,13 @@
 .banner h1 {
   font-size: 2.2rem;
   margin-bottom: 13px;
-  color: var(--white-color);
+  color: white;
 }
 
 .banner p {
   font-size: 1rem;
   margin-bottom: 19px;
-  color: var(--white-color);
+  color: white;
 }
 
 .section-header {
@@ -57,7 +57,7 @@
 
 .section-header .section-title {
   font-size: 37px;
-  color: var(--black-color);
+  color: var(--text-color);
 }
 
 .seccion {
@@ -95,7 +95,7 @@
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   overflow: hidden;
 }
 
@@ -121,7 +121,7 @@
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   overflow: hidden;
 }
 
@@ -144,7 +144,7 @@
 
 .banner-aleatoria-contenido h2 {
   font-size: 2rem;
-  color: var(--white-color);
+  color: white;
   margin-bottom: 6px;
 }
 
@@ -156,7 +156,7 @@
 
 .nombre-receta {
   background: rgba(255, 255, 255, 0.2);
-  color: var(--white-color);
+  color: white;
   padding: 6px 16px;
   border-radius: 19px;
   font-size: 0.9rem;
@@ -169,7 +169,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  color: var(--white-color);
+  color: white;
   background: rgba(255, 255, 255, 0.2);
   z-index: 1;
 }
@@ -178,8 +178,8 @@
 .banner-constructor {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.3);
-  border: 2px solid rgba(var(--accent-color), 0.3);
+  background: var(--surface-color);
+  border: 2px solid rgba(var(--primary-color-rgb), 0.3);
   border-radius: 10px;
   padding: 16px 19px;
   margin-bottom: 38px;
@@ -187,12 +187,12 @@
   transition:
     transform 0.2s,
     opacity 0.2s;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 3px 3px 6px var(--shadow-color);
 }
 
 .banner-constructor:hover {
   transform: translateY(-2px);
-  background: rgba(var(--accent-color), 0.2);
+  background: rgba(var(--primary-color-rgb), 0.2);
 }
 
 .banner-constructor-contenido {
@@ -216,13 +216,13 @@
 
 .constructor-texto h3 {
   font-size: 1.2rem;
-  color: var(--black-color);
+  color: var(--text-color);
   margin: 0 0 3px 0;
   font-weight: 700;
 }
 
 .constructor-texto p {
-  color: #666;
+  color: var(--text-secondary-color);
   font-size: 0.8rem;
   margin: 0;
 }
@@ -245,7 +245,7 @@
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   transition: transform 0.2s;
 }
 
@@ -253,8 +253,8 @@
   position: absolute;
   top: 6px;
   left: 6px;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
+  background-color: var(--accent-color);
+  color: white;
   display: flex;
   align-items: center;
   border-radius: 50%;
@@ -287,7 +287,7 @@
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   transition: transform 0.2s;
   height: 100%;
   min-height: 148px;
@@ -314,14 +314,13 @@
 }
 
 .postre-overlay h3 {
-  color: var(--white-color);
+  color: white;
   font-size: 16px;
   font-weight: 600;
   margin: 0 0 4px 0;
   line-height: 1.2;
 }
 
-/* Título más visible en postres pequeños */
 .postre-pequeño .postre-overlay h3 {
   font-size: 15px;
   font-weight: 700;
@@ -370,10 +369,10 @@
   align-items: center;
   gap: 13px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--surface-color);
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   transition:
     transform 0.2s,
     opacity 0.2s;
@@ -382,7 +381,7 @@
 
 .preparacion-card:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--card-bg);
 }
 
 .preparacion-icono {
@@ -393,7 +392,7 @@
 .preparacion-nombre {
   flex: 1;
   font-size: 0.85rem;
-  color: #333;
+  color: var(--text-color);
   margin: 0;
   font-weight: 600;
 }
@@ -416,9 +415,9 @@
   align-items: center;
   gap: 13px;
   padding: 18px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--surface-color);
   border-radius: 10px;
-  border: 1px solid #d5d5d5;
+  border: 1px solid var(--border-color);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.02);
   cursor: pointer;
   transition:
@@ -439,7 +438,7 @@
 .truco-nombre {
   flex: 1;
   font-size: 0.85rem;
-  color: #333;
+  color: var(--text-color);
   margin: 0;
   font-weight: 600;
   text-transform: uppercase;
@@ -560,7 +559,7 @@
 .jar-label {
   width: 100%;
   text-align: center;
-  background-color: var(--white-color);
+  background-color: white;
   padding: 4px;
 }
 
@@ -568,10 +567,10 @@
   display: block;
   font-size: 11px;
   font-weight: 600;
-  color: #3a3a3a;
+  color: #333;
   padding: 5px;
-  border-bottom: 1px solid var(--black-color);
-  border-top: 1px solid var(--black-color);
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .agridulce .jar-liquid {
@@ -622,7 +621,6 @@
   .banner h1 {
     font-size: 2rem;
   }
-
   .section-header .section-title {
     font-size: 34px;
   }
@@ -631,11 +629,9 @@
     height: 29px;
     font-size: 29px;
   }
-
   .comidas-del-dia-contenedor {
     gap: 13px;
   }
-
   .banner-sugerencia-aleatoria,
   .banner-receta-aleatoria {
     padding: 29px 19px;
@@ -646,16 +642,13 @@
   .banner-aleatoria-contenido p {
     font-size: 1rem;
   }
-
   .banner-constructor {
     padding: 14px 16px;
   }
-
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
     gap: 16px;
   }
-
   .postres-revista {
     gap: 10px;
   }
@@ -665,14 +658,12 @@
   .postre-pequeño {
     min-height: 120px;
   }
-
   .preparacion-grid {
     grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
   }
   .trucos-grid {
     grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
   }
-
   .shelf {
     grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
     gap: 14px;
@@ -716,7 +707,6 @@
     font-size: 1rem;
     margin-bottom: 16px;
   }
-
   .section-header {
     gap: 6px;
     margin-bottom: 16px;
@@ -729,22 +719,18 @@
   .section-header .section-title {
     font-size: 32px;
   }
-
   .seccion {
     margin-bottom: 26px;
   }
-
   .grid {
     grid-template-columns: 1fr;
     gap: 13px;
   }
-
   .comidas-del-dia-contenedor {
     flex-direction: column;
     gap: 13px;
     margin-bottom: 13px;
   }
-
   .banner-sugerencia-aleatoria,
   .banner-receta-aleatoria {
     padding: 26px 16px;
@@ -759,7 +745,6 @@
     font-size: 0.9rem;
     padding: 5px 11px;
   }
-
   .banner-constructor {
     padding: 13px;
     margin-bottom: 26px;
@@ -775,7 +760,6 @@
   .constructor-texto p {
     font-size: 0.8rem;
   }
-
   .postres-revista {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -783,33 +767,27 @@
   .postre-grande img {
     min-height: 220px;
   }
-
   .postres-pequeños {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
   }
-
   .postre-pequeño {
     min-height: 130px;
   }
-
   .postre-overlay {
     padding: 10px 12px;
   }
-
-  /* En mobile el título más grande y la meta en columna */
   .postre-pequeño .postre-overlay h3 {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 5px;
   }
-
   .postre-pequeño .postre-meta {
-    flex-direction: column;
-    gap: 4px;
+    display: none;
+    /* flex-direction: column;
+    gap: 4px; */
   }
-
   .postre-meta-item {
     font-size: 0.78rem;
   }
@@ -818,14 +796,12 @@
     width: 14px;
     height: 14px;
   }
-
   .preparacion-grid {
     grid-template-columns: 1fr;
   }
   .trucos-grid {
     grid-template-columns: 1fr;
   }
-
   .shelf {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 11px;
@@ -857,7 +833,6 @@
   }
   .salsa-nombre {
     font-size: 10px;
-    color: #2f2f2f;
     padding: 2px;
   }
 }

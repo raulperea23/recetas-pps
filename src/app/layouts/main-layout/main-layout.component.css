@@ -16,7 +16,7 @@ main {
   width: 5px;
   height: 100%;
   z-index: 1;
-  background-color: var(--black-color);
+  background-color: var(--franja-color);
   pointer-events: none;
 }
 
@@ -27,7 +27,7 @@ main {
   width: 5px;
   height: 100%;
   z-index: 1;
-  background-color: var(--black-color);
+  background-color: var(--franja-color);
   pointer-events: none;
 }
 

@@ -15,11 +15,11 @@
 
 .section-header .section-title {
   font-size: 37px;
-  color: var(--black-color);
+  color: var(--text-color);
 }
 
 .subtitle {
-  color: #888;
+  color: var(--text-muted-color);
   margin-bottom: 19px;
 }
 
@@ -42,16 +42,16 @@
   transition:
     transform 0.2s,
     opacity 0.2s;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.06);
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 
 .tipo-card:hover {
-  background-color: rgba(var(--accent-color), 0.2);
+  background-color: rgba(var(--primary-color-rgb), 0.2);
   transform: translateY(-3px);
 }
 
 .tipo-nombre {
-  color: var(--black-color);
+  color: var(--text-color);
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -68,11 +68,11 @@
   border-radius: 10px;
   background-size: cover;
   background-position: center;
-  background-color: #ccc;
+  background-color: var(--border-color);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   transition: transform 0.2s;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .overlay h2 {
-  color: var(--white-color);
+  color: white;
   font-size: 22px;
   margin: 0;
 }
@@ -126,7 +126,7 @@
   padding: 26px;
   margin-top: 38px;
   cursor: pointer;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   transition: transform 0.2s;
   overflow: hidden;
 }
@@ -159,12 +159,12 @@
   font-size: 38px;
   width: 38px;
   height: 38px;
-  color: var(--white-color);
+  color: white;
 }
 
 .glosario-texto h2 {
   font-size: 1.44rem;
-  color: var(--white-color);
+  color: white;
   margin: 0 0 6px 0;
 }
 
@@ -177,8 +177,8 @@
 .glosario-btn {
   position: relative;
   z-index: 1;
-  color: var(--white-color) !important;
-  border-color: var(--white-color) !important;
+  color: white !important;
+  border-color: white !important;
   font-size: 0.85rem;
   padding: 6px 19px;
   display: flex;

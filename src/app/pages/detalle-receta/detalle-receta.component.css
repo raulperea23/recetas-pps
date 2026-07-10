@@ -22,9 +22,9 @@
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
-  background: var(--white-color);
+  background: var(--card-bg);
   border-radius: 10px;
-  box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 13px var(--shadow-color);
   padding: 6px;
   display: flex;
   flex-direction: column;
@@ -43,14 +43,14 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.8rem;
-  color: #333;
+  color: var(--text-color);
   transition: background 0.2s;
   text-align: left;
   width: 100%;
 }
 
 .opcion-compartir:hover {
-  background: rgba(var(--accent-color), 0.08);
+  background: rgba(var(--accent-color-rgb), 0.08);
 }
 
 .icono-whatsapp {
@@ -113,7 +113,7 @@
 }
 
 .foto-overlay mat-icon {
-  color: var(--white-color);
+  color: white;
   font-size: 38px;
   width: 38px;
   height: 38px;
@@ -176,13 +176,13 @@
 
 .info h1 {
   font-size: 32px;
-  color: var(--black-color);
+  color: var(--text-color);
   margin-bottom: 6px;
   font-weight: 700;
 }
 
 .tipo-de-plato {
-  color: var(--secondary-color);
+  color: var(--accent-color);
   font-weight: 500;
   margin-bottom: 13px;
 }
@@ -195,7 +195,7 @@
 }
 
 .origen {
-  color: #888;
+  color: var(--text-muted-color);
   font-style: italic;
   margin-bottom: 11px;
 }
@@ -210,23 +210,23 @@
 }
 
 .info-card span {
-  color: #555;
+  color: var(--text-secondary-color);
   font-size: 13px;
   margin-bottom: 0;
 }
 
 .icono-fácil,
 .icono-facil {
-  color: green;
+  color: var(--success-color);
 }
 
 .icono-media {
-  color: orange;
+  color: var(--warning-color);
 }
 
 .icono-difícil,
 .icono-dificil {
-  color: red;
+  color: var(--danger-color);
 }
 
 mat-divider {
@@ -242,7 +242,7 @@ mat-divider {
 .ingredientes h2,
 .elaboracion h2 {
   font-size: 24px;
-  color: var(--black-color);
+  color: var(--text-color);
   margin-bottom: 13px;
   font-weight: 600;
 }
@@ -251,18 +251,18 @@ mat-divider {
 .elaboracion ol {
   padding-left: 16px;
   line-height: 2;
-  color: #555;
+  color: var(--text-secondary-color);
 }
 
 .cargando {
   text-align: center;
-  color: #999;
+  color: var(--text-muted-color);
   margin-top: 38px;
 }
 
 .elaboracion {
   max-width: 100%;
-  color: #555;
+  color: var(--text-secondary-color);
 }
 
 .elaboracion p {
@@ -280,7 +280,7 @@ mat-divider {
   gap: 13px;
   padding: 19px 26px;
   margin: 38px 0;
-  background: rgba(var(--accent-color), 0.08);
+  background: rgba(var(--accent-color-rgb), 0.08);
   border-radius: 10px;
   border-left: 4px solid var(--primary-color);
   border-right: 4px solid var(--primary-color);
@@ -307,7 +307,7 @@ mat-divider {
 
 .relacionadas h2 {
   font-size: 29px;
-  color: var(--black-color);
+  color: var(--text-color);
   margin: 19px 0;
   font-weight: 600;
 }
@@ -316,6 +316,7 @@ mat-divider {
   font-size: 24px;
   flex: 1;
   padding-top: 13px;
+  color: var(--text-color);
 }
 
 .grid-relacionadas {
@@ -327,6 +328,7 @@ mat-divider {
 .tarjeta-relacionada {
   cursor: pointer;
   transition: transform 0.2s;
+  background: var(--card-bg) !important;
 }
 
 .tarjeta-relacionada:hover {
@@ -423,7 +425,6 @@ mat-divider {
     height: 260px;
   }
 
-  /* En móvil las miniaturas van debajo en horizontal */
   .miniaturas {
     flex-direction: row;
     width: 100%;

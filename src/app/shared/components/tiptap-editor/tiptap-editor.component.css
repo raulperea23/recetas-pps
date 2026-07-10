@@ -1,8 +1,8 @@
 .tiptap-wrapper {
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   overflow: hidden;
-  background: var(--white-color);
+  background: var(--card-bg);
 }
 
 .tiptap-toolbar {
@@ -10,29 +10,29 @@
   align-items: center;
   gap: 2px;
   padding: 6px 8px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  background: #fafafa;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--surface-color);
   flex-wrap: wrap;
 }
 
 .tiptap-toolbar button {
-  color: #555;
+  color: var(--text-secondary-color);
 }
 
 .tiptap-toolbar button.activo {
   color: var(--primary-color);
-  background: rgba(var(--accent-color), 0.08);
+  background: rgba(var(--accent-color-rgb), 0.08);
   border-radius: 4px;
 }
 
 .btn-eliminar-tabla {
-  color: #e53935 !important;
+  color: var(--danger-color) !important;
 }
 
 .tiptap-separador {
   width: 1px;
   height: 20px;
-  background: rgba(0, 0, 0, 0.12);
+  background: var(--border-color);
   margin: 0 4px;
 }
 
@@ -42,6 +42,7 @@
   outline: none;
   font-size: 0.9rem;
   line-height: 1.6;
+  color: var(--text-color);
 }
 
 .tiptap-content:focus {
@@ -89,7 +90,7 @@
 
 :host ::ng-deep .tiptap-content th,
 :host ::ng-deep .tiptap-content td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   padding: 8px 12px;
   text-align: left;
   min-width: 80px;
@@ -97,28 +98,29 @@
 
 :host ::ng-deep .tiptap-content th {
   background: var(--primary-color);
-  color: var(--white-color);
+  color: white;
   font-weight: 600;
   font-size: 0.85rem;
 }
 
 :host ::ng-deep .tiptap-content td {
-  background: var(--white-color);
+  background: var(--card-bg);
+  color: var(--text-color);
 }
 
 :host ::ng-deep .tiptap-content tr:nth-child(even) td {
-  background: #f9f9f9;
+  background: rgba(var(--bg-color-rgb), 0.5);
 }
 
 /* Celda seleccionada */
 :host ::ng-deep .tiptap-content .selectedCell {
-  background: rgba(var(--accent-color), 0.15) !important;
+  background: rgba(var(--accent-color-rgb), 0.15) !important;
 }
 
 /* Placeholder */
 :host ::ng-deep .tiptap-content p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
-  color: #aaa;
+  color: var(--text-muted-color);
   pointer-events: none;
   float: left;
   height: 0;

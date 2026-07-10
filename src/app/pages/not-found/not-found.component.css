@@ -10,22 +10,23 @@
 
 h1 {
   font-size: 6rem;
-  color: var(--black-color);
+  color: var(--text-color);
   margin: 0;
 }
 
 h2 {
   font-size: 2rem;
   margin: 0;
+  color: var(--text-color);
 }
 
 p {
-  color: #888;
+  color: var(--text-muted-color);
   font-size: 1.1rem;
 }
 
 .error-code {
-  color: red;
+  color: var(--danger-color);
 }
 
 /* 768px */

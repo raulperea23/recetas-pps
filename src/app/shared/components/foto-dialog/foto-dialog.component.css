@@ -9,7 +9,7 @@
 .foto-wrapper {
   flex: 1;
   overflow: auto;
-  background: var(--white-color);
+  background: var(--card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,8 +33,8 @@
   justify-content: center;
   gap: 6px;
   padding: 10px 13px;
-  background: var(--white-color);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
   flex-shrink: 0;
   height: 45px;
 }
@@ -44,7 +44,7 @@
 }
 
 .btn-zoom:disabled {
-  color: rgba(0, 0, 0, 0.2) !important;
+  color: var(--text-muted-color) !important;
 }
 
 .btn-reset {
@@ -55,6 +55,6 @@
 }
 
 .btn-cerrar {
-  color: #e53935 !important;
+  color: var(--danger-color) !important;
   margin-left: 6px;
 }

@@ -1,8 +1,22 @@
 footer {
-  background-color: var(--black-color);
+  background-color: #111;
   padding: 38px 26px 0;
   margin-top: 64px;
   position: relative;
+}
+
+/* Toggle modo oscuro — esquina superior derecha del footer */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.theme-toggle:hover {
+  color: white;
 }
 
 .footer-contenido {
@@ -36,7 +50,7 @@ footer {
   justify-content: flex-start;
   gap: 6px;
   font-size: 22px;
-  color: var(--white-color);
+  color: white;
 }
 
 .inicial {

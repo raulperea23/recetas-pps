@@ -1,6 +1,10 @@
 /* CABECERA */
 .admin-cabecera {
-  background: linear-gradient(135deg, var(--primary-color), #9c27b0);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--accent-color)
+  );
   border-radius: 10px;
   padding: 26px;
   margin-bottom: 26px;
@@ -24,18 +28,18 @@
   font-size: 32px;
   width: 32px;
   height: 32px;
-  color: var(--white-color);
+  color: white;
 }
 
 .admin-cabecera h1 {
   font-size: 1.6rem;
-  color: var(--white-color);
+  color: white;
   margin: 0;
 }
 
 .btn-logout {
-  color: var(--white-color) !important;
-  border-color: var(--white-color) !important;
+  color: white !important;
+  border-color: white !important;
 }
 
 /* FORMULARIO */
@@ -43,7 +47,8 @@
   margin-bottom: 26px;
   padding: 13px;
   border-radius: 10px !important;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 3px 3px 6px var(--shadow-color) !important;
+  background-color: var(--card-bg) !important;
 }
 
 .formulario-titulo {
@@ -91,11 +96,11 @@
   aspect-ratio: 4 / 3;
   border-radius: 8px;
   overflow: hidden;
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f9f9f9;
+  background: rgba(var(--bg-color-rgb), 0.5);
   position: relative;
 }
 
@@ -107,11 +112,11 @@
 }
 
 .slot-preview.vacio {
-  border-color: #ddd;
+  border-color: var(--border-color);
 }
 
 .slot-placeholder-icon {
-  color: #ccc;
+  color: var(--text-muted-color);
   font-size: 38px;
   width: 38px;
   height: 38px;
@@ -130,7 +135,7 @@
   gap: 6px;
 }
 
-/* FOTO UPLOAD (legado, se mantiene por si acaso) */
+/* FOTO UPLOAD (legado) */
 .foto-upload {
   margin-bottom: 13px;
 }
@@ -186,7 +191,7 @@ mat-divider {
 
 .btn-guardar {
   background-color: var(--primary-color) !important;
-  color: var(--white-color) !important;
+  color: white !important;
   border-radius: 19px !important;
   padding: 0 19px !important;
   display: flex;
@@ -211,13 +216,13 @@ mat-divider {
 
 .tabla-titulo {
   font-size: 1.1rem;
-  color: var(--black-color);
+  color: var(--text-color);
   margin: 0;
 }
 
 .tabla-contador {
   background: var(--primary-color);
-  color: var(--white-color);
+  color: white;
   padding: 3px 10px;
   border-radius: 19px;
   font-size: 0.75rem;
@@ -226,12 +231,13 @@ mat-divider {
 .tabla-contenedor {
   border-radius: 10px;
   overflow-x: auto;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 3px 3px 6px var(--shadow-color);
   -webkit-overflow-scrolling: touch;
 }
 
 .tabla {
   width: 100%;
+  background-color: var(--card-bg);
 }
 
 .tabla-nombre {
@@ -241,14 +247,14 @@ mat-divider {
 }
 
 .tabla-estrella {
-  color: var(--secondary-color);
+  color: var(--accent-color);
   font-size: 14px;
   width: 14px;
   height: 14px;
 }
 
 .tabla-badge {
-  background: rgba(var(--accent-color), 0.1);
+  background: rgba(var(--accent-color-rgb), 0.1);
   color: var(--primary-color);
   padding: 3px 8px;
   border-radius: 19px;
@@ -262,7 +268,7 @@ mat-divider {
 }
 
 .tabla-fila:hover {
-  background: rgba(var(--accent-color), 0.05);
+  background: rgba(var(--accent-color-rgb), 0.05);
 }
 
 .btn-editar {
@@ -272,7 +278,7 @@ mat-divider {
 
 .btn-eliminar {
   font-size: 13px;
-  color: #e53935 !important;
+  color: var(--danger-color) !important;
 }
 
 .admin-tabs {
@@ -297,7 +303,7 @@ mat-divider {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--white-color);
+  color: white;
   background-color: var(--primary-color);
   padding: 2px;
   border-radius: 50%;
@@ -315,7 +321,7 @@ mat-divider {
 }
 
 .btn-orden:disabled {
-  color: #ccc !important;
+  color: var(--text-muted-color) !important;
 }
 
 /* BUSCADOR TABLA */
@@ -325,11 +331,11 @@ mat-divider {
 
 .btn-limpiar-busqueda {
   cursor: pointer;
-  color: #888;
+  color: var(--text-muted-color);
 }
 
 .btn-limpiar-busqueda:hover {
-  color: #e53935;
+  color: var(--danger-color);
 }
 
 /* RESPONSIVE */

@@ -1,26 +1,61 @@
+/* ── Variables globales ─────────────────────────────────────────────────── */
 :root {
+  /* Colores de marca */
   --primary-color: #54afe8;
-  --secondary-color: #d153ed;
-  --accent-color: 84, 175, 232;
-  --bg-color: #eadace;
-  --black-color: #000000;
-  --white-color: #ffffff;
+  --primary-color-rgb: 84, 175, 232;
+  --accent-color: #d153ed;
+  --accent-color-rgb: 209, 83, 237;
 
-  --gray-color-1: #f5f5f5;
-  --gray-color-2: #e0e0e0;
-  --gray-color-3: #bdbdbd;
+  /* Fondo */
+  --bg-color: #eadace;
+  --bg-color-rgb: 234, 218, 206;
+
+  /* Texto */
+  --text-color: #222;
+  --text-secondary-color: #555;
+  --text-muted-color: #888;
+
+  /* Superficies */
+  --card-bg: #ffffff;
+  --card-bg-rgb: 255, 255, 255;
+  --surface-color: rgba(255, 255, 255, 0.7);
+  --surface-inverse-color: #111111;
+
+  /* Bordes y sombras */
+  --border-color: #d5d5d5;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+
+  /* Estados */
+  --success-color: green;
+  --warning-color: orange;
+  --danger-color: #e53935;
+  --danger-color-rgb: 229, 57, 53;
+
+  /* Franjas */
+  --franja-color: #000;
 }
 
+body.dark {
+  --bg-color: #1a1a1a;
+  --bg-color-rgb: 26, 26, 26;
+  --text-color: #f0f0f0;
+  --text-secondary-color: #bbb;
+  --text-muted-color: #888;
+  --card-bg: #2a2a2a;
+  --card-bg-rgb: 42, 42, 42;
+  --surface-color: rgba(42, 42, 42, 0.7);
+  --surface-inverse-color: #f0f0f0;
+  --border-color: #d5d5d5;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --franja-color: #eadace;
+}
+
+/* ── Fuente ─────────────────────────────────────────────────────────────── */
 @font-face {
   font-family: "Maiandra GD";
   src: url("/assets/fonts/MaiandraGD.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-
-body {
-  background-color: var(--bg-color);
-  margin: 0;
 }
 
 * {
@@ -37,6 +72,16 @@ h6 {
   font-family: "Maiandra GD", sans-serif !important;
 }
 
+/* ── Base ───────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
 a {
   color: var(--primary-color);
 }
@@ -48,13 +93,15 @@ ul {
   gap: 10px;
 }
 
+/* ── Botones globales ───────────────────────────────────────────────────── */
 .primary-btn {
   background-color: var(--primary-color) !important;
   padding: 6px 26px;
   border-radius: 19px !important;
 }
+
 .primary-btn .mdc-button__label {
-  color: var(--white-color) !important;
+  color: #f0f0f0 !important;
 }
 
 .secondary-btn {
@@ -62,14 +109,15 @@ ul {
   padding: 6px 26px;
   border-radius: 19px !important;
 }
+
 .secondary-btn .mdc-button__label {
-  color: var(--black-color) !important;
+  color: #222 !important;
 }
 
-/* Estilos para Angular Material */
+/* ── Angular Material ───────────────────────────────────────────────────── */
 button .mdc-button__label {
   font-size: 16px !important;
-  color: var(--black-color);
+  color: var(--text-color);
 }
 
 mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
@@ -77,6 +125,7 @@ mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
   padding: 13px;
 }
 
+/* Snackbar */
 .snackbar-grande .mdc-snackbar__surface {
   background: var(--primary-color) !important;
   border-radius: 10px !important;
@@ -87,12 +136,12 @@ mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
 
 .snackbar-grande .mdc-snackbar__label {
   font-size: 16px !important;
-  color: var(--white-color) !important;
+  color: white !important;
   font-weight: 500 !important;
 }
 
 .snackbar-grande .mdc-snackbar__actions button {
-  color: var(--white-color) !important;
+  color: white !important;
   font-weight: 600 !important;
   opacity: 0.85;
 }
@@ -101,83 +150,25 @@ mat-card.mat-mdc-card mat-card-title.mat-mdc-card-title {
   opacity: 1;
 }
 
+/* Overlay */
 .cdk-overlay-backdrop {
   background: rgba(0, 0, 0, 0.7) !important;
 }
 
+/* Navbar / Footer buttons */
 app-navbar .navbar-button span.mdc-button__label,
 app-footer .navbar-button span.mdc-button__label {
-  color: var(--white-color) !important;
+  color: white !important;
 }
 
+/* Dialogs */
 .modal-aleatoria .mat-mdc-dialog-container {
   padding: 0 !important;
-}
-
-/* Estilos globales para mat-form-field — solo colores */
-.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
-.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
-.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
-  border-color: var(--primary-color) !important;
-}
-
-.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
-  color: var(--primary-color) !important;
-}
-
-.mat-mdc-select-arrow {
-  color: var(--primary-color) !important;
-}
-
-.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch {
-  border-left: none !important;
-  border-right: none !important;
-}
-
-/* Estilos globales para mat-select */
-.mat-mdc-select-panel {
-  border-radius: 6px !important;
-  border: 1px solid var(--primary-color) !important;
-}
-
-.mat-mdc-option:hover {
-  background: rgba(var(--accent-color), 0.1) !important;
-}
-
-.mat-mdc-option.mdc-list-item--selected {
-  background: rgba(var(--accent-color), 0.15) !important;
-  color: var(--primary-color) !important;
-}
-
-.mat-mdc-option.mdc-list-item--selected span {
-  color: var(--primary-color) !important;
 }
 
 .modal-truco .mat-mdc-dialog-container,
 .modal-salsa .mat-mdc-dialog-container {
   padding: 0 !important;
-}
-
-/* Checkbox */
-.mat-mdc-checkbox label.mdc-label {
-  font-size: 13px;
-}
-
-.mat-mdc-checkbox .mdc-checkbox__background {
-  border-color: var(--primary-color) !important;
-}
-
-.mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-
-.mat-mdc-checkbox .mdc-checkbox__ripple {
-  background-color: var(--primary-color) !important;
-}
-
-.mat-mdc-checkbox .mat-ripple-element {
-  background-color: var(--primary-color) !important;
 }
 
 .foto-dialog .mat-mdc-dialog-container {
@@ -203,19 +194,108 @@ app-footer .navbar-button span.mdc-button__label {
   }
 }
 
-/* Tabla */
+/* mat-form-field */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--primary-color) !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-select-arrow {
+  color: var(--primary-color) !important;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* mat-select */
+.mat-mdc-select-panel {
+  border-radius: 6px !important;
+  border: 1px solid var(--primary-color) !important;
+}
+
+.mat-mdc-option:hover {
+  background: rgba(var(--primary-color-rgb), 0.1) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  background: rgba(var(--primary-color-rgb), 0.15) !important;
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected span {
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-select-value {
+  color: var(--text-color);
+}
+
+.mat-mdc-form-field
+  .mdc-text-field--outlined
+  .mdc-notched-outline--upgraded
+  .mdc-floating-label--float-above {
+  color: var(--text-color);
+}
+
+/* Search bar */
+
+/* Checkbox */
+.mat-mdc-checkbox label.mdc-label {
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+.mat-mdc-checkbox .mdc-checkbox__background {
+  border-color: var(--primary-color) !important;
+}
+
+.mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.mat-mdc-checkbox .mdc-checkbox__ripple {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-mdc-checkbox .mat-ripple-element {
+  background-color: var(--primary-color) !important;
+}
+
+/* Tabs */
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  font-size: 16px !important;
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-tab-indicator__content--underline {
+  border-color: var(--primary-color) !important;
+}
+
+/* ── Tablas globales ────────────────────────────────────────────────────── */
 table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 13px var(--shadow-color);
 }
 
 thead {
   background: var(--primary-color);
-  color: var(--white-color);
+  color: white;
 }
 
 th,
@@ -233,7 +313,7 @@ th {
 }
 
 tbody tr {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-color);
   transition: background-color 0.2s ease;
 }
 
@@ -242,28 +322,27 @@ tbody tr:last-child {
 }
 
 tbody tr:hover {
-  background-color: #f5f7ff;
+  background-color: rgba(var(--primary-color-rgb), 0.05);
 }
 
 td {
-  color: #444;
+  color: var(--text-secondary-color);
 }
 
-/* Extra styles para tabla en modal */
-/* Tablas dentro de innerHTML (trucos, preparaciones) */
+/* ── Tablas en innerHTML (trucos, preparaciones) ────────────────────────── */
 .truco-descripcion table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 13px var(--shadow-color);
   margin: 13px 0;
 }
 
 .truco-descripcion thead {
   background: var(--primary-color) !important;
-  color: var(--white-color) !important;
+  color: white !important;
 }
 
 .truco-descripcion th,
@@ -278,11 +357,11 @@ td {
   font-size: 0.8rem !important;
   letter-spacing: 0.5px !important;
   background: var(--primary-color) !important;
-  color: var(--white-color) !important;
+  color: white !important;
 }
 
 .truco-descripcion tbody tr {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-color);
   transition: background-color 0.2s ease;
 }
 
@@ -291,33 +370,18 @@ td {
 }
 
 .truco-descripcion tbody tr:hover {
-  background-color: #f5f7ff;
+  background-color: rgba(var(--accent-color-rgb), 0.05);
 }
 
 .truco-descripcion td {
-  color: #444;
+  color: var(--text-secondary-color);
 }
 
-/* Scroll horizontal en tablas anchas */
 .truco-descripcion {
   overflow-x: auto;
 }
 
-/* Tabs */
-.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-  color: var(--primary-color) !important;
-}
-
-.mat-mdc-tab .mdc-tab__text-label {
-  font-size: 16px !important;
-  color: var(--primary-color) !important;
-}
-
-.mat-mdc-tab-indicator__content--underline {
-  border-color: var(--primary-color) !important;
-}
-
-/* Titap editor */
+/* ── TipTap ─────────────────────────────────────────────────────────────── */
 .tiptap-content .ProseMirror {
   outline: none;
 }

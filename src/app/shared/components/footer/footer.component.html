@@ -1,4 +1,16 @@
 <footer>
+  <!-- Toggle modo oscuro — esquina superior derecha del footer -->
+  <button
+    mat-icon-button
+    class="theme-toggle"
+    (click)="themeService.toggle()"
+    [title]="themeService.isDark() ? 'Modo claro' : 'Modo oscuro'"
+  >
+    <mat-icon>{{
+      themeService.isDark() ? "light_mode" : "dark_mode"
+    }}</mat-icon>
+  </button>
+
   <div class="footer-contenido">
     <!-- Título -->
     <div class="footer-titulo" routerLink="/">

@@ -14,12 +14,12 @@
 
 .section-title {
   font-size: 37px;
-  color: var(--black-color);
+  color: var(--text-color);
   font-weight: 700;
 }
 
 .subtitle {
-  color: #888;
+  color: var(--text-muted-color);
   font-size: 0.9rem;
   margin-bottom: 26px;
 }
@@ -39,7 +39,7 @@
   gap: 6px;
   margin-bottom: 32px;
   padding: 13px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--surface-color);
   border-radius: 10px;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .btn-letra:hover {
-  background: rgba(var(--accent-color), 0.1);
+  background: rgba(var(--accent-color-rgb), 0.1);
 }
 
 .grupo-letra {
@@ -79,26 +79,26 @@
   flex-direction: column;
   gap: 3px;
   padding: 13px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--surface-color);
   border-radius: 6px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.08);
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 
 .termino-nombre {
   font-weight: 900;
   font-size: 0.9rem;
-  color: var(--black-color);
+  color: var(--text-color);
 }
 
 .termino-definicion {
-  color: #555;
+  color: var(--text-secondary-color);
   line-height: 1.6;
   font-size: 0.85rem;
 }
 
 .sin-resultados {
   text-align: center;
-  color: #999;
+  color: var(--text-muted-color);
   font-size: 1rem;
   margin-top: 38px;
 }
