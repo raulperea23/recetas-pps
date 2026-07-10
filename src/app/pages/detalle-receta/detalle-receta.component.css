@@ -167,7 +167,7 @@
   opacity: 1;
 }
 
-/* ── Resto ──────────────────────────────────────────────────────────── */
+/* ── Info ───────────────────────────────────────────────────────────── */
 
 .info {
   flex: 1;
@@ -177,24 +177,50 @@
 .info h1 {
   font-size: 32px;
   color: var(--text-color);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-weight: 700;
 }
 
+/* Chip destacada */
+.destacada-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--destacada-color);
+  color: black;
+  padding: 4px 12px 4px 8px;
+  border-radius: 19px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.destacada-chip mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  color: black;
+}
+
 .tipo-de-plato {
+  font-size: 16px;
   color: var(--accent-color);
   font-weight: 500;
   margin-bottom: 13px;
 }
 
 .categoria {
+  font-size: 16px;
   color: var(--primary-color);
   font-weight: 500;
-  font-size: 16px;
   margin-bottom: 13px;
 }
 
 .origen {
+  font-size: 14px;
   color: var(--text-muted-color);
   font-style: italic;
   margin-bottom: 11px;
@@ -346,42 +372,33 @@ mat-divider {
   .cabecera {
     gap: 19px;
   }
-
   .foto-wrapper {
     max-width: 100%;
     width: 100%;
   }
-
   .foto-container {
     height: 300px;
   }
-
   .info {
     min-width: 192px;
   }
-
   .info h1 {
     font-size: 26px;
   }
-
   .contenido {
     grid-template-columns: 1fr 2fr;
     gap: 26px;
   }
-
   .ingredientes h2,
   .elaboracion h2 {
     font-size: 21px;
   }
-
   .relacionadas h2 {
     font-size: 22px;
   }
-
   .card-relacionada-title {
     font-size: 14px;
   }
-
   .grid-relacionadas {
     grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
     gap: 13px;
@@ -393,89 +410,76 @@ mat-divider {
     flex-direction: column;
     align-items: stretch;
   }
-
   .compartir-contenedor {
     width: 100%;
   }
-
   .btn-compartir {
     width: 100%;
     justify-content: center;
   }
-
   .menu-compartir {
     left: 0;
     right: 0;
     width: 100%;
   }
-
   .cabecera {
     flex-direction: column;
     gap: 13px;
     margin: 13px 0;
   }
-
   .foto-wrapper {
     max-width: 100%;
     width: 100%;
     flex-direction: column;
   }
-
   .foto-container {
     height: 260px;
   }
-
   .miniaturas {
     flex-direction: row;
     width: 100%;
     height: auto;
     overflow-x: auto;
   }
-
   .miniatura {
     width: 64px;
     height: 64px;
     flex-shrink: 0;
   }
-
   .info {
     min-width: unset;
     width: 100%;
   }
-
   .info h1 {
-    font-size: 21px;
+    font-size: 26px;
   }
-
+  .destacada-chip {
+    font-size: 0.68rem;
+    padding: 3px 10px 3px 6px;
+  }
   .contenido {
     grid-template-columns: 1fr;
     gap: 19px;
   }
-
   .ingredientes h2,
   .elaboracion h2 {
     font-size: 18px;
   }
-
   .relacionadas {
     margin-top: 26px;
   }
-
   .relacionadas h2 {
     font-size: 19px;
     margin: 13px 0;
   }
-
   .card-relacionada-title {
     font-size: 18px;
     padding-top: 6px;
   }
-
   .grid-relacionadas {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 13px;
   }
-
   .tarjeta-relacionada img {
     height: 128px;
   }
@@ -486,11 +490,11 @@ mat-divider {
     font-size: 18px;
     padding-top: 6px;
   }
-
+  .origen,
+  .tipo-de-plato,
   .categoria {
     font-size: 14px;
   }
-
   .grid-relacionadas {
     grid-template-columns: 1fr 1fr;
     gap: 13px;

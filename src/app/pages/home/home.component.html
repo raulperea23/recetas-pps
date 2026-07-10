@@ -90,9 +90,7 @@
       class="postre-grande"
       [routerLink]="['/recetas', postresDestacados[0].id]"
     >
-      <span class="postre-destacado"
-        ><mat-icon class="section-icon">star</mat-icon></span
-      >
+      <div class="ribbon"><mat-icon>star</mat-icon>Destacada</div>
       <img
         [src]="postresDestacados[0].foto"
         [alt]="postresDestacados[0].nombre"

@@ -34,7 +34,6 @@
   <div class="cabecera">
     <!-- VISOR DE FOTO(S) -->
     <div class="foto-wrapper">
-      <!-- Imagen principal -->
       <div
         class="foto-container"
         [class.clickable]="tieneFoto()"
@@ -51,9 +50,7 @@
         </div>
       </div>
 
-      <!-- Miniaturas secundarias (solo si hay galería) -->
       <div class="miniaturas" *ngIf="tieneGaleria">
-        <!-- Miniatura de la foto principal para poder volver a ella -->
         <div
           class="miniatura"
           [class.activa]="fotoActual === fotoPrincipal"
@@ -65,7 +62,6 @@
             (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
           />
         </div>
-        <!-- Miniaturas secundarias -->
         <div
           *ngFor="let foto of fotosSecundarias"
           class="miniatura"
@@ -84,9 +80,14 @@
     <div class="info">
       <h1>{{ receta.nombre }}</h1>
 
+      <!-- Chip destacada — justo debajo del título -->
+      <div class="destacada-chip" *ngIf="receta.destacada">
+        <mat-icon>star</mat-icon>
+        <span>Receta destacada</span>
+      </div>
+
       <p class="tipo-de-plato">{{ receta.tipoDePlato }}</p>
       <p class="categoria">{{ receta.categoria }}</p>
-
       <p *ngIf="receta.origen" class="origen">Origen: {{ receta.origen }}</p>
 
       <div class="info-card">
@@ -144,7 +145,6 @@
           [alt]="r.nombre"
           (error)="$any($event.target).src = 'assets/images/placeholder.webp'"
         />
-
         <mat-card-content>
           <h3 class="card-relacionada-title">{{ r.nombre }}</h3>
           <p class="categoria">{{ r.categoria }}</p>
