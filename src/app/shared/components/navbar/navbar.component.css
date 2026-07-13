@@ -195,6 +195,11 @@ button.navbar-button span.mdc-button__label {
 
 @media (max-width: 768px) {
   mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -240,7 +245,7 @@ button.navbar-button span.mdc-button__label {
 
   .mobile-titulo {
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
