@@ -32,7 +32,7 @@
 .hero-nombre {
   font-size: 3.2rem;
   color: white;
-  margin: 0 15%;
+  margin: 0 7%;
   min-height: 64px;
 }
 
@@ -301,8 +301,9 @@ main {
 }
 
 .btn-cierre {
-  background: white !important;
-  color: var(--primary-color) !important;
+  background: transparent !important;
+  color: white !important;
+  border-color: white !important;
   border-radius: 19px !important;
   padding: 6px 26px !important;
   font-size: 0.85rem !important;
