@@ -180,3 +180,9 @@ footer {
     height: 32px;
   }
 }
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 24px;
+  }
+}

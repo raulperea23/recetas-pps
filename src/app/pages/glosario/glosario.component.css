@@ -28,6 +28,15 @@
   margin-bottom: 19px;
 }
 
+.btn-limpiar-busqueda {
+  cursor: pointer;
+  color: var(--text-muted-color);
+}
+
+.btn-limpiar-busqueda:hover {
+  color: var(--danger-color);
+}
+
 .full-width {
   width: 100%;
 }

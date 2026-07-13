@@ -803,7 +803,7 @@
     font-weight: 700;
     margin-bottom: 5px;
   }
-  .postre-pequeño .postre-meta {
+  .postre-meta {
     display: none;
     /* flex-direction: column;
     gap: 4px; */

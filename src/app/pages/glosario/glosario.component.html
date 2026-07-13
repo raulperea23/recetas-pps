@@ -14,7 +14,14 @@
       (ngModelChange)="filtrar()"
       placeholder="Escribe un término o definición..."
     />
-    <mat-icon matSuffix>search</mat-icon>
+    <mat-icon matSuffix *ngIf="!busqueda">search</mat-icon>
+    <mat-icon
+      matSuffix
+      *ngIf="busqueda"
+      class="btn-limpiar-busqueda"
+      (click)="busqueda = ''; filtrar()"
+      >close</mat-icon
+    >
   </mat-form-field>
 </div>
 
