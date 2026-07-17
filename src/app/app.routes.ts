@@ -10,6 +10,8 @@ import { VariosComponent } from './pages/varios/varios.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { GlosarioComponent } from './pages/glosario/glosario.component';
+import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
+import { AvisoLegalComponent } from './pages/aviso-legal/aviso-legal.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SobreMiComponent } from './pages/sobre-mi/sobre-mi.component';
 import { authGuard } from './shared/guards/auth.guard';
@@ -29,6 +31,8 @@ export const routes: Routes = [
       { path: 'admin-login', component: AdminLoginComponent },
       { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
       { path: 'glosario', component: GlosarioComponent },
+      { path: 'politica-privacidad', component: PoliticaPrivacidadComponent },
+      { path: 'aviso-legal', component: AvisoLegalComponent },
     ],
   },
   {

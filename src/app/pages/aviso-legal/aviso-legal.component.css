@@ -1,0 +1,93 @@
+.pagina {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 38px 19px;
+}
+
+.cabecera {
+  margin-bottom: 38px;
+  padding-bottom: 19px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.cabecera h1 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.fecha {
+  color: var(--text-muted-color);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.seccion {
+  margin-bottom: 38px;
+}
+
+.seccion h2 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 13px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.seccion p {
+  color: var(--text-secondary-color);
+  line-height: 1.8;
+  margin-bottom: 13px;
+  font-size: 0.9rem;
+}
+
+.seccion ul {
+  color: var(--text-secondary-color);
+  line-height: 1.8;
+  font-size: 0.9rem;
+  padding-left: 19px;
+  margin-bottom: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.seccion a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.seccion a:hover {
+  text-decoration: underline;
+}
+
+.lista-datos {
+  background: var(--surface-color);
+  border-radius: 8px;
+  padding: 16px 16px 16px 32px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.volver {
+  margin-top: 38px;
+  padding-top: 19px;
+  border-top: 1px solid var(--border-color);
+}
+
+.volver a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.volver a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .cabecera h1 {
+    font-size: 1.5rem;
+  }
+}
