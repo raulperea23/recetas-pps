@@ -77,7 +77,7 @@ export class SobreMiComponent implements OnInit, OnDestroy {
   typewriterDone: boolean = false;
   private typewriterInterval: any;
   private fullText: string =
-    'Quiero darte la bienvenida a mi cocina... y a la historia que me acompaña con ella.';
+    'Quiero darte la bienvenida a mi cocina... y a su historia';
 
   scrolled: boolean = false;
   historiaVisible: boolean = false;
