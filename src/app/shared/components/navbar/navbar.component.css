@@ -203,7 +203,7 @@ button.navbar-button span.mdc-button__label {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 13px 16px;
+    padding: 20px 16px;
     gap: 0;
     overflow: visible;
   }

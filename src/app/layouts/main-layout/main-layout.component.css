@@ -40,6 +40,6 @@ main {
 
 @media (max-width: 768px) {
   main {
-    padding-top: 89px; /* 70px navbar + 19px padding original */
+    padding-top: 96px; /* 70px navbar + 24px padding original */
   }
 }
