@@ -1,17 +1,11 @@
 <div class="section-header">
   <mat-icon class="section-icon">category</mat-icon>
-  <span class="section-title">Tipos de plato</span>
-</div>
-<p class="subtitle">
-  Explora nuestras recetas por tipo de plato, en función de lo que te apetezca
-</p>
-
-<!-- Categorias -->
-<div class="section-header">
-  <mat-icon class="section-icon">grid_on</mat-icon>
   <span class="section-title">Categorías</span>
 </div>
-<p class="subtitle">Explora nuestras recetas por categoría</p>
+<p class="subtitle">
+  Explora nuestras recetas por categoría o tipo de plato, en función de lo que
+  te apetezca
+</p>
 
 <section class="grid">
   <div
@@ -26,7 +20,12 @@
   </div>
 </section>
 
-<!-- Tipos de plato -->
+<div class="section-header">
+  <mat-icon class="section-icon">grid_on</mat-icon>
+  <span class="section-title">Tipos de plato</span>
+</div>
+<!-- <p class="subtitle">Explora nuestras recetas por</p> -->
+
 <section class="tipos-grid">
   <div
     *ngFor="let tipo of tiposDePlato"
