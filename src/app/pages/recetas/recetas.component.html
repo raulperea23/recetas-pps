@@ -83,6 +83,27 @@
     </button>
   </div>
 </section>
+<mat-form-field
+  *ngIf="!filtrosVisibles"
+  appearance="outline"
+  class="filtro-busqueda"
+>
+  <mat-label>Buscar receta</mat-label>
+  <input
+    matInput
+    [(ngModel)]="busqueda"
+    (ngModelChange)="filtrar()"
+    placeholder="Nombre de la receta..."
+  />
+  <mat-icon matSuffix *ngIf="!busqueda">search</mat-icon>
+  <mat-icon
+    matSuffix
+    *ngIf="busqueda"
+    class="btn-limpiar-busqueda"
+    (click)="busqueda = ''; filtrar()"
+    >close</mat-icon
+  >
+</mat-form-field>
 
 <!-- Ordenación -->
 <div class="ordenacion" *ngIf="ordenacionesVisibles">
