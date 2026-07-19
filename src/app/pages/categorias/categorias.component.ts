@@ -42,6 +42,8 @@ export class CategoriasComponent {
   }
 
   verTipo(tipo: TipoDePlato): void {
-    this.router.navigate(['/recetas'], { queryParams: { tipo: tipo } });
+    this.router.navigate(['/recetas'], {
+      queryParams: { tipo: tipo, filtros: false, ordenacion: false },
+    });
   }
 }

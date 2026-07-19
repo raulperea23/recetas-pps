@@ -216,7 +216,9 @@ export class HomeComponent implements OnInit {
   }
 
   verDestacadas(): void {
-    this.router.navigate(['/recetas'], { queryParams: { destacadas: true } });
+    this.router.navigate(['/recetas'], {
+      queryParams: { destacadas: true, filtros: false, ordenacion: false },
+    });
   }
 
   abrirModalDeInfo(item: Truco | Preparacion): void {
@@ -238,7 +240,9 @@ export class HomeComponent implements OnInit {
   }
 
   verPostres(): void {
-    this.router.navigate(['/recetas'], { queryParams: { tipo: 'Postre' } });
+    this.router.navigate(['/recetas'], {
+      queryParams: { tipo: 'Postre', filtros: false, ordenacion: false },
+    });
   }
 
   onImageError(event: any): void {

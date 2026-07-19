@@ -433,6 +433,7 @@ mat-divider {
 
   .foto-container {
     height: 280px;
+    pointer-events: none;
   }
   .miniaturas {
     flex-direction: row;

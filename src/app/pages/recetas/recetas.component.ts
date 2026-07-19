@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,6 +47,7 @@ const ORDEN_DIFICULTADES: { [key: string]: number } = {
     FormsModule,
     CardComponent,
     MatCheckboxModule,
+    RouterLink,
   ],
   templateUrl: './recetas.component.html',
   styleUrl: './recetas.component.css',
@@ -55,6 +56,12 @@ export class RecetasComponent implements OnInit {
   recetas: Receta[] = [];
   recetasFiltradas: Receta[] = [];
   busqueda: string = '';
+
+  tituloPagina: string = 'Todas las recetas';
+
+  filtrosVisibles: boolean = true;
+  ordenacionesVisibles: boolean = true;
+
   categoriaSeleccionada: string = '';
   tipoSeleccionado: string = '';
   dificultadSeleccionada: string = '';
@@ -81,17 +88,27 @@ export class RecetasComponent implements OnInit {
     this.title.setTitle('Recetas | Paraíso Para Saborear');
 
     this.route.queryParams.subscribe((queryParams) => {
+      if (queryParams['filtros']) {
+        this.filtrosVisibles = queryParams['filtros'] === 'true';
+      }
+      if (queryParams['ordenacion']) {
+        this.ordenacionesVisibles = queryParams['ordenacion'] === 'true';
+      }
       if (queryParams['categoria']) {
         this.categoriaSeleccionada = queryParams['categoria'];
       }
       if (queryParams['tipo']) {
         this.tipoSeleccionado = queryParams['tipo'];
+        if (this.tipoSeleccionado === 'Postre') {
+          this.tituloPagina = 'Todos nuestros postres';
+        }
       }
       if (queryParams['dificultad']) {
         this.dificultadSeleccionada = queryParams['dificultad'];
       }
       if (queryParams['destacadas']) {
         this.soloDestacadas = true;
+        this.tituloPagina = 'Recetas destacadas';
       }
     });
 
