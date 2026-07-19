@@ -242,10 +242,6 @@
 }
 
 @media (max-width: 480px) {
-  .rastro-migas {
-    align-items: stretch;
-  }
-
   .filtros-fila mat-form-field {
     min-width: 100%;
     flex: 1 1 100%;

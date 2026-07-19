@@ -18,21 +18,25 @@
   />
   <mat-card-content>
     <h3 class="card-title">{{ receta.nombre }}</h3>
-    <p class="tipo-de-plato">{{ receta.tipoDePlato }}</p>
-    <p class="categoria">{{ receta.categoria }}</p>
-    <div class="info-card">
-      <mat-icon>access_alarm</mat-icon>
-      <span>{{ receta.tiempoPreparacion }} {{ receta.tiempoUnidad }}</span>
+    <div class="card-categorias-container">
+      <p class="tipo-de-plato">{{ receta.tipoDePlato }}</p>
+      <p class="categoria">{{ receta.categoria }}</p>
     </div>
-    <div class="info-card">
-      <mat-icon>person_outline</mat-icon>
-      <span>{{ receta.comensales }} personas</span>
-    </div>
-    <div class="info-card">
-      <mat-icon [class]="'icono-' + receta.dificultad.toLowerCase()"
-        >signal_cellular_alt</mat-icon
-      >
-      <span>{{ receta.dificultad }}</span>
+    <div class="info-card-container">
+      <div class="info-card">
+        <mat-icon>access_alarm</mat-icon>
+        <span>{{ receta.tiempoPreparacion }} {{ receta.tiempoUnidad }}</span>
+      </div>
+      <div class="info-card">
+        <mat-icon>person_outline</mat-icon>
+        <span>{{ receta.comensales }} personas</span>
+      </div>
+      <div class="info-card">
+        <mat-icon [class]="'icono-' + receta.dificultad.toLowerCase()"
+          >signal_cellular_alt</mat-icon
+        >
+        <span>{{ receta.dificultad }}</span>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

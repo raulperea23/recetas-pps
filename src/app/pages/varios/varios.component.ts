@@ -6,7 +6,7 @@ import { PRODUCTOS, Producto } from '../../shared/models/app.types';
 import { TablaDialogComponent } from '../../shared/components/tabla-dialog/tabla-dialog.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { FotoDialogComponent } from '../../shared/components/foto-dialog/foto-dialog.component';
 
 interface ProductoItem {
@@ -22,7 +22,7 @@ interface MesItem {
 @Component({
   selector: 'app-varios',
   standalone: true,
-  imports: [CommonModule, MatIcon, MatButton, RouterLink],
+  imports: [CommonModule, MatIcon, MatButton, MatButtonModule, RouterLink],
   templateUrl: './varios.component.html',
   styleUrl: './varios.component.css',
 })

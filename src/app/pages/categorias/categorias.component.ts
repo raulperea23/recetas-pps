@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
 import {
   CATEGORIAS,
   Categoria,
@@ -20,7 +21,7 @@ interface CategoriaItem {
 @Component({
   selector: 'app-categorias',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIcon],
+  imports: [CommonModule, RouterLink, MatIcon, MatButtonModule],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.css',
 })
