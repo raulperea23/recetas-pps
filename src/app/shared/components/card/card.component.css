@@ -145,8 +145,12 @@ mat-card img {
 }
 
 @media (max-width: 768px) {
+  mat-card-content {
+    padding: 10px;
+  }
   .card-title {
-    font-size: 18px;
+    font-size: 20px;
+    line-height: 32px;
   }
   .card-categorias-container {
     gap: 3px;
