@@ -144,7 +144,7 @@ mat-card img {
   color: var(--danger-color);
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .info-card-container {
     width: 100%;
     display: flex;
@@ -152,4 +152,4 @@ mat-card img {
     justify-content: space-between;
     gap: 5px;
   }
-}
+} */
