@@ -145,6 +145,19 @@ mat-card img {
 }
 
 @media (max-width: 768px) {
+  .card-title {
+    font-size: 18px;
+  }
+  .card-categorias-container {
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+  .tipo-de-plato {
+    font-size: 14px;
+  }
+  .categoria {
+    font-size: 14px;
+  }
   .info-card-container {
     gap: 3px;
   }
