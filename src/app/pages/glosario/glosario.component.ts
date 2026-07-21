@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +29,7 @@ interface LetraGlosario {
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    RouterLink,
   ],
   templateUrl: './glosario.component.html',
   styleUrl: './glosario.component.css',
