@@ -1,7 +1,14 @@
 .pagina {
   max-width: 800px;
   margin: 0 auto;
-  padding: 38px 19px;
+  padding: 10px 0;
+}
+
+.rastro-migas {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 26px;
 }
 
 .cabecera {
@@ -123,22 +130,6 @@ code {
   border-radius: 4px;
   font-size: 0.8rem;
   font-family: monospace;
-}
-
-.volver {
-  margin-top: 38px;
-  padding-top: 19px;
-  border-top: 1px solid var(--border-color);
-}
-
-.volver a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.volver a:hover {
-  text-decoration: underline;
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,13 @@
 <div class="pagina">
+  <div class="rastro-migas">
+    <button mat-raised-button class="secondary-btn" routerLink="/">
+      <mat-icon style="width: 32px; height: 32px; font-size: 32px; color: black"
+        >keyboard_arrow_left</mat-icon
+      >
+      Volver a Inicio
+    </button>
+  </div>
+
   <div class="cabecera">
     <h1>Aviso Legal</h1>
     <p class="fecha">Última actualización: {{ fechaActualizacion }}</p>
@@ -115,8 +124,4 @@
       <a href="mailto:CORREO_DE_LA_WEB">CORREO_DE_LA_WEB</a>
     </p>
   </section>
-
-  <div class="volver">
-    <a routerLink="/">← Volver al inicio</a>
-  </div>
 </div>
