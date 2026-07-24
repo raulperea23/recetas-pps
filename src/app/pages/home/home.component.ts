@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
     this.title.setTitle('Paraíso Para Saborear');
 
     this.recetasService.getRecetasDestacadas().subscribe((recetas: any) => {
-      this.destacadas = recetas.slice(0, 4);
+      this.destacadas = recetas.slice(0, 6);
     });
 
     this.recetasService.getRecetas().subscribe((recetas) => {
@@ -129,7 +129,8 @@ export class HomeComponent implements OnInit {
             : new Date(r.fechaPublicacion as any);
           return fecha >= haceUnMes;
         })
-        .slice(0, 4);
+        .slice(0, 6);
+
       this.postresDestacados = recetas
         .filter((r) => r.tipoDePlato === 'Postre' && r.destacada === true)
         .slice(0, 3);
