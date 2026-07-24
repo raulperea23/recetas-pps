@@ -91,7 +91,7 @@
       <p *ngIf="receta.origen" class="origen">Receta de: {{ receta.origen }}</p>
 
       <div class="info-card">
-        <mat-icon>access_alarm</mat-icon>
+        <mat-icon>schedule</mat-icon>
         <span
           >Tiempo aprox.: {{ receta.tiempoPreparacion }}
           {{ receta.tiempoUnidad }}</span
@@ -99,7 +99,10 @@
       </div>
       <div class="info-card">
         <mat-icon>people</mat-icon>
-        <span>Receta para {{ receta.comensales }} personas</span>
+        <span
+          >Receta para {{ receta.comensales }}
+          {{ receta.comensales === 1 ? "persona" : "personas" }}</span
+        >
       </div>
       <div class="info-card">
         <mat-icon [class]="'icono-' + receta.dificultad.toLowerCase()"

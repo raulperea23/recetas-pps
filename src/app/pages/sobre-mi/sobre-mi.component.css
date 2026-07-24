@@ -332,9 +332,9 @@ main {
     font-size: 27px;
   }
   .section-icon {
-    width: 27px;
-    height: 27px;
-    font-size: 27px;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
   }
   .banner-cierre {
     padding: 38px 19px;
@@ -366,9 +366,9 @@ main {
     font-size: 22px;
   }
   .section-icon {
-    width: 22px;
-    height: 22px;
-    font-size: 22px;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
   }
   .historia-contenido {
     grid-template-columns: 1fr;

@@ -24,7 +24,10 @@
           ><mat-icon>schedule</mat-icon> {{ data.tiempoPreparacion }}
           {{ data.tiempoUnidad }}</span
         >
-        <span><mat-icon>people</mat-icon> {{ data.comensales }} personas</span>
+        <span
+          ><mat-icon>people</mat-icon> {{ data.comensales }}
+          {{ data.comensales === 1 ? "persona" : "personas" }}</span
+        >
         <span>
           <mat-icon [class]="'icono-' + data.dificultad.toLowerCase()"
             >signal_cellular_alt</mat-icon

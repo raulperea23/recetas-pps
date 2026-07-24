@@ -240,8 +240,14 @@ app-footer .navbar-button span.mdc-button__label {
 
 /* ── Checkbox ───────────────────────────────────────────────────────────── */
 .mat-mdc-checkbox label.mdc-label {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-checkbox label.mdc-label {
+    font-size: 15px;
+  }
 }
 
 .mat-mdc-checkbox .mdc-checkbox__background {

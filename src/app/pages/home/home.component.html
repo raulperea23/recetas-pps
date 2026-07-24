@@ -100,13 +100,14 @@
         <h3>{{ postresDestacados[0].nombre }}</h3>
         <p class="postre-meta">
           <span class="postre-meta-item">
-            <mat-icon>access_alarm</mat-icon>
+            <mat-icon>schedule</mat-icon>
             {{ postresDestacados[0].tiempoPreparacion }}
             {{ postresDestacados[0].tiempoUnidad }}
           </span>
           <span class="postre-meta-item">
             <mat-icon>people</mat-icon>
-            {{ postresDestacados[0].comensales }} personas
+            {{ postresDestacados[0].comensales }}
+            {{ postresDestacados[0].comensales === 1 ? "persona" : "personas" }}
           </span>
         </p>
       </div>
@@ -126,12 +127,13 @@
           <h3>{{ postre.nombre }}</h3>
           <p class="postre-meta">
             <span class="postre-meta-item">
-              <mat-icon>access_alarm</mat-icon>
+              <mat-icon>schedule</mat-icon>
               {{ postre.tiempoPreparacion }} {{ postre.tiempoUnidad }}
             </span>
             <span class="postre-meta-item">
               <mat-icon>people</mat-icon>
-              {{ postre.comensales }} personas
+              {{ postre.comensales }}
+              {{ postre.comensales === 1 ? "persona" : "personas" }}
             </span>
           </p>
         </div>
