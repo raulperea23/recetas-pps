@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
 
   readonly LIMITE_MOBILE = 4;
   isMobile = false;
+  isDesktop = false;
   limitPreparaciones = 4;
   limitTrucos = 4;
 
@@ -87,6 +88,7 @@ export class HomeComponent implements OnInit {
 
   @HostListener('window:resize')
   onResize() {
+    this.isDesktop = window.innerWidth > 1240;
     this.isMobile = window.innerWidth <= 768;
   }
 
@@ -101,11 +103,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isDesktop = window.innerWidth > 1240;
     this.isMobile = window.innerWidth <= 768;
     this.title.setTitle('Paraíso Para Saborear');
 
     this.recetasService.getRecetasDestacadas().subscribe((recetas: any) => {
-      this.destacadas = recetas.slice(0, 6);
+      this.destacadas = recetas.slice(
+        0,
+        this.isMobile || this.isDesktop ? 4 : 6,
+      );
     });
 
     this.recetasService.getRecetas().subscribe((recetas) => {
@@ -129,7 +135,7 @@ export class HomeComponent implements OnInit {
             : new Date(r.fechaPublicacion as any);
           return fecha >= haceUnMes;
         })
-        .slice(0, 6);
+        .slice(0, this.isMobile || this.isDesktop ? 4 : 6);
 
       this.postresDestacados = recetas
         .filter((r) => r.tipoDePlato === 'Postre' && r.destacada === true)
