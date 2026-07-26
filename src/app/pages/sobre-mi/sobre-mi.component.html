@@ -107,14 +107,39 @@
 
   <!-- BANNER CIERRE -->
   <section class="banner-cierre">
-    <h2>Dejémonos de sentimentalismos... ¡¡y a cocinar!!</h2>
+    <!-- Líneas decorativas superiores -->
+    <div class="receta-lineas"><span></span><span></span><span></span></div>
+
+    <!-- Sello decorativo -->
+    <div class="receta-sello">
+      <mat-icon>workspace_premium</mat-icon>
+    </div>
+
+    <!-- Contenido -->
+    <p class="receta-etiqueta">
+      Porque lo bien hecho, bien parece. <br />
+      Y bien sabe.
+    </p>
+    <h2>Dejémonos de sentimentalismos... <br />¡¡a cocinar!!</h2>
+    <p class="receta-firma">— Paraíso Para Saborear —</p>
+
+    <!-- Línea divisoria punteada -->
+    <div class="receta-divisor"></div>
+
     <div class="banner-cierre-buttons">
       <button mat-stroked-button class="btn-cierre" routerLink="/">
         Ir a Inicio
       </button>
-      <button mat-stroked-button class="btn-cierre" routerLink="/recetas">
+      <button
+        mat-raised-button
+        class="btn-cierre-primary"
+        routerLink="/recetas"
+      >
         Ver todas las recetas
       </button>
     </div>
+
+    <!-- Líneas decorativas inferiores -->
+    <div class="receta-lineas"><span></span><span></span><span></span></div>
   </section>
 </main>

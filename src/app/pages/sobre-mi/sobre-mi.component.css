@@ -273,23 +273,102 @@ main {
   flex: 1;
 }
 
-/* BANNER CIERRE */
+/* ── BANNER CIERRE — tarjeta de receta ──────────────────────────────── */
 .banner-cierre {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--accent-color)
-  );
-  border-radius: 13px;
-  padding: 51px 26px;
+  position: relative;
+  max-width: 560px;
+  margin: 38px auto 0;
+  padding: 38px 48px;
   text-align: center;
-  margin-top: 38px;
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  box-shadow:
+    0 4px 24px var(--shadow-color),
+    inset 0 0 0 6px var(--card-bg),
+    inset 0 0 0 8px var(--primary-color);
+}
+
+/* Líneas decorativas tipo tarjeta de receta */
+.receta-lineas {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 19px;
+}
+
+.receta-lineas:last-child {
+  margin-bottom: 0;
+  margin-top: 19px;
+}
+
+.receta-lineas span {
+  display: block;
+  height: 2px;
+  background: var(--primary-color);
+  opacity: 0.4;
+}
+
+.receta-lineas span:nth-child(1) {
+  width: 32px;
+}
+.receta-lineas span:nth-child(2) {
+  width: 16px;
+}
+.receta-lineas span:nth-child(3) {
+  width: 32px;
+}
+
+/* Sello central */
+.receta-sello {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  margin: 0 auto 16px;
+  color: var(--primary-color);
+}
+
+.receta-sello mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+/* Etiqueta tipo categoría */
+.receta-etiqueta {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--primary-color);
+  margin: 0 0 13px 0;
 }
 
 .banner-cierre h2 {
-  font-size: 1.6rem;
-  color: white;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Firma */
+.receta-firma {
+  font-size: 0.8rem;
+  color: var(--text-muted-color);
+  font-style: italic;
   margin: 0 0 19px 0;
+  letter-spacing: 1px;
+}
+
+/* Divisor punteado */
+.receta-divisor {
+  border-top: 2px dashed rgba(var(--primary-color-rgb), 0.3);
+  margin: 19px 0;
 }
 
 .banner-cierre-buttons {
@@ -297,15 +376,22 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 13px;
 }
 
 .btn-cierre {
-  background: transparent !important;
-  color: white !important;
-  border-color: white !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
   border-radius: 19px !important;
-  padding: 6px 26px !important;
+  padding: 6px 22px !important;
+  font-size: 0.85rem !important;
+}
+
+.btn-cierre-primary {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-radius: 19px !important;
+  padding: 6px 22px !important;
   font-size: 0.85rem !important;
 }
 
@@ -337,10 +423,10 @@ main {
     font-size: 29px;
   }
   .banner-cierre {
-    padding: 38px 19px;
+    padding: 32px 38px;
   }
   .banner-cierre h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -405,17 +491,18 @@ main {
     gap: 8px;
   }
   .banner-cierre {
-    padding: 26px 13px;
+    padding: 26px 19px;
     margin-top: 26px;
   }
   .banner-cierre h2 {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
   .banner-cierre-buttons {
     flex-direction: column;
     gap: 10px;
   }
-  .btn-cierre {
+  .btn-cierre,
+  .btn-cierre-primary {
     width: 100%;
   }
 }
@@ -429,5 +516,11 @@ main {
   }
   .numeros-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .banner-cierre {
+    box-shadow:
+      0 4px 16px var(--shadow-color),
+      inset 0 0 0 4px var(--card-bg),
+      inset 0 0 0 6px var(--primary-color);
   }
 }
