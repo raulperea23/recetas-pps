@@ -796,6 +796,7 @@
     min-height: 130px;
   }
   .postre-overlay {
+    width: 93%; /* Al ser postre-overlay absolute, calcula mal el 100%, se reduce un poco para mobile */
     padding: 10px 12px;
   }
   .postre-pequeño .postre-overlay h3 {
