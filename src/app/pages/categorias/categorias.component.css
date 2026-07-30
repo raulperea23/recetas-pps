@@ -284,7 +284,7 @@
   }
 
   .overlay h2 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .glosario-banner {
@@ -320,6 +320,7 @@
     opacity: 0.8;
   }
   .overlay h2 {
+    width: 93%;
     font-size: 20px;
   }
 }
