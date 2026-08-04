@@ -47,4 +47,10 @@ export class CategoriasComponent {
       queryParams: { tipo: tipo, filtros: false, ordenacion: false },
     });
   }
+
+  verCategoria(categoria: Categoria): void {
+    this.router.navigate(['/recetas'], {
+      queryParams: { categoria: categoria, filtros: false, ordenacion: false },
+    });
+  }
 }

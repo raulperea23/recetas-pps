@@ -20,7 +20,7 @@
   <div
     *ngFor="let cat of categorias"
     class="categoria-card"
-    [routerLink]="['/categorias', cat.nombre]"
+    (click)="verCategoria(cat.nombre)"
     [style.backgroundImage]="'url(' + cat.imagen + ')'"
   >
     <div class="overlay">

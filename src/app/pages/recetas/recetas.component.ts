@@ -96,6 +96,7 @@ export class RecetasComponent implements OnInit {
       }
       if (queryParams['categoria']) {
         this.categoriaSeleccionada = queryParams['categoria'];
+        this.tituloPagina = this.categoriaSeleccionada;
       }
       if (queryParams['tipo']) {
         this.tipoSeleccionado = queryParams['tipo'];

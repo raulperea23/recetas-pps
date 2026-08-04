@@ -276,3 +276,12 @@ button.navbar-button span.mdc-button__label {
     height: 24px;
   }
 }
+
+@media (max-width: 392px) {
+  .mobile-titulo {
+    white-space: normal;
+    text-overflow: clip;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
