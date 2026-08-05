@@ -116,8 +116,8 @@ export class HomeComponent implements OnInit {
 
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.todasLasRecetas = recetas;
-      const haceUnMes = new Date();
-      haceUnMes.setMonth(haceUnMes.getMonth() - 1);
+      // const fechaComparativa = new Date();
+      // fechaComparativa.setMonth(fechaComparativa.getMonth() - 3); // Hace 3 meses
 
       this.ultimas = recetas
         .sort((a, b) => {
@@ -129,12 +129,12 @@ export class HomeComponent implements OnInit {
             : new Date(b.fechaPublicacion as any).getTime();
           return fechaB - fechaA;
         })
-        .filter((r) => {
-          const fecha = (r.fechaPublicacion as any)?.toDate
-            ? (r.fechaPublicacion as any).toDate()
-            : new Date(r.fechaPublicacion as any);
-          return fecha >= haceUnMes;
-        })
+        // .filter((r) => {
+        //   const fecha = (r.fechaPublicacion as any)?.toDate
+        //     ? (r.fechaPublicacion as any).toDate()
+        //     : new Date(r.fechaPublicacion as any);
+        //   return fecha >= fechaComparativa;
+        // })
         .slice(0, this.isMobile || this.isDesktop ? 4 : 6);
 
       this.postresDestacados = recetas
