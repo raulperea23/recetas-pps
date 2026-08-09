@@ -3,8 +3,23 @@
   <div class="hero-overlay"></div>
   <div class="hero-contenido" @fadeIn>
     <h1 class="hero-nombre">
-      {{ typewriterText
-      }}<span class="cursor" [class.oculto]="typewriterDone">|</span>
+      <span
+        >{{ typewriterText1
+        }}<span
+          class="cursor"
+          [class.oculto]="typewriterLinea !== 1 || typewriterDone"
+          >|</span
+        ></span
+      >
+      <br />
+      <span
+        >{{ typewriterText2
+        }}<span
+          class="cursor"
+          [class.oculto]="typewriterLinea !== 2 || typewriterDone"
+          >|</span
+        ></span
+      >
     </h1>
     <!-- <p class="hero-titular">Bienvenido a mi mundo de sabores</p> -->
     <button

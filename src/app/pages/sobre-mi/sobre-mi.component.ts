@@ -73,11 +73,13 @@ interface ValorCocina {
   ],
 })
 export class SobreMiComponent implements OnInit, OnDestroy {
-  typewriterText: string = '';
+  typewriterText1: string = '';
+  typewriterText2: string = '';
+  typewriterLinea: number = 1; // 1 = primera línea, 2 = segunda
   typewriterDone: boolean = false;
   private typewriterInterval: any;
-  private fullText: string =
-    'Quiero darte la bienvenida a mi cocina... y a mi historia';
+  private readonly fullText1: string = 'Quiero darte la bienvenida';
+  private readonly fullText2: string = 'a mi cocina... y a mi historia';
 
   scrolled: boolean = false;
   historiaVisible: boolean = false;
@@ -129,9 +131,18 @@ export class SobreMiComponent implements OnInit, OnDestroy {
 
   iniciarTypewriter(): void {
     let i = 0;
+    const total = this.fullText1.length + this.fullText2.length;
     this.typewriterInterval = setInterval(() => {
-      if (i < this.fullText.length) {
-        this.typewriterText += this.fullText.charAt(i);
+      if (i < total) {
+        if (i < this.fullText1.length) {
+          this.typewriterText1 += this.fullText1.charAt(i);
+          this.typewriterLinea = 1;
+        } else {
+          this.typewriterText2 += this.fullText2.charAt(
+            i - this.fullText1.length,
+          );
+          this.typewriterLinea = 2;
+        }
         i++;
       } else {
         this.typewriterDone = true;
