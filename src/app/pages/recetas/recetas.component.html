@@ -78,6 +78,12 @@
     >
       Solo destacadas
     </mat-checkbox>
+    <mat-checkbox
+      [(ngModel)]="sinFoto"
+      (ngModelChange)="filtrar()"
+      class="checkbox-sin-foto"
+      >Sin imagen</mat-checkbox
+    >
     <button mat-button (click)="limpiarFiltros()" class="btn-limpiar">
       Limpiar filtros
     </button>

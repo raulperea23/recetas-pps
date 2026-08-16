@@ -68,6 +68,7 @@ export class RecetasComponent implements OnInit {
   todasLasRecetas: Receta[] = [];
   recetasMostradas: Receta[] = [];
   soloDestacadas: boolean = false;
+  sinFoto: boolean = false;
   pagina: number = 1;
   recetasPorPagina: number = 12;
   hayMas: boolean = false;
@@ -111,6 +112,10 @@ export class RecetasComponent implements OnInit {
         this.soloDestacadas = true;
         this.tituloPagina = 'Recetas destacadas';
       }
+      if (queryParams['sinFoto']) {
+        this.sinFoto = true;
+        this.tituloPagina = 'Recetas sin foto';
+      }
     });
 
     this.route.params.subscribe((params) => {
@@ -125,6 +130,9 @@ export class RecetasComponent implements OnInit {
       }
       if (params['destacadas']) {
         this.soloDestacadas = true;
+      }
+      if (params['sinFoto']) {
+        this.sinFoto = true;
       }
       this.recetasService.getRecetas().subscribe((recetas) => {
         this.todasLasRecetas = recetas;
@@ -167,12 +175,14 @@ export class RecetasComponent implements OnInit {
       const coincideDestacada = this.soloDestacadas
         ? receta.destacada === true
         : true;
+      const coincideSinFoto = this.sinFoto ? !receta.foto : true;
       return (
         coincideNombre &&
         coincideCategoria &&
         coincideTipo &&
         coincideDificultad &&
-        coincideDestacada
+        coincideDestacada &&
+        coincideSinFoto
       );
     });
     this.recetasFiltradas = filtradas;
@@ -229,6 +239,7 @@ export class RecetasComponent implements OnInit {
     this.tipoSeleccionado = '';
     this.dificultadSeleccionada = '';
     this.soloDestacadas = false;
+    this.sinFoto = false;
     this.filtrar();
   }
 

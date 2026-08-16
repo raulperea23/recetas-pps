@@ -184,13 +184,33 @@ export class HomeComponent implements OnInit {
   }
 
   cargarSugerenciaAleatoria(): void {
-    if (this.todasLasRecetas.length > 0) {
-      let recetasDestacadas = this.todasLasRecetas.filter(
-        (r) => r.destacada === true,
-      );
-      const indice = Math.floor(Math.random() * recetasDestacadas.length);
-      this.sugerenciaAleatoria = recetasDestacadas[indice];
+    if (this.todasLasRecetas.length === 0) return;
+
+    const hoy = new Date().toDateString();
+    const guardado = localStorage.getItem('pps-sugerencia-dia');
+
+    if (guardado) {
+      const { fecha, recetaId } = JSON.parse(guardado);
+      if (fecha === hoy) {
+        // La sugerencia de hoy ya está guardada — la usamos
+        this.sugerenciaAleatoria =
+          this.todasLasRecetas.find((r) => r.id === recetaId) ?? null;
+        return;
+      }
     }
+
+    // No hay sugerencia de hoy — elegimos una nueva y la guardamos
+    const destacadas = this.todasLasRecetas.filter((r) => r.destacada === true);
+    const indice = Math.floor(Math.random() * destacadas.length);
+    this.sugerenciaAleatoria = destacadas[indice];
+
+    localStorage.setItem(
+      'pps-sugerencia-dia',
+      JSON.stringify({
+        fecha: hoy,
+        recetaId: this.sugerenciaAleatoria?.id,
+      }),
+    );
   }
 
   cargarRecetaAleatoria(): void {
