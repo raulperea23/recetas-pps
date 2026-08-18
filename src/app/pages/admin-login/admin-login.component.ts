@@ -28,6 +28,7 @@ export class AdminLoginComponent {
   email: string = '';
   password: string = '';
   error: string = '';
+  verPasswordIcon: string = 'visibility_off';
 
   constructor(
     private authService: AuthService,
@@ -40,5 +41,18 @@ export class AdminLoginComponent {
       .login(this.email, this.password)
       .then(() => this.router.navigate(['/admin']))
       .catch(() => (this.error = 'Correo o contraseña incorrectos.'));
+  }
+
+  verPassword(): void {
+    const passwordInput = document.getElementById(
+      'password',
+    ) as HTMLInputElement;
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      this.verPasswordIcon = 'visibility';
+    } else {
+      passwordInput.type = 'password';
+      this.verPasswordIcon = 'visibility_off';
+    }
   }
 }

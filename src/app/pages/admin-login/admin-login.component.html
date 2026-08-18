@@ -24,9 +24,17 @@
         <input
           matInput
           [(ngModel)]="password"
+          id="password"
           type="password"
           (keydown.enter)="login()"
         />
+        <mat-icon
+          *ngIf="password != ''"
+          matSuffix
+          class="visibility-icon"
+          (click)="verPassword()"
+          >{{ verPasswordIcon }}</mat-icon
+        >
       </mat-form-field>
 
       <div class="error-container" *ngIf="error">

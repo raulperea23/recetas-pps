@@ -8,6 +8,7 @@ import {
   Validators,
   FormArray,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -136,6 +137,7 @@ export class AdminComponent implements OnInit {
   columnasCategorias = ['orden', 'nombre', 'acciones'];
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private recetasService: RecetasService,
     private storageService: StorageService,
@@ -196,6 +198,7 @@ export class AdminComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/admin-login']);
   }
 
   // ── SLOTS DE FOTOS ────────────────────────────────────────────────────────
