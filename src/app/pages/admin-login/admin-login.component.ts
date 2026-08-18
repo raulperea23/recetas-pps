@@ -28,7 +28,8 @@ export class AdminLoginComponent {
   email: string = '';
   password: string = '';
   error: string = '';
-  verPasswordIcon: string = 'visibility_off';
+  passwordFieldType: string = 'password';
+  verPasswordIcon: string = 'visibility';
 
   constructor(
     private authService: AuthService,
@@ -44,15 +45,12 @@ export class AdminLoginComponent {
   }
 
   verPassword(): void {
-    const passwordInput = document.getElementById(
-      'password',
-    ) as HTMLInputElement;
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      this.verPasswordIcon = 'visibility';
-    } else {
-      passwordInput.type = 'password';
+    if (this.passwordFieldType === 'password') {
+      this.passwordFieldType = 'text';
       this.verPasswordIcon = 'visibility_off';
+    } else {
+      this.passwordFieldType = 'password';
+      this.verPasswordIcon = 'visibility';
     }
   }
 }
