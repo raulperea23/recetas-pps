@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './politica-privacidad.component.css',
 })
 export class PoliticaPrivacidadComponent {
-  fechaActualizacion = '11 de agosto de 2026';
+  fechaActualizacion = '22 de agosto de 2026';
 
   constructor(private title: Title) {
     this.title.setTitle(
