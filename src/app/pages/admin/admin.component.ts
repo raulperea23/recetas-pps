@@ -323,9 +323,13 @@ export class AdminComponent implements OnInit {
   }
 
   resetearVisitas(id: string): void {
-    this.recetasService.resetearVisitas(id).then(() => {
-      this.calcularRecetasMasVisitadas();
-    }); // Asumiendo que incrementarVisitas ahora devuelve una promesa
+    if (
+      confirm('¿Seguro que quieres resetear a 0 las visitas de esta receta?')
+    ) {
+      this.recetasService.resetearVisitas(id).then(() => {
+        this.calcularRecetasMasVisitadas();
+      });
+    }
   }
 
   filtrarRecetas(): void {
