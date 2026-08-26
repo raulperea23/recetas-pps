@@ -5,8 +5,8 @@
       <mat-icon class="admin-icon">admin_panel_settings</mat-icon>
       <h1>Panel de administración</h1>
     </div>
-    <button mat-stroked-button class="btn-logout" (click)="logout()">
-      <mat-icon>logout</mat-icon> Cerrar sesión
+    <button mat-raised-button class="btn-logout" (click)="logout()">
+      <mat-icon class="icono-logout">logout</mat-icon> Cerrar sesión
     </button>
   </div>
 </div>
@@ -767,6 +767,106 @@
         <tr
           mat-row
           *matRowDef="let row; columns: columnasIngredientes"
+          class="tabla-fila"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Visitas">
+    <div class="tabla-cabecera">
+      <h2 class="tabla-titulo">Recetas más visitadas</h2>
+    </div>
+    <div class="tabla-contenedor">
+      <table mat-table [dataSource]="recetasMasVisitadas" class="tabla">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
+        </ng-container>
+        <ng-container matColumnDef="visitas">
+          <th mat-header-cell *matHeaderCellDef>Visitas</th>
+          <td mat-cell *matCellDef="let r">{{ r.visitas }}</td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let r">
+            <button
+              mat-icon-button
+              class="btn-editar"
+              title="Resetear visitas"
+              (click)="resetearVisitas(r.id)"
+            >
+              <mat-icon>autorenew</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnasVisitas"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: columnasVisitas"
+          class="tabla-fila"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Historial">
+    <div class="tabla-cabecera">
+      <h2 class="tabla-titulo">Historial de cambios</h2>
+      <span class="tabla-contador"
+        >{{ historial.length }}
+        {{ historial.length === 1 ? "entrada" : "entradas" }}</span
+      >
+    </div>
+    <div class="tabla-contenedor">
+      <table mat-table [dataSource]="historial" class="tabla">
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let h">
+            {{
+              h.fecha?.toDate
+                ? (h.fecha.toDate() | date: "dd/MM/yyyy HH:mm")
+                : (h.fecha | date: "dd/MM/yyyy HH:mm")
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="receta">
+          <th mat-header-cell *matHeaderCellDef>Receta</th>
+          <td mat-cell *matCellDef="let h">{{ h.recetaNombre }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cambios">
+          <th mat-header-cell *matHeaderCellDef>Cambios</th>
+          <td mat-cell *matCellDef="let h">
+            <div *ngFor="let c of h.cambios" class="historial-cambio">
+              <span class="historial-campo">{{ c.campo }}</span>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef>Valor antiguo</th>
+          <td mat-cell *matCellDef="let h">
+            <div *ngFor="let c of h.cambios" class="historial-cambio">
+              <span class="historial-antiguo">{{ c.valorAntiguo | json }}</span>
+              <!-- <mat-icon class="historial-flecha">arrow_forward</mat-icon>
+              <span class="historial-nuevo">{{ c.valorNuevo | json }}</span> -->
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let h">
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              title="Resetear visitas"
+              (click)="eliminarLog(h.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnasHistorial"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: columnasHistorial"
           class="tabla-fila"
         ></tr>
       </table>

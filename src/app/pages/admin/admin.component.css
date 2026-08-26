@@ -38,8 +38,12 @@
 }
 
 .btn-logout {
-  color: white !important;
-  border-color: white !important;
+  color: black !important;
+  border-color: black !important;
+}
+
+.icono-logout {
+  color: black !important;
 }
 
 /* FORMULARIO */
@@ -336,6 +340,51 @@ mat-divider {
 
 .btn-limpiar-busqueda:hover {
   color: var(--danger-color);
+}
+
+.historial-cambio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.historial-cambio:last-child {
+  border-bottom: none;
+}
+
+.historial-campo {
+  font-weight: 700;
+  color: var(--primary-color);
+  min-width: 120px;
+}
+
+.historial-antiguo {
+  color: var(--danger-color);
+  text-decoration: line-through;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.historial-nuevo {
+  color: var(--success-color);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.historial-flecha {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted-color);
+  flex-shrink: 0;
 }
 
 /* RESPONSIVE */

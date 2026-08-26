@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable, of, tap, map } from 'rxjs';
 import {
+  increment,
   Firestore,
   collection,
   collectionData,
@@ -12,9 +14,8 @@ import {
   where,
   orderBy,
 } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { Receta } from '../models/receta.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -105,5 +106,34 @@ export class RecetasService {
     this.invalidarCache();
     const ref = doc(this.firestore, this.coleccion, id);
     return deleteDoc(ref);
+  }
+
+  incrementarVisitas(id: string): Promise<void> {
+    if (!environment.production) {
+      return Promise.resolve(); // En local no contabilizamos
+    }
+    const ref = doc(this.firestore, this.coleccion, id);
+    return updateDoc(ref, { visitas: increment(1) })
+      .then(() => {
+        // La caché guarda el valor antiguo: se actualiza para que el panel lo refleje
+        const receta = this.cache?.find((r) => r.id === id);
+        if (receta) receta.visitas = (receta.visitas ?? 0) + 1;
+      })
+      .catch((err) => {
+        console.error('Error al incrementar visitas:', err);
+      });
+  }
+
+  resetearVisitas(id: string): Promise<void> {
+    const ref = doc(this.firestore, this.coleccion, id);
+    return updateDoc(ref, { visitas: 0 })
+      .then(() => {
+        const receta = this.cache?.find((r) => r.id === id);
+        if (receta) receta.visitas = 0;
+      })
+      .catch((err) => {
+        console.error('Error al resetear visitas:', err);
+        throw err; // relanzamos para que el componente pueda reaccionar
+      });
   }
 }

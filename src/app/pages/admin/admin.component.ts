@@ -36,6 +36,11 @@ import {
   CategoriasIngredientesService,
   CategoriaIngrediente,
 } from '../../shared/services/categorias-ingredientes.service';
+import {
+  HistorialService,
+  EntradaHistorial,
+  CambioHistorial,
+} from '../../shared/services/historial.service';
 import { Receta, FotoReceta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
@@ -136,6 +141,14 @@ export class AdminComponent implements OnInit {
   editandoCategoriaIngredienteId: string | null = null;
   columnasCategorias = ['orden', 'nombre', 'acciones'];
 
+  // VISITAS
+  recetasMasVisitadas: Receta[] = [];
+  columnasVisitas = ['nombre', 'visitas', 'acciones'];
+
+  // HISTORIAL
+  historial: EntradaHistorial[] = [];
+  columnasHistorial = ['fecha', 'receta', 'cambios', 'valor', 'acciones'];
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -145,6 +158,7 @@ export class AdminComponent implements OnInit {
     private trucosService: TrucosService,
     private ingredientesService: IngredientesService,
     private categoriasIngredientesService: CategoriasIngredientesService,
+    private historialService: HistorialService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private title: Title,
@@ -194,6 +208,7 @@ export class AdminComponent implements OnInit {
     this.cargarTrucos();
     this.cargarIngredientes();
     this.cargarCategoriasIngredientes();
+    this.historialService.getHistorial().subscribe((h) => (this.historial = h));
   }
 
   logout(): void {
@@ -296,7 +311,21 @@ export class AdminComponent implements OnInit {
     this.recetasService.getRecetas().subscribe((recetas) => {
       this.recetas = recetas;
       this.filtrarRecetas();
+      this.calcularRecetasMasVisitadas();
     });
+  }
+
+  private calcularRecetasMasVisitadas(): void {
+    this.recetasMasVisitadas = [...this.recetas]
+      .map((r) => ({ ...r, visitas: r.visitas ?? 0 }))
+      .filter((r) => r.visitas! > 0)
+      .sort((a, b) => b.visitas - a.visitas);
+  }
+
+  resetearVisitas(id: string): void {
+    this.recetasService.resetearVisitas(id).then(() => {
+      this.calcularRecetasMasVisitadas();
+    }); // Asumiendo que incrementarVisitas ahora devuelve una promesa
   }
 
   filtrarRecetas(): void {
@@ -336,6 +365,19 @@ export class AdminComponent implements OnInit {
     }
 
     if (this.editandoId) {
+      // Obtener receta actual antes de guardar para el diff
+      const recetaAntigua = this.recetas.find((r) => r.id === this.editandoId);
+      if (recetaAntigua) {
+        const cambios = this.generarDiff(recetaAntigua, receta);
+        if (cambios.length > 0) {
+          await this.historialService.guardarEntrada({
+            recetaId: this.editandoId,
+            recetaNombre: recetaAntigua.nombre,
+            fecha: new Date(),
+            cambios,
+          });
+        }
+      }
       await this.recetasService.updateReceta(this.editandoId, receta);
       this.snackBar.open('Receta actualizada 🎉', 'Cerrar', {
         duration: 3000,
@@ -355,6 +397,28 @@ export class AdminComponent implements OnInit {
     this.resetFormulario();
   }
 
+  private generarDiff(antiguo: any, nuevo: any): CambioHistorial[] {
+    const camposIgnorados = ['fechaPublicacion', 'visitas', 'foto', 'fotos'];
+    const cambios: CambioHistorial[] = [];
+
+    const campos = Object.keys(nuevo).filter(
+      (k) => !camposIgnorados.includes(k),
+    );
+
+    for (const campo of campos) {
+      const vAntiguo = JSON.stringify(antiguo[campo] ?? null);
+      const vNuevo = JSON.stringify(nuevo[campo] ?? null);
+      if (vAntiguo !== vNuevo) {
+        cambios.push({
+          campo,
+          valorAntiguo: antiguo[campo] ?? null,
+          valorNuevo: nuevo[campo] ?? null,
+        });
+      }
+    }
+    return cambios;
+  }
+
   editar(receta: Receta): void {
     this.editandoId = receta.id || null;
     this.formulario.patchValue(receta);
@@ -365,6 +429,12 @@ export class AdminComponent implements OnInit {
     );
     this.formulario.patchValue({ elaboracion: receta.elaboracion });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  eliminarLog(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar este registro del historial?')) {
+      this.historialService.eliminarEntrada(id);
+    }
   }
 
   eliminar(id: string): void {

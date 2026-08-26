@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -58,17 +59,23 @@ export class DetalleRecetaComponent implements OnInit {
         this.recetasRelacionadas = [];
         this.fotoActual = '';
 
-        this.recetasService.getRecetaPorId(id).subscribe((receta) => {
-          this.receta = receta;
-          this.fotoActual = this.fotoPrincipal;
-          this.title.setTitle(`${receta.nombre} | Paraíso Para Saborear`);
+        this.recetasService
+          .getRecetaPorId(id)
+          .pipe(take(1))
+          .subscribe((receta) => {
+            this.receta = receta;
+            this.fotoActual = this.fotoPrincipal;
+            this.title.setTitle(`${receta.nombre} | Paraíso Para Saborear`);
 
-          this.recetasService
-            .getRecetasRelacionadas(receta.categoria, receta.tipoDePlato, id)
-            .subscribe((relacionadas) => {
-              this.recetasRelacionadas = relacionadas.slice(0, 12);
-            });
-        });
+            // Incrementar visitas aquí, cuando la receta se ha cargado
+            this.recetasService.incrementarVisitas(id);
+
+            this.recetasService
+              .getRecetasRelacionadas(receta.categoria, receta.tipoDePlato, id)
+              .subscribe((relacionadas) => {
+                this.recetasRelacionadas = relacionadas.slice(0, 12);
+              });
+          });
       }
     });
   }
