@@ -1,0 +1,135 @@
+:host {
+  display: block;
+  padding: 19px;
+  box-sizing: border-box;
+}
+
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  gap: 6px;
+}
+
+.dialog-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.dialog-fecha {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted-color);
+}
+
+.dialog-contenido {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.cambio-bloque {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 13px;
+  border-radius: 10px;
+  background: rgba(var(--primary-color-rgb), 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.cambio-campo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  text-transform: capitalize;
+}
+
+.cambio-valor {
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cambio-comparativa {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.cambio-lado {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.cambio-lado-titulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cambio-lado.antiguo {
+  border-color: var(--danger-color);
+}
+
+.cambio-lado.antiguo .cambio-lado-titulo,
+.cambio-lado.antiguo .cambio-valor {
+  color: var(--danger-color);
+}
+
+.cambio-lado.nuevo {
+  border-color: var(--success-color);
+}
+
+.cambio-lado.nuevo .cambio-lado-titulo,
+.cambio-lado.nuevo .cambio-valor {
+  color: var(--success-color);
+}
+
+.cambio-flecha {
+  align-self: center;
+  flex-shrink: 0;
+  color: var(--text-muted-color);
+}
+
+.dialog-actions {
+  flex-shrink: 0;
+  padding-top: 16px;
+  margin: 0;
+}
+
+.btn-cerrar {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-radius: 19px !important;
+  padding: 0 19px !important;
+}
+
+@media (max-width: 768px) {
+  .cambio-comparativa {
+    flex-direction: column;
+  }
+
+  .cambio-flecha {
+    transform: rotate(90deg);
+  }
+}

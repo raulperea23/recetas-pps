@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthService } from '../../shared/services/auth.service';
 import { RecetasService } from '../../shared/services/recetas.service';
 import { StorageService } from '../../shared/services/storage.service';
@@ -45,6 +46,7 @@ import { Receta, FotoReceta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { TiptapEditorComponent } from '../../shared/components/tiptap-editor/tiptap-editor.component';
+import { CambioDialogComponent } from '../../shared/components/cambio-dialog/cambio-dialog.component';
 import { FraccionesDirective } from '../../shared/directives/fracciones.directive';
 import {
   CATEGORIAS,
@@ -180,6 +182,7 @@ const SECCIONES_ADMIN: SeccionAdmin[] = [
     MatProgressBarModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatDialogModule,
     TiptapEditorComponent,
     FraccionesDirective,
   ],
@@ -266,7 +269,7 @@ export class AdminComponent implements OnInit {
 
   // HISTORIAL
   historial: EntradaHistorial[] = [];
-  columnasHistorial = ['fecha', 'receta', 'cambios', 'valor', 'acciones'];
+  columnasHistorial = ['fecha', 'receta', 'cambios', 'ver', 'acciones'];
 
   constructor(
     private router: Router,
@@ -280,6 +283,7 @@ export class AdminComponent implements OnInit {
     private historialService: HistorialService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog,
     private title: Title,
   ) {
     this.formulario = this.fb.group({
@@ -610,6 +614,18 @@ export class AdminComponent implements OnInit {
     );
     this.formulario.patchValue({ elaboracion: receta.elaboracion });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  verCambio(entrada: EntradaHistorial): void {
+    this.dialog.open(CambioDialogComponent, {
+      data: {
+        recetaNombre: entrada.recetaNombre,
+        fecha: entrada.fecha,
+        cambios: entrada.cambios,
+      },
+      width: '700px',
+      maxWidth: '90vw',
+    });
   }
 
   eliminarLog(id: string): void {

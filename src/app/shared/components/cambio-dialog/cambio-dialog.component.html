@@ -1,0 +1,32 @@
+<div class="dialog-wrapper">
+  <h2 class="dialog-titulo">
+    <mat-icon>history</mat-icon>
+    {{ data.recetaNombre }}
+  </h2>
+  <p class="dialog-fecha" *ngIf="fechaLegible">
+    {{ fechaLegible | date: "dd/MM/yyyy HH:mm" }}
+  </p>
+
+  <div class="dialog-contenido">
+    <div class="cambio-bloque" *ngFor="let c of data.cambios">
+      <span class="cambio-campo">{{ c.campo }}</span>
+      <div class="cambio-comparativa">
+        <div class="cambio-lado antiguo">
+          <!-- <span class="cambio-lado-titulo">Valor antiguo</span> -->
+          <pre class="cambio-valor">{{ formatearValor(c.valorAntiguo) }}</pre>
+        </div>
+        <mat-icon class="cambio-flecha">arrow_forward</mat-icon>
+        <div class="cambio-lado nuevo">
+          <!-- <span class="cambio-lado-titulo">Valor nuevo</span> -->
+          <pre class="cambio-valor">{{ formatearValor(c.valorNuevo) }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-dialog-actions align="center" class="dialog-actions">
+    <button mat-raised-button class="btn-cerrar" mat-dialog-close>
+      Cerrar
+    </button>
+  </mat-dialog-actions>
+</div>

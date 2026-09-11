@@ -472,11 +472,13 @@ mat-divider {
 .historial-cambio {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 4px 0;
   border-bottom: 1px solid var(--border-color);
   font-size: 0.8rem;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .historial-cambio:last-child {
