@@ -6,12 +6,11 @@ import {
   doc,
   addDoc,
   updateDoc,
-  deleteDoc,
   query,
   orderBy,
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 export interface Truco {
   id?: string;
@@ -19,6 +18,7 @@ export interface Truco {
   descripcion: string;
   icono: string;
   orden?: number;
+  oculta?: boolean;
 }
 
 @Injectable({
@@ -37,8 +37,16 @@ export class TrucosService {
     const ref = collection(this.firestore, this.coleccion);
     const q = query(ref, orderBy('orden', 'asc'));
     return (collectionData(q, { idField: 'id' }) as Observable<Truco[]>).pipe(
+      map((trucos) => trucos.filter((t) => t.oculta !== true)),
       tap((trucos) => (this.cache = trucos)),
     );
+  }
+
+  /** Incluye los ocultos: solo para el panel de administración. */
+  getTodosLosTrucos(): Observable<Truco[]> {
+    const ref = collection(this.firestore, this.coleccion);
+    const q = query(ref, orderBy('orden', 'asc'));
+    return collectionData(q, { idField: 'id' }) as Observable<Truco[]>;
   }
 
   invalidarCache(): void {
@@ -57,9 +65,7 @@ export class TrucosService {
     return updateDoc(ref, truco);
   }
 
-  deleteTruco(id: string): Promise<void> {
-    this.invalidarCache();
-    const ref = doc(this.firestore, this.coleccion, id);
-    return deleteDoc(ref);
+  toggleVisibilidad(id: string, oculta: boolean): Promise<void> {
+    return this.updateTruco(id, { oculta });
   }
 }

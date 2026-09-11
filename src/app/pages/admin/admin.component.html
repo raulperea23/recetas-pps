@@ -11,865 +11,1095 @@
   </div>
 </div>
 
-<mat-tab-group class="admin-tabs">
-  <!-- TAB RECETAS -->
-  <mat-tab label="Recetas">
-    <mat-card class="formulario-card">
-      <mat-card-title class="formulario-titulo">{{
-        editandoId ? "Editar receta" : "Nueva receta"
-      }}</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="formulario">
-          <div class="fila">
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Nombre</mat-label>
-              <input matInput formControlName="nombre" />
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Receta de:</mat-label>
-              <input matInput formControlName="origen" />
-            </mat-form-field>
-          </div>
-          <div class="fila">
-            <mat-form-field appearance="outline">
-              <mat-label>Tipo de plato</mat-label>
-              <mat-select formControlName="tipoDePlato">
-                <mat-option *ngFor="let tipo of tiposDePlato" [value]="tipo">{{
-                  tipo
-                }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Categoría</mat-label>
-              <mat-select formControlName="categoria">
-                <mat-option *ngFor="let cat of categorias" [value]="cat">{{
-                  cat
-                }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Dificultad</mat-label>
-              <mat-select formControlName="dificultad">
-                <mat-option *ngFor="let d of dificultades" [value]="d">{{
-                  d
-                }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Tiempo</mat-label>
-              <input
-                matInput
-                type="number"
-                formControlName="tiempoPreparacion"
-              />
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Unidad</mat-label>
-              <mat-select formControlName="tiempoUnidad">
-                <mat-option value="minutos">Minutos</mat-option>
-                <mat-option value="horas">Horas</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Comensales</mat-label>
-              <input matInput type="number" formControlName="comensales" />
-            </mat-form-field>
-          </div>
-          <mat-checkbox formControlName="destacada" class="checkbox-destacada"
-            >Receta destacada</mat-checkbox
-          >
-
-          <!-- SLOTS DE FOTOS -->
-          <mat-divider></mat-divider>
-          <h3 class="seccion-titulo">Fotos</h3>
-          <div class="slots-fotos">
-            <div *ngFor="let slot of slots; let i = index" class="slot-foto">
-              <span class="slot-label">{{
-                i === 0 ? "Principal" : "Secundaria " + i
-              }}</span>
-
-              <!-- Previsualización -->
-              <div class="slot-preview" [class.vacio]="!slot.previsualizacion">
-                <img
-                  *ngIf="slot.previsualizacion"
-                  [src]="slot.previsualizacion"
-                  alt="Foto {{ i + 1 }}"
-                />
-                <mat-icon
-                  *ngIf="!slot.previsualizacion"
-                  class="slot-placeholder-icon"
-                  >add_photo_alternate</mat-icon
-                >
-                <mat-progress-bar
-                  *ngIf="slot.subiendo"
-                  mode="indeterminate"
-                  class="slot-progress"
-                ></mat-progress-bar>
-              </div>
-
-              <!-- Acciones del slot -->
-              <div class="slot-acciones">
-                <button
-                  mat-stroked-button
-                  class="btn-upload"
-                  type="button"
-                  (click)="fileInput.click()"
-                >
-                  <mat-icon>upload</mat-icon>
-                  {{ slot.previsualizacion ? "Cambiar" : "Subir" }}
-                </button>
-                <input
-                  #fileInput
-                  type="file"
-                  accept="image/*"
-                  hidden
-                  (change)="onImagenSeleccionada($event, i)"
-                />
-                <button
-                  mat-icon-button
-                  class="btn-eliminar"
-                  type="button"
-                  *ngIf="slot.previsualizacion"
-                  (click)="eliminarSlot(i)"
-                  matTooltip="Eliminar foto"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <mat-divider></mat-divider>
-          <h3 class="seccion-titulo">Ingredientes</h3>
-          <div
-            *ngFor="let ing of ingredientes.controls; let i = index"
-            class="lista-item"
-          >
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Ingrediente {{ i + 1 }}</mat-label>
-              <input matInput [formControl]="$any(ing)" />
-            </mat-form-field>
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              (click)="removeIngrediente(i)"
-              *ngIf="ingredientes.length > 1"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-          <button
-            mat-raised-button
-            class="btn-añadir"
-            (click)="addIngrediente()"
-          >
-            <mat-icon>add</mat-icon> Añadir ingrediente
-          </button>
-          <mat-divider></mat-divider>
-          <h3 class="seccion-titulo">Elaboración</h3>
-          <app-tiptap-editor
-            formControlName="elaboracion"
-            placeholder="Escribe la elaboración de la receta..."
-          ></app-tiptap-editor>
-        </form>
-      </mat-card-content>
-      <mat-card-actions class="formulario-acciones">
-        <button
-          mat-raised-button
-          class="btn-guardar"
-          (click)="guardar()"
-          [disabled]="subiendoAlgunaImagen"
-        >
-          <mat-icon>{{ editandoId ? "save" : "add_circle" }}</mat-icon>
-          {{ editandoId ? "Guardar cambios" : "Añadir receta" }}
-        </button>
-        <button
-          mat-stroked-button
-          class="btn-cancelar"
-          (click)="resetFormulario()"
-          *ngIf="editandoId"
-        >
-          <mat-icon>close</mat-icon> Cancelar
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Recetas guardadas</h2>
-      <span class="tabla-contador">{{ recetasFiltradas.length }} recetas</span>
-    </div>
-    <div class="buscador-tabla">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Buscar receta</mat-label>
-        <input
-          matInput
-          [(ngModel)]="busquedaRecetas"
-          (ngModelChange)="filtrarRecetas()"
-        />
-        <mat-icon matSuffix *ngIf="!busquedaRecetas">search</mat-icon>
-        <mat-icon
-          matSuffix
-          *ngIf="busquedaRecetas"
-          class="btn-limpiar-busqueda"
-          (click)="busquedaRecetas = ''; filtrarRecetas()"
-          >close</mat-icon
-        >
-      </mat-form-field>
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="recetasFiltradas" class="tabla">
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let r">
-            <div class="tabla-nombre">
-              <mat-icon *ngIf="r.destacada" class="tabla-estrella"
-                >star</mat-icon
-              >
-              {{ r.nombre }}
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="categoria">
-          <th mat-header-cell *matHeaderCellDef>Categoría</th>
-          <td mat-cell *matCellDef="let r">
-            <span class="tabla-badge">{{ r.categoria }}</span>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="dificultad">
-          <th mat-header-cell *matHeaderCellDef>Dificultad</th>
-          <td mat-cell *matCellDef="let r">{{ r.dificultad }}</td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let r">
-            <button mat-icon-button class="btn-editar" (click)="editar(r)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              (click)="eliminar(r.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnas"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
-
-  <!-- TAB PREPARACIONES -->
-  <mat-tab label="Preparaciones">
-    <mat-card class="formulario-card">
-      <mat-card-title class="formulario-titulo">{{
-        editandoPreparacionId ? "Editar preparación" : "Nueva preparación"
-      }}</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="formularioPreparacion">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="nombre" />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Icono (emoji)</mat-label>
-            <input matInput formControlName="icono" placeholder="🍳" />
-          </mat-form-field>
-          <h3 class="seccion-titulo">Descripción</h3>
-          <app-tiptap-editor
-            formControlName="descripcion"
-            placeholder="Escribe la descripción de la preparación..."
-          ></app-tiptap-editor>
-        </form>
-      </mat-card-content>
-      <mat-card-actions class="formulario-acciones">
-        <button
-          mat-raised-button
-          class="btn-guardar"
-          (click)="guardarPreparacion()"
-        >
-          <mat-icon>{{
-            editandoPreparacionId ? "save" : "add_circle"
-          }}</mat-icon>
-          {{ editandoPreparacionId ? "Guardar cambios" : "Añadir preparación" }}
-        </button>
-        <button
-          mat-stroked-button
-          class="btn-cancelar"
-          (click)="resetFormularioPreparacion()"
-          *ngIf="editandoPreparacionId"
-        >
-          <mat-icon>close</mat-icon> Cancelar
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Preparaciones guardadas</h2>
-      <span class="tabla-contador"
-        >{{ preparacionesFiltradas.length }} preparaciones</span
+<!-- DASHBOARD -->
+<div class="admin-dashboard" *ngIf="vistaActual === 'dashboard'">
+  <section class="admin-seccion" *ngFor="let seccion of secciones">
+    <h2 class="admin-seccion-titulo">{{ seccion.titulo }}</h2>
+    <div class="admin-cards-grid">
+      <button
+        type="button"
+        class="admin-card"
+        *ngFor="let card of seccion.cards"
+        (click)="navegarA(card.vista)"
       >
+        <mat-icon class="admin-card-icono">{{ card.icono }}</mat-icon>
+        <span class="admin-card-nombre">{{ card.nombre }}</span>
+      </button>
     </div>
-    <div class="buscador-tabla">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Buscar preparación</mat-label>
-        <input
-          matInput
-          [(ngModel)]="busquedaPreparaciones"
-          (ngModelChange)="filtrarPreparaciones()"
-        />
-        <mat-icon matSuffix *ngIf="!busquedaPreparaciones">search</mat-icon>
-        <mat-icon
-          matSuffix
-          *ngIf="busquedaPreparaciones"
-          class="btn-limpiar-busqueda"
-          (click)="busquedaPreparaciones = ''; filtrarPreparaciones()"
-          >close</mat-icon
-        >
-      </mat-form-field>
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="preparacionesFiltradas" class="tabla">
-        <ng-container matColumnDef="orden">
-          <th mat-header-cell *matHeaderCellDef>Orden</th>
-          <td mat-cell *matCellDef="let p">
-            <div class="orden-acciones">
-              <span class="cat-orden">{{ p.orden }}</span>
-              <button
-                mat-icon-button
-                class="btn-orden"
-                (click)="subirPreparacion(p)"
-                [disabled]="preparaciones.indexOf(p) === 0"
-              >
-                <mat-icon>arrow_upward</mat-icon>
-              </button>
-              <button
-                mat-icon-button
-                class="btn-orden"
-                (click)="bajarPreparacion(p)"
-                [disabled]="
-                  preparaciones.indexOf(p) === preparaciones.length - 1
-                "
-              >
-                <mat-icon>arrow_downward</mat-icon>
-              </button>
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let p">{{ p.nombre }}</td>
-        </ng-container>
-        <ng-container matColumnDef="icono">
-          <th mat-header-cell *matHeaderCellDef>Icono</th>
-          <td mat-cell *matCellDef="let p" class="tabla-icono">
-            {{ p.icono }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let p">
-            <button
-              mat-icon-button
-              class="btn-editar"
-              (click)="editarPreparacion(p)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              (click)="eliminarPreparacion(p.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnasPreparaciones"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnasPreparaciones"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
+  </section>
+</div>
 
-  <!-- TAB TRUCOS -->
-  <mat-tab label="Trucos">
-    <mat-card class="formulario-card">
-      <mat-card-title class="formulario-titulo">{{
-        editandoTrucoId ? "Editar truco" : "Nuevo truco"
-      }}</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="formularioTruco">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="nombre" />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Icono (emoji)</mat-label>
-            <input matInput formControlName="icono" placeholder="🍳" />
-          </mat-form-field>
-          <h3 class="seccion-titulo">Descripción</h3>
-          <app-tiptap-editor
-            formControlName="descripcion"
-            placeholder="Escribe la descripción del truco..."
-          ></app-tiptap-editor>
-        </form>
-      </mat-card-content>
-      <mat-card-actions class="formulario-acciones">
-        <button mat-raised-button class="btn-guardar" (click)="guardarTruco()">
-          <mat-icon>{{ editandoTrucoId ? "save" : "add_circle" }}</mat-icon>
-          {{ editandoTrucoId ? "Guardar cambios" : "Añadir truco" }}
-        </button>
-        <button
-          mat-stroked-button
-          class="btn-cancelar"
-          (click)="resetFormularioTruco()"
-          *ngIf="editandoTrucoId"
-        >
-          <mat-icon>close</mat-icon> Cancelar
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Trucos guardados</h2>
-      <span class="tabla-contador">{{ trucosFiltrados.length }} trucos</span>
-    </div>
-    <div class="buscador-tabla">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Buscar truco</mat-label>
-        <input
-          matInput
-          [(ngModel)]="busquedaTrucos"
-          (ngModelChange)="filtrarTrucos()"
-        />
-        <mat-icon matSuffix *ngIf="!busquedaTrucos">search</mat-icon>
-        <mat-icon
-          matSuffix
-          *ngIf="busquedaTrucos"
-          class="btn-limpiar-busqueda"
-          (click)="busquedaTrucos = ''; filtrarTrucos()"
-          >close</mat-icon
-        >
-      </mat-form-field>
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="trucosFiltrados" class="tabla">
-        <ng-container matColumnDef="orden">
-          <th mat-header-cell *matHeaderCellDef>Orden</th>
-          <td mat-cell *matCellDef="let t">
-            <div class="orden-acciones">
-              <span class="cat-orden">{{ t.orden }}</span>
-              <button
-                mat-icon-button
-                class="btn-orden"
-                (click)="subirTruco(t)"
-                [disabled]="trucos.indexOf(t) === 0"
-              >
-                <mat-icon>arrow_upward</mat-icon>
-              </button>
-              <button
-                mat-icon-button
-                class="btn-orden"
-                (click)="bajarTruco(t)"
-                [disabled]="trucos.indexOf(t) === trucos.length - 1"
-              >
-                <mat-icon>arrow_downward</mat-icon>
-              </button>
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let t">{{ t.nombre }}</td>
-        </ng-container>
-        <ng-container matColumnDef="icono">
-          <th mat-header-cell *matHeaderCellDef>Icono</th>
-          <td mat-cell *matCellDef="let t" class="tabla-icono">
-            {{ t.icono }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let t">
-            <button mat-icon-button class="btn-editar" (click)="editarTruco(t)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              (click)="eliminarTruco(t.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnasTrucos"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnasTrucos"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
+<!-- VISTAS -->
+<div class="admin-vista" *ngIf="vistaActual !== 'dashboard'">
+  <div class="admin-vista-cabecera">
+    <button mat-stroked-button class="admin-volver" (click)="volver()">
+      <mat-icon>arrow_back</mat-icon> Volver al panel
+    </button>
+    <h2 class="admin-vista-titulo">{{ tituloVista }}</h2>
+  </div>
 
-  <!-- TAB CATEGORÍAS INGREDIENTES -->
-  <mat-tab label="Categorías de Ingredientes">
-    <mat-card class="formulario-card">
-      <mat-card-title class="formulario-titulo">{{
-        editandoCategoriaIngredienteId ? "Editar categoría" : "Nueva categoría"
-      }}</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="formularioCategoriaIngrediente">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Nombre de la categoría</mat-label>
-            <input
-              matInput
-              formControlName="nombre"
-              placeholder="Ej: Verduras y hortalizas"
-            />
-          </mat-form-field>
-        </form>
-      </mat-card-content>
-      <mat-card-actions class="formulario-acciones">
-        <button
-          mat-raised-button
-          class="btn-guardar"
-          (click)="guardarCategoriaIngrediente()"
-        >
-          <mat-icon>{{
-            editandoCategoriaIngredienteId ? "save" : "add_circle"
-          }}</mat-icon>
-          {{
-            editandoCategoriaIngredienteId
-              ? "Guardar cambios"
-              : "Añadir categoría"
-          }}
-        </button>
-        <button
-          mat-stroked-button
-          class="btn-cancelar"
-          (click)="resetFormularioCategoriaIngrediente()"
-          *ngIf="editandoCategoriaIngredienteId"
-        >
-          <mat-icon>close</mat-icon> Cancelar
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Categorías guardadas</h2>
-      <span class="tabla-contador"
-        >{{ categoriasFiltradas.length }} categorías</span
+  <ng-container [ngSwitch]="vistaActual">
+    <!-- RECETAS -->
+    <ng-container *ngSwitchCase="'receta-nueva'">
+      <ng-container *ngTemplateOutlet="tplFormReceta"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'receta-editar'">
+      <ng-container *ngIf="recetaBuscada; else buscadorRecetaEditar">
+        <ng-container *ngTemplateOutlet="tplFormReceta"></ng-container>
+      </ng-container>
+      <ng-template #buscadorRecetaEditar>
+        <ng-container *ngTemplateOutlet="tplBuscadorRecetas"></ng-container>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'receta-visibilidad'">
+      <ng-container *ngTemplateOutlet="tplTablaVisibilidad"></ng-container>
+    </ng-container>
+
+    <!-- PREPARACIONES -->
+    <ng-container *ngSwitchCase="'preparacion-nueva'">
+      <ng-container *ngTemplateOutlet="tplFormPreparacion"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'preparacion-editar'">
+      <ng-container
+        *ngIf="editandoPreparacionId; else listaPreparacionesEditar"
       >
-    </div>
-    <div class="buscador-tabla">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Buscar categoría</mat-label>
-        <input
-          matInput
-          [(ngModel)]="busquedaCategorias"
-          (ngModelChange)="filtrarCategorias()"
-        />
-        <mat-icon matSuffix *ngIf="!busquedaCategorias">search</mat-icon>
-        <mat-icon
-          matSuffix
-          *ngIf="busquedaCategorias"
-          class="btn-limpiar-busqueda"
-          (click)="busquedaCategorias = ''; filtrarCategorias()"
-          >close</mat-icon
-        >
-      </mat-form-field>
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="categoriasFiltradas" class="tabla">
-        <ng-container matColumnDef="orden">
-          <th mat-header-cell *matHeaderCellDef>Orden</th>
-          <td mat-cell *matCellDef="let c">
-            <div class="orden-acciones">
-              <span class="cat-orden">{{ c.orden }}</span>
-              <button
-                mat-icon-button
-                class="btn-orden"
-                (click)="subirCategoria(c)"
-                [disabled]="categoriasIngredientesLista.indexOf(c) === 0"
-              >
-                <mat-icon>arrow_upward</mat-icon>
-              </button>
-              <button
-                mat-icon-button
-                class="btn-orden"
-                (click)="bajarCategoria(c)"
-                [disabled]="
-                  categoriasIngredientesLista.indexOf(c) ===
-                  categoriasIngredientesLista.length - 1
-                "
-              >
-                <mat-icon>arrow_downward</mat-icon>
-              </button>
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let c">{{ c.nombre }}</td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let c">
-            <button
-              mat-icon-button
-              class="btn-editar"
-              (click)="editarCategoriaIngrediente(c)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              (click)="eliminarCategoriaIngrediente(c.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnasCategorias"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnasCategorias"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
+        <ng-container *ngTemplateOutlet="tplFormPreparacion"></ng-container>
+      </ng-container>
+      <ng-template #listaPreparacionesEditar>
+        <ng-container
+          *ngTemplateOutlet="
+            tplTablaPreparaciones;
+            context: { columnas: columnasPreparaciones }
+          "
+        ></ng-container>
+      </ng-template>
+    </ng-container>
 
-  <!-- TAB INGREDIENTES -->
-  <mat-tab label="Ingredientes">
-    <mat-card class="formulario-card">
-      <mat-card-title class="formulario-titulo">{{
-        editandoIngredienteId ? "Editar ingrediente" : "Nuevo ingrediente"
-      }}</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="formularioIngrediente">
+    <ng-container *ngSwitchCase="'preparacion-visibilidad'">
+      <ng-container
+        *ngTemplateOutlet="
+          tplTablaPreparaciones;
+          context: { columnas: columnasVisibilidadPreparaciones }
+        "
+      ></ng-container>
+    </ng-container>
+
+    <!-- TRUCOS -->
+    <ng-container *ngSwitchCase="'truco-nuevo'">
+      <ng-container *ngTemplateOutlet="tplFormTruco"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'truco-editar'">
+      <ng-container *ngIf="editandoTrucoId; else listaTrucosEditar">
+        <ng-container *ngTemplateOutlet="tplFormTruco"></ng-container>
+      </ng-container>
+      <ng-template #listaTrucosEditar>
+        <ng-container
+          *ngTemplateOutlet="
+            tplTablaTrucos;
+            context: { columnas: columnasTrucos }
+          "
+        ></ng-container>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'truco-visibilidad'">
+      <ng-container
+        *ngTemplateOutlet="
+          tplTablaTrucos;
+          context: { columnas: columnasVisibilidadTrucos }
+        "
+      ></ng-container>
+    </ng-container>
+
+    <!-- CATEGORÍAS DE INGREDIENTES -->
+    <ng-container *ngSwitchCase="'categoria-nueva'">
+      <ng-container *ngTemplateOutlet="tplFormCategoria"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'categoria-editar'">
+      <ng-container
+        *ngIf="editandoCategoriaIngredienteId; else listaCategoriasEditar"
+      >
+        <ng-container *ngTemplateOutlet="tplFormCategoria"></ng-container>
+      </ng-container>
+      <ng-template #listaCategoriasEditar>
+        <ng-container
+          *ngTemplateOutlet="
+            tplTablaCategorias;
+            context: { columnas: columnasCategorias }
+          "
+        ></ng-container>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'categoria-visibilidad'">
+      <ng-container
+        *ngTemplateOutlet="
+          tplTablaCategorias;
+          context: { columnas: columnasVisibilidadCategorias }
+        "
+      ></ng-container>
+    </ng-container>
+
+    <!-- INGREDIENTES -->
+    <ng-container *ngSwitchCase="'ingrediente-nuevo'">
+      <ng-container *ngTemplateOutlet="tplFormIngrediente"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'ingrediente-editar'">
+      <ng-container *ngIf="editandoIngredienteId; else listaIngredientesEditar">
+        <ng-container *ngTemplateOutlet="tplFormIngrediente"></ng-container>
+      </ng-container>
+      <ng-template #listaIngredientesEditar>
+        <ng-container
+          *ngTemplateOutlet="
+            tplTablaIngredientes;
+            context: { columnas: columnasIngredientes }
+          "
+        ></ng-container>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'ingrediente-visibilidad'">
+      <ng-container
+        *ngTemplateOutlet="
+          tplTablaIngredientes;
+          context: { columnas: columnasVisibilidadIngredientes }
+        "
+      ></ng-container>
+    </ng-container>
+
+    <!-- ESTADÍSTICAS -->
+    <ng-container *ngSwitchCase="'visitas'">
+      <ng-container *ngTemplateOutlet="tplTablaVisitas"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'historial'">
+      <ng-container *ngTemplateOutlet="tplTablaHistorial"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<!-- BUSCADOR DE RECETAS -->
+<ng-template #tplBuscadorRecetas>
+  <div class="buscador-editar">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar receta por nombre</mat-label>
+      <input
+        matInput
+        [ngModel]="busquedaEditar"
+        (ngModelChange)="buscarParaEditar($event)"
+      />
+      <mat-icon matSuffix *ngIf="!busquedaEditar">search</mat-icon>
+      <mat-icon
+        matSuffix
+        *ngIf="busquedaEditar"
+        class="btn-limpiar-busqueda"
+        (click)="buscarParaEditar('')"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <p class="buscador-ayuda" *ngIf="!busquedaEditar">
+    Escribe para buscar entre las {{ recetas.length }} recetas.
+  </p>
+  <p class="buscador-ayuda" *ngIf="busquedaEditar && !recetasFiltradas.length">
+    No hay recetas que coincidan con la búsqueda.
+  </p>
+  <div class="resultados-busqueda">
+    <div class="resultado-item" *ngFor="let r of recetasFiltradas">
+      <div class="resultado-info">
+        <span class="resultado-nombre">{{ r.nombre }}</span>
+        <span class="tabla-badge">{{ r.categoria }}</span>
+        <span class="resultado-oculta" *ngIf="r.oculta">Oculta</span>
+      </div>
+      <button
+        mat-raised-button
+        class="btn-guardar"
+        (click)="seleccionarParaEditar(r)"
+      >
+        <mat-icon>edit</mat-icon> Editar
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- FORMULARIO DE RECETA -->
+<ng-template #tplFormReceta>
+  <mat-card class="formulario-card">
+    <mat-card-title class="formulario-titulo">{{
+      editandoId ? "Editar receta" : "Nueva receta"
+    }}</mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="formulario">
+        <div class="fila">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="nombre" />
           </mat-form-field>
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Emoji</mat-label>
-            <input matInput formControlName="emoji" placeholder="🥕" />
+            <mat-label>Receta de:</mat-label>
+            <input matInput formControlName="origen" />
           </mat-form-field>
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Categoría</mat-label>
-            <mat-select formControlName="categoria">
-              <mat-option
-                *ngFor="let cat of categoriasIngredientes"
-                [value]="cat.nombre"
-                >{{ cat.nombre }}</mat-option
-              >
+        </div>
+        <div class="fila">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo de plato</mat-label>
+            <mat-select formControlName="tipoDePlato">
+              <mat-option *ngFor="let tipo of tiposDePlato" [value]="tipo">{{
+                tipo
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
-        </form>
-      </mat-card-content>
-      <mat-card-actions class="formulario-acciones">
-        <button
-          mat-raised-button
-          class="btn-guardar"
-          (click)="guardarIngrediente()"
+          <mat-form-field appearance="outline">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="categoria">
+              <mat-option *ngFor="let cat of categorias" [value]="cat">{{
+                cat
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Dificultad</mat-label>
+            <mat-select formControlName="dificultad">
+              <mat-option *ngFor="let d of dificultades" [value]="d">{{
+                d
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tiempo</mat-label>
+            <input matInput type="number" formControlName="tiempoPreparacion" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Unidad</mat-label>
+            <mat-select formControlName="tiempoUnidad">
+              <mat-option value="minutos">Minutos</mat-option>
+              <mat-option value="horas">Horas</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Comensales</mat-label>
+            <input matInput type="number" formControlName="comensales" />
+          </mat-form-field>
+        </div>
+        <mat-checkbox formControlName="destacada" class="checkbox-destacada"
+          >Receta destacada</mat-checkbox
         >
-          <mat-icon>{{
-            editandoIngredienteId ? "save" : "add_circle"
-          }}</mat-icon>
-          {{ editandoIngredienteId ? "Guardar cambios" : "Añadir ingrediente" }}
-        </button>
-        <button
-          mat-stroked-button
-          class="btn-cancelar"
-          (click)="resetFormularioIngrediente()"
-          *ngIf="editandoIngredienteId"
-        >
-          <mat-icon>close</mat-icon> Cancelar
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Ingredientes guardados</h2>
-      <span class="tabla-contador"
-        >{{ ingredientesFiltrados.length }} ingredientes</span
-      >
-    </div>
-    <div class="buscador-tabla">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Buscar ingrediente</mat-label>
-        <input
-          matInput
-          [(ngModel)]="busquedaIngredientes"
-          (ngModelChange)="filtrarIngredientes()"
-        />
-        <mat-icon matSuffix *ngIf="!busquedaIngredientes">search</mat-icon>
-        <mat-icon
-          matSuffix
-          *ngIf="busquedaIngredientes"
-          class="btn-limpiar-busqueda"
-          (click)="busquedaIngredientes = ''; filtrarIngredientes()"
-          >close</mat-icon
-        >
-      </mat-form-field>
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="ingredientesFiltrados" class="tabla">
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let i">{{ i.nombre }}</td>
-        </ng-container>
-        <ng-container matColumnDef="emoji">
-          <th mat-header-cell *matHeaderCellDef>Emoji</th>
-          <td mat-cell *matCellDef="let i" class="tabla-icono">
-            {{ i.emoji }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="categoria">
-          <th mat-header-cell *matHeaderCellDef>Categoría</th>
-          <td mat-cell *matCellDef="let i">
-            <span class="tabla-badge">{{ i.categoria }}</span>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let i">
-            <button
-              mat-icon-button
-              class="btn-editar"
-              (click)="editarIngrediente(i)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              (click)="eliminarIngrediente(i.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnasIngredientes"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnasIngredientes"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
-  <mat-tab label="Visitas">
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Recetas más visitadas</h2>
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="recetasMasVisitadas" class="tabla">
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
-        </ng-container>
-        <ng-container matColumnDef="visitas">
-          <th mat-header-cell *matHeaderCellDef>Visitas</th>
-          <td mat-cell *matCellDef="let r">{{ r.visitas }}</td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let r">
-            <button
-              mat-icon-button
-              class="btn-editar"
-              title="Resetear visitas"
-              (click)="resetearVisitas(r.id)"
-            >
-              <mat-icon>autorenew</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnasVisitas"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnasVisitas"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
-  <mat-tab label="Historial">
-    <div class="tabla-cabecera">
-      <h2 class="tabla-titulo">Historial de cambios</h2>
-      <span class="tabla-contador"
-        >{{ historial.length }}
-        {{ historial.length === 1 ? "entrada" : "entradas" }}</span
-      >
-    </div>
-    <div class="tabla-contenedor">
-      <table mat-table [dataSource]="historial" class="tabla">
-        <ng-container matColumnDef="fecha">
-          <th mat-header-cell *matHeaderCellDef>Fecha</th>
-          <td mat-cell *matCellDef="let h">
-            {{
-              h.fecha?.toDate
-                ? (h.fecha.toDate() | date: "dd/MM/yyyy HH:mm")
-                : (h.fecha | date: "dd/MM/yyyy HH:mm")
-            }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="receta">
-          <th mat-header-cell *matHeaderCellDef>Receta</th>
-          <td mat-cell *matCellDef="let h">{{ h.recetaNombre }}</td>
-        </ng-container>
-        <ng-container matColumnDef="cambios">
-          <th mat-header-cell *matHeaderCellDef>Cambios</th>
-          <td mat-cell *matCellDef="let h">
-            <div *ngFor="let c of h.cambios" class="historial-cambio">
-              <span class="historial-campo">{{ c.campo }}</span>
+
+        <!-- SLOTS DE FOTOS -->
+        <mat-divider></mat-divider>
+        <h3 class="seccion-titulo">Fotos</h3>
+        <div class="slots-fotos">
+          <div *ngFor="let slot of slots; let i = index" class="slot-foto">
+            <span class="slot-label">{{
+              i === 0 ? "Principal" : "Secundaria " + i
+            }}</span>
+
+            <!-- Previsualización -->
+            <div class="slot-preview" [class.vacio]="!slot.previsualizacion">
+              <img
+                *ngIf="slot.previsualizacion"
+                [src]="slot.previsualizacion"
+                alt="Foto {{ i + 1 }}"
+              />
+              <mat-icon
+                *ngIf="!slot.previsualizacion"
+                class="slot-placeholder-icon"
+                >add_photo_alternate</mat-icon
+              >
+              <mat-progress-bar
+                *ngIf="slot.subiendo"
+                mode="indeterminate"
+                class="slot-progress"
+              ></mat-progress-bar>
             </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="valor">
-          <th mat-header-cell *matHeaderCellDef>Valor antiguo</th>
-          <td mat-cell *matCellDef="let h">
-            <div *ngFor="let c of h.cambios" class="historial-cambio">
-              <span class="historial-antiguo">{{ c.valorAntiguo | json }}</span>
-              <!-- <mat-icon class="historial-flecha">arrow_forward</mat-icon>
+
+            <!-- Acciones del slot -->
+            <div class="slot-acciones">
+              <button
+                mat-stroked-button
+                class="btn-upload"
+                type="button"
+                (click)="fileInput.click()"
+              >
+                <mat-icon>upload</mat-icon>
+                {{ slot.previsualizacion ? "Cambiar" : "Subir" }}
+              </button>
+              <input
+                #fileInput
+                type="file"
+                accept="image/*"
+                hidden
+                (change)="onImagenSeleccionada($event, i)"
+              />
+              <button
+                mat-icon-button
+                class="btn-eliminar"
+                type="button"
+                *ngIf="slot.previsualizacion"
+                (click)="eliminarSlot(i)"
+                matTooltip="Eliminar foto"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <h3 class="seccion-titulo">Ingredientes</h3>
+        <div
+          *ngFor="let ing of ingredientes.controls; let i = index"
+          class="lista-item"
+        >
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Ingrediente {{ i + 1 }}</mat-label>
+            <input matInput [formControl]="$any(ing)" />
+          </mat-form-field>
+          <button
+            mat-icon-button
+            class="btn-eliminar"
+            (click)="removeIngrediente(i)"
+            *ngIf="ingredientes.length > 1"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button class="btn-añadir" (click)="addIngrediente()">
+          <mat-icon>add</mat-icon> Añadir ingrediente
+        </button>
+        <mat-divider></mat-divider>
+        <h3 class="seccion-titulo">Elaboración</h3>
+        <app-tiptap-editor
+          formControlName="elaboracion"
+          placeholder="Escribe la elaboración de la receta..."
+        ></app-tiptap-editor>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="formulario-acciones">
+      <button
+        mat-raised-button
+        class="btn-guardar"
+        (click)="guardar()"
+        [disabled]="subiendoAlgunaImagen"
+      >
+        <mat-icon>{{ editandoId ? "save" : "add_circle" }}</mat-icon>
+        {{ editandoId ? "Guardar cambios" : "Añadir receta" }}
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-cancelar"
+        (click)="resetFormulario()"
+        *ngIf="editandoId"
+      >
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<!-- TABLA DE VISIBILIDAD DE RECETAS -->
+<ng-template #tplTablaVisibilidad>
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Todas las recetas</h2>
+    <span class="tabla-contador"
+      >{{ recetasOcultas.length }} ocultas de {{ recetas.length }}</span
+    >
+  </div>
+  <div class="buscador-tabla">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar receta</mat-label>
+      <input
+        matInput
+        [(ngModel)]="busquedaVisibilidad"
+        (ngModelChange)="filtrarVisibilidad()"
+      />
+      <mat-icon matSuffix *ngIf="!busquedaVisibilidad">search</mat-icon>
+      <mat-icon
+        matSuffix
+        *ngIf="busquedaVisibilidad"
+        class="btn-limpiar-busqueda"
+        (click)="busquedaVisibilidad = ''; filtrarVisibilidad()"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="recetasVisibilidad" class="tabla">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let r">
+          <div class="tabla-nombre">
+            <mat-icon *ngIf="r.destacada" class="tabla-estrella">star</mat-icon>
+            {{ r.nombre }}
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef>Categoría</th>
+        <td mat-cell *matCellDef="let r">
+          <span class="tabla-badge">{{ r.categoria }}</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="visible">
+        <th mat-header-cell *matHeaderCellDef>Visible en la web</th>
+        <td mat-cell *matCellDef="let r">
+          <mat-slide-toggle
+            [checked]="!r.oculta"
+            (change)="toggleVisibilidadReceta(r)"
+          ></mat-slide-toggle>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnasVisibilidad"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnasVisibilidad"
+        class="tabla-fila"
+        [class.oculta]="row.oculta"
+      ></tr>
+    </table>
+  </div>
+</ng-template>
+
+<!-- FORMULARIO DE PREPARACIÓN -->
+<ng-template #tplFormPreparacion>
+  <mat-card class="formulario-card">
+    <mat-card-title class="formulario-titulo">{{
+      editandoPreparacionId ? "Editar preparación" : "Nueva preparación"
+    }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="formularioPreparacion">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Icono (emoji)</mat-label>
+          <input matInput formControlName="icono" placeholder="🍳" />
+        </mat-form-field>
+        <h3 class="seccion-titulo">Descripción</h3>
+        <app-tiptap-editor
+          formControlName="descripcion"
+          placeholder="Escribe la descripción de la preparación..."
+        ></app-tiptap-editor>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="formulario-acciones">
+      <button
+        mat-raised-button
+        class="btn-guardar"
+        (click)="guardarPreparacion()"
+      >
+        <mat-icon>{{ editandoPreparacionId ? "save" : "add_circle" }}</mat-icon>
+        {{ editandoPreparacionId ? "Guardar cambios" : "Añadir preparación" }}
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-cancelar"
+        (click)="resetFormularioPreparacion()"
+        *ngIf="editandoPreparacionId"
+      >
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<!-- TABLA DE PREPARACIONES -->
+<ng-template #tplTablaPreparaciones let-columnas="columnas">
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Preparaciones guardadas</h2>
+    <span class="tabla-contador"
+      >{{ preparacionesFiltradas.length }} preparaciones ·
+      {{ preparacionesOcultas.length }} ocultas</span
+    >
+  </div>
+  <div class="buscador-tabla">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar preparación</mat-label>
+      <input
+        matInput
+        [(ngModel)]="busquedaPreparaciones"
+        (ngModelChange)="filtrarPreparaciones()"
+      />
+      <mat-icon matSuffix *ngIf="!busquedaPreparaciones">search</mat-icon>
+      <mat-icon
+        matSuffix
+        *ngIf="busquedaPreparaciones"
+        class="btn-limpiar-busqueda"
+        (click)="busquedaPreparaciones = ''; filtrarPreparaciones()"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="preparacionesFiltradas" class="tabla">
+      <ng-container matColumnDef="orden">
+        <th mat-header-cell *matHeaderCellDef>Orden</th>
+        <td mat-cell *matCellDef="let p">
+          <div class="orden-acciones">
+            <span class="cat-orden">{{ p.orden }}</span>
+            <button
+              mat-icon-button
+              class="btn-orden"
+              (click)="subirPreparacion(p)"
+              [disabled]="preparaciones.indexOf(p) === 0"
+            >
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="btn-orden"
+              (click)="bajarPreparacion(p)"
+              [disabled]="preparaciones.indexOf(p) === preparaciones.length - 1"
+            >
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let p">{{ p.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="icono">
+        <th mat-header-cell *matHeaderCellDef>Icono</th>
+        <td mat-cell *matCellDef="let p" class="tabla-icono">
+          {{ p.icono }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="visible">
+        <th mat-header-cell *matHeaderCellDef>Visible en la web</th>
+        <td mat-cell *matCellDef="let p">
+          <mat-slide-toggle
+            [checked]="!p.oculta"
+            (change)="toggleVisibilidadPreparacion(p)"
+          ></mat-slide-toggle>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let p">
+          <button
+            mat-icon-button
+            class="btn-editar"
+            (click)="editarPreparacion(p)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnas"
+        class="tabla-fila"
+        [class.oculta]="row.oculta"
+      ></tr>
+    </table>
+  </div>
+</ng-template>
+
+<!-- FORMULARIO DE TRUCO -->
+<ng-template #tplFormTruco>
+  <mat-card class="formulario-card">
+    <mat-card-title class="formulario-titulo">{{
+      editandoTrucoId ? "Editar truco" : "Nuevo truco"
+    }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="formularioTruco">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Icono (emoji)</mat-label>
+          <input matInput formControlName="icono" placeholder="🍳" />
+        </mat-form-field>
+        <h3 class="seccion-titulo">Descripción</h3>
+        <app-tiptap-editor
+          formControlName="descripcion"
+          placeholder="Escribe la descripción del truco..."
+        ></app-tiptap-editor>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="formulario-acciones">
+      <button mat-raised-button class="btn-guardar" (click)="guardarTruco()">
+        <mat-icon>{{ editandoTrucoId ? "save" : "add_circle" }}</mat-icon>
+        {{ editandoTrucoId ? "Guardar cambios" : "Añadir truco" }}
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-cancelar"
+        (click)="resetFormularioTruco()"
+        *ngIf="editandoTrucoId"
+      >
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<!-- TABLA DE TRUCOS -->
+<ng-template #tplTablaTrucos let-columnas="columnas">
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Trucos guardados</h2>
+    <span class="tabla-contador"
+      >{{ trucosFiltrados.length }} trucos ·
+      {{ trucosOcultos.length }} ocultos</span
+    >
+  </div>
+  <div class="buscador-tabla">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar truco</mat-label>
+      <input
+        matInput
+        [(ngModel)]="busquedaTrucos"
+        (ngModelChange)="filtrarTrucos()"
+      />
+      <mat-icon matSuffix *ngIf="!busquedaTrucos">search</mat-icon>
+      <mat-icon
+        matSuffix
+        *ngIf="busquedaTrucos"
+        class="btn-limpiar-busqueda"
+        (click)="busquedaTrucos = ''; filtrarTrucos()"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="trucosFiltrados" class="tabla">
+      <ng-container matColumnDef="orden">
+        <th mat-header-cell *matHeaderCellDef>Orden</th>
+        <td mat-cell *matCellDef="let t">
+          <div class="orden-acciones">
+            <span class="cat-orden">{{ t.orden }}</span>
+            <button
+              mat-icon-button
+              class="btn-orden"
+              (click)="subirTruco(t)"
+              [disabled]="trucos.indexOf(t) === 0"
+            >
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="btn-orden"
+              (click)="bajarTruco(t)"
+              [disabled]="trucos.indexOf(t) === trucos.length - 1"
+            >
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let t">{{ t.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="icono">
+        <th mat-header-cell *matHeaderCellDef>Icono</th>
+        <td mat-cell *matCellDef="let t" class="tabla-icono">
+          {{ t.icono }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="visible">
+        <th mat-header-cell *matHeaderCellDef>Visible en la web</th>
+        <td mat-cell *matCellDef="let t">
+          <mat-slide-toggle
+            [checked]="!t.oculta"
+            (change)="toggleVisibilidadTruco(t)"
+          ></mat-slide-toggle>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let t">
+          <button mat-icon-button class="btn-editar" (click)="editarTruco(t)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnas"
+        class="tabla-fila"
+        [class.oculta]="row.oculta"
+      ></tr>
+    </table>
+  </div>
+</ng-template>
+
+<!-- FORMULARIO DE CATEGORÍA DE INGREDIENTES -->
+<ng-template #tplFormCategoria>
+  <mat-card class="formulario-card">
+    <mat-card-title class="formulario-titulo">{{
+      editandoCategoriaIngredienteId ? "Editar categoría" : "Nueva categoría"
+    }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="formularioCategoriaIngrediente">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre de la categoría</mat-label>
+          <input
+            matInput
+            formControlName="nombre"
+            placeholder="Ej: Verduras y hortalizas"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="formulario-acciones">
+      <button
+        mat-raised-button
+        class="btn-guardar"
+        (click)="guardarCategoriaIngrediente()"
+      >
+        <mat-icon>{{
+          editandoCategoriaIngredienteId ? "save" : "add_circle"
+        }}</mat-icon>
+        {{
+          editandoCategoriaIngredienteId
+            ? "Guardar cambios"
+            : "Añadir categoría"
+        }}
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-cancelar"
+        (click)="resetFormularioCategoriaIngrediente()"
+        *ngIf="editandoCategoriaIngredienteId"
+      >
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<!-- TABLA DE CATEGORÍAS DE INGREDIENTES -->
+<ng-template #tplTablaCategorias let-columnas="columnas">
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Categorías guardadas</h2>
+    <span class="tabla-contador"
+      >{{ categoriasFiltradas.length }} categorías ·
+      {{ categoriasOcultas.length }} ocultas</span
+    >
+  </div>
+  <div class="buscador-tabla">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar categoría</mat-label>
+      <input
+        matInput
+        [(ngModel)]="busquedaCategorias"
+        (ngModelChange)="filtrarCategorias()"
+      />
+      <mat-icon matSuffix *ngIf="!busquedaCategorias">search</mat-icon>
+      <mat-icon
+        matSuffix
+        *ngIf="busquedaCategorias"
+        class="btn-limpiar-busqueda"
+        (click)="busquedaCategorias = ''; filtrarCategorias()"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="categoriasFiltradas" class="tabla">
+      <ng-container matColumnDef="orden">
+        <th mat-header-cell *matHeaderCellDef>Orden</th>
+        <td mat-cell *matCellDef="let c">
+          <div class="orden-acciones">
+            <span class="cat-orden">{{ c.orden }}</span>
+            <button
+              mat-icon-button
+              class="btn-orden"
+              (click)="subirCategoria(c)"
+              [disabled]="categoriasIngredientesLista.indexOf(c) === 0"
+            >
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="btn-orden"
+              (click)="bajarCategoria(c)"
+              [disabled]="
+                categoriasIngredientesLista.indexOf(c) ===
+                categoriasIngredientesLista.length - 1
+              "
+            >
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let c">{{ c.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="visible">
+        <th mat-header-cell *matHeaderCellDef>Visible en la web</th>
+        <td mat-cell *matCellDef="let c">
+          <mat-slide-toggle
+            [checked]="!c.oculta"
+            (change)="toggleVisibilidadCategoria(c)"
+          ></mat-slide-toggle>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let c">
+          <button
+            mat-icon-button
+            class="btn-editar"
+            (click)="editarCategoriaIngrediente(c)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnas"
+        class="tabla-fila"
+        [class.oculta]="row.oculta"
+      ></tr>
+    </table>
+  </div>
+</ng-template>
+
+<!-- FORMULARIO DE INGREDIENTE -->
+<ng-template #tplFormIngrediente>
+  <mat-card class="formulario-card">
+    <mat-card-title class="formulario-titulo">{{
+      editandoIngredienteId ? "Editar ingrediente" : "Nuevo ingrediente"
+    }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="formularioIngrediente">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Emoji</mat-label>
+          <input matInput formControlName="emoji" placeholder="🥕" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="categoria">
+            <mat-option
+              *ngFor="let cat of categoriasIngredientes"
+              [value]="cat.nombre"
+              >{{ cat.nombre }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="formulario-acciones">
+      <button
+        mat-raised-button
+        class="btn-guardar"
+        (click)="guardarIngrediente()"
+      >
+        <mat-icon>{{ editandoIngredienteId ? "save" : "add_circle" }}</mat-icon>
+        {{ editandoIngredienteId ? "Guardar cambios" : "Añadir ingrediente" }}
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-cancelar"
+        (click)="resetFormularioIngrediente()"
+        *ngIf="editandoIngredienteId"
+      >
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<!-- TABLA DE INGREDIENTES -->
+<ng-template #tplTablaIngredientes let-columnas="columnas">
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Ingredientes guardados</h2>
+    <span class="tabla-contador"
+      >{{ ingredientesFiltrados.length }} ingredientes ·
+      {{ ingredientesOcultos.length }} ocultos</span
+    >
+  </div>
+  <div class="buscador-tabla">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar ingrediente</mat-label>
+      <input
+        matInput
+        [(ngModel)]="busquedaIngredientes"
+        (ngModelChange)="filtrarIngredientes()"
+      />
+      <mat-icon matSuffix *ngIf="!busquedaIngredientes">search</mat-icon>
+      <mat-icon
+        matSuffix
+        *ngIf="busquedaIngredientes"
+        class="btn-limpiar-busqueda"
+        (click)="busquedaIngredientes = ''; filtrarIngredientes()"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="ingredientesFiltrados" class="tabla">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let i">{{ i.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="emoji">
+        <th mat-header-cell *matHeaderCellDef>Emoji</th>
+        <td mat-cell *matCellDef="let i" class="tabla-icono">
+          {{ i.emoji }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef>Categoría</th>
+        <td mat-cell *matCellDef="let i">
+          <span class="tabla-badge">{{ i.categoria }}</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="visible">
+        <th mat-header-cell *matHeaderCellDef>Visible en la web</th>
+        <td mat-cell *matCellDef="let i">
+          <mat-slide-toggle
+            [checked]="!i.oculta"
+            (change)="toggleVisibilidadIngrediente(i)"
+          ></mat-slide-toggle>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let i">
+          <button
+            mat-icon-button
+            class="btn-editar"
+            (click)="editarIngrediente(i)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnas"
+        class="tabla-fila"
+        [class.oculta]="row.oculta"
+      ></tr>
+    </table>
+  </div>
+</ng-template>
+
+<!-- TABLA DE VISITAS -->
+<ng-template #tplTablaVisitas>
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Recetas más visitadas</h2>
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="recetasMasVisitadas" class="tabla">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="visitas">
+        <th mat-header-cell *matHeaderCellDef>Visitas</th>
+        <td mat-cell *matCellDef="let r">{{ r.visitas }}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let r">
+          <button
+            mat-icon-button
+            class="btn-editar"
+            title="Resetear visitas"
+            (click)="resetearVisitas(r.id)"
+          >
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnasVisitas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnasVisitas"
+        class="tabla-fila"
+      ></tr>
+    </table>
+  </div>
+</ng-template>
+
+<!-- TABLA DE HISTORIAL -->
+<ng-template #tplTablaHistorial>
+  <div class="tabla-cabecera">
+    <h2 class="tabla-titulo">Historial de cambios</h2>
+    <span class="tabla-contador"
+      >{{ historial.length }}
+      {{ historial.length === 1 ? "entrada" : "entradas" }}</span
+    >
+  </div>
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="historial" class="tabla">
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let h">
+          {{
+            h.fecha?.toDate
+              ? (h.fecha.toDate() | date: "dd/MM/yyyy HH:mm")
+              : (h.fecha | date: "dd/MM/yyyy HH:mm")
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="receta">
+        <th mat-header-cell *matHeaderCellDef>Receta</th>
+        <td mat-cell *matCellDef="let h">{{ h.recetaNombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="cambios">
+        <th mat-header-cell *matHeaderCellDef>Cambios</th>
+        <td mat-cell *matCellDef="let h">
+          <div *ngFor="let c of h.cambios" class="historial-cambio">
+            <span class="historial-campo">{{ c.campo }}</span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor antiguo</th>
+        <td mat-cell *matCellDef="let h">
+          <div *ngFor="let c of h.cambios" class="historial-cambio">
+            <span class="historial-antiguo">{{ c.valorAntiguo | json }}</span>
+            <!-- <mat-icon class="historial-flecha">arrow_forward</mat-icon>
               <span class="historial-nuevo">{{ c.valorNuevo | json }}</span> -->
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let h">
-            <button
-              mat-icon-button
-              class="btn-eliminar"
-              title="Resetear visitas"
-              (click)="eliminarLog(h.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnasHistorial"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: columnasHistorial"
-          class="tabla-fila"
-        ></tr>
-      </table>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let h">
+          <button
+            mat-icon-button
+            class="btn-eliminar"
+            title="Resetear visitas"
+            (click)="eliminarLog(h.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnasHistorial"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnasHistorial"
+        class="tabla-fila"
+      ></tr>
+    </table>
+  </div>
+</ng-template>

@@ -6,12 +6,11 @@ import {
   doc,
   addDoc,
   updateDoc,
-  deleteDoc,
   query,
   orderBy,
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 export interface Preparacion {
   id?: string;
@@ -19,6 +18,7 @@ export interface Preparacion {
   descripcion: string;
   icono: string;
   orden?: number;
+  oculta?: boolean;
 }
 
 @Injectable({
@@ -38,7 +38,17 @@ export class PreparacionesService {
     const q = query(ref, orderBy('orden', 'asc'));
     return (
       collectionData(q, { idField: 'id' }) as Observable<Preparacion[]>
-    ).pipe(tap((preparaciones) => (this.cache = preparaciones)));
+    ).pipe(
+      map((preparaciones) => preparaciones.filter((p) => p.oculta !== true)),
+      tap((preparaciones) => (this.cache = preparaciones)),
+    );
+  }
+
+  /** Incluye las ocultas: solo para el panel de administración. */
+  getTodasLasPreparaciones(): Observable<Preparacion[]> {
+    const ref = collection(this.firestore, this.coleccion);
+    const q = query(ref, orderBy('orden', 'asc'));
+    return collectionData(q, { idField: 'id' }) as Observable<Preparacion[]>;
   }
 
   invalidarCache(): void {
@@ -60,9 +70,7 @@ export class PreparacionesService {
     return updateDoc(ref, preparacion);
   }
 
-  deletePreparacion(id: string): Promise<void> {
-    this.invalidarCache();
-    const ref = doc(this.firestore, this.coleccion, id);
-    return deleteDoc(ref);
+  toggleVisibilidad(id: string, oculta: boolean): Promise<void> {
+    return this.updatePreparacion(id, { oculta });
   }
 }

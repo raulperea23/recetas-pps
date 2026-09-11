@@ -9,7 +9,6 @@ import {
   docData,
   addDoc,
   updateDoc,
-  deleteDoc,
   query,
   where,
   orderBy,
@@ -34,8 +33,16 @@ export class RecetasService {
     const ref = collection(this.firestore, this.coleccion);
     const q = query(ref, orderBy('fechaPublicacion', 'desc'));
     return (collectionData(q, { idField: 'id' }) as Observable<Receta[]>).pipe(
+      map((recetas) => recetas.filter((r) => r.oculta !== true)),
       tap((recetas) => (this.cache = recetas)),
     );
+  }
+
+  /** Incluye las recetas ocultas: solo para el panel de administración. */
+  getTodasLasRecetas(): Observable<Receta[]> {
+    const ref = collection(this.firestore, this.coleccion);
+    const q = query(ref, orderBy('fechaPublicacion', 'desc'));
+    return collectionData(q, { idField: 'id' }) as Observable<Receta[]>;
   }
 
   getRecetasDestacadas(): Observable<Receta[]> {
@@ -45,6 +52,7 @@ export class RecetasService {
     const ref = collection(this.firestore, this.coleccion);
     const q = query(ref, where('destacada', '==', true));
     return (collectionData(q, { idField: 'id' }) as Observable<Receta[]>).pipe(
+      map((recetas) => recetas.filter((r) => r.oculta !== true)),
       tap((recetas) => (this.cacheDestacadas = recetas)),
     );
   }
@@ -81,7 +89,9 @@ export class RecetasService {
       where('tipoDePlato', '==', tipoDePlato),
     );
     return collectionData(q, { idField: 'id' }).pipe(
-      map((recetas: any[]) => recetas.filter((r) => r.id !== excludeId)),
+      map((recetas: any[]) =>
+        recetas.filter((r) => r.id !== excludeId && r.oculta !== true),
+      ),
     ) as Observable<Receta[]>;
   }
 
@@ -102,10 +112,8 @@ export class RecetasService {
     return updateDoc(ref, receta);
   }
 
-  deleteReceta(id: string): Promise<void> {
-    this.invalidarCache();
-    const ref = doc(this.firestore, this.coleccion, id);
-    return deleteDoc(ref);
+  toggleVisibilidad(id: string, oculta: boolean): Promise<void> {
+    return this.updateReceta(id, { oculta });
   }
 
   incrementarVisitas(id: string): Promise<void> {

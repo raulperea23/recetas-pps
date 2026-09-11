@@ -383,7 +383,55 @@ tbody tr:hover {
 td {
   color: var(--text-secondary-color);
 }
+/* ── Tablas de Angular Material ──────────────────────────────────── */
+.mat-mdc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 13px var(--shadow-color);
+}
 
+.mat-mdc-table .mat-mdc-header-row {
+  height: auto;
+  background: var(--primary-color);
+}
+
+.mat-mdc-table .mat-mdc-header-cell,
+.mat-mdc-table .mat-mdc-cell {
+  font-size: 14px;
+  padding: 11px 14px;
+  text-align: center;
+  border: none;
+}
+
+.mat-mdc-table .mat-mdc-header-cell {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.mat-mdc-table .mat-mdc-row {
+  height: auto;
+  border-top: none;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.mat-mdc-table .mat-mdc-row:last-child {
+  border-bottom: none;
+}
+
+.mat-mdc-table .mat-mdc-row:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.mat-mdc-table .mat-mdc-cell {
+  color: var(--text-secondary-color);
+}
 /* ── Tablas en innerHTML (trucos, preparaciones) ────────────────────────── */
 .truco-descripcion table {
   width: 100%;
@@ -439,4 +487,9 @@ td {
 /* ── TipTap ─────────────────────────────────────────────────────────────── */
 .tiptap-content .ProseMirror {
   outline: none;
+}
+
+/* ── Toggle ─────────────────────────────────────────────────────────────── */
+.mdc-switch__track::after {
+  background: var(--primary-color) !important;
 }

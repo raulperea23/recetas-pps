@@ -6,16 +6,16 @@ import {
   doc,
   addDoc,
   updateDoc,
-  deleteDoc,
   query,
   orderBy,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 export interface CategoriaIngrediente {
   id?: string;
   nombre: string;
   orden: number;
+  oculta?: boolean;
 }
 
 @Injectable({
@@ -27,6 +27,13 @@ export class CategoriasIngredientesService {
   constructor(private firestore: Firestore) {}
 
   getCategorias(): Observable<CategoriaIngrediente[]> {
+    return this.getTodasLasCategorias().pipe(
+      map((categorias) => categorias.filter((c) => c.oculta !== true)),
+    );
+  }
+
+  /** Incluye las ocultas: solo para el panel de administración. */
+  getTodasLasCategorias(): Observable<CategoriaIngrediente[]> {
     const ref = collection(this.firestore, this.coleccion);
     const q = query(ref, orderBy('orden'));
     return collectionData(q, { idField: 'id' }) as Observable<
@@ -47,8 +54,7 @@ export class CategoriasIngredientesService {
     return updateDoc(ref, categoria);
   }
 
-  deleteCategoria(id: string): Promise<void> {
-    const ref = doc(this.firestore, this.coleccion, id);
-    return deleteDoc(ref);
+  toggleVisibilidad(id: string, oculta: boolean): Promise<void> {
+    return this.updateCategoria(id, { oculta });
   }
 }

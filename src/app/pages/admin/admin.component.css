@@ -46,6 +46,150 @@
   color: black !important;
 }
 
+/* DASHBOARD */
+.admin-dashboard {
+  display: grid;
+  gap: 26px;
+}
+
+.admin-seccion {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 19px;
+  box-shadow: 3px 3px 6px var(--shadow-color);
+}
+
+.admin-seccion-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 13px;
+}
+
+.admin-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 13px;
+}
+
+.admin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 19px 13px;
+  min-height: 110px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: rgba(var(--primary-color-rgb), 0.04);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.admin-card:hover {
+  transform: translateY(-3px);
+  background: rgba(var(--primary-color-rgb), 0.12);
+  box-shadow: 3px 3px 10px var(--shadow-color);
+}
+
+.admin-card-icono {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  color: var(--primary-color);
+}
+
+.admin-card-nombre {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* VISTAS */
+.admin-vista {
+  display: block;
+}
+
+.admin-vista-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-bottom: 19px;
+}
+
+.admin-volver {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  border-radius: 19px !important;
+}
+
+.admin-vista-titulo {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* BUSCADOR DE RECETAS */
+.buscador-editar {
+  margin-bottom: 6px;
+}
+
+.buscador-ayuda {
+  color: var(--text-muted-color);
+  font-size: 0.85rem;
+  margin: 0 0 13px;
+}
+
+.resultados-busqueda {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resultado-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  flex-wrap: wrap;
+  padding: 10px 13px;
+  border-radius: 10px;
+  background-color: var(--card-bg);
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.resultado-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.resultado-nombre {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.resultado-oculta {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text-muted-color);
+  padding: 3px 8px;
+  border-radius: 19px;
+  font-size: 12px;
+}
+
+/* VISIBILIDAD */
+.tabla-fila.oculta {
+  opacity: 0.55;
+}
+
 /* FORMULARIO */
 .formulario-card {
   margin-bottom: 26px;
@@ -233,20 +377,14 @@ mat-divider {
 }
 
 .tabla-contenedor {
-  border-radius: 10px;
   overflow-x: auto;
-  box-shadow: 3px 3px 6px var(--shadow-color);
   -webkit-overflow-scrolling: touch;
-}
-
-.tabla {
-  width: 100%;
-  background-color: var(--card-bg);
 }
 
 .tabla-nombre {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
 }
 
@@ -267,14 +405,6 @@ mat-divider {
   white-space: nowrap;
 }
 
-.tabla-fila {
-  transition: background 0.2s;
-}
-
-.tabla-fila:hover {
-  background: rgba(var(--primary-color-rgb), 0.05);
-}
-
 .btn-editar {
   font-size: 13px;
   color: var(--primary-color) !important;
@@ -283,10 +413,6 @@ mat-divider {
 .btn-eliminar {
   font-size: 13px;
   color: var(--danger-color) !important;
-}
-
-.admin-tabs {
-  margin-top: 19px;
 }
 
 .tabla-icono {
@@ -298,6 +424,7 @@ mat-divider {
   flex-direction: row;
   gap: 3px;
   align-items: center;
+  justify-content: center;
 }
 
 .cat-orden {
@@ -407,10 +534,6 @@ mat-divider {
     min-width: 128px;
     flex: 1 1 160px;
   }
-
-  ::ng-deep .mat-mdc-tab-label-container {
-    overflow-x: auto;
-  }
 }
 
 @media (max-width: 768px) {
@@ -476,5 +599,22 @@ mat-divider {
 
   .slot-foto {
     max-width: 100%;
+  }
+
+  .admin-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .admin-seccion {
+    padding: 13px;
+  }
+
+  .admin-volver {
+    width: 100%;
+  }
+
+  .resultado-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

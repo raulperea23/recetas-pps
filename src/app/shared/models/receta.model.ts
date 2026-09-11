@@ -22,4 +22,5 @@ export interface Receta {
   destacada: boolean;
   fechaPublicacion: Date;
   visitas?: number;
+  oculta?: boolean;
 }

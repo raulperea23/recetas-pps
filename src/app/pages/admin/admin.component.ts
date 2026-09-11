@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AuthService } from '../../shared/services/auth.service';
 import { RecetasService } from '../../shared/services/recetas.service';
 import { StorageService } from '../../shared/services/storage.service';
@@ -59,6 +59,107 @@ interface SlotFoto {
   subiendo: boolean;
 }
 
+interface CardAdmin {
+  nombre: string;
+  icono: string;
+  vista: string;
+}
+
+interface SeccionAdmin {
+  titulo: string;
+  cards: CardAdmin[];
+}
+
+const SECCIONES_ADMIN: SeccionAdmin[] = [
+  {
+    titulo: 'Recetas',
+    cards: [
+      { nombre: 'Nueva receta', icono: 'add_circle', vista: 'receta-nueva' },
+      { nombre: 'Editar receta', icono: 'edit', vista: 'receta-editar' },
+      {
+        nombre: 'Visibilidad',
+        icono: 'visibility',
+        vista: 'receta-visibilidad',
+      },
+    ],
+  },
+  {
+    titulo: 'Preparaciones',
+    cards: [
+      {
+        nombre: 'Nueva preparación',
+        icono: 'add_circle',
+        vista: 'preparacion-nueva',
+      },
+      {
+        nombre: 'Editar preparación',
+        icono: 'edit',
+        vista: 'preparacion-editar',
+      },
+      {
+        nombre: 'Visibilidad',
+        icono: 'visibility',
+        vista: 'preparacion-visibilidad',
+      },
+    ],
+  },
+  {
+    titulo: 'Trucos',
+    cards: [
+      { nombre: 'Nuevo truco', icono: 'add_circle', vista: 'truco-nuevo' },
+      { nombre: 'Editar truco', icono: 'edit', vista: 'truco-editar' },
+      {
+        nombre: 'Visibilidad',
+        icono: 'visibility',
+        vista: 'truco-visibilidad',
+      },
+    ],
+  },
+  {
+    titulo: 'Categorías de ingredientes',
+    cards: [
+      {
+        nombre: 'Nueva categoría',
+        icono: 'add_circle',
+        vista: 'categoria-nueva',
+      },
+      { nombre: 'Editar categoría', icono: 'edit', vista: 'categoria-editar' },
+      {
+        nombre: 'Visibilidad',
+        icono: 'visibility',
+        vista: 'categoria-visibilidad',
+      },
+    ],
+  },
+  {
+    titulo: 'Ingredientes',
+    cards: [
+      {
+        nombre: 'Nuevo ingrediente',
+        icono: 'add_circle',
+        vista: 'ingrediente-nuevo',
+      },
+      {
+        nombre: 'Editar ingrediente',
+        icono: 'edit',
+        vista: 'ingrediente-editar',
+      },
+      {
+        nombre: 'Visibilidad',
+        icono: 'visibility',
+        vista: 'ingrediente-visibilidad',
+      },
+    ],
+  },
+  {
+    titulo: 'Estadísticas',
+    cards: [
+      { nombre: 'Visitas', icono: 'insights', vista: 'visitas' },
+      { nombre: 'Historial', icono: 'history', vista: 'historial' },
+    ],
+  },
+];
+
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -77,7 +178,7 @@ interface SlotFoto {
     MatDividerModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTabsModule,
+    MatSlideToggleModule,
     TiptapEditorComponent,
   ],
   templateUrl: './admin.component.html',
@@ -86,13 +187,21 @@ interface SlotFoto {
 export class AdminComponent implements OnInit {
   usuario: any = null;
 
+  // NAVEGACIÓN
+  vistaActual: string = 'dashboard';
+  secciones = SECCIONES_ADMIN;
+
   // RECETAS
   recetas: Receta[] = [];
   recetasFiltradas: Receta[] = [];
-  busquedaRecetas: string = '';
+  recetasOcultas: Receta[] = [];
+  recetasVisibilidad: Receta[] = [];
+  busquedaVisibilidad: string = '';
+  recetaBuscada: Receta | null = null;
+  busquedaEditar: string = '';
   formulario: FormGroup;
   editandoId: string | null = null;
-  columnas = ['nombre', 'categoria', 'dificultad', 'acciones'];
+  columnasVisibilidad = ['nombre', 'categoria', 'visible'];
   tiposDePlato = TIPOS_DE_PLATO;
   categorias = CATEGORIAS;
   dificultades = DIFICULTADES;
@@ -111,39 +220,47 @@ export class AdminComponent implements OnInit {
   // PREPARACIONES
   preparaciones: Preparacion[] = [];
   preparacionesFiltradas: Preparacion[] = [];
+  preparacionesOcultas: Preparacion[] = [];
   busquedaPreparaciones: string = '';
   formularioPreparacion: FormGroup;
   editandoPreparacionId: string | null = null;
   columnasPreparaciones = ['orden', 'nombre', 'icono', 'acciones'];
+  columnasVisibilidadPreparaciones = ['nombre', 'icono', 'visible'];
 
   // TRUCOS
   trucos: Truco[] = [];
   trucosFiltrados: Truco[] = [];
+  trucosOcultos: Truco[] = [];
   busquedaTrucos: string = '';
   formularioTruco: FormGroup;
   editandoTrucoId: string | null = null;
   columnasTrucos = ['orden', 'nombre', 'icono', 'acciones'];
+  columnasVisibilidadTrucos = ['nombre', 'icono', 'visible'];
 
   // INGREDIENTES
   ingredientesLista: Ingrediente[] = [];
   ingredientesFiltrados: Ingrediente[] = [];
+  ingredientesOcultos: Ingrediente[] = [];
   busquedaIngredientes: string = '';
   formularioIngrediente: FormGroup;
   editandoIngredienteId: string | null = null;
   columnasIngredientes = ['nombre', 'emoji', 'categoria', 'acciones'];
+  columnasVisibilidadIngredientes = ['nombre', 'emoji', 'categoria', 'visible'];
   categoriasIngredientes: CategoriaIngrediente[] = [];
 
   // CATEGORÍAS INGREDIENTES
   categoriasIngredientesLista: CategoriaIngrediente[] = [];
   categoriasFiltradas: CategoriaIngrediente[] = [];
+  categoriasOcultas: CategoriaIngrediente[] = [];
   busquedaCategorias: string = '';
   formularioCategoriaIngrediente: FormGroup;
   editandoCategoriaIngredienteId: string | null = null;
   columnasCategorias = ['orden', 'nombre', 'acciones'];
+  columnasVisibilidadCategorias = ['nombre', 'visible'];
 
   // VISITAS
   recetasMasVisitadas: Receta[] = [];
-  columnasVisitas = ['nombre', 'visitas', 'acciones'];
+  columnasVisitas = ['nombre', 'visitas'];
 
   // HISTORIAL
   historial: EntradaHistorial[] = [];
@@ -214,6 +331,39 @@ export class AdminComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/admin-login']);
+  }
+
+  // ── NAVEGACIÓN ──────────────────────────────────────────────────
+
+  get tituloVista(): string {
+    for (const seccion of this.secciones) {
+      const card = seccion.cards.find((c) => c.vista === this.vistaActual);
+      if (card) return card.nombre;
+    }
+    return '';
+  }
+
+  navegarA(vista: string): void {
+    this.limpiarSeleccion();
+    this.vistaActual = vista;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  volver(): void {
+    this.navegarA('dashboard');
+  }
+
+  private limpiarSeleccion(): void {
+    this.recetaBuscada = null;
+    this.busquedaEditar = '';
+    this.recetasFiltradas = [];
+    this.busquedaVisibilidad = '';
+    this.filtrarVisibilidad();
+    this.resetFormulario();
+    this.resetFormularioPreparacion();
+    this.resetFormularioTruco();
+    this.resetFormularioIngrediente();
+    this.resetFormularioCategoriaIngrediente();
   }
 
   // ── SLOTS DE FOTOS ────────────────────────────────────────────────────────
@@ -308,9 +458,11 @@ export class AdminComponent implements OnInit {
   // ── RECETAS ───────────────────────────────────────────────────────────────
 
   cargarRecetas(): void {
-    this.recetasService.getRecetas().subscribe((recetas) => {
+    this.recetasService.getTodasLasRecetas().subscribe((recetas) => {
       this.recetas = recetas;
-      this.filtrarRecetas();
+      this.recetasOcultas = recetas.filter((r) => r.oculta === true);
+      this.buscarParaEditar(this.busquedaEditar);
+      this.filtrarVisibilidad();
       this.calcularRecetasMasVisitadas();
     });
   }
@@ -332,11 +484,31 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  filtrarRecetas(): void {
-    const busq = this.busquedaRecetas.toLowerCase().trim();
+  buscarParaEditar(texto: string): void {
+    this.busquedaEditar = texto;
+    const busq = texto.toLowerCase().trim();
     this.recetasFiltradas = busq
       ? this.recetas.filter((r) => r.nombre.toLowerCase().includes(busq))
+      : [];
+  }
+
+  seleccionarParaEditar(receta: Receta): void {
+    this.editar(receta);
+  }
+
+  filtrarVisibilidad(): void {
+    const busq = this.busquedaVisibilidad.toLowerCase().trim();
+    this.recetasVisibilidad = busq
+      ? this.recetas.filter((r) => r.nombre.toLowerCase().includes(busq))
       : this.recetas;
+  }
+
+  async toggleVisibilidadReceta(receta: Receta): Promise<void> {
+    if (!receta.id) return;
+    const oculta = receta.oculta !== true;
+    await this.recetasService.toggleVisibilidad(receta.id, oculta);
+    receta.oculta = oculta;
+    this.recetasOcultas = this.recetas.filter((r) => r.oculta === true);
   }
 
   get ingredientes(): FormArray {
@@ -390,6 +562,7 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     } else {
+      receta.oculta = false;
       await this.recetasService.addReceta(receta);
       this.snackBar.open('Receta creada 🎉', 'Cerrar', {
         duration: 3000,
@@ -424,6 +597,8 @@ export class AdminComponent implements OnInit {
   }
 
   editar(receta: Receta): void {
+    this.vistaActual = 'receta-editar';
+    this.recetaBuscada = receta;
     this.editandoId = receta.id || null;
     this.formulario.patchValue(receta);
     this.cargarSlotsDesdeReceta(receta);
@@ -441,14 +616,9 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  eliminar(id: string): void {
-    if (confirm('¿Seguro que quieres eliminar esta receta?')) {
-      this.recetasService.deleteReceta(id);
-    }
-  }
-
   resetFormulario(): void {
     this.editandoId = null;
+    this.recetaBuscada = null;
     this.resetSlots();
     this.formulario.reset({
       comensales: 4,
@@ -465,10 +635,15 @@ export class AdminComponent implements OnInit {
   // ── PREPARACIONES ─────────────────────────────────────────────────────────
 
   cargarPreparaciones(): void {
-    this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
-      this.preparaciones = preparaciones;
-      this.filtrarPreparaciones();
-    });
+    this.preparacionesService
+      .getTodasLasPreparaciones()
+      .subscribe((preparaciones) => {
+        this.preparaciones = preparaciones;
+        this.preparacionesOcultas = preparaciones.filter(
+          (p) => p.oculta === true,
+        );
+        this.filtrarPreparaciones();
+      });
   }
 
   filtrarPreparaciones(): void {
@@ -500,7 +675,10 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     } else {
-      await this.preparacionesService.addPreparacion(preparacion);
+      await this.preparacionesService.addPreparacion({
+        ...preparacion,
+        oculta: false,
+      });
       this.snackBar.open('Preparación creada 🎉', 'Cerrar', {
         duration: 3000,
         verticalPosition: 'top',
@@ -517,10 +695,14 @@ export class AdminComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  eliminarPreparacion(id: string): void {
-    if (confirm('¿Seguro que quieres eliminar esta preparación?')) {
-      this.preparacionesService.deletePreparacion(id);
-    }
+  async toggleVisibilidadPreparacion(preparacion: Preparacion): Promise<void> {
+    if (!preparacion.id) return;
+    const oculta = preparacion.oculta !== true;
+    await this.preparacionesService.toggleVisibilidad(preparacion.id, oculta);
+    preparacion.oculta = oculta;
+    this.preparacionesOcultas = this.preparaciones.filter(
+      (p) => p.oculta === true,
+    );
   }
 
   resetFormularioPreparacion(): void {
@@ -555,8 +737,9 @@ export class AdminComponent implements OnInit {
   // ── TRUCOS ────────────────────────────────────────────────────────────────
 
   cargarTrucos(): void {
-    this.trucosService.getTrucos().subscribe((trucos) => {
+    this.trucosService.getTodosLosTrucos().subscribe((trucos) => {
       this.trucos = trucos;
+      this.trucosOcultos = trucos.filter((t) => t.oculta === true);
       this.filtrarTrucos();
     });
   }
@@ -587,7 +770,7 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     } else {
-      await this.trucosService.addTruco(truco);
+      await this.trucosService.addTruco({ ...truco, oculta: false });
       this.snackBar.open('Truco creado 🎉', 'Cerrar', {
         duration: 3000,
         verticalPosition: 'top',
@@ -604,10 +787,12 @@ export class AdminComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  eliminarTruco(id: string): void {
-    if (confirm('¿Seguro que quieres eliminar este truco?')) {
-      this.trucosService.deleteTruco(id);
-    }
+  async toggleVisibilidadTruco(truco: Truco): Promise<void> {
+    if (!truco.id) return;
+    const oculta = truco.oculta !== true;
+    await this.trucosService.toggleVisibilidad(truco.id, oculta);
+    truco.oculta = oculta;
+    this.trucosOcultos = this.trucos.filter((t) => t.oculta === true);
   }
 
   resetFormularioTruco(): void {
@@ -634,10 +819,15 @@ export class AdminComponent implements OnInit {
   // ── INGREDIENTES ──────────────────────────────────────────────────────────
 
   cargarIngredientes(): void {
-    this.ingredientesService.getIngredientes().subscribe((ingredientes) => {
-      this.ingredientesLista = ingredientes;
-      this.filtrarIngredientes();
-    });
+    this.ingredientesService
+      .getTodosLosIngredientes()
+      .subscribe((ingredientes) => {
+        this.ingredientesLista = ingredientes;
+        this.ingredientesOcultos = ingredientes.filter(
+          (i) => i.oculta === true,
+        );
+        this.filtrarIngredientes();
+      });
   }
 
   filtrarIngredientes(): void {
@@ -664,7 +854,10 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     } else {
-      await this.ingredientesService.addIngrediente(ingrediente);
+      await this.ingredientesService.addIngrediente({
+        ...ingrediente,
+        oculta: false,
+      });
       this.snackBar.open('Ingrediente creado 🎉', 'Cerrar', {
         duration: 3000,
         verticalPosition: 'top',
@@ -681,10 +874,14 @@ export class AdminComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  eliminarIngrediente(id: string): void {
-    if (confirm('¿Seguro que quieres eliminar este ingrediente?')) {
-      this.ingredientesService.deleteIngrediente(id);
-    }
+  async toggleVisibilidadIngrediente(ingrediente: Ingrediente): Promise<void> {
+    if (!ingrediente.id) return;
+    const oculta = ingrediente.oculta !== true;
+    await this.ingredientesService.toggleVisibilidad(ingrediente.id, oculta);
+    ingrediente.oculta = oculta;
+    this.ingredientesOcultos = this.ingredientesLista.filter(
+      (i) => i.oculta === true,
+    );
   }
 
   resetFormularioIngrediente(): void {
@@ -696,10 +893,13 @@ export class AdminComponent implements OnInit {
 
   cargarCategoriasIngredientes(): void {
     this.categoriasIngredientesService
-      .getCategorias()
+      .getTodasLasCategorias()
       .subscribe((categorias) => {
         this.categoriasIngredientesLista = categorias;
-        this.categoriasIngredientes = categorias;
+        this.categoriasIngredientes = categorias.filter(
+          (c) => c.oculta !== true,
+        );
+        this.categoriasOcultas = categorias.filter((c) => c.oculta === true);
         this.filtrarCategorias();
       });
   }
@@ -736,7 +936,10 @@ export class AdminComponent implements OnInit {
         panelClass: 'snackbar-grande',
       });
     } else {
-      await this.categoriasIngredientesService.addCategoria(categoria);
+      await this.categoriasIngredientesService.addCategoria({
+        ...categoria,
+        oculta: false,
+      });
       this.snackBar.open('Categoría creada 🎉', 'Cerrar', {
         duration: 3000,
         verticalPosition: 'top',
@@ -753,10 +956,19 @@ export class AdminComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  eliminarCategoriaIngrediente(id: string): void {
-    if (confirm('¿Seguro que quieres eliminar esta categoría?')) {
-      this.categoriasIngredientesService.deleteCategoria(id);
-    }
+  async toggleVisibilidadCategoria(
+    categoria: CategoriaIngrediente,
+  ): Promise<void> {
+    if (!categoria.id) return;
+    const oculta = categoria.oculta !== true;
+    await this.categoriasIngredientesService.toggleVisibilidad(
+      categoria.id,
+      oculta,
+    );
+    categoria.oculta = oculta;
+    this.categoriasOcultas = this.categoriasIngredientesLista.filter(
+      (c) => c.oculta === true,
+    );
   }
 
   resetFormularioCategoriaIngrediente(): void {
