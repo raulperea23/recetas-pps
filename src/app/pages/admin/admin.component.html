@@ -360,7 +360,7 @@
         >
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Ingrediente {{ i + 1 }}</mat-label>
-            <input matInput [formControl]="$any(ing)" />
+            <input matInput appFracciones [formControl]="$any(ing)" />
           </mat-form-field>
           <button
             mat-icon-button

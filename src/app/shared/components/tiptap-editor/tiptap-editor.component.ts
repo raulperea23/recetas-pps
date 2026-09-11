@@ -21,6 +21,7 @@ import { Table } from '@tiptap/extension-table';
 import TableRow from '@tiptap/extension-table-row';
 import TableHeader from '@tiptap/extension-table-header';
 import TableCell from '@tiptap/extension-table-cell';
+import { Fracciones } from './fracciones.extension';
 
 @Component({
   selector: 'app-tiptap-editor',
@@ -58,6 +59,7 @@ export class TiptapEditorComponent
         TableRow,
         TableHeader,
         TableCell,
+        Fracciones,
       ],
       content: '',
       onUpdate: ({ editor }) => {

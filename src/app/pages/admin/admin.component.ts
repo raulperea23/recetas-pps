@@ -45,6 +45,7 @@ import { Receta, FotoReceta } from '../../shared/models/receta.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { TiptapEditorComponent } from '../../shared/components/tiptap-editor/tiptap-editor.component';
+import { FraccionesDirective } from '../../shared/directives/fracciones.directive';
 import {
   CATEGORIAS,
   DIFICULTADES,
@@ -180,6 +181,7 @@ const SECCIONES_ADMIN: SeccionAdmin[] = [
     MatSnackBarModule,
     MatSlideToggleModule,
     TiptapEditorComponent,
+    FraccionesDirective,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
