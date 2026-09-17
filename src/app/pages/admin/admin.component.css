@@ -326,6 +326,10 @@ mat-divider {
   gap: 6px;
 }
 
+.lista-item mat-form-field {
+  margin-bottom: -1.25em;
+}
+
 .btn-añadir {
   color: var(--primary-color) !important;
   margin-bottom: 6px;
@@ -514,6 +518,44 @@ mat-divider {
   height: 16px;
   color: var(--text-muted-color);
   flex-shrink: 0;
+}
+
+.ingredientes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.drag-handle {
+  cursor: grab;
+  color: var(--text-muted-color);
+  flex-shrink: 0;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.cdk-drag-preview {
+  background: var(--card-bg);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms ease;
+}
+
+.ingredientes-lista.cdk-drop-list-dragging .lista-item:not(.cdk-drag-dragging) {
+  transition: transform 250ms ease;
 }
 
 /* RESPONSIVE */

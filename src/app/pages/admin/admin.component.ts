@@ -54,6 +54,11 @@ import {
   TIPOS_DE_PLATO,
   UNIDADES_TIEMPO,
 } from '../../shared/models/app.types';
+import {
+  DragDropModule,
+  CdkDragDrop,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 
 interface SlotFoto {
   previsualizacion: string | null;
@@ -185,6 +190,7 @@ const SECCIONES_ADMIN: SeccionAdmin[] = [
     MatDialogModule,
     TiptapEditorComponent,
     FraccionesDirective,
+    DragDropModule,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
@@ -527,6 +533,15 @@ export class AdminComponent implements OnInit {
 
   removeIngrediente(i: number): void {
     this.ingredientes.removeAt(i);
+  }
+
+  dropIngrediente(event: CdkDragDrop<string[]>): void {
+    const ingredientesArray = this.ingredientes.controls.map((c) => c.value);
+    moveItemInArray(ingredientesArray, event.previousIndex, event.currentIndex);
+    this.ingredientes.clear();
+    ingredientesArray.forEach((val) =>
+      this.ingredientes.push(this.fb.control(val)),
+    );
   }
 
   async guardar(): Promise<void> {

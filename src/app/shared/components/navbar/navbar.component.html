@@ -21,7 +21,7 @@
     </div>
 
     <!-- Logo central -->
-    <div class="app-logo" routerLink="/">
+    <div class="app-logo" (click)="onLogoClick()">
       <img src="logo.png" class="app-img" />
     </div>
 
@@ -37,7 +37,7 @@
 
     <!-- Mobile: logo + título + burger -->
     <div class="mobile-menu">
-      <div class="mobile-logo" routerLink="/">
+      <div class="mobile-logo" (click)="onLogoClick()">
         <img src="logo.png" class="app-img-mobile" />
       </div>
       <span class="mobile-titulo" routerLink="/">Paraíso Para Saborear</span>

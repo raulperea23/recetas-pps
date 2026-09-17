@@ -353,28 +353,43 @@
         </div>
 
         <mat-divider></mat-divider>
+
+        <!-- Ingredientes -->
         <h3 class="seccion-titulo">Ingredientes</h3>
         <div
-          *ngFor="let ing of ingredientes.controls; let i = index"
-          class="lista-item"
+          cdkDropList
+          (cdkDropListDropped)="dropIngrediente($event)"
+          class="ingredientes-lista"
         >
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Ingrediente {{ i + 1 }}</mat-label>
-            <input matInput appFracciones [formControl]="$any(ing)" />
-          </mat-form-field>
-          <button
-            mat-icon-button
-            class="btn-eliminar"
-            (click)="removeIngrediente(i)"
-            *ngIf="ingredientes.length > 1"
+          <div
+            *ngFor="let ing of ingredientes.controls; let i = index"
+            class="lista-item"
+            cdkDrag
           >
-            <mat-icon>delete</mat-icon>
-          </button>
+            <mat-icon class="drag-handle" cdkDragHandle
+              >drag_indicator</mat-icon
+            >
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Ingrediente {{ i + 1 }}</mat-label>
+              <input matInput appFracciones [formControl]="$any(ing)" />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              (click)="removeIngrediente(i)"
+              *ngIf="ingredientes.length > 1"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
         <button mat-raised-button class="btn-añadir" (click)="addIngrediente()">
           <mat-icon>add</mat-icon> Añadir ingrediente
         </button>
+
         <mat-divider></mat-divider>
+
+        <!-- Elaboración -->
         <h3 class="seccion-titulo">Elaboración</h3>
         <app-tiptap-editor
           formControlName="elaboracion"
