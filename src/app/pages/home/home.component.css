@@ -411,10 +411,11 @@
 
 .preparacion-nombre {
   flex: 1;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-color);
   margin: 0;
   font-weight: 600;
+  line-height: 2;
 }
 
 .preparacion-arrow {
@@ -457,11 +458,12 @@
 
 .truco-nombre {
   flex: 1;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-color);
   margin: 0;
   font-weight: 600;
   text-transform: uppercase;
+  line-height: 2;
 }
 
 /* SALSAS */
