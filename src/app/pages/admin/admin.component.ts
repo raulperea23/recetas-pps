@@ -561,38 +561,53 @@ export class AdminComponent implements OnInit {
       receta.fotos = fotos;
     }
 
-    if (this.editandoId) {
-      // Obtener receta actual antes de guardar para el diff
-      const recetaAntigua = this.recetas.find((r) => r.id === this.editandoId);
-      if (recetaAntigua) {
-        const cambios = this.generarDiff(recetaAntigua, receta);
-        if (cambios.length > 0) {
-          await this.historialService.guardarEntrada({
-            recetaId: this.editandoId,
-            recetaNombre: recetaAntigua.nombre,
-            fecha: new Date(),
-            cambios,
-          });
+    try {
+      if (this.editandoId) {
+        const recetaAntigua = this.recetas.find(
+          (r) => r.id === this.editandoId,
+        );
+        if (recetaAntigua) {
+          const cambios = this.generarDiff(recetaAntigua, receta);
+          if (cambios.length > 0) {
+            await this.historialService.guardarEntrada({
+              recetaId: this.editandoId,
+              recetaNombre: recetaAntigua.nombre,
+              fecha: new Date(),
+              cambios,
+            });
+          }
         }
+        await this.recetasService.updateReceta(this.editandoId, receta);
+        this.snackBar.open('Receta actualizada 🎉', 'Cerrar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+          panelClass: 'snackbar-grande',
+        });
+      } else {
+        receta.oculta = false;
+        await this.recetasService.addReceta(receta);
+        this.snackBar.open('Receta creada 🎉', 'Cerrar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+          panelClass: 'snackbar-grande',
+        });
       }
-      await this.recetasService.updateReceta(this.editandoId, receta);
-      this.snackBar.open('Receta actualizada 🎉', 'Cerrar', {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center',
-        panelClass: 'snackbar-grande',
-      });
-    } else {
-      receta.oculta = false;
-      await this.recetasService.addReceta(receta);
-      this.snackBar.open('Receta creada 🎉', 'Cerrar', {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center',
-        panelClass: 'snackbar-grande',
-      });
+      this.resetFormulario();
+    } catch (error: any) {
+      try {
+        await this.authService.refrescarToken();
+        await this.guardar();
+      } catch (retryError) {
+        this.snackBar.open('Error al guardar. Inténtalo de nuevo.', 'Cerrar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+          panelClass: 'snackbar-grande',
+        });
+      }
     }
-    this.resetFormulario();
   }
 
   private generarDiff(antiguo: any, nuevo: any): CambioHistorial[] {

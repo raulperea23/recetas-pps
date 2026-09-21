@@ -5,7 +5,11 @@ import {
   signOut,
   user,
 } from '@angular/fire/auth';
-import { setPersistence, browserLocalPersistence } from 'firebase/auth';
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+} from 'firebase/auth';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,6 +23,13 @@ export class AuthService {
     setPersistence(this.auth, browserLocalPersistence).catch((err) => {
       console.error('Error al establecer persistencia:', err);
     });
+  }
+
+  async refrescarToken(): Promise<void> {
+    const auth = getAuth();
+    if (auth.currentUser) {
+      await auth.currentUser.getIdToken(true); // true fuerza la renovación
+    }
   }
 
   login(email: string, password: string): Promise<any> {
