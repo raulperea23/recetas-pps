@@ -107,15 +107,14 @@ export class HomeComponent implements OnInit {
     this.isMobile = window.innerWidth <= 768;
     this.title.setTitle('Paraíso Para Saborear');
 
-    this.recetasService.getRecetasDestacadas().subscribe((recetas: any) => {
-      this.destacadas = recetas.slice(
-        0,
-        this.isMobile || this.isDesktop ? 4 : 6,
-      );
-    });
-
     this.recetasService.getRecetas().subscribe((recetas) => {
+      console.log('Todas las recetas:', recetas);
       this.todasLasRecetas = recetas;
+
+      this.destacadas = recetas
+        .filter((r) => r.destacada)
+        .slice(0, this.isMobile || this.isDesktop ? 4 : 6);
+
       // const fechaComparativa = new Date();
       // fechaComparativa.setMonth(fechaComparativa.getMonth() - 3); // Hace 3 meses
 
