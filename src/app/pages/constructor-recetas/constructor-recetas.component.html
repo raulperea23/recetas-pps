@@ -65,7 +65,10 @@
 
     <div *ngFor="let cat of categoriasFiltradas" class="categoria-grupo">
       <button class="categoria-header" (click)="toggleCategoria(cat)">
-        <span>{{ cat.nombre }}</span>
+        <span class="categoria-nombre">
+          <span class="cat-emoji">{{ cat.emoji }}</span>
+          <span>{{ cat.nombre }}</span>
+        </span>
         <mat-icon>{{ cat.abierta ? "expand_less" : "expand_more" }}</mat-icon>
       </button>
       <div class="categoria-ingredientes" *ngIf="cat.abierta">
@@ -75,7 +78,6 @@
           [class.seleccionado]="estaSeleccionado(ing)"
           (click)="onTapIngrediente(ing)"
         >
-          <span class="ing-emoji">{{ ing.emoji }}</span>
           <span class="ing-nombre">{{ ing.nombre }}</span>
           <mat-icon class="ing-check" *ngIf="estaSeleccionado(ing)"
             >check</mat-icon
@@ -121,7 +123,7 @@
         @fadeInUp
         (click)="quitarIngrediente(ing)"
       >
-        <span class="ing-emoji">{{ ing.emoji }}</span>
+        <span class="ing-emoji">{{ emojiDeCategoria(ing.categoria) }}</span>
         <span class="ing-nombre">{{ ing.nombre }}</span>
         <mat-icon class="ing-quitar">close</mat-icon>
       </div>

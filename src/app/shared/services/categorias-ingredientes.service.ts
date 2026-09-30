@@ -14,6 +14,7 @@ import { map, Observable } from 'rxjs';
 export interface CategoriaIngrediente {
   id?: string;
   nombre: string;
+  emoji: string;
   orden: number;
   oculta?: boolean;
 }

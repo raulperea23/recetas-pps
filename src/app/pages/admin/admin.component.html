@@ -768,6 +768,10 @@
             placeholder="Ej: Verduras y hortalizas"
           />
         </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Emoji</mat-label>
+          <input matInput formControlName="emoji" placeholder="🥕" />
+        </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-actions class="formulario-acciones">
@@ -857,6 +861,12 @@
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let c">{{ c.nombre }}</td>
       </ng-container>
+      <ng-container matColumnDef="emoji">
+        <th mat-header-cell *matHeaderCellDef>Emoji</th>
+        <td mat-cell *matCellDef="let c" class="tabla-icono">
+          {{ c.emoji }}
+        </td>
+      </ng-container>
       <ng-container matColumnDef="visible">
         <th mat-header-cell *matHeaderCellDef>Visible en la web</th>
         <td mat-cell *matCellDef="let c">
@@ -900,10 +910,6 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="nombre" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Emoji</mat-label>
-          <input matInput formControlName="emoji" placeholder="🥕" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Categoría</mat-label>
@@ -970,12 +976,6 @@
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let i">{{ i.nombre }}</td>
-      </ng-container>
-      <ng-container matColumnDef="emoji">
-        <th mat-header-cell *matHeaderCellDef>Emoji</th>
-        <td mat-cell *matCellDef="let i" class="tabla-icono">
-          {{ i.emoji }}
-        </td>
       </ng-container>
       <ng-container matColumnDef="categoria">
         <th mat-header-cell *matHeaderCellDef>Categoría</th>

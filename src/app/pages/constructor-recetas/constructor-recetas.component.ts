@@ -19,6 +19,7 @@ import { CardComponent } from '../../shared/components/card/card.component';
 
 interface CategoriaConIngredientes {
   nombre: string;
+  emoji: string;
   ingredientes: Ingrediente[];
   abierta: boolean;
 }
@@ -53,6 +54,7 @@ interface CategoriaConIngredientes {
 export class ConstructorRecetasComponent implements OnInit {
   categorias: CategoriaConIngredientes[] = [];
   categoriasFiltradas: CategoriaConIngredientes[] = [];
+  emojisPorCategoria: Record<string, string> = {};
   ingredientesSeleccionados: Ingrediente[] = [];
   todasLasRecetas: Receta[] = [];
   recetasFiltradas: Receta[] = [];
@@ -73,10 +75,14 @@ export class ConstructorRecetasComponent implements OnInit {
     this.categoriasIngredientesService
       .getCategorias()
       .subscribe((categorias) => {
+        this.emojisPorCategoria = Object.fromEntries(
+          categorias.map((cat) => [cat.nombre, cat.emoji]),
+        );
         this.ingredientesService.getIngredientes().subscribe((ingredientes) => {
           this.categorias = categorias
             .map((cat) => ({
               nombre: cat.nombre,
+              emoji: cat.emoji,
               ingredientes: ingredientes.filter(
                 (i) => i.categoria === cat.nombre,
               ),
@@ -117,6 +123,10 @@ export class ConstructorRecetasComponent implements OnInit {
 
   toggleCategoria(categoria: CategoriaConIngredientes): void {
     categoria.abierta = !categoria.abierta;
+  }
+
+  emojiDeCategoria(categoria: string): string {
+    return this.emojisPorCategoria[categoria] ?? '';
   }
 
   onTapIngrediente(ingrediente: Ingrediente): void {

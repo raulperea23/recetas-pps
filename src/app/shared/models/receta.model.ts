@@ -21,6 +21,7 @@ export interface Receta {
   tiempoUnidad: UnidadTiempo;
   destacada: boolean;
   fechaPublicacion: Date;
+  fechaEdicion?: Date;
   visitas?: number;
   oculta?: boolean;
 }

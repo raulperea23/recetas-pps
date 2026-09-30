@@ -255,8 +255,8 @@ export class AdminComponent implements OnInit {
   busquedaIngredientes: string = '';
   formularioIngrediente: FormGroup;
   editandoIngredienteId: string | null = null;
-  columnasIngredientes = ['nombre', 'emoji', 'categoria', 'acciones'];
-  columnasVisibilidadIngredientes = ['nombre', 'emoji', 'categoria', 'visible'];
+  columnasIngredientes = ['nombre', 'categoria', 'acciones'];
+  columnasVisibilidadIngredientes = ['nombre', 'categoria', 'visible'];
   categoriasIngredientes: CategoriaIngrediente[] = [];
 
   // CATEGORÍAS INGREDIENTES
@@ -266,8 +266,8 @@ export class AdminComponent implements OnInit {
   busquedaCategorias: string = '';
   formularioCategoriaIngrediente: FormGroup;
   editandoCategoriaIngredienteId: string | null = null;
-  columnasCategorias = ['orden', 'nombre', 'acciones'];
-  columnasVisibilidadCategorias = ['nombre', 'visible'];
+  columnasCategorias = ['orden', 'nombre', 'emoji', 'acciones'];
+  columnasVisibilidadCategorias = ['nombre', 'emoji', 'visible'];
 
   // VISITAS
   recetasMasVisitadas: Receta[] = [];
@@ -321,12 +321,12 @@ export class AdminComponent implements OnInit {
 
     this.formularioIngrediente = this.fb.group({
       nombre: ['', Validators.required],
-      emoji: ['', Validators.required],
       categoria: ['', Validators.required],
     });
 
     this.formularioCategoriaIngrediente = this.fb.group({
       nombre: ['', Validators.required],
+      emoji: ['', Validators.required],
     });
   }
 
@@ -554,7 +554,6 @@ export class AdminComponent implements OnInit {
     const receta: any = {
       ...this.formulario.value,
       foto: fotoPrincipal,
-      fechaPublicacion: new Date(),
     };
 
     if (fotos.length > 0) {
@@ -577,7 +576,10 @@ export class AdminComponent implements OnInit {
             });
           }
         }
-        await this.recetasService.updateReceta(this.editandoId, receta);
+        await this.recetasService.updateReceta(this.editandoId, {
+          ...receta,
+          fechaEdicion: new Date(),
+        });
         this.snackBar.open('Receta actualizada 🎉', 'Cerrar', {
           duration: 3000,
           verticalPosition: 'top',
@@ -585,6 +587,7 @@ export class AdminComponent implements OnInit {
           panelClass: 'snackbar-grande',
         });
       } else {
+        receta.fechaPublicacion = new Date();
         receta.oculta = false;
         await this.recetasService.addReceta(receta);
         this.snackBar.open('Receta creada 🎉', 'Cerrar', {
@@ -611,7 +614,13 @@ export class AdminComponent implements OnInit {
   }
 
   private generarDiff(antiguo: any, nuevo: any): CambioHistorial[] {
-    const camposIgnorados = ['fechaPublicacion', 'visitas', 'foto', 'fotos'];
+    const camposIgnorados = [
+      'fechaPublicacion',
+      'fechaEdicion',
+      'visitas',
+      'foto',
+      'fotos',
+    ];
     const cambios: CambioHistorial[] = [];
 
     const campos = Object.keys(nuevo).filter(

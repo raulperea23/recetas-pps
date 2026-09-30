@@ -123,6 +123,16 @@
   background: rgba(var(--primary-color-rgb), 0.15);
 }
 
+.categoria-nombre {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cat-emoji {
+  font-size: 1rem;
+}
+
 .categoria-ingredientes {
   padding: 6px 3px;
   display: flex;
