@@ -89,9 +89,9 @@ a {
 
 ul {
   margin: 0;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 10px; */
 }
 
 /* ── Botones globales ───────────────────────────────────────────────────── */
