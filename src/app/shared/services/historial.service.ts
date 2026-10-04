@@ -8,6 +8,8 @@ import {
   orderBy,
   doc,
   deleteDoc,
+  getDocs,
+  writeBatch,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -48,5 +50,13 @@ export class HistorialService {
     const ref = collection(this.firestore, this.coleccion);
     const docRef = doc(ref, id);
     return deleteDoc(docRef);
+  }
+
+  async eliminarTodo(): Promise<void> {
+    const ref = collection(this.firestore, this.coleccion);
+    const snapshot = await getDocs(ref);
+    const batch = writeBatch(this.firestore);
+    snapshot.docs.forEach((d) => batch.delete(d.ref));
+    await batch.commit();
   }
 }

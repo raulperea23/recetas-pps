@@ -545,7 +545,11 @@ export class AdminComponent implements OnInit {
   }
 
   async guardar(): Promise<void> {
-    if (this.formulario.invalid) return;
+    if (this.formulario.invalid) {
+      this.formulario.markAllAsTouched();
+      this.avisarCamposObligatorios();
+      return;
+    }
 
     const fotos = await this.subirFotosYObtenerArray();
     const fotoPrincipal =
@@ -613,6 +617,19 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  private avisarCamposObligatorios(): void {
+    this.snackBar.open(
+      'Por favor, completa todos los campos obligatorios.',
+      'Cerrar',
+      {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: ['snackbar-grande', 'snackbar-error'],
+      },
+    );
+  }
+
   private generarDiff(antiguo: any, nuevo: any): CambioHistorial[] {
     const camposIgnorados = [
       'fechaPublicacion',
@@ -673,6 +690,17 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  eliminarTodoElHistorial(): void {
+    if (this.historial.length === 0) return;
+    if (
+      confirm(
+        '¿Seguro que quieres eliminar todo el historial de cambios? Esta acción no se puede deshacer.',
+      )
+    ) {
+      this.historialService.eliminarTodo();
+    }
+  }
+
   resetFormulario(): void {
     this.editandoId = null;
     this.recetaBuscada = null;
@@ -711,7 +739,11 @@ export class AdminComponent implements OnInit {
   }
 
   async guardarPreparacion(): Promise<void> {
-    if (this.formularioPreparacion.invalid) return;
+    if (this.formularioPreparacion.invalid) {
+      this.formularioPreparacion.markAllAsTouched();
+      this.avisarCamposObligatorios();
+      return;
+    }
     const orden = this.preparaciones.length + 1;
     const preparacion: Preparacion = {
       ...this.formularioPreparacion.value,
@@ -809,7 +841,11 @@ export class AdminComponent implements OnInit {
   }
 
   async guardarTruco(): Promise<void> {
-    if (this.formularioTruco.invalid) return;
+    if (this.formularioTruco.invalid) {
+      this.formularioTruco.markAllAsTouched();
+      this.avisarCamposObligatorios();
+      return;
+    }
     const orden = this.trucos.length + 1;
     const truco: Truco = {
       ...this.formularioTruco.value,
@@ -897,7 +933,11 @@ export class AdminComponent implements OnInit {
   }
 
   async guardarIngrediente(): Promise<void> {
-    if (this.formularioIngrediente.invalid) return;
+    if (this.formularioIngrediente.invalid) {
+      this.formularioIngrediente.markAllAsTouched();
+      this.avisarCamposObligatorios();
+      return;
+    }
     const ingrediente: Ingrediente = this.formularioIngrediente.value;
     if (this.editandoIngredienteId) {
       await this.ingredientesService.updateIngrediente(
@@ -971,7 +1011,11 @@ export class AdminComponent implements OnInit {
   }
 
   async guardarCategoriaIngrediente(): Promise<void> {
-    if (this.formularioCategoriaIngrediente.invalid) return;
+    if (this.formularioCategoriaIngrediente.invalid) {
+      this.formularioCategoriaIngrediente.markAllAsTouched();
+      this.avisarCamposObligatorios();
+      return;
+    }
     const orden = this.categoriasIngredientesLista.length + 1;
     const categoria: CategoriaIngrediente = {
       ...this.formularioCategoriaIngrediente.value,

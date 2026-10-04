@@ -83,9 +83,9 @@ export class ConstructorRecetasComponent implements OnInit {
             .map((cat) => ({
               nombre: cat.nombre,
               emoji: cat.emoji,
-              ingredientes: ingredientes.filter(
-                (i) => i.categoria === cat.nombre,
-              ),
+              ingredientes: ingredientes
+                .filter((i) => i.categoria === cat.nombre)
+                .sort((a, b) => a.nombre.localeCompare(b.nombre)),
               abierta: false,
             }))
             .filter((c) => c.ingredientes.length > 0);

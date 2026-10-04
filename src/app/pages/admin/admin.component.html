@@ -241,6 +241,9 @@
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="nombre" />
+            <mat-error *ngIf="formulario.get('nombre')?.invalid"
+              >Este campo es obligatorio</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Receta de:</mat-label>
@@ -255,6 +258,9 @@
                 tipo
               }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="formulario.get('tipoDePlato')?.invalid"
+              >Obligatorio</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Categoría</mat-label>
@@ -263,6 +269,9 @@
                 cat
               }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="formulario.get('categoria')?.invalid"
+              >Obligatorio</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Dificultad</mat-label>
@@ -271,25 +280,38 @@
                 d
               }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="formulario.get('dificultad')?.invalid"
+              >Obligatorio</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Tiempo</mat-label>
             <input matInput type="number" formControlName="tiempoPreparacion" />
+            <mat-error *ngIf="formulario.get('tiempoPreparacion')?.invalid"
+              >Obligatorio</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Unidad</mat-label>
             <mat-select formControlName="tiempoUnidad">
               <mat-option value="minutos">Minutos</mat-option>
               <mat-option value="horas">Horas</mat-option>
+              <mat-option value="días">Días</mat-option>
             </mat-select>
+            <mat-error *ngIf="formulario.get('tiempoUnidad')?.invalid"
+              >Obligatorio</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Comensales</mat-label>
             <input matInput type="number" formControlName="comensales" />
+            <mat-error *ngIf="formulario.get('comensales')?.invalid"
+              >Obligatorio</mat-error
+            >
           </mat-form-field>
         </div>
         <mat-checkbox formControlName="destacada" class="checkbox-destacada"
-          >Receta destacada</mat-checkbox
+          >Receta "De rechupete"</mat-checkbox
         >
 
         <!-- SLOTS DE FOTOS -->
@@ -394,7 +416,20 @@
         <app-tiptap-editor
           formControlName="elaboracion"
           placeholder="Escribe la elaboración de la receta..."
+          [invalid]="
+            formulario.get('elaboracion')?.invalid &&
+            formulario.get('elaboracion')?.touched
+          "
         ></app-tiptap-editor>
+        <p
+          class="campo-error-mensaje"
+          *ngIf="
+            formulario.get('elaboracion')?.invalid &&
+            formulario.get('elaboracion')?.touched
+          "
+        >
+          Este campo es obligatorio
+        </p>
       </form>
     </mat-card-content>
     <mat-card-actions class="formulario-acciones">
@@ -493,16 +528,35 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="nombre" />
+          <mat-error *ngIf="formularioPreparacion.get('nombre')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Icono (emoji)</mat-label>
           <input matInput formControlName="icono" placeholder="🍳" />
+          <mat-error *ngIf="formularioPreparacion.get('icono')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
         <h3 class="seccion-titulo">Descripción</h3>
         <app-tiptap-editor
           formControlName="descripcion"
           placeholder="Escribe la descripción de la preparación..."
+          [invalid]="
+            formularioPreparacion.get('descripcion')?.invalid &&
+            formularioPreparacion.get('descripcion')?.touched
+          "
         ></app-tiptap-editor>
+        <p
+          class="campo-error-mensaje"
+          *ngIf="
+            formularioPreparacion.get('descripcion')?.invalid &&
+            formularioPreparacion.get('descripcion')?.touched
+          "
+        >
+          Este campo es obligatorio
+        </p>
       </form>
     </mat-card-content>
     <mat-card-actions class="formulario-acciones">
@@ -632,16 +686,35 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="nombre" />
+          <mat-error *ngIf="formularioTruco.get('nombre')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Icono (emoji)</mat-label>
           <input matInput formControlName="icono" placeholder="🍳" />
+          <mat-error *ngIf="formularioTruco.get('icono')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
         <h3 class="seccion-titulo">Descripción</h3>
         <app-tiptap-editor
           formControlName="descripcion"
           placeholder="Escribe la descripción del truco..."
+          [invalid]="
+            formularioTruco.get('descripcion')?.invalid &&
+            formularioTruco.get('descripcion')?.touched
+          "
         ></app-tiptap-editor>
+        <p
+          class="campo-error-mensaje"
+          *ngIf="
+            formularioTruco.get('descripcion')?.invalid &&
+            formularioTruco.get('descripcion')?.touched
+          "
+        >
+          Este campo es obligatorio
+        </p>
       </form>
     </mat-card-content>
     <mat-card-actions class="formulario-acciones">
@@ -767,10 +840,18 @@
             formControlName="nombre"
             placeholder="Ej: Verduras y hortalizas"
           />
+          <mat-error
+            *ngIf="formularioCategoriaIngrediente.get('nombre')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Emoji</mat-label>
           <input matInput formControlName="emoji" placeholder="🥕" />
+          <mat-error
+            *ngIf="formularioCategoriaIngrediente.get('emoji')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
       </form>
     </mat-card-content>
@@ -910,6 +991,9 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="nombre" />
+          <mat-error *ngIf="formularioIngrediente.get('nombre')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Categoría</mat-label>
@@ -920,6 +1004,9 @@
               >{{ cat.nombre }}</mat-option
             >
           </mat-select>
+          <mat-error *ngIf="formularioIngrediente.get('categoria')?.invalid"
+            >Este campo es obligatorio</mat-error
+          >
         </mat-form-field>
       </form>
     </mat-card-content>
@@ -1056,11 +1143,21 @@
 <!-- TABLA DE HISTORIAL -->
 <ng-template #tplTablaHistorial>
   <div class="tabla-cabecera">
-    <h2 class="tabla-titulo">Historial de cambios</h2>
-    <span class="tabla-contador"
-      >{{ historial.length }}
-      {{ historial.length === 1 ? "entrada" : "entradas" }}</span
+    <div class="tabla-cabecera-grupo">
+      <h2 class="tabla-titulo">Historial de cambios</h2>
+      <span class="tabla-contador"
+        >{{ historial.length }}
+        {{ historial.length === 1 ? "entrada" : "entradas" }}</span
+      >
+    </div>
+    <button
+      mat-stroked-button
+      class="btn-eliminar-todo"
+      (click)="eliminarTodoElHistorial()"
+      *ngIf="historial.length"
     >
+      <mat-icon>delete_sweep</mat-icon> Eliminar todos
+    </button>
   </div>
   <div class="tabla-contenedor">
     <table mat-table [dataSource]="historial" class="tabla">

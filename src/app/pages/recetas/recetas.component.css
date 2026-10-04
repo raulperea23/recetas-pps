@@ -74,8 +74,48 @@
   white-space: nowrap;
 }
 
+.checkbox-destacadas div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
 .checkbox-sin-foto {
   white-space: nowrap;
+}
+
+.ribbon {
+  /* position: absolute;
+  top: 12px;
+  left: 0;
+  z-index: 10; */
+  background: var(--destacada-color);
+  color: black;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px 4px 6px;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
+  /* Triángulo en el lado derecho */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 50%,
+    calc(100% - 12px) 100%,
+    0 100%
+  );
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+.ribbon mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 /* ── Ordenación ──────────────────────────────────────────────────────── */

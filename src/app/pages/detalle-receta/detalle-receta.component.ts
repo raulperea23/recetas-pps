@@ -141,7 +141,7 @@ export class DetalleRecetaComponent implements OnInit {
   }
 
   compartirWhatsApp(): void {
-    const texto = `Mira esta receta: ${this.receta?.nombre} 😋\n${window.location.href}`;
+    const texto = `Mira esta receta: ${this.receta?.nombre} \n${window.location.href}`;
     const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
     this.menuCompartirAbierto = false;

@@ -309,6 +309,12 @@
   margin-bottom: 13px;
 }
 
+.campo-error-mensaje {
+  color: var(--danger-color);
+  font-size: 0.75rem;
+  margin: 6px 0 0;
+}
+
 mat-divider {
   margin: 19px 0;
 }
@@ -378,6 +384,22 @@ mat-divider {
   padding: 3px 10px;
   border-radius: 19px;
   font-size: 0.75rem;
+}
+
+.tabla-cabecera-grupo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-eliminar-todo {
+  color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  border-radius: 19px !important;
+  padding: 0 19px !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .tabla-contenedor {

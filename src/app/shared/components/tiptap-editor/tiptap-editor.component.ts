@@ -41,6 +41,7 @@ export class TiptapEditorComponent
   implements OnInit, OnDestroy, ControlValueAccessor
 {
   @Input() placeholder: string = 'Escribe aquí...';
+  @Input() invalid: boolean | null | undefined = false;
   @ViewChild('editorEl', { static: true }) editorEl!: ElementRef;
 
   editor!: Editor;

@@ -76,7 +76,10 @@
       (ngModelChange)="filtrar()"
       class="checkbox-destacadas"
     >
-      Solo destacadas
+      <div>
+        <div class="ribbon"><mat-icon>star</mat-icon></div>
+        Recetas "De rechupete"
+      </div>
     </mat-checkbox>
     <mat-checkbox
       [(ngModel)]="sinFoto"

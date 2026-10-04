@@ -152,6 +152,7 @@ export class RecetasComponent implements OnInit {
   private tiempoEnMinutos(receta: Receta): number {
     const tiempo = receta.tiempoPreparacion ?? 0;
     const unidad = receta.tiempoUnidad ?? 'minutos';
+    if (unidad === 'días') return tiempo * 60 * 24;
     return unidad === 'horas' ? tiempo * 60 : tiempo;
   }
 

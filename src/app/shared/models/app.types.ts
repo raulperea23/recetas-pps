@@ -55,7 +55,7 @@ export const TIPOS_DE_PLATO_PLURALES = {
 
 export const DIFICULTADES = ['Fácil', 'Media', 'Difícil'] as const;
 
-export const UNIDADES_TIEMPO = ['minutos', 'horas'] as const;
+export const UNIDADES_TIEMPO = ['minutos', 'horas', 'días'] as const;
 
 export type Categoria = (typeof CATEGORIAS)[number];
 export type TipoDePlato = (typeof TIPOS_DE_PLATO)[number];

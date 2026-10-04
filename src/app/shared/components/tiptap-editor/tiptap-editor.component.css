@@ -5,6 +5,10 @@
   background: var(--card-bg);
 }
 
+.tiptap-wrapper.invalid {
+  border-color: var(--danger-color);
+}
+
 .tiptap-toolbar {
   display: flex;
   align-items: center;
@@ -65,10 +69,11 @@
 :host ::ng-deep .tiptap-content ol {
   padding-left: 19px;
   margin: 6px 0;
+  gap: 0px;
 }
-:host ::ng-deep .tiptap-content li {
+/* :host ::ng-deep .tiptap-content li {
   margin-bottom: 3px;
-}
+} */
 :host ::ng-deep .tiptap-content strong {
   font-weight: 700;
 }
