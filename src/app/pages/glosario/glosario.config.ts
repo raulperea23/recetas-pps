@@ -145,7 +145,7 @@ Reducir: Disminuir el volumen de un líquido o salsa por evaporación para conse
 Reforzar: Añadir alguna preparación para intensificar su color o sabor.\n
 Refrescar: Pasar un género por agua fría abundante nada más cocerlo para cortar el proceso de cocción y, quitar el exceso de sal y enfriarlo.\n
 Rehidratar: Sumergir un género que se ha secado previamente en un líquido para que recupere sus características anteriores.\n
-Rehogar: Ablandar un género en una grasa tapado a temperatura moderada de forma que tome color. Al final conviene destaparlo para que pierda el agua que haya podido soltar.\n
+Rehogar: Ablandar un género con poca grasa, a temperatura moderada-alta de forma que tome color. El alimento se cocina por dentro y por fuera y empieza a caramelizarse ligeramente.\n
 Remojar: Sumergir un género en abundante agua fría. Se utiliza para rehidratar alimentos secos y para aquellos que, habiendo sido conservados en salazón, deben perder el exceso de sal y recuperar el agua, por ejemplo, el bacalao.\n
 Rustir: Sinónimo de asar.\n
 \n
@@ -153,9 +153,9 @@ S\n
 Salar: Echar sal a un alimento, ponerlo en salazón o salmuera.\n
 Salazón: Alimento cubierto de sal. \n
 Salmuera: Mezcla de agua y sal en la que se sumerge un género.\n
-Saltear: Cocinar un género total o parcialmente en una grasa a fuego vivo y descubierto para que quede dorado. Las piezas suelen enharinarse para facilitar el dorado de las piezas y que éstas pierdan el agua. \n
+Saltear: Cocinar un género total o parcialmente en una grasa a fuego muy alto y descubierto para que quede dorado. Se hace con muy poca grasa, sólo para lubricar la sartén. Se mueve o agita la sartén para que los trozos se doren por fuera y queden crujientes por dentro. <br> Las piezas pueden enharinarse para facilitar que pierdan el agua y se doren mejor. \n
 Sazonar: Añadir sal a una preparación.\n
-Sofreír: Ablandar un género en una grasa tapado a temperatura moderada de forma que tome color.\n
+Sofreír: Ablandar un género con una cantidad moderada de grasa, a temperatura baja o moderada, de forma que tome color. Es una técnica que lleva su tiempo y el objetivo es que se cocinen los ingredientes poco a poco para que suelten sus jugos y sirvan de base en guisos o salsas.\n
 Soluble: Que se disuelve en agua.\n
 \n
 T\n

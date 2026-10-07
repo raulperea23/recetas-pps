@@ -110,7 +110,7 @@ export class RecetasComponent implements OnInit {
       }
       if (queryParams['destacadas']) {
         this.soloDestacadas = true;
-        this.tituloPagina = 'Recetas destacadas';
+        this.tituloPagina = 'De rechupete';
       }
       if (queryParams['sinFoto']) {
         this.sinFoto = true;

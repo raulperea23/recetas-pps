@@ -223,8 +223,10 @@
   gap: 10px;
 }
 
-.seleccionados-vacio span {
-  font-size: 2.4rem;
+.seleccionados-vacio-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
 }
 
 .seleccionados-vacio p {

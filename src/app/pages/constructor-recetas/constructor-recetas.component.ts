@@ -175,9 +175,19 @@ export class ConstructorRecetasComponent implements OnInit {
       const ingredientesReceta = receta.ingredientes.map((ing: string) =>
         ing.toLowerCase(),
       );
-      return nombresSeleccionados.every((nombre) =>
-        ingredientesReceta.some((ing) => ing.includes(nombre)),
+      const elaboracionReceta = receta.elaboracion.toLowerCase();
+      return nombresSeleccionados.every(
+        (nombre) =>
+          ingredientesReceta.some((ing) =>
+            this.contienePalabraExacta(ing, nombre),
+          ) || this.contienePalabraExacta(elaboracionReceta, nombre),
       );
     });
+  }
+
+  // compara por palabra completa (delimitada por espacios) para que "pollo" no case con "repollo"
+  private contienePalabraExacta(texto: string, palabra: string): boolean {
+    const textoNormalizado = ` ${texto.replace(/[^a-zñáéíóúü0-9]+/gi, ' ')} `;
+    return textoNormalizado.includes(` ${palabra} `);
   }
 }

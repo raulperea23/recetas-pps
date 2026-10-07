@@ -19,7 +19,7 @@
       </div>
     </div>
   </section>
-  <section class="seccion-aleatoria" *ngIf="recetaAleatoria">
+  <section class="seccion-aleatoria">
     <div class="banner-receta-aleatoria" [routerLink]="['/categorias']">
       <div class="banner-aleatoria-contenido">
         <h2>Nuestras categorías</h2>
@@ -59,7 +59,7 @@
   </div>
   <div class="ver-mas">
     <button mat-raised-button class="primary-btn" (click)="verDestacadas()">
-      Ver todos nuestros destacados
+      Ver todas
     </button>
   </div>
 </section>
@@ -68,7 +68,7 @@
 <section class="seccion" *ngIf="ultimas.length > 0">
   <div class="section-header">
     <mat-icon class="section-icon">access_time</mat-icon>
-    <span class="section-title">Últimas novedades</span>
+    <span class="section-title">Recién llegadas</span>
   </div>
   <div class="grid">
     <app-card

@@ -57,7 +57,7 @@
     <div class="terminos">
       <div *ngFor="let item of grupo.terminos" class="termino">
         <span class="termino-nombre">{{ item.termino }}</span>
-        <span class="termino-definicion">{{ item.definicion }}</span>
+        <div class="termino-definicion" [innerHTML]="item.definicion"></div>
       </div>
     </div>
   </div>

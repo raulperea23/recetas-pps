@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   postresDestacados: Receta[] = [];
   postres: Receta[] = [];
   sugerenciaAleatoria: Receta | null = null;
-  recetaAleatoria: Receta | null = null;
+  // recetaAleatoria: Receta | null = null;
   todasLasRecetas: Receta[] = [];
 
   trucos: Truco[] = [];
@@ -156,7 +156,7 @@ export class HomeComponent implements OnInit {
       this.postres = shuffled.slice(0, 5);
 
       this.cargarSugerenciaAleatoria();
-      this.cargarRecetaAleatoria();
+      // this.cargarRecetaAleatoria();
     });
 
     this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
@@ -212,12 +212,12 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  cargarRecetaAleatoria(): void {
-    if (this.todasLasRecetas.length > 0) {
-      const indice = Math.floor(Math.random() * this.todasLasRecetas.length);
-      this.recetaAleatoria = this.todasLasRecetas[indice];
-    }
-  }
+  // cargarRecetaAleatoria(): void {
+  //   if (this.todasLasRecetas.length > 0) {
+  //     const indice = Math.floor(Math.random() * this.todasLasRecetas.length);
+  //     this.recetaAleatoria = this.todasLasRecetas[indice];
+  //   }
+  // }
 
   abrirModalDeSugerencia(): void {
     if (this.sugerenciaAleatoria) {
@@ -230,16 +230,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  abrirModalDeAleatoria(): void {
-    if (this.recetaAleatoria) {
-      this.dialog.open(ModalComponent, {
-        data: this.recetaAleatoria,
-        maxWidth: '560px',
-        width: '100%',
-        panelClass: 'modal-aleatoria',
-      });
-    }
-  }
+  // abrirModalDeAleatoria(): void {
+  //   if (this.recetaAleatoria) {
+  //     this.dialog.open(ModalComponent, {
+  //       data: this.recetaAleatoria,
+  //       maxWidth: '560px',
+  //       width: '100%',
+  //       panelClass: 'modal-aleatoria',
+  //     });
+  //   }
+  // }
 
   verDestacadas(): void {
     this.router.navigate(['/recetas'], {
