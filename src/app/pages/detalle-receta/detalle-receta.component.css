@@ -301,6 +301,17 @@ mat-divider {
   margin: 0 0 6px 0;
 }
 
+.enlace-salsa {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.enlace-salsa:hover {
+  color: var(--accent-color);
+}
+
 .banner-cierre {
   display: flex;
   flex-direction: row;

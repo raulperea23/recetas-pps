@@ -18,6 +18,8 @@ import { Receta, FotoReceta } from '../../shared/models/receta.model';
 import { Title } from '@angular/platform-browser';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FotoDialogComponent } from '../../shared/components/foto-dialog/foto-dialog.component';
+import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { SALSAS } from '../home/home.salsas';
 
 @Component({
   selector: 'app-detalle-receta',
@@ -108,7 +110,63 @@ export class DetalleRecetaComponent implements OnInit {
   // ── Resto de métodos ─────────────────────────────────────────────────────
 
   get elaboracionFormateada(): string {
-    return this.receta?.elaboracion?.replace(/&nbsp;/g, ' ') || '';
+    const texto = this.receta?.elaboracion?.replace(/&nbsp;/g, ' ') || '';
+    return this.enlazarSalsas(texto);
+  }
+
+  // Envuelve en un enlace la primera mención de cada salsa, sin tocar las etiquetas HTML existentes
+  private enlazarSalsas(html: string): string {
+    if (!html) return html;
+
+    const salsasPendientes = new Set(SALSAS.map((s) => s.nombre));
+    // Separamos el HTML en fragmentos de texto y etiquetas para no romper el marcado
+    const fragmentos = html.split(/(<[^>]+>)/g);
+
+    return fragmentos
+      .map((fragmento, indice) => {
+        const esEtiqueta = indice % 2 === 1;
+        if (esEtiqueta || !fragmento) return fragmento;
+
+        let resultado = fragmento;
+        for (const nombreSalsa of salsasPendientes) {
+          const escapado = nombreSalsa.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const patron = new RegExp(
+            `(^|[^\\p{L}\\p{N}_])(${escapado})(?=[^\\p{L}\\p{N}_]|$)`,
+            'iu',
+          );
+          const coincidencia = patron.exec(resultado);
+          if (coincidencia) {
+            // Angular sanitiza el innerHTML y elimina atributos data-*, así que usamos "title"
+            resultado =
+              resultado.slice(0, coincidencia.index) +
+              coincidencia[1] +
+              `<a href="#" class="enlace-salsa" title="${nombreSalsa}">${coincidencia[2]}</a>` +
+              resultado.slice(coincidencia.index + coincidencia[0].length);
+            salsasPendientes.delete(nombreSalsa);
+          }
+        }
+        return resultado;
+      })
+      .join('');
+  }
+
+  onElaboracionClick(event: Event): void {
+    const elemento = (event.target as HTMLElement)?.closest(
+      'a.enlace-salsa',
+    ) as HTMLElement | null;
+    if (!elemento) return;
+
+    event.preventDefault();
+    const nombreSalsa = elemento.getAttribute('title');
+    const salsa = SALSAS.find((s) => s.nombre === nombreSalsa);
+    if (salsa) {
+      this.dialog.open(ModalComponent, {
+        data: { tipo: 'salsa', ...salsa },
+        maxWidth: '820px',
+        width: '100%',
+        panelClass: 'modal-salsa',
+      });
+    }
   }
 
   abrirFoto(): void {

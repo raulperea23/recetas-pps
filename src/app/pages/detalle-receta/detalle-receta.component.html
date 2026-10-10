@@ -127,7 +127,10 @@
 
     <div class="elaboracion">
       <h2>Elaboración</h2>
-      <div [innerHTML]="elaboracionFormateada"></div>
+      <div
+        [innerHTML]="elaboracionFormateada"
+        (click)="onElaboracionClick($event)"
+      ></div>
     </div>
   </div>
 
