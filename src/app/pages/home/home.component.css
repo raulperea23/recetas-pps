@@ -618,46 +618,6 @@
   border-top: 1px solid black;
 }
 
-.agridulce .jar-liquid {
-  background: linear-gradient(180deg, #ffb347, #ff7e5f);
-}
-.alioli .jar-liquid {
-  background: linear-gradient(180deg, #fff8c6, #f1c40f);
-}
-.fruta .jar-liquid {
-  background: linear-gradient(180deg, #ff6b81, #c44569);
-}
-.crema .jar-liquid {
-  background: linear-gradient(180deg, #fffaf0, #f5e6cc);
-}
-.bilbaina .jar-liquid {
-  background: linear-gradient(180deg, #ffcc66, #ff7f50);
-}
-.brava .jar-liquid {
-  background: linear-gradient(180deg, #ff4d4d, #d63031);
-}
-.vino .jar-liquid {
-  background: linear-gradient(180deg, #8e44ad, #6c3483);
-}
-.foie .jar-liquid {
-  background: linear-gradient(180deg, #d2b48c, #a67c52);
-}
-.pimientos .jar-liquid {
-  background: linear-gradient(180deg, #ff7675, #d63031);
-}
-.rosa .jar-liquid {
-  background: linear-gradient(180deg, #ff9ff3, #f368e0);
-}
-.tomate .jar-liquid {
-  background: linear-gradient(180deg, #ff6348, #c0392b);
-}
-.vinagreta .jar-liquid {
-  background: linear-gradient(180deg, #7bed9f, #2ecc71);
-}
-.citrico .jar-liquid {
-  background: linear-gradient(180deg, #ffeaa7, #fdcb6e);
-}
-
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .banner {

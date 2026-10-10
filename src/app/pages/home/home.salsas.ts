@@ -62,7 +62,7 @@ export const SALSAS: Salsa[] = [
     <br><u>Ingredientes</u>: aceite de oliva virgen, 2 ajos, 2 cayenas y vino blanco.
     <br><u>Preparación</u>: poner un cazo al fuego con un chorro generoso de aceite de oliva, debe cubrir bien el fondo. Añadir los ajos fileteados y la cayena y freír a fuego suave sin dejar que se doren mucho. Añadir el vino blanco, que debe suponer como la mitad de la cantidad del aceite. Dejar calentar y batir un poquito con un tenedor o con las varillas.
     Salsa muy adecuada para pescados.`,
-    tipoSalsa: 'vino',
+    tipoSalsa: 'crema',
   },
   {
     nombre: 'Salsa de Foie',
@@ -79,7 +79,7 @@ export const SALSAS: Salsa[] = [
     <br><u>Tiempo aprox.:</u> 15 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u> 200 ml de aceite de oliva (puede hacerse con aceite de oliva suave o girasol, para una salsa menos intensa), 1 huevo grande (o 2 pequeños), una pizca de sal, una cucharada de vinagre o de limón recién exprimido. La proporción de aceite y huevo será de 80%-20%.
     <br><u>Preparación</u>: colocar el aceite en el vaso de la batidora y añadir los huevos, la sal y el vinagre (o limón). Poner la batidora en el fondo del vaso y encenderla. No mover la batidora hasta conseguir la textura adecuada. Como mucho, se puede mover al final muy despacio y de lado si ha quedado algo de aceite sin integrar. El movimiento excesivo es lo que puede hacer que se corte la mayonesa.`,
-    tipoSalsa: 'crema',
+    tipoSalsa: 'mayonesa',
   },
   {
     nombre: 'Salsa de Pimientos',

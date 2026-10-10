@@ -184,13 +184,16 @@
   <div class="shelf">
     <div
       *ngFor="let salsa of salsas; let i = index"
-      class="jar {{ salsa.tipoSalsa }}"
+      class="jar"
       (click)="verSalsa(salsa)"
     >
       <div class="jar-visual">
         <div class="jar-lid"></div>
         <div class="jar-glass">
-          <div class="jar-liquid">
+          <div
+            class="jar-liquid"
+            [style.background]="salsaGradient(salsa.tipoSalsa)"
+          >
             <div class="jar-label">
               <span class="salsa-nombre">{{ salsa.nombre }}</span>
             </div>

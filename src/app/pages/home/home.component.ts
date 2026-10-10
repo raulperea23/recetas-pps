@@ -17,6 +17,7 @@ import { Receta } from '../../shared/models/receta.model';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { SALSAS, Salsa } from './home.salsas';
+import { SALSA_COLORES } from '../../shared/models/salsa-colores';
 
 @Component({
   selector: 'app-home',
@@ -254,6 +255,14 @@ export class HomeComponent implements OnInit {
       width: '100%',
       panelClass: 'modal-truco',
     });
+  }
+
+  salsaGradient(tipoSalsa: string): string {
+    const colores = SALSA_COLORES[tipoSalsa];
+    if (!colores) {
+      return 'linear-gradient(180deg, #ccc, #aaa)';
+    }
+    return `linear-gradient(180deg, ${colores.top}, ${colores.bottom})`;
   }
 
   verSalsa(salsa: Salsa): void {
