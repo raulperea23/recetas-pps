@@ -105,6 +105,7 @@
   border-right: 1px solid var(--border-color);
   color: var(--text-secondary-color);
   line-height: 1.5;
+  word-break: break-word;
 }
 
 .tabla-fila span:last-child {
@@ -130,6 +131,7 @@ code {
   border-radius: 4px;
   font-size: 0.8rem;
   font-family: monospace;
+  word-break: break-all;
 }
 
 @media (max-width: 768px) {
@@ -137,12 +139,56 @@ code {
     font-size: 1.5rem;
   }
 
-  .tabla-cookies {
-    overflow-x: auto;
+  /* Ocultamos la cabecera de la tabla en mobile */
+  .tabla-cookies .cabecera-tabla {
+    display: none;
   }
 
+  /* Cada fila se convierte en una tarjeta */
   .tabla-fila {
-    grid-template-columns: 120px 200px 120px 140px;
-    min-width: 580px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  .tabla-fila:last-child {
+    border-bottom: none;
+  }
+
+  /* Cada celda muestra su etiqueta mediante data-label */
+  .tabla-fila span {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 13px;
+    font-size: 0.82rem;
+  }
+
+  .tabla-fila span:last-child {
+    border-bottom: none;
+  }
+
+  /* Etiqueta antes de cada valor */
+  .tabla-fila span:nth-child(1)::before {
+    content: "Cookie";
+    font-weight: 700;
+    color: var(--text-color);
+  }
+  .tabla-fila span:nth-child(2)::before {
+    content: "Finalidad";
+    font-weight: 700;
+    color: var(--text-color);
+  }
+  .tabla-fila span:nth-child(3)::before {
+    content: "Tipo";
+    font-weight: 700;
+    color: var(--text-color);
+  }
+  .tabla-fila span:nth-child(4)::before {
+    content: "Duración";
+    font-weight: 700;
+    color: var(--text-color);
   }
 }

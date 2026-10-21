@@ -101,7 +101,7 @@ export const SALSAS: Salsa[] = [
     descripcion: `<u>Receta de:</u> la que aprendí en casa
     <br><u>Tiempo aprox.:</u> 2 horas <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 1 kg de tomate natural triturado, 1 cebolla grande, 1 pimiento verde, 1 pimiento rojo, 1 ajo, 1 cucharadita rasa de azúcar, pimienta negra molida, aceite de oliva virgen extra y sal.
-    <br><u>Preparación</u>: poner a rehogar la cebolla y el ajo cortaditos en el aceite, previamente templado. Cuando esté blandita la cebolla, echar los pimientos, también cortaditos pequeños. Dejar que poche todo bien, a fuego más bien medio-lento. Añadir la lata de tomate y remover bien unos minutos. Aderezar con la pimienta negra, el azúcar y la sal. Mover bien y dejar cocer a fuego lento, unas dos horas.`,
+    <br><u>Preparación</u>: en una cacerola poner un buen chorro de aceite a calentar. Cuando esté templado, incorporar la cebolla y el ajo cortaditos. Rehogar bien hasta ver que la cebolla está blandita. Echar entonces los pimientos, también cortaditos en trozos pequeños. Dejar que poche todo bien, a fuego más bien medio-bajo. Añadir el tomate y remover bien unos minutos. Aderezar con la pimienta negra, el azúcar y la sal. Dejar cocer a fuego lento, unas dos horas.`,
     tipoSalsa: 'tomate',
   },
   {
