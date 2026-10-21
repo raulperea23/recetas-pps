@@ -110,16 +110,14 @@ mat-dialog-actions {
 /* Cuchara con salsa */
 .cuchara-salsa {
   position: absolute;
-  top: -13px;
-  right: -35px;
-  width: 150px;
+  width: 142px;
   height: auto;
+  top: -24px;
+  right: -26px;
 }
 
 @media (max-width: 768px) {
   .cuchara-salsa {
-    width: 142px;
-    top: -24px;
     right: -30px;
   }
 }
@@ -127,7 +125,6 @@ mat-dialog-actions {
 @media (max-width: 480px) {
   .cuchara-salsa {
     width: 132px;
-    top: -24px;
     right: -28px;
   }
 }
