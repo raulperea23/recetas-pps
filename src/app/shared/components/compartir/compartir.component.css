@@ -93,7 +93,7 @@
   }
 
   :host(.solo-icono) .menu-compartir {
-    left: auto;
+    left: 0;
     right: 0;
     width: max-content;
   }
