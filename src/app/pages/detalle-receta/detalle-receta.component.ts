@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  HostListener,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -20,6 +14,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FotoDialogComponent } from '../../shared/components/foto-dialog/foto-dialog.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { SALSAS } from '../home/home.salsas';
+import { CompartirComponent } from '../../shared/components/compartir/compartir.component';
 
 @Component({
   selector: 'app-detalle-receta',
@@ -33,6 +28,7 @@ import { SALSAS } from '../home/home.salsas';
     MatIconModule,
     MatDialogModule,
     MatCardModule,
+    CompartirComponent,
   ],
   templateUrl: './detalle-receta.component.html',
   styleUrl: './detalle-receta.component.css',
@@ -40,11 +36,7 @@ import { SALSAS } from '../home/home.salsas';
 export class DetalleRecetaComponent implements OnInit {
   receta: Receta | null = null;
   recetasRelacionadas: Receta[] = [];
-  menuCompartirAbierto: boolean = false;
-  enlaceCopiado: boolean = false;
   fotoActual: string = '';
-
-  @ViewChild('compartirRef') compartirRef!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -180,38 +172,5 @@ export class DetalleRecetaComponent implements OnInit {
 
   tieneFoto(): boolean {
     return !!this.fotoActual && this.fotoActual.trim() !== '';
-  }
-
-  toggleMenuCompartir(): void {
-    this.menuCompartirAbierto = !this.menuCompartirAbierto;
-    this.enlaceCopiado = false;
-  }
-
-  @HostListener('document:mousedown', ['$event'])
-  onClickOutside(event: MouseEvent): void {
-    if (
-      this.menuCompartirAbierto &&
-      this.compartirRef &&
-      !this.compartirRef.nativeElement.contains(event.target)
-    ) {
-      this.menuCompartirAbierto = false;
-    }
-  }
-
-  compartirWhatsApp(): void {
-    const texto = `Mira esta receta: ${this.receta?.nombre} \n\n${window.location.href}`;
-    const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-    window.open(url, '_blank');
-    this.menuCompartirAbierto = false;
-  }
-
-  copiarEnlace(): void {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      this.enlaceCopiado = true;
-      setTimeout(() => {
-        this.enlaceCopiado = false;
-        this.menuCompartirAbierto = false;
-      }, 1500);
-    });
   }
 }

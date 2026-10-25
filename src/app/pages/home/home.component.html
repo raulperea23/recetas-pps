@@ -157,7 +157,7 @@
     <div
       class="preparacion-card"
       *ngFor="let prep of preparacionesVisibles"
-      (click)="abrirModalDeInfo(prep)"
+      (click)="abrirModalDeInfo(prep, 'preparacion')"
     >
       <span class="preparacion-icono">{{ prep.icono }}</span>
       <h3 class="preparacion-nombre">{{ prep.nombre }}</h3>
@@ -215,7 +215,7 @@
     <div
       class="truco-card"
       *ngFor="let truco of trucosVisibles"
-      (click)="abrirModalDeInfo(truco)"
+      (click)="abrirModalDeInfo(truco, 'truco')"
     >
       <span class="truco-icono">{{ truco.icono }}</span>
       <h3 class="truco-nombre">{{ truco.nombre }}</h3>

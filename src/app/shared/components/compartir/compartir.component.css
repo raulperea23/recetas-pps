@@ -1,0 +1,99 @@
+:host {
+  display: block;
+}
+
+:host(.solo-icono) {
+  width: fit-content;
+}
+
+.compartir-contenedor {
+  position: relative;
+}
+
+.btn-compartir {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-compartir.btn-compartir-icono {
+  min-width: 40px;
+  width: 40px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+}
+
+.btn-compartir-icono mat-icon {
+  margin: 0;
+}
+
+.menu-compartir {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 3px 3px 13px var(--shadow-color);
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10;
+  min-width: 144px;
+}
+
+.opcion-compartir {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  transition: background 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.opcion-compartir:hover {
+  background: rgba(var(--primary-color-rgb), 0.08);
+}
+
+.icono-whatsapp {
+  color: #25d366;
+}
+
+.icono-enlace {
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .btn-compartir {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .menu-compartir {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  :host(.solo-icono) .menu-compartir {
+    left: auto;
+    right: 0;
+    width: max-content;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    width: 100%;
+  }
+}

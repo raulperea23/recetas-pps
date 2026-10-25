@@ -7,28 +7,7 @@
       Volver a recetas
     </button>
 
-    <div class="compartir-contenedor" #compartirRef>
-      <button
-        mat-stroked-button
-        class="btn-compartir"
-        (click)="toggleMenuCompartir()"
-      >
-        <mat-icon>share</mat-icon>
-        Compartir
-      </button>
-      <div class="menu-compartir" *ngIf="menuCompartirAbierto">
-        <button class="opcion-compartir" (click)="compartirWhatsApp()">
-          <mat-icon class="icono-whatsapp">chat</mat-icon>
-          WhatsApp
-        </button>
-        <button class="opcion-compartir" (click)="copiarEnlace()">
-          <mat-icon class="icono-enlace">{{
-            enlaceCopiado ? "check" : "link"
-          }}</mat-icon>
-          {{ enlaceCopiado ? "Enlace copiado" : "Copiar enlace" }}
-        </button>
-      </div>
-    </div>
+    <app-compartir [nombre]="receta.nombre"></app-compartir>
   </div>
 
   <div class="cabecera">

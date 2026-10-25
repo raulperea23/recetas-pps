@@ -24,6 +24,26 @@
   padding: 19px;
 }
 
+.titulo-compartir {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 13px;
+}
+
+.titulo-compartir h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  margin-bottom: 0;
+}
+
+.compartir-modal {
+  position: relative;
+  z-index: 11;
+  flex-shrink: 0;
+  width: fit-content;
+}
+
 .categoria {
   color: var(--primary-color);
   font-weight: 600;
@@ -37,6 +57,11 @@ h2 {
   font-size: 1.4rem;
   color: var(--text-color);
   margin: 0 0 13px 0;
+}
+
+h2[cdkFocusInitial]:focus,
+h2[cdkFocusInitial]:focus-visible {
+  outline: none;
 }
 
 .meta {

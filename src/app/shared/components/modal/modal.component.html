@@ -1,5 +1,4 @@
 <div
-  @slideInUp
   class="modal-contenido"
   [class.truco]="data.tipo === 'truco'"
   [class.salsa]="data.tipo === 'salsa'"
@@ -59,7 +58,17 @@
       <span class="truco-icono">{{ data.icono }}</span>
     </div>
     <div class="info">
-      <h2>{{ data.nombre }}</h2>
+      <div class="titulo-compartir">
+        <h2 tabindex="-1" cdkFocusInitial>{{ data.nombre }}</h2>
+        <app-compartir
+          *ngIf="data.id"
+          class="compartir-modal"
+          [soloIcono]="true"
+          [nombre]="data.nombre"
+          [enlace]="enlaceCompartir"
+          [encabezado]="encabezadoCompartir"
+        ></app-compartir>
+      </div>
       <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
     </div>
     <mat-dialog-actions align="center">
@@ -421,7 +430,17 @@
     </svg>
 
     <div class="info">
-      <h2>{{ data.nombre }}</h2>
+      <div class="titulo-compartir">
+        <h2 tabindex="-1" cdkFocusInitial>{{ data.nombre }}</h2>
+        <app-compartir
+          *ngIf="data.id"
+          class="compartir-modal"
+          [soloIcono]="true"
+          [nombre]="data.nombre"
+          [enlace]="enlaceCompartir"
+          [encabezado]="encabezadoCompartir"
+        ></app-compartir>
+      </div>
       <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
     </div>
     <mat-dialog-actions align="center">

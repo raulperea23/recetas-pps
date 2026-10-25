@@ -1,0 +1,25 @@
+<div class="compartir-contenedor" #compartirRef>
+  <button
+    mat-stroked-button
+    class="btn-compartir"
+    [class.btn-compartir-icono]="soloIcono"
+    aria-label="Compartir"
+    (click)="toggleMenuCompartir()"
+    [attr.aria-expanded]="menuCompartirAbierto"
+  >
+    <mat-icon>share</mat-icon>
+    <span *ngIf="!soloIcono">Compartir</span>
+  </button>
+  <div class="menu-compartir" *ngIf="menuCompartirAbierto">
+    <button class="opcion-compartir" (click)="compartirWhatsApp()">
+      <mat-icon class="icono-whatsapp">chat</mat-icon>
+      WhatsApp
+    </button>
+    <button class="opcion-compartir" (click)="copiarEnlace()">
+      <mat-icon class="icono-enlace">{{
+        enlaceCopiado ? "check" : "link"
+      }}</mat-icon>
+      {{ enlaceCopiado ? "Enlace copiado" : "Copiar enlace" }}
+    </button>
+  </div>
+</div>

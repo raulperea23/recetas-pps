@@ -1,10 +1,24 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  DestroyRef,
+  inject,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { combineLatest, startWith } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Title } from '@angular/platform-browser';
 import { RecetasService } from '../../shared/services/recetas.service';
@@ -35,7 +49,10 @@ import { SALSA_COLORES } from '../../shared/models/salsa-colores';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly snackBar = inject(MatSnackBar);
+  private modalActivo?: { valor: string; ref: MatDialogRef<ModalComponent> };
   destacadas: Receta[] = [];
   ultimas: Receta[] = [];
   postresDestacados: Receta[] = [];
@@ -166,27 +183,41 @@ export class HomeComponent implements OnInit {
       // this.cargarRecetaAleatoria();
     });
 
-    this.preparacionesService.getPreparaciones().subscribe((preparaciones) => {
-      this.preparaciones = preparaciones;
-    });
+    let fragmentInicializado = false;
+    combineLatest([
+      this.route.queryParamMap,
+      this.preparacionesService.getPreparaciones().pipe(startWith(null)),
+      this.trucosService.getTrucos().pipe(startWith(null)),
+    ])
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(([params, preparaciones, trucos]) => {
+        if (preparaciones !== null) this.preparaciones = preparaciones;
+        if (trucos !== null) this.trucos = trucos;
+        this.sincronizarModal(params.get('modal'), preparaciones, trucos);
+        if (trucos !== null && !fragmentInicializado) {
+          fragmentInicializado = true;
+          this.scrollAlFragment();
+        }
+      });
+  }
 
-    this.trucosService.getTrucos().subscribe((trucos) => {
-      this.trucos = trucos;
-      this.scrollAlFragment();
-    });
+  ngOnDestroy(): void {
+    this.cerrarModalActivo();
   }
 
   private scrollAlFragment(): void {
-    this.route.fragment.subscribe((fragment) => {
-      if (fragment) {
-        setTimeout(() => {
-          const el = document.getElementById(fragment);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 100);
-      }
-    });
+    this.route.fragment
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((fragment) => {
+        if (fragment) {
+          setTimeout(() => {
+            const el = document.getElementById(fragment);
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 100);
+        }
+      });
   }
 
   cargarSugerenciaAleatoria(): void {
@@ -254,13 +285,83 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  abrirModalDeInfo(item: Truco | Preparacion): void {
-    this.dialog.open(ModalComponent, {
-      data: { tipo: 'truco', ...item },
+  abrirModalDeInfo(
+    item: Truco | Preparacion | Salsa,
+    tipo: 'preparacion' | 'truco' | 'salsa',
+  ): void {
+    if (!item.id) {
+      this.snackBar.open(
+        'No se puede abrir este contenido sin identificador.',
+        'Cerrar',
+      );
+      return;
+    }
+    this.actualizarModalEnUrl(`${tipo}:${item.id}`);
+  }
+
+  private actualizarModalEnUrl(valor: string | null, replaceUrl = false): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { modal: valor },
+      queryParamsHandling: 'merge',
+      preserveFragment: true,
+      replaceUrl,
+    });
+  }
+
+  private cerrarModalActivo(): void {
+    const modal = this.modalActivo;
+    this.modalActivo = undefined;
+    modal?.ref.close();
+  }
+
+  private sincronizarModal(
+    valor: string | null,
+    preparaciones: Preparacion[] | null,
+    trucos: Truco[] | null,
+  ): void {
+    if (this.modalActivo?.valor === valor) return;
+    this.cerrarModalActivo();
+    if (valor === null) return;
+
+    const [tipo, id, extra] = valor.split(':');
+    if (tipo === 'preparacion' && preparaciones === null) return;
+    if (tipo === 'truco' && trucos === null) return;
+
+    let item: Preparacion | Truco | Salsa | undefined;
+    if (id && extra === undefined) {
+      if (tipo === 'preparacion') item = preparaciones?.find((p) => p.id === id);
+      if (tipo === 'truco') item = trucos?.find((t) => t.id === id);
+      if (tipo === 'salsa') item = this.salsas.find((s) => s.id === id);
+    }
+
+    if (!item) {
+      this.snackBar.open(
+        'El contenido de este enlace no está disponible.',
+        'Cerrar',
+      );
+      this.actualizarModalEnUrl(null, true);
+      return;
+    }
+
+    const esSalsa = tipo === 'salsa';
+    const ref = this.dialog.open(ModalComponent, {
+      data: { ...item, tipo: esSalsa ? 'salsa' : 'truco', tipoEnlace: tipo },
       maxWidth: '820px',
       width: '100%',
-      panelClass: 'modal-truco',
+      panelClass: esSalsa ? 'modal-salsa' : 'modal-truco',
+      closeOnNavigation: false,
     });
+    this.modalActivo = { valor, ref };
+    ref.afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        if (this.modalActivo?.ref !== ref) return;
+        this.modalActivo = undefined;
+        if (this.route.snapshot.queryParamMap.get('modal') === valor) {
+          this.actualizarModalEnUrl(null, true);
+        }
+      });
   }
 
   salsaGradient(tipoSalsa: string): string {
@@ -272,12 +373,7 @@ export class HomeComponent implements OnInit {
   }
 
   verSalsa(salsa: Salsa): void {
-    this.dialog.open(ModalComponent, {
-      data: { tipo: 'salsa', ...salsa },
-      maxWidth: '820px',
-      width: '100%',
-      panelClass: 'modal-salsa',
-    });
+    this.abrirModalDeInfo(salsa, 'salsa');
   }
 
   verPostres(): void {

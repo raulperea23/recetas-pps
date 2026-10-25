@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -8,8 +8,9 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { A11yModule } from '@angular/cdk/a11y';
 import { SALSA_COLORES } from '../../models/salsa-colores';
+import { CompartirComponent } from '../compartir/compartir.component';
 
 @Component({
   selector: 'app-modal',
@@ -20,26 +21,36 @@ import { SALSA_COLORES } from '../../models/salsa-colores';
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
+    CompartirComponent,
+    A11yModule,
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
-  animations: [
-    trigger('slideInUp', [
-      transition(':enter', [
-        style({ transform: 'translateY(100%)', opacity: 0 }),
-        animate(
-          '400ms ease-out',
-          style({ transform: 'translateY(0)', opacity: 1 }),
-        ),
-      ]),
-    ]),
-  ],
 })
 export class ModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ModalComponent>,
+    private router: Router,
+    private location: Location,
   ) {}
+
+  get enlaceCompartir(): string {
+    const tipo = this.data.tipoEnlace ?? this.data.tipo;
+    const url = this.router.createUrlTree(['/'], {
+      queryParams: { modal: `${tipo}:${this.data.id}` },
+    });
+    return new URL(
+      this.location.prepareExternalUrl(this.router.serializeUrl(url)),
+      window.location.origin,
+    ).href;
+  }
+
+  get encabezadoCompartir(): string {
+    if (this.data.tipo === 'salsa') return 'Mira esta salsa';
+    if (this.data.tipoEnlace === 'preparacion') return 'Mira esta preparación';
+    return 'Mira este truco';
+  }
 
   get salsaColorTop(): string {
     return SALSA_COLORES[this.data.tipoSalsa]?.top ?? '#ccc';

@@ -30,6 +30,33 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Use admin dashboard (acceso desde el footer o en /admin)
 
+## ENLACES A MODALES DE LA HOME
+
+Al abrir una preparacion, salsa o truco, la home incorpora el parametro `modal`
+a la URL. Puedes copiar esa URL para compartir el contenido; al visitarla se abre
+el modal automaticamente, una vez cargados los datos necesarios.
+
+- Preparacion: `/?modal=preparacion:ID_FIRESTORE`
+- Truco: `/?modal=truco:ID_FIRESTORE`
+- Salsa: `/?modal=salsa:ID_SALSA` (por ejemplo, `/?modal=salsa:bechamel`)
+
+Las salsas tienen identificadores estables definidos en
+[home.salsas.ts](src/app/pages/home/home.salsas.ts), independientes del nombre y
+del tipo de salsa. No deben cambiarse para conservar los enlaces compartidos.
+Al cerrar el modal se elimina solo `modal`, conservando los demas parametros y
+el fragmento. Los botones Atras y Adelante tambien sincronizan el modal.
+Los enlaces a contenido inexistente u oculto muestran un aviso y se limpian.
+Los tres tipos usan el campo `id`, no el nombre ni la posicion de la tarjeta.
+Sus modales incluyen el mismo boton Compartir que el detalle de receta, con
+opciones para WhatsApp y copiar enlace (confirmacion durante 1,5 segundos).
+El componente Compartir admite `[soloIcono]="true"`; por defecto muestra icono
+y texto. En los modales se usa solo el icono, junto al titulo.
+Siempre comparten el enlace directo al modal de la home, incluso si una salsa
+se abre desde una receta.
+Abrir o cerrar un modal conserva la posicion de lectura de la home.
+La restauracion del scroll para el resto de navegaciones y anclas se gestiona en
+[RouterScrollService](src/app/shared/services/router-scroll.service.ts).
+
 ## PARA SUBIR RECETAS DE FORMA MASIVA:
 
 Add records to => scripts/recetas.json

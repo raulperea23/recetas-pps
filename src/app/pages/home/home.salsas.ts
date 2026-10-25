@@ -1,4 +1,5 @@
 export interface Salsa {
+  id: string;
   nombre: string;
   descripcion: string;
   tipoSalsa: string;
@@ -6,6 +7,7 @@ export interface Salsa {
 
 export const SALSAS: Salsa[] = [
   {
+    id: 'agridulce',
     nombre: 'Salsa Agridulce',
     descripcion: `<u>Tiempo aprox.:</u> 15 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 3 cucharadas de azúcar, 4 cucharadas de vinagre suave, 1 cucharada de concentrado de tomate, 2 cucharadas de salsa de soja sin gluten (tamari), 6 cucharadas de zumo de naranja o de piña (se puede utilizar el jugo de una lata de piña), 2 cucharaditas de maicena.
@@ -13,6 +15,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'agridulce',
   },
   {
+    id: 'alioli',
     nombre: 'Alioli o Ajoaceite',
     descripcion: `<u>Tiempo aprox.:</u> 10 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 1 huevo, 1 diente de ajo, 1 cucharada de vinagre, 175 ml de aceite de oliva y sal. Los ingredientes deben estar a temperatura ambiente ya que si están fríos se puede dificultar la emulsión.
@@ -21,6 +24,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'alioli',
   },
   {
+    id: 'arandanos',
     nombre: 'Salsa de Arándanos',
     descripcion: `<u>Tiempo aprox.:</u> 25 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 200 g de arándanos (si son congelados, sacar del congelador un rato antes), 100 ml de agua, 80 g de azúcar moreno, 1 cucharadita de zumo de limón, 1 cucharadita de ralladura de limón, sal, tomillo o romero (opcional) y un chorrito de vino tino o un poco de pimienta negra (opcional). 
@@ -31,6 +35,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'fruta',
   },
   {
+    id: 'bechamel',
     nombre: 'Bechamel',
     descripcion: `<u>Receta de:</u> mi amiga Carolina (la he adaptado para harina sin gluten).
     <br><u>Tiempo aprox.:</u> 25 minutos <u>Dificultad:</u> Media
@@ -40,6 +45,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'crema',
   },
   {
+    id: 'bilbaina',
     nombre: 'Salsa Bilbaína',
     descripcion: `<u>Tiempo aprox.:</u> 15 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: aceite de oliva virgen, 2 ajos, 1 limón, medio vaso de vinagre y ½ guindilla.
@@ -48,6 +54,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'bilbaina',
   },
   {
+    id: 'brava',
     nombre: 'Salsa Brava',
     descripcion: `<u>Receta de:</u> mi hermano Juan, que le queda de chuparse los dedos
     <br><u>Tiempo aprox.:</u> 30 minutos <u>Dificultad:</u> Fácil
@@ -56,6 +63,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'brava',
   },
   {
+    id: 'eva',
     nombre: 'Salsa Eva',
     descripcion: `<u>Receta de:</u> mi nuera Eva
     <br><u>Tiempo aprox.:</u> 15 minutos <u>Dificultad:</u> Fácil
@@ -65,6 +73,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'crema',
   },
   {
+    id: 'foie',
     nombre: 'Salsa de Foie',
     descripcion: `<u>Tiempo aprox.:</u> 45 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u> (para unos 350 g de salsa): 100 g de foie micuit, 1 chalota o una cebolla, 200 g de caldo de pollo, 100 g de nata para cocinar, 50 g de vino de Oporto, ½ cucharadita de sal, pimienta negra molida y aceite de oliva virgen extra.
@@ -74,6 +83,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'foie',
   },
   {
+    id: 'mayonesa',
     nombre: 'Salsa Mayonesa',
     descripcion: `<u>Receta de:</u> la de toda la vida de casa
     <br><u>Tiempo aprox.:</u> 15 minutos <u>Dificultad:</u> Fácil
@@ -82,6 +92,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'mayonesa',
   },
   {
+    id: 'pimientos',
     nombre: 'Salsa de Pimientos',
     descripcion: `<u>Tiempo aprox.:</u> 20 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: aceite de oliva virgen, 2 pimientos de piquillo de bote y su jugo, tomillo, 200 ml de nata.
@@ -90,6 +101,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'pimientos',
   },
   {
+    id: 'rosa-expres',
     nombre: 'Salsa Rosa Exprés',
     descripcion: `<u>Tiempo aprox.:</u> 5 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 4 cucharadas soperas de una buena mayonesa de bote, 2 cucharadas de kétchup, una cucharada de zumo de naranja y una cucharada de brandy y aceite oliva virgen extra.
@@ -97,6 +109,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'rosa',
   },
   {
+    id: 'tomate-pisto',
     nombre: 'Salsa de Tomate o Pisto',
     descripcion: `<u>Receta de:</u> la que aprendí en casa
     <br><u>Tiempo aprox.:</u> 2 horas <u>Dificultad:</u> Fácil
@@ -105,6 +118,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'tomate',
   },
   {
+    id: 'vinagreta-cebollino',
     nombre: 'Vinagreta de Cebollino',
     descripcion: `<u>Tiempo aprox.:</u> 5 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 75 g de aceite de oliva virgen extra, 1 cucharada de vinagre de vino y cebollino.
@@ -113,6 +127,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'vinagreta',
   },
   {
+    id: 'vinagreta-fresas',
     nombre: 'Vinagreta de Fresas',
     descripcion: `<u>Tiempo aprox.:</u> 5 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 10 fresas, 7 cucharadas de aceite de oliva virgen extra y 2 cucharadas de vinagre de vino.
@@ -120,6 +135,7 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'fruta',
   },
   {
+    id: 'vinagreta-naranja',
     nombre: 'Vinagreta de Naranja',
     descripcion: `<u>Tiempo aprox.:</u> 10 minutos <u>Dificultad:</u> Fácil
     <br><u>Ingredientes</u>: 1 naranja, 4 cucharadas de aceite de oliva virgen extra y 1 de vinagre de Módena.
