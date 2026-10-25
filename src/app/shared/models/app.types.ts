@@ -43,6 +43,7 @@ export const TIPOS_DE_PLATO = [
   'Primer plato',
   'Segundo plato',
   'Postre',
+  'Otro',
 ] as const;
 export const TIPOS_DE_PLATO_PLURALES = {
   Desayuno: 'Desayunos',
@@ -51,6 +52,7 @@ export const TIPOS_DE_PLATO_PLURALES = {
   'Primer plato': 'Primeros platos',
   'Segundo plato': 'Segundos platos',
   Postre: 'Postres',
+  Otro: 'Otros',
 } as const;
 
 export const DIFICULTADES = ['Fácil', 'Media', 'Difícil'] as const;
