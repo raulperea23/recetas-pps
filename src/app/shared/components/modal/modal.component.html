@@ -12,6 +12,15 @@
     <mat-icon>close</mat-icon>
   </button>
 
+  <app-compartir
+    *ngIf="data.id"
+    class="compartir-modal"
+    [soloIcono]="true"
+    [nombre]="data.nombre"
+    [enlace]="enlaceCompartir"
+    [encabezado]="encabezadoCompartir"
+  ></app-compartir>
+
   <!-- MODO RECETA -->
   <ng-container *ngIf="data.tipo !== 'truco' && data.tipo !== 'salsa'">
     <img
@@ -58,17 +67,7 @@
       <span class="truco-icono">{{ data.icono }}</span>
     </div>
     <div class="info">
-      <div class="titulo-compartir">
-        <h2 tabindex="-1" cdkFocusInitial>{{ data.nombre }}</h2>
-        <app-compartir
-          *ngIf="data.id"
-          class="compartir-modal"
-          [soloIcono]="true"
-          [nombre]="data.nombre"
-          [enlace]="enlaceCompartir"
-          [encabezado]="encabezadoCompartir"
-        ></app-compartir>
-      </div>
+      <h2 tabindex="-1" cdkFocusInitial>{{ data.nombre }}</h2>
       <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
     </div>
     <mat-dialog-actions align="center">
@@ -430,17 +429,7 @@
     </svg>
 
     <div class="info">
-      <div class="titulo-compartir">
-        <h2 tabindex="-1" cdkFocusInitial>{{ data.nombre }}</h2>
-        <app-compartir
-          *ngIf="data.id"
-          class="compartir-modal"
-          [soloIcono]="true"
-          [nombre]="data.nombre"
-          [enlace]="enlaceCompartir"
-          [encabezado]="encabezadoCompartir"
-        ></app-compartir>
-      </div>
+      <h2 tabindex="-1" cdkFocusInitial>{{ data.nombre }}</h2>
       <p class="truco-descripcion" [innerHTML]="data.descripcion"></p>
     </div>
     <mat-dialog-actions align="center">

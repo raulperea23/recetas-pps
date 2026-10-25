@@ -13,6 +13,15 @@
   color: white;
 }
 
+.compartir-modal {
+  position: absolute;
+  bottom: 16px;
+  left: 19px;
+  z-index: 11;
+  flex-shrink: 0;
+  width: fit-content;
+}
+
 .foto {
   width: 100%;
   height: 208px;
@@ -24,24 +33,10 @@
   padding: 19px;
 }
 
-.titulo-compartir {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-bottom: 13px;
-}
-
-.titulo-compartir h2 {
+.info h2 {
   min-width: 0;
   overflow-wrap: anywhere;
-  margin-bottom: 0;
-}
-
-.compartir-modal {
-  position: relative;
-  z-index: 11;
-  flex-shrink: 0;
-  width: fit-content;
+  margin-bottom: 13px;
 }
 
 .categoria {
