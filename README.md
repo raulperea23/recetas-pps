@@ -30,6 +30,24 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Use admin dashboard (acceso desde el footer o en /admin)
 
+### Enlaces automaticos en la elaboracion
+
+El detalle enlaza solo la primera mencion de cada salsa, preparacion y truco.
+Las salsas mantienen la coincidencia por nombre completo (sin distinguir
+mayusculas). Para preparaciones y trucos se buscan frases contiguas del nombre
+con al menos dos palabras significativas, sin distinguir mayusculas ni tildes:
+por ejemplo, `caldo de pescado` coincide con `CALDO DE PESCADO O FUMET`.
+No basta una palabra aislada ni una frase formada solo por palabras comunes.
+No se aplican sinonimos, cambios de numero ni equivalencias entre verbos.
+
+Las coincidencias mas largas tienen prioridad; las salsas exactas prevalecen
+en la misma posicion. Una frase que identifica por igual varios contenidos no
+se enlaza para evitar abrir un modal arbitrario. No se modifican enlaces
+existentes, atributos HTML ni bloques de codigo; las frases deben estar en un
+mismo nodo de texto (no se unen palabras separadas por etiquetas HTML).
+Los contenidos ocultos no se enlazan. Los enlaces permiten abrir el modal en el
+detalle y conservan una URL compartible de la home.
+
 ## ENLACES A MODALES DE LA HOME
 
 Al abrir una preparacion, salsa o truco, la home incorpora el parametro `modal`

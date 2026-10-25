@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { take } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule, DOCUMENT, Location } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
@@ -13,8 +14,20 @@ import { Title } from '@angular/platform-browser';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FotoDialogComponent } from '../../shared/components/foto-dialog/foto-dialog.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
-import { SALSAS } from '../home/home.salsas';
+import { SALSAS, Salsa } from '../home/home.salsas';
 import { CompartirComponent } from '../../shared/components/compartir/compartir.component';
+import {
+  Preparacion,
+  PreparacionesService,
+} from '../../shared/services/preparaciones.service';
+import { Truco, TrucosService } from '../../shared/services/trucos.service';
+import { ContenidoEnlazable, enlazarContenidos } from './enlazar-contenidos';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+interface ContenidoModal extends ContenidoEnlazable {
+  tipo: 'salsa' | 'preparacion' | 'truco';
+  item: Salsa | Preparacion | Truco;
+}
 
 @Component({
   selector: 'app-detalle-receta',
@@ -37,6 +50,17 @@ export class DetalleRecetaComponent implements OnInit {
   receta: Receta | null = null;
   recetasRelacionadas: Receta[] = [];
   fotoActual: string = '';
+  elaboracionFormateada = '';
+  private preparaciones: Preparacion[] = [];
+  private trucos: Truco[] = [];
+  private contenidos: ContenidoModal[] = [];
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly document = inject(DOCUMENT);
+  private readonly router = inject(Router);
+  private readonly location = inject(Location);
+  private readonly preparacionesService = inject(PreparacionesService);
+  private readonly trucosService = inject(TrucosService);
+  private readonly snackBar = inject(MatSnackBar);
 
   constructor(
     private route: ActivatedRoute,
@@ -46,10 +70,31 @@ export class DetalleRecetaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.preparacionesService
+      .getPreparaciones()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (items) => {
+          this.preparaciones = items;
+          this.actualizarElaboracion();
+        },
+        error: (error) => this.notificarErrorContenido(error),
+      });
+    this.trucosService
+      .getTrucos()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (items) => {
+          this.trucos = items;
+          this.actualizarElaboracion();
+        },
+        error: (error) => this.notificarErrorContenido(error),
+      });
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const id = params.get('id');
       if (id) {
         this.receta = null;
+        this.actualizarElaboracion();
         this.recetasRelacionadas = [];
         this.fotoActual = '';
 
@@ -58,6 +103,7 @@ export class DetalleRecetaComponent implements OnInit {
           .pipe(take(1))
           .subscribe((receta) => {
             this.receta = receta;
+            this.actualizarElaboracion();
             this.fotoActual = this.fotoPrincipal;
             this.title.setTitle(`${receta.nombre} | Paraíso Para Saborear`);
 
@@ -101,64 +147,70 @@ export class DetalleRecetaComponent implements OnInit {
 
   // ── Resto de métodos ─────────────────────────────────────────────────────
 
-  get elaboracionFormateada(): string {
-    const texto = this.receta?.elaboracion?.replace(/&nbsp;/g, ' ') || '';
-    return this.enlazarSalsas(texto);
+  private actualizarElaboracion(): void {
+    this.contenidos = [];
+    const agregar = (
+      tipo: ContenidoModal['tipo'],
+      items: (Salsa | Preparacion | Truco)[],
+    ) => {
+      for (const item of items) {
+        if (!item.id || ('oculta' in item && item.oculta)) continue;
+        const clave = `${tipo}:${item.id}`;
+        const url = this.router.createUrlTree(['/'], {
+          queryParams: { modal: clave },
+        });
+        this.contenidos.push({
+          clave,
+          nombre: item.nombre,
+          href: this.location.prepareExternalUrl(this.router.serializeUrl(url)),
+          exacto: tipo === 'salsa',
+          tipo,
+          item,
+        });
+      }
+    };
+    agregar('salsa', SALSAS);
+    agregar('preparacion', this.preparaciones);
+    agregar('truco', this.trucos);
+    this.elaboracionFormateada = enlazarContenidos(
+      this.receta?.elaboracion?.replace(/&nbsp;/g, ' ') || '',
+      this.contenidos,
+      this.document,
+    );
   }
 
-  // Envuelve en un enlace la primera mención de cada salsa, sin tocar las etiquetas HTML existentes
-  private enlazarSalsas(html: string): string {
-    if (!html) return html;
-
-    const salsasPendientes = new Set(SALSAS.map((s) => s.nombre));
-    // Separamos el HTML en fragmentos de texto y etiquetas para no romper el marcado
-    const fragmentos = html.split(/(<[^>]+>)/g);
-
-    return fragmentos
-      .map((fragmento, indice) => {
-        const esEtiqueta = indice % 2 === 1;
-        if (esEtiqueta || !fragmento) return fragmento;
-
-        let resultado = fragmento;
-        for (const nombreSalsa of salsasPendientes) {
-          const escapado = nombreSalsa.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const patron = new RegExp(
-            `(^|[^\\p{L}\\p{N}_])(${escapado})(?=[^\\p{L}\\p{N}_]|$)`,
-            'iu',
-          );
-          const coincidencia = patron.exec(resultado);
-          if (coincidencia) {
-            // Angular sanitiza el innerHTML y elimina atributos data-*, así que usamos "title"
-            resultado =
-              resultado.slice(0, coincidencia.index) +
-              coincidencia[1] +
-              `<a href="#" class="enlace-salsa" title="${nombreSalsa}">${coincidencia[2]}</a>` +
-              resultado.slice(coincidencia.index + coincidencia[0].length);
-            salsasPendientes.delete(nombreSalsa);
-          }
-        }
-        return resultado;
-      })
-      .join('');
+  private notificarErrorContenido(error: unknown): void {
+    console.error('No se pudieron cargar los contenidos relacionados:', error);
+    this.snackBar.open(
+      'No se pudieron cargar algunos contenidos relacionados.',
+      'Cerrar',
+    );
   }
 
   onElaboracionClick(event: Event): void {
-    const elemento = (event.target as HTMLElement)?.closest(
-      'a.enlace-salsa',
-    ) as HTMLElement | null;
+    if (!(event.target instanceof Element)) return;
+    const elemento = event.target.closest<HTMLAnchorElement>('a.enlace-salsa');
     if (!elemento) return;
-
+    const contenido = this.contenidos.find(
+      (c) => c.href === elemento.getAttribute('href'),
+    );
+    if (!contenido) return;
+    if (
+      event instanceof MouseEvent &&
+      (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0)
+    ) return;
     event.preventDefault();
-    const nombreSalsa = elemento.getAttribute('title');
-    const salsa = SALSAS.find((s) => s.nombre === nombreSalsa);
-    if (salsa) {
-      this.dialog.open(ModalComponent, {
-        data: { tipo: 'salsa', ...salsa },
-        maxWidth: '820px',
-        width: '100%',
-        panelClass: 'modal-salsa',
-      });
-    }
+    const esSalsa = contenido.tipo === 'salsa';
+    this.dialog.open(ModalComponent, {
+      data: {
+        ...contenido.item,
+        tipo: esSalsa ? 'salsa' : 'truco',
+        tipoEnlace: contenido.tipo,
+      },
+      maxWidth: '820px',
+      width: '100%',
+      panelClass: esSalsa ? 'modal-salsa' : 'modal-truco',
+    });
   }
 
   abrirFoto(): void {
