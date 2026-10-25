@@ -13,11 +13,12 @@
   </button>
 
   <app-compartir
-    *ngIf="data.id"
+    *ngIf="data.tipo === 'truco' || data.tipo === 'salsa'"
     class="compartir-modal"
     [soloIcono]="true"
     [nombre]="data.nombre"
     [enlace]="enlaceCompartir"
+    [posicionMenu]="'arriba'"
     [encabezado]="encabezadoCompartir"
   ></app-compartir>
 

@@ -25,6 +25,8 @@ export class CompartirComponent implements OnDestroy {
   @Input() enlace = '';
   @Input() encabezado = 'Mira esta receta';
   @Input() soloIcono = false;
+  /** Lado del boton donde se abre el menu; por defecto se muestra abajo. */
+  @Input() posicionMenu: 'arriba' | 'abajo' = 'abajo';
   @ViewChild('compartirRef') compartirRef?: ElementRef<HTMLElement>;
 
   menuCompartirAbierto = false;
