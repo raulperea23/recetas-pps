@@ -112,9 +112,15 @@ export class HomeComponent implements OnInit {
       console.log('Todas las recetas:', recetas);
       this.todasLasRecetas = recetas;
 
-      this.destacadas = recetas
-        .filter((r) => r.destacada)
-        .slice(0, this.isMobile || this.isDesktop ? 4 : 6);
+      const destacadas = recetas.filter((r) => r.destacada);
+      for (let i = destacadas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [destacadas[i], destacadas[j]] = [destacadas[j], destacadas[i]];
+      }
+      this.destacadas = destacadas.slice(
+        0,
+        this.isMobile || this.isDesktop ? 4 : 6,
+      );
 
       // const fechaComparativa = new Date();
       // fechaComparativa.setMonth(fechaComparativa.getMonth() - 3); // Hace 3 meses
