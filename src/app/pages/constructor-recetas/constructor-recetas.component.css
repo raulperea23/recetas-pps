@@ -44,7 +44,7 @@
   border-radius: 13px;
   padding: 16px;
   box-shadow: 3px 3px 10px var(--shadow-color);
-  max-height: 448px;
+  max-height: 470px;
   overflow-y: auto;
 }
 
@@ -382,7 +382,7 @@
   }
 
   .panel-ingredientes {
-    max-height: 416px;
+    max-height: 430px;
   }
 
   .section-title {
@@ -418,7 +418,7 @@
   }
 
   .panel-ingredientes {
-    max-height: 280px;
+    max-height: 360px;
   }
 
   .panel-seleccionados {

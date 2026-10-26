@@ -118,6 +118,14 @@ export const SALSAS: Salsa[] = [
     tipoSalsa: 'tomate',
   },
   {
+    id: 'vinagreta',
+    nombre: 'Salsa vinagreta',
+    descripcion: `<u>Tiempo aprox.:</u> 5 minutos <u>Dificultad:</u> Fácil
+    <br><u>Ingredientes</u>: 10 cucharadas de aceite de oliva virgen extra, 10 cucharadas de vinagre de vino y 1 cucharadita rasa de sal.
+    <br><u>Preparación</u>: poner en un cuenco el aceite, el vinagre y la sal. Mezclar bien con varillas hasta obtener una crema homogénea y blanquecina. Este aliño es muy adecuado para mejillones, pescados, ensalada de alubias, ensalada de pasta y otras ensaladas.`,
+    tipoSalsa: 'queso',
+  },
+  {
     id: 'vinagreta-cebollino',
     nombre: 'Vinagreta de Cebollino',
     descripcion: `<u>Tiempo aprox.:</u> 5 minutos <u>Dificultad:</u> Fácil
