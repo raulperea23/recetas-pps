@@ -6,6 +6,9 @@
   "display": "standalone",
   "background_color": "#eadace",
   "theme_color": "#54afe8",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["food", "lifestyle"],
   "icons": [
     {
       "src": "logo192x192.png",
