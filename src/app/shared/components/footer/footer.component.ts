@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { version } from '../../../../../package.json';
 
 @Component({
   selector: 'app-footer',
@@ -15,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class FooterComponent {
   currentYear: number = new Date().getFullYear();
   anchoVentana: number = window.innerWidth;
+  appVersion = version;
 
   constructor(public themeService: ThemeService) {}
 

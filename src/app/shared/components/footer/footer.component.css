@@ -101,6 +101,16 @@ footer {
   gap: 10px;
 }
 
+.app-version {
+  position: absolute;
+  bottom: 3px;
+  left: 10px;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  user-select: none;
+}
+
 .ancho-pantalla {
   position: absolute;
   bottom: 3px;
