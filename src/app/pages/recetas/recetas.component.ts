@@ -15,6 +15,7 @@ import { CardComponent } from '../../shared/components/card/card.component';
 import {
   CATEGORIAS,
   TIPOS_DE_PLATO,
+  TIPOS_DE_PLATO_PLURALES,
   DIFICULTADES,
 } from '../../shared/models/app.types';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -103,6 +104,13 @@ export class RecetasComponent implements OnInit {
         this.tipoSeleccionado = queryParams['tipo'];
         if (this.tipoSeleccionado === 'Postre') {
           this.tituloPagina = 'Todos nuestros postres';
+        } else {
+          const tipo = TIPOS_DE_PLATO.find(
+            (tipo) => tipo === this.tipoSeleccionado,
+          );
+          this.tituloPagina = tipo
+            ? TIPOS_DE_PLATO_PLURALES[tipo]
+            : this.tipoSeleccionado;
         }
       }
       if (queryParams['dificultad']) {

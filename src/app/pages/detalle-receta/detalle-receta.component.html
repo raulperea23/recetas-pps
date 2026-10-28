@@ -6,8 +6,10 @@
       >
       Volver a recetas
     </button>
-
-    <app-compartir [nombre]="receta.nombre"></app-compartir>
+    <app-compartir
+      class="accion-compartir"
+      [nombre]="receta.nombre"
+    ></app-compartir>
   </div>
 
   <div class="cabecera">
@@ -120,7 +122,7 @@
 
   <section class="relacionadas" *ngIf="recetasRelacionadas.length > 0">
     <mat-divider></mat-divider>
-    <h2>Recetas relacionadas</h2>
+    <h2>También puede interesarte:</h2>
     <div class="grid-relacionadas">
       <mat-card
         *ngFor="let r of recetasRelacionadas"

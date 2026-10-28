@@ -123,9 +123,9 @@ button.navbar-button span.mdc-button__label {
 
 .burger-icon {
   color: white;
-  font-size: 26px;
-  width: 26px;
-  height: 26px;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
 }
 
 .mobile-menu {
@@ -271,9 +271,9 @@ button.navbar-button span.mdc-button__label {
   }
 
   .burger-icon {
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
   }
 }
 

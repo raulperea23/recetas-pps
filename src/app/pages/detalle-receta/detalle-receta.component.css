@@ -302,6 +302,7 @@ mat-divider {
   flex: 1;
   padding-top: 13px;
   color: var(--text-color);
+  line-height: 30px;
 }
 
 .grid-relacionadas {
@@ -311,9 +312,17 @@ mat-divider {
 }
 
 .tarjeta-relacionada {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
   transition: transform 0.2s;
   background: var(--card-bg) !important;
+}
+
+.tarjeta-relacionada mat-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .tarjeta-relacionada:hover {
@@ -437,8 +446,11 @@ mat-divider {
 
 @media (max-width: 480px) {
   .acciones-superiores {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .acciones-superiores .accion-compartir {
+    width: auto;
   }
   .card-relacionada-title {
     font-size: 18px;

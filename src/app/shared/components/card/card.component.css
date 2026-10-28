@@ -80,6 +80,7 @@ mat-card-content {
   font-size: 24px;
   flex: 1;
   color: var(--text-color);
+  line-height: 36px;
 }
 
 .card-categorias-container {
@@ -91,11 +92,13 @@ mat-card-content {
 .tipo-de-plato {
   color: var(--accent-color);
   font-weight: 500;
+  margin-bottom: 4px;
 }
 
 .categoria {
   color: var(--primary-color);
   font-weight: 500;
+  margin-bottom: 4px;
 }
 
 .info-card-container {
@@ -113,6 +116,10 @@ mat-card-content {
   /* justify-content: center; */
   align-items: center;
   gap: 6px;
+}
+
+.info-card mat-icon.info-card-icon {
+  color: var(--text-secondary-color);
 }
 
 .info-card span {
@@ -156,9 +163,11 @@ mat-card img {
   }
   .tipo-de-plato {
     font-size: 14px;
+    margin-bottom: 2px;
   }
   .categoria {
     font-size: 14px;
+    margin-bottom: 2px;
   }
   .info-card-container {
     gap: 3px;
