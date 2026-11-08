@@ -23,6 +23,7 @@ import {
 import { Truco, TrucosService } from '../../shared/services/trucos.service';
 import { ContenidoEnlazable, enlazarContenidos } from './enlazar-contenidos';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { aHtml } from '../../shared/utils/contenido-html';
 
 interface ContenidoModal extends ContenidoEnlazable {
   tipo: 'salsa' | 'preparacion' | 'truco';
@@ -51,6 +52,7 @@ export class DetalleRecetaComponent implements OnInit {
   recetasRelacionadas: Receta[] = [];
   fotoActual: string = '';
   elaboracionFormateada = '';
+  readonly aHtml = aHtml;
   private preparaciones: Preparacion[] = [];
   private trucos: Truco[] = [];
   private contenidos: ContenidoModal[] = [];

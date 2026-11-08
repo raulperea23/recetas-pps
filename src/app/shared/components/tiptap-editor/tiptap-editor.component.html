@@ -1,4 +1,8 @@
-<div class="tiptap-wrapper" [class.invalid]="invalid">
+<div
+  class="tiptap-wrapper"
+  [class.invalid]="invalid"
+  [class.linea]="modo === 'linea'"
+>
   <div class="tiptap-toolbar">
     <button
       type="button"
@@ -27,6 +31,7 @@
     >
       <mat-icon>format_underlined</mat-icon>
     </button>
+    <ng-container *ngIf="modo === 'completo'">
     <div class="tiptap-separador"></div>
     <button
       type="button"
@@ -148,6 +153,8 @@
         <mat-icon>delete</mat-icon>
       </button>
     </ng-container>
+    </ng-container>
   </div>
+
   <div #editorEl class="tiptap-content"></div>
 </div>

@@ -22,6 +22,7 @@ import TableRow from '@tiptap/extension-table-row';
 import TableHeader from '@tiptap/extension-table-header';
 import TableCell from '@tiptap/extension-table-cell';
 import { Fracciones } from './fracciones.extension';
+import { aHtml } from '../../utils/contenido-html';
 
 @Component({
   selector: 'app-tiptap-editor',
@@ -41,10 +42,13 @@ export class TiptapEditorComponent
   implements OnInit, OnDestroy, ControlValueAccessor
 {
   @Input() placeholder: string = 'Escribe aquí...';
+  /** 'completo': barra con todas las opciones. 'linea': una sola línea con negrita, cursiva y subrayado. */
+  @Input() modo: 'completo' | 'linea' = 'completo';
   @Input() invalid: boolean | null | undefined = false;
   @ViewChild('editorEl', { static: true }) editorEl!: ElementRef;
 
   editor!: Editor;
+  private valorActual = '';
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
 
@@ -62,10 +66,14 @@ export class TiptapEditorComponent
         TableCell,
         Fracciones,
       ],
-      content: '',
+      content: aHtml(this.valorActual),
+      editorProps: {
+        handleKeyDown: (_view, event) =>
+          this.modo === 'linea' && event.key === 'Enter',
+      },
       onUpdate: ({ editor }) => {
-        const html = editor.getHTML();
-        this.onChange(html === '<p></p>' ? '' : html);
+        this.valorActual = this.aSalida(editor.getHTML());
+        this.onChange(this.valorActual);
         this.onTouched();
       },
     });
@@ -76,12 +84,17 @@ export class TiptapEditorComponent
   }
 
   writeValue(value: string): void {
-    if (this.editor && value !== undefined) {
-      const current = this.editor.getHTML();
-      if (current !== value) {
-        this.editor.commands.setContent(value || '');
-      }
+    this.valorActual = value ?? '';
+    if (this.editor && this.aSalida(this.editor.getHTML()) !== this.valorActual) {
+      this.editor.commands.setContent(aHtml(this.valorActual));
     }
+  }
+
+  // En modo línea se guarda solo el contenido del párrafo, sin <p> externo.
+  private aSalida(html: string): string {
+    if (html === '<p></p>') return '';
+    if (this.modo !== 'linea') return html;
+    return html.replace(/<\/p>\s*<p>/g, '<br>').replace(/^<p>|<\/p>$/g, '');
   }
 
   registerOnChange(fn: (value: string) => void): void {

@@ -100,9 +100,10 @@
     <div class="ingredientes">
       <h2>Ingredientes</h2>
       <ul class="lista-ingredientes">
-        <li *ngFor="let ingrediente of receta.ingredientes">
-          {{ ingrediente }}
-        </li>
+        <li
+          *ngFor="let ingrediente of receta.ingredientes"
+          [innerHTML]="aHtml(ingrediente)"
+        ></li>
       </ul>
     </div>
 

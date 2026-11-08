@@ -75,6 +75,7 @@ Escachar: Romper la patata en trozos desiguales, en lugar de cortarla con un cuc
 Escaldado: Sumergir un género en agua hirviendo durante un rato para reducir su volumen, facilitar su pelado etc.\n
 Escalfar: Técnica culinaria que consiste en cocer huevos sin cáscara en agua hirviendo con vinagre.\n
 Escarchar: Técnica por la que un alimento, generalmente fruta, se queda recubierto de una capa de azúcar cristalizada. Se suele hacer sumergiéndolo en un almíbar.\n
+Espalmar: Técnica culinaria que consiste en golpear una pieza de carne, pescado o marisco con un utensilio adecuado (mazo de cocina, piedra, rodillo) para aplanarla, extender su superficie y romper sus fibras.\n
 Española: Salsa básica de la cocina que acompaña carnes. Se elabora a base de verduras pochadas, ligadas con harina tostada y mojada con caldo de carne.\n
 Espumar: Retirar la espuma que se produce en los líquidos al llegar al punto de ebullición y que queda flotando en la superficie y ésta formada por impurezas de los alimentos.\n
 \n

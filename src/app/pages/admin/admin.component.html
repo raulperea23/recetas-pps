@@ -391,10 +391,12 @@
             <mat-icon class="drag-handle" cdkDragHandle
               >drag_indicator</mat-icon
             >
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Ingrediente {{ i + 1 }}</mat-label>
-              <input matInput appFracciones [formControl]="$any(ing)" />
-            </mat-form-field>
+            <app-tiptap-editor
+              class="ingrediente-editor"
+              modo="linea"
+              [placeholder]="'Ingrediente ' + (i + 1)"
+              [formControl]="$any(ing)"
+            ></app-tiptap-editor>
             <button
               mat-icon-button
               class="btn-eliminar"

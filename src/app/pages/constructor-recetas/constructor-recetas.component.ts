@@ -16,6 +16,7 @@ import { CategoriasIngredientesService } from '../../shared/services/categorias-
 import { RecetasService } from '../../shared/services/recetas.service';
 import { Receta } from '../../shared/models/receta.model';
 import { CardComponent } from '../../shared/components/card/card.component';
+import { textoPlano } from '../../shared/utils/contenido-html';
 
 interface CategoriaConIngredientes {
   nombre: string;
@@ -89,7 +90,9 @@ export class ConstructorRecetasComponent implements OnInit {
               abierta: false,
             }))
             .filter((c) => c.ingredientes.length > 0);
-          this.categoriasFiltradas = this.categorias;
+          this.categoriasFiltradas = this.categorias.sort((a, b) =>
+            a.nombre.localeCompare(b.nombre),
+          );
           this.cargando = false;
         });
       });
@@ -173,7 +176,7 @@ export class ConstructorRecetasComponent implements OnInit {
     );
     this.recetasFiltradas = this.todasLasRecetas.filter((receta) => {
       const ingredientesReceta = receta.ingredientes.map((ing: string) =>
-        ing.toLowerCase(),
+        textoPlano(ing).toLowerCase(),
       );
       const elaboracionReceta = receta.elaboracion.toLowerCase();
       return nombresSeleccionados.every(

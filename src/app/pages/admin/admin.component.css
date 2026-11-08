@@ -336,6 +336,11 @@ mat-divider {
   margin-bottom: -1.25em;
 }
 
+.ingrediente-editor {
+  flex: 1;
+  min-width: 0;
+}
+
 .btn-añadir {
   color: var(--primary-color) !important;
   margin-bottom: 6px;

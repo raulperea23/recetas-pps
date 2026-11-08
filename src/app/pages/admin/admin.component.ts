@@ -47,7 +47,6 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { TiptapEditorComponent } from '../../shared/components/tiptap-editor/tiptap-editor.component';
 import { CambioDialogComponent } from '../../shared/components/cambio-dialog/cambio-dialog.component';
-import { FraccionesDirective } from '../../shared/directives/fracciones.directive';
 import {
   CATEGORIAS,
   DIFICULTADES,
@@ -189,7 +188,6 @@ const SECCIONES_ADMIN: SeccionAdmin[] = [
     MatSlideToggleModule,
     MatDialogModule,
     TiptapEditorComponent,
-    FraccionesDirective,
     DragDropModule,
   ],
   templateUrl: './admin.component.html',
@@ -499,8 +497,11 @@ export class AdminComponent implements OnInit {
   buscarParaEditar(texto: string): void {
     this.busquedaEditar = texto;
     const busq = texto.toLowerCase().trim();
+    // Ordenamos las recetas filtradas por nombre alfabéticamente
     this.recetasFiltradas = busq
-      ? this.recetas.filter((r) => r.nombre.toLowerCase().includes(busq))
+      ? this.recetas
+          .filter((r) => r.nombre.toLowerCase().includes(busq))
+          .sort((a, b) => a.nombre.localeCompare(b.nombre))
       : [];
   }
 
